@@ -1,0 +1,52 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.color-input {
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.color-square {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.color-input::-moz-color-swatch {
+  border: none;
+  border-radius: 0.25rem;
+}
+
+/* Custom scrollbar for the theme editor */
+.editor-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
