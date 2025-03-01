@@ -15,6 +15,8 @@ import black_atom_terra_summer_day from "./themes/terra/black-atom-terra-summer-
 import black_atom_terra_summer_night from "./themes/terra/black-atom-terra-summer-night.ts";
 import black_atom_terra_winter_day from "./themes/terra/black-atom-terra-winter-day.ts";
 import black_atom_terra_winter_night from "./themes/terra/black-atom-terra-winter-night.ts";
+import black_atom_crbn_null from "./themes/crbn/black-atom-crbn-null.ts";
+import black_atom_crbn_supr from "./themes/crbn/black-atom-crbn-supr.ts";
 import { Key, ThemeMap } from "./types/theme.ts";
 
 export type Config = {
@@ -34,8 +36,8 @@ const themeMap: ThemeMap = {
     "black-atom-jpn-koyo-yoru": black_atom_jpn_koyo_yoru,
     "black-atom-jpn-koyo-hiru": black_atom_jpn_koyo_hiru,
     "black-atom-jpn-tsuki-yoru": black_atom_jpn_tsuki_yoru,
-    "black-atom-crbn-null": null,
-    "black-atom-crbn-supr": null,
+    "black-atom-crbn-null": black_atom_crbn_null,
+    "black-atom-crbn-supr": black_atom_crbn_supr,
     "black-atom-terra-spring-day": black_atom_terra_spring_day,
     "black-atom-terra-spring-night": black_atom_terra_spring_night,
     "black-atom-terra-fall-day": black_atom_terra_fall_day,
