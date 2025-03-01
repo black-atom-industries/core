@@ -1,10 +1,10 @@
 import { HexColor } from "./color.ts";
 
 export const themeKeys = [
-    "black-atom-corp-engineering",
-    "black-atom-corp-operations",
-    "black-atom-corp-medical",
-    "black-atom-corp-research",
+    "black-atom-stations-engineering",
+    "black-atom-stations-operations",
+    "black-atom-stations-medical",
+    "black-atom-stations-research",
     "black-atom-crbn-null",
     "black-atom-crbn-supr",
     "black-atom-jpn-koyo-yoru",
@@ -29,10 +29,10 @@ type CollectionLabel = string;
 interface Meta {
     key: Key;
     label:
-        | "Black Atom - Corp Engineering"
-        | "Black Atom - Corp Operations"
-        | "Black Atom - Corp Medical"
-        | "Black Atom - Corp Research"
+        | "Black Atom - Engineering Station"
+        | "Black Atom - Operations Station"
+        | "Black Atom - Medical Station"
+        | "Black Atom - Research Station"
         | "Black Atom - Carbon NULL"
         | "Black Atom - Carbon SUPR"
         | "Black Atom - JPN Koyo Yoru"
