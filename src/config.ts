@@ -7,6 +7,14 @@ import black_atom_stations_engineering from "./themes/stations/black-atom-statio
 import black_atom_stations_operations from "./themes/stations/black-atom-stations-operations.ts";
 import black_atom_stations_medical from "./themes/stations/black-atom-stations-medical.ts";
 import black_atom_stations_research from "./themes/stations/black-atom-stations-research.ts";
+import black_atom_terra_spring_day from "./themes/terra/black-atom-terra-spring-day.ts";
+import black_atom_terra_spring_night from "./themes/terra/black-atom-terra-spring-night.ts";
+import black_atom_terra_fall_day from "./themes/terra/black-atom-terra-fall-day.ts";
+import black_atom_terra_fall_night from "./themes/terra/black-atom-terra-fall-night.ts";
+import black_atom_terra_summer_day from "./themes/terra/black-atom-terra-summer-day.ts";
+import black_atom_terra_summer_night from "./themes/terra/black-atom-terra-summer-night.ts";
+import black_atom_terra_winter_day from "./themes/terra/black-atom-terra-winter-day.ts";
+import black_atom_terra_winter_night from "./themes/terra/black-atom-terra-winter-night.ts";
 import { Key, ThemeMap } from "./types/theme.ts";
 
 export type Config = {
@@ -28,14 +36,14 @@ const themeMap: ThemeMap = {
     "black-atom-jpn-tsuki-yoru": black_atom_jpn_tsuki_yoru,
     "black-atom-crbn-null": null,
     "black-atom-crbn-supr": null,
-    "black-atom-terra-spring-day": null,
-    "black-atom-terra-spring-night": null,
-    "black-atom-terra-fall-day": null,
-    "black-atom-terra-fall-night": null,
-    "black-atom-terra-summer-day": null,
-    "black-atom-terra-summer-night": null,
-    "black-atom-terra-winter-day": null,
-    "black-atom-terra-winter-night": null,
+    "black-atom-terra-spring-day": black_atom_terra_spring_day,
+    "black-atom-terra-spring-night": black_atom_terra_spring_night,
+    "black-atom-terra-fall-day": black_atom_terra_fall_day,
+    "black-atom-terra-fall-night": black_atom_terra_fall_night,
+    "black-atom-terra-summer-day": black_atom_terra_summer_day,
+    "black-atom-terra-summer-night": black_atom_terra_summer_night,
+    "black-atom-terra-winter-day": black_atom_terra_winter_day,
+    "black-atom-terra-winter-night": black_atom_terra_winter_night,
 };
 
 const cwd = Deno.cwd();

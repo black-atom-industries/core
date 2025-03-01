@@ -1,174 +1,174 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Black Atom Adapter Configuration",
-    "description": "Configuration schema for Black Atom theme adapters",
-    "type": "object",
-    "properties": {
-        "$schema": {
-            "type": "string",
-            "description": "The JSON Schema URL"
-        },
-        "black-atom-stations-engineering": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-stations-operations": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-stations-medical": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-stations-research": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-crbn-null": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-crbn-supr": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-jpn-koyo-yoru": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-jpn-koyo-hiru": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-jpn-tsuki-yoru": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-spring-day": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-spring-night": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-fall-day": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-fall-night": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-summer-day": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-summer-night": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-winter-day": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-terra-winter-night": {
-            "$ref": "#/$defs/templateConfig"
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Black Atom Adapter Configuration",
+  "description": "Configuration schema for Black Atom theme adapters",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The JSON Schema URL"
     },
-    "required": [
-        "$schema"
-    ],
-    "additionalProperties": false,
-    "minProperties": 2,
-    "anyOf": [
-        {
-            "required": [
-                "black-atom-stations-engineering"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-stations-operations"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-stations-medical"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-stations-research"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-crbn-null"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-crbn-supr"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-jpn-koyo-yoru"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-jpn-koyo-hiru"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-jpn-tsuki-yoru"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-spring-day"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-spring-night"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-fall-day"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-fall-night"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-summer-day"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-summer-night"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-winter-day"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-terra-winter-night"
-            ]
-        }
-    ],
-    "$defs": {
-        "templateConfig": {
-            "type": "object",
-            "properties": {
-                "templates": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "description": "Path to a template file"
-                    },
-                    "minItems": 1
-                }
-            },
-            "required": [
-                "templates"
-            ],
-            "additionalProperties": false
-        }
+    "black-atom-stations-engineering": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-stations-operations": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-stations-medical": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-stations-research": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-crbn-null": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-crbn-supr": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-jpn-koyo-yoru": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-jpn-koyo-hiru": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-jpn-tsuki-yoru": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-spring-day": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-spring-night": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-fall-day": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-fall-night": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-summer-day": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-summer-night": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-winter-day": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-terra-winter-night": {
+      "$ref": "#/$defs/templateConfig"
     }
+  },
+  "required": [
+    "$schema"
+  ],
+  "additionalProperties": false,
+  "minProperties": 2,
+  "anyOf": [
+    {
+      "required": [
+        "black-atom-stations-engineering"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-stations-operations"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-stations-medical"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-stations-research"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-crbn-null"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-crbn-supr"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-jpn-koyo-yoru"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-jpn-koyo-hiru"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-jpn-tsuki-yoru"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-spring-day"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-spring-night"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-fall-day"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-fall-night"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-summer-day"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-summer-night"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-winter-day"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-terra-winter-night"
+      ]
+    }
+  ],
+  "$defs": {
+    "templateConfig": {
+      "type": "object",
+      "properties": {
+        "templates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Path to a template file"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "templates"
+      ],
+      "additionalProperties": false
+    }
+  }
 }

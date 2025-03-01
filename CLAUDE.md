@@ -28,7 +28,7 @@
 - **File Generation**: Creates output files alongside templates (removing .template)
 - **Theme Structure**: Organized by collections (stations/jpn/terra/crbn)
 - **Shared Components**: Themes can share UI and syntax definitions (dark/light)
-- **Current Status**: Currently working for JPN and Stations themes
+- **Current Status**: Currently working for JPN, Stations, and Terra themes
 
 ## Project Goals
 
@@ -47,7 +47,7 @@
 3. **Collections Status**:
    - JPN: ✅ Complete
    - Stations: ✅ Complete
-   - Terra: ❌ Not started
+   - Terra: ✅ Complete
    - Crbn: ❌ Not started
 
 ## Detailed Migration Guide
