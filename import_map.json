@@ -1,0 +1,8 @@
+{
+    "imports": {
+        "@std/fmt/colors": "jsr:@std/fmt@1.0.5/colors",
+        "@std/path": "jsr:@std/path@^1.0.8",
+        "@zod": "https://deno.land/x/zod@v3.24.2/mod.ts",
+        "@eta": "jsr:@eta-dev/eta@3.5.0"
+    }
+}
