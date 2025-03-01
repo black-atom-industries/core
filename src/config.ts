@@ -26,6 +26,7 @@ export type Config = {
     adapterFileName: string;
     themeKeys: Key[];
     themeMap: ThemeMap;
+    adapters: string[]; // List of adapter repository names
 };
 
 const themeMap: ThemeMap = {
@@ -75,4 +76,10 @@ export const config: Config = {
         "black-atom-terra-winter-night",
     ],
     themeMap,
+    adapters: [
+        "nvim",
+        "ghostty",
+        "zed",
+        "obsidian"
+    ],
 };

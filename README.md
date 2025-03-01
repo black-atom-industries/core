@@ -65,11 +65,14 @@ The `black-atom-core` CLI provides the following commands:
 ```bash
 # Display help information
 black-atom-core --help
-# Generate theme files for all adapters
+
+# Generate theme files for the current adapter
 black-atom-core generate
 
-# Generate theme files for a specific adapter
-black-atom-core generate --adapter nvim
+# Generate theme files for all adapters and commit changes
+# NOTE: Requires all adapter repositories to be cloned as siblings under the same parent directory
+# Example structure: ~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian}
+black-atom-core generate-all
 
 # List all available themes (Not available yet)
 # black-atom-core list

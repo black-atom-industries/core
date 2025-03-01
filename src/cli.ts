@@ -1,5 +1,6 @@
 import log from "./lib/log.ts";
 import generate from "./commands/generate.ts";
+import generateAll from "./commands/generate-all.ts";
 import { config } from "./config.ts";
 
 if (import.meta.main) {
@@ -8,6 +9,10 @@ if (import.meta.main) {
     switch (command) {
         case "generate":
             generate(config.themeMap);
+            break;
+            
+        case "generate-all":
+            generateAll();
             break;
 
         case "-h":

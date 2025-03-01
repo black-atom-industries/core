@@ -13,7 +13,9 @@ const logMenu = () => {
     console.log(`Usage: black-atom-core <command>
 
 Commands:
-  ${colors.yellow("generate")}    Generate theme files from templates
+  ${colors.yellow("generate")}        Generate theme files from templates
+  ${colors.yellow("generate-all")}    Generate themes for all adapters and commit changes
+                      (requires repositories to be cloned as siblings)
 `);
 };
 
