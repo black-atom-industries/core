@@ -51,8 +51,8 @@ const palette: Theme.Palette = {
     darkCyan: "#529e86",
     cyan: "#6aaf9a",
 
-    lightGray: primaries[8],
-    white: primaries[10],
+    lightGray: primaries[7],
+    white: primaries[8],
 };
 
 const theme: Theme.Definition = {
