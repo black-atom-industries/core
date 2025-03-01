@@ -9,8 +9,8 @@
 - Lint code: `deno task lint`
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
-- Generate themes: `black-atom-core generate`
-- Generate for all adapters: `black-atom-core generate-all` (requires repositories to be cloned as siblings)
+- Adapt themes: `black-atom-core adapt`
+- Adapt all adapters: `black-atom-core adapt-all` (requires repositories to be cloned as siblings)
 
 ## Code Style Guide
 

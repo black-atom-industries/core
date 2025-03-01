@@ -7,11 +7,11 @@ if (import.meta.main) {
     const command = Deno.args[0];
 
     switch (command) {
-        case "generate":
+        case "adapt":
             generate(config.themeMap);
             break;
             
-        case "generate-all":
+        case "adapt-all":
             generateAll();
             break;
 

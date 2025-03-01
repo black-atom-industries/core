@@ -66,13 +66,13 @@ The `black-atom-core` CLI provides the following commands:
 # Display help information
 black-atom-core --help
 
-# Generate theme files for the current adapter
-black-atom-core generate
+# Adapt theme files for the current adapter
+black-atom-core adapt
 
-# Generate theme files for all adapters and commit changes
+# Adapt theme files for all adapters and commit changes
 # NOTE: Requires all adapter repositories to be cloned as siblings under the same parent directory
 # Example structure: ~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian}
-black-atom-core generate-all
+black-atom-core adapt-all
 
 # List all available themes (Not available yet)
 # black-atom-core list
@@ -81,21 +81,21 @@ black-atom-core generate-all
 # black-atom-core info jpn/koyo-yoru
 ```
 
-### Theme Generation
+### Theme Adaptation
 
-The core CLI generates theme files by:
+The core CLI adapts theme files by:
 
 1. Reading adapter configuration files (`black-atom-adapter.json`)
 2. Processing template files with the Eta template engine
 3. Replacing template variables with values from core theme definitions
-4. Writing generated files to the appropriate locations
+4. Writing adapted files to the appropriate locations
 
 ```bash
 # Navigate to an adapter repository
 cd ../nvim
 
-# Generate theme files for this adapter
-black-atom-core generate
+# Adapt theme files for this adapter
+black-atom-core adapt
 ```
 
 ## Adapter Pattern
