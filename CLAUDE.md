@@ -1,4 +1,4 @@
-# Black Atom Industries Core Development Guide
+# Black Atom Core Development Guide
 
 ## Build/Test Commands
 
@@ -28,81 +28,141 @@
 - **File Generation**: Creates output files alongside templates (removing .template)
 - **Theme Structure**: Organized by collections (stations/jpn/terra/crbn)
 - **Shared Components**: Themes can share UI and syntax definitions (dark/light)
-- **Current Status**: All theme collections (JPN, Stations, Terra, Crbn) have been migrated
 
-## Project Goals
+## Core Components
 
-- Migrate all theme definitions from Neovim to core repository
-- Establish core as the single source of truth for theme colors
-- Enable generation of theme files for multiple platforms
-- Ensure consistent theme experience across different tools
-- Support all existing theme collections (stations, jpn, terra, crbn)
+### CLI Tool (`cli.ts`)
 
-## Theme Migration Process
+The CLI provides various commands:
 
-1. **Reference**: Use JPN collection as the migration reference model
-2. **Structure**:
-   - Create shared UI/syntax files (ui_dark.ts, syntax_dark.ts, etc.)
-   - Create theme definition files that use these shared components
-3. **Collections Status**:
-   - JPN: ✅ Complete
-   - Stations: ✅ Complete
-   - Terra: ✅ Complete
-   - Crbn: ✅ Complete
+- `generate`: Process templates and create theme files
 
-## Detailed Migration Guide
+<!-- - `list`: List all available themes-->
+<!-- - `info`: Display detailed information about a theme -->
+<!-- - `init`: Initialize a new adapter repository with template structure-->
 
-Follow these steps to migrate a new theme collection from Lua to TypeScript:
+### Theme System (`src/themes/`)
 
-1. **Prepare the Source Files**:
-   - Copy Lua definitions from Neovim repository to a `/migrations/collection-name/` folder
-   - Examine the structure of the Lua files to understand:
-     - Theme properties (primaries, palette, appearance)
-     - Shared components (ui_dark, syntax_dark, etc.)
+- **Collections**: Themes are organized into collections (JPN, Stations, Terra, CRBN)
+- **Shared Components**: UI and syntax definitions are shared across themes
+- **Theme Definition**: Each theme has its own TypeScript file defining colors and properties
 
-2. **Create the Directory Structure**:
-   - Create a new directory under `src/themes/` for the collection
+### Adapter System (`src/adapter/`)
 
-3. **Create Shared UI/Syntax Files First**:
-   - Start with `ui_dark.ts`, `ui_light.ts`, `syntax_dark.ts`, `syntax_light.ts`
-   - Follow TypeScript interfaces from `types/theme.ts`
-   - Convert property names from snake_case to camelCase (e.g., `dark_blue` → `darkBlue`)
+- **Configuration**: Reads `black-atom-adapter.json` from adapter repositories
+- **Template Processing**: Uses Eta template engine to process template files
+- **Variable Injection**: Injects theme properties into templates
+- **File Generation**: Creates theme files from processed templates
 
-4. **Create Theme Definition Files**:
-   - Create separate .ts files for each theme
-   - Import the shared UI/syntax components
-   - Define meta information, primaries, and palette
-   - Export the theme definition
+### Type System (`src/types/`)
 
-5. **Update Supporting Files**:
-   - Add the collection to CollectionKey type in `types/theme.ts`
-   - Update `config.ts`:
-     - Import the new theme files
-     - Add to the themeMap
-     - Update the themeKeys array
+- **Theme Interface**: Defines the structure of theme objects
+- **Collection Keys**: Enumerates available theme collections
+- **Theme Keys**: Maps theme names to their collection and variant
 
-6. **Validate and Test**:
-   - Run typecheck: `deno task check`
-   - Run formatter: `deno task format`
-   - Run linter: `deno task lint`
-   - Generate schema: `deno task schema`
+## Theme Definition Structure
 
-7. **Key Conversion Notes**:
-   - Convert Lua table keys to TypeScript object keys
-   - Rename snake_case to camelCase
-   - Ensure all properties match the TypeScript interfaces
-   - Convert Lua index-based arrays (1-indexed) to JavaScript arrays (0-indexed)
-   - Example property conversions:
-     ```
-     dark_red → darkRed
-     dark_yellow → darkYellow
-     dark_blue → darkBlue
-     dark_cyan → darkCyan
-     light_gray → lightGray
-     ```
+```typescript
+// Theme interface
+interface Theme {
+  meta: {
+    name: string;
+    description: string;
+    author: string;
+  };
+  appearance: "dark" | "light";
+  primaries: {
+    accent: string;
+    // other primary colors
+  };
+  palette: {
+    // 16-color terminal palette
+  };
+  ui: UITheme;
+  syntax: SyntaxTheme;
+}
 
-8. **Testing with Adapters**:
-   - Create template files in the adapter repository
-   - Set up adapter.json configuration
-   - Run the generator to create theme files
-   - Verify theme output matches original Neovim themes
+// UI theme interface
+interface UITheme {
+  bg: {
+    default: string;
+    // other background colors
+  };
+  fg: {
+    default: string;
+    // other foreground colors
+  };
+  // other UI element colors
+}
+
+// Syntax theme interface
+interface SyntaxTheme {
+  base: {
+    // base syntax colors
+  };
+  syntax: {
+    // specific syntax element colors
+  };
+}
+```
+
+## Creating a New Collection
+
+1. **Create Collection Directory**:
+
+   ```
+   mkdir -p src/themes/new-collection
+   ```
+
+2. **Create Shared Components**:
+
+   - Create `ui_dark.ts` and `ui_light.ts` for UI elements
+   - Create `syntax_dark.ts` and `syntax_light.ts` for syntax highlighting
+   - Base these on existing collection shared components
+
+3. **Create Theme Definitions**:
+
+   - Create a TypeScript file for each theme variant
+   - Import shared components
+   - Define theme metadata, primaries, and palette
+   - Export the theme object
+
+4. **Update Configuration**:
+
+   - Add the collection to `CollectionKey` type in `types/theme.ts`
+   - Update `config.ts` to include the new themes
+   - Add to `themeMap` and `themeKeys`
+
+5. **Test and Validate**:
+   - Run `deno task check` to verify type safety
+   - Run `deno task lint` and `deno task format` for code style
+   - Generate schema with `deno task schema`
+
+## Adapter Development
+
+1. **Adapter Configuration**:
+
+   - Create `black-atom-adapter.json` in the adapter repository
+   - Define theme mappings to template files
+
+2. **Template Creation**:
+
+   - Create template files with `.template.{ext}` naming
+   - Use Eta template syntax for variable interpolation
+   - Reference theme properties with `<%= theme.property.path %>`
+
+3. **Theme Generation**:
+
+   - Run `black-atom-core generate` in the adapter repository
+   - Verify generated files match expected output
+
+4. **Testing**:
+   - Test generated files in the target application
+   - Verify colors and styling match the theme definitions
+
+## Troubleshooting
+
+- **Template Errors**: Check variable paths and syntax in template files
+- **Type Errors**: Ensure theme definitions follow the correct interfaces
+- **Generation Errors**: Verify adapter configuration is correctly formatted
+- **Color Discrepancies**: Check hex value formats and conversion methods
