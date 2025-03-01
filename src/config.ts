@@ -1,9 +1,12 @@
 import { join } from "@std/path";
 
-import black_atom_corp_eng from "./themes/corp/black-atom-corp-eng.ts";
 import black_atom_jpn_koyo_yoru from "./themes/jpn/black-atom-jpn-koyo-yoru.ts";
 import black_atom_jpn_koyo_hiru from "./themes/jpn/black-atom-jpn-koyo-hiru.ts";
 import black_atom_jpn_tsuki_yoru from "./themes/jpn/black-atom-jpn-tsuki-yoru.ts";
+import black_atom_stations_engineering from "./themes/stations/black-atom-stations-engineering.ts";
+import black_atom_stations_operations from "./themes/stations/black-atom-stations-operations.ts";
+import black_atom_stations_medical from "./themes/stations/black-atom-stations-medical.ts";
+import black_atom_stations_research from "./themes/stations/black-atom-stations-research.ts";
 import { Key, ThemeMap } from "./types/theme.ts";
 
 export type Config = {
@@ -16,10 +19,10 @@ export type Config = {
 };
 
 const themeMap: ThemeMap = {
-    "black-atom-corp-engineering": black_atom_corp_eng,
-    "black-atom-corp-operations": null,
-    "black-atom-corp-medical": null,
-    "black-atom-corp-research": null,
+    "black-atom-stations-engineering": black_atom_stations_engineering,
+    "black-atom-stations-operations": black_atom_stations_operations,
+    "black-atom-stations-medical": black_atom_stations_medical,
+    "black-atom-stations-research": black_atom_stations_research,
     "black-atom-jpn-koyo-yoru": black_atom_jpn_koyo_yoru,
     "black-atom-jpn-koyo-hiru": black_atom_jpn_koyo_hiru,
     "black-atom-jpn-tsuki-yoru": black_atom_jpn_tsuki_yoru,
@@ -43,10 +46,10 @@ export const config: Config = {
     },
     adapterFileName: "black-atom-adapter.json",
     themeKeys: [
-        "black-atom-corp-engineering",
-        "black-atom-corp-operations",
-        "black-atom-corp-medical",
-        "black-atom-corp-research",
+        "black-atom-stations-engineering",
+        "black-atom-stations-operations",
+        "black-atom-stations-medical",
+        "black-atom-stations-research",
         "black-atom-crbn-null",
         "black-atom-crbn-supr",
         "black-atom-jpn-koyo-yoru",

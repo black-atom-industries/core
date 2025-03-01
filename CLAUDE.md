@@ -28,7 +28,7 @@
 - **File Generation**: Creates output files alongside templates (removing .template)
 - **Theme Structure**: Organized by collections (stations/jpn/terra/crbn)
 - **Shared Components**: Themes can share UI and syntax definitions (dark/light)
-- **Current Status**: Currently working for JPN themes
+- **Current Status**: Currently working for JPN and Stations themes
 
 ## Project Goals
 
@@ -44,15 +44,65 @@
 2. **Structure**:
    - Create shared UI/syntax files (ui_dark.ts, syntax_dark.ts, etc.)
    - Create theme definition files that use these shared components
-3. **Migration Steps**:
-   - Copy Lua definitions from Neovim repository
-   - Convert to TypeScript following type definitions in types/theme.ts
-   - Extract shared UI/syntax elements to respective files
-   - Ensure theme files properly import and use shared elements
-   - Validate output matches original Neovim themes
-4. **Collections Status**:
+3. **Collections Status**:
    - JPN: ✅ Complete
-   - Stations: 🚧 In progress (needs restart)
+   - Stations: ✅ Complete
    - Terra: ❌ Not started
    - Crbn: ❌ Not started
 
+## Detailed Migration Guide
+
+Follow these steps to migrate a new theme collection from Lua to TypeScript:
+
+1. **Prepare the Source Files**:
+   - Copy Lua definitions from Neovim repository to a `/migrations/collection-name/` folder
+   - Examine the structure of the Lua files to understand:
+     - Theme properties (primaries, palette, appearance)
+     - Shared components (ui_dark, syntax_dark, etc.)
+
+2. **Create the Directory Structure**:
+   - Create a new directory under `src/themes/` for the collection
+
+3. **Create Shared UI/Syntax Files First**:
+   - Start with `ui_dark.ts`, `ui_light.ts`, `syntax_dark.ts`, `syntax_light.ts`
+   - Follow TypeScript interfaces from `types/theme.ts`
+   - Convert property names from snake_case to camelCase (e.g., `dark_blue` → `darkBlue`)
+
+4. **Create Theme Definition Files**:
+   - Create separate .ts files for each theme
+   - Import the shared UI/syntax components
+   - Define meta information, primaries, and palette
+   - Export the theme definition
+
+5. **Update Supporting Files**:
+   - Add the collection to CollectionKey type in `types/theme.ts`
+   - Update `config.ts`:
+     - Import the new theme files
+     - Add to the themeMap
+     - Update the themeKeys array
+
+6. **Validate and Test**:
+   - Run typecheck: `deno task check`
+   - Run formatter: `deno task format`
+   - Run linter: `deno task lint`
+   - Generate schema: `deno task schema`
+
+7. **Key Conversion Notes**:
+   - Convert Lua table keys to TypeScript object keys
+   - Rename snake_case to camelCase
+   - Ensure all properties match the TypeScript interfaces
+   - Convert Lua index-based arrays (1-indexed) to JavaScript arrays (0-indexed)
+   - Example property conversions:
+     ```
+     dark_red → darkRed
+     dark_yellow → darkYellow
+     dark_blue → darkBlue
+     dark_cyan → darkCyan
+     light_gray → lightGray
+     ```
+
+8. **Testing with Adapters**:
+   - Create template files in the adapter repository
+   - Set up adapter.json configuration
+   - Run the generator to create theme files
+   - Verify theme output matches original Neovim themes

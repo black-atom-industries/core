@@ -22,7 +22,7 @@ export const themeKeys = [
 
 type Key = typeof themeKeys[number];
 
-type CollectionKey = "corp" | "crbn" | "terra" | "jpn";
+type CollectionKey = "crbn" | "terra" | "jpn" | "stations";
 
 type CollectionLabel = string;
 

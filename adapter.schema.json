@@ -8,16 +8,16 @@
             "type": "string",
             "description": "The JSON Schema URL"
         },
-        "black-atom-corp-engineering": {
+        "black-atom-stations-engineering": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-corp-operations": {
+        "black-atom-stations-operations": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-corp-medical": {
+        "black-atom-stations-medical": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-corp-research": {
+        "black-atom-stations-research": {
             "$ref": "#/$defs/templateConfig"
         },
         "black-atom-crbn-null": {
@@ -68,22 +68,22 @@
     "anyOf": [
         {
             "required": [
-                "black-atom-corp-engineering"
+                "black-atom-stations-engineering"
             ]
         },
         {
             "required": [
-                "black-atom-corp-operations"
+                "black-atom-stations-operations"
             ]
         },
         {
             "required": [
-                "black-atom-corp-medical"
+                "black-atom-stations-medical"
             ]
         },
         {
             "required": [
-                "black-atom-corp-research"
+                "black-atom-stations-research"
             ]
         },
         {
