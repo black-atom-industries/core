@@ -3,16 +3,16 @@ import { Palette, Primaries, Syntax } from "../../types/theme.ts";
 export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
-            default: primaries[1],
-            builtin: primaries[1],
-            member: primaries[2],
+            default: primaries[3],
+            builtin: primaries[3],
+            member: primaries[4],
             parameter: palette.darkYellow,
         },
         property: {
-            default: primaries[2],
+            default: primaries[4],
         },
         string: {
-            default: primaries[3],
+            default: primaries[4],
             doc: primaries[5],
             regexp: primaries[0],
             escape: primaries[0],
@@ -32,7 +32,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         type: {
             default: primaries[0],
-            builtin: primaries[2],
+            builtin: primaries[3],
         },
         attribute: {
             default: palette.darkYellow,
@@ -62,7 +62,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         comment: {
             default: palette.gray,
-            doc: primaries[4],
+            doc: primaries[5],
             todo: palette.green,
             error: palette.red,
             warn: palette.yellow,
@@ -90,7 +90,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             math: palette.darkGreen,
             link: palette.green,
             code: {
-                fg: primaries[5],
+                fg: primaries[3],
                 bg: primaries[9],
             },
         },

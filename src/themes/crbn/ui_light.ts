@@ -5,15 +5,15 @@ export default function (primaries: Primaries, palette: Palette): UI {
     // Since we don't have that function here, we'll use the primaries directly
     return {
         bg: {
-            default: primaries[8],
-            panel: primaries[7],
-            float: primaries[7],
-            active: primaries[6],
-            disabled: primaries[3],
-            hover: primaries[6],
-            selection: "#FFB066", // Lightened version of dark yellow
-            search: "#FFB066", // Lightened version of dark yellow
-            contrast: primaries[0],
+            default: primaries[10],
+            panel: primaries[9],
+            float: primaries[9],
+            active: primaries[8],
+            disabled: primaries[5],
+            hover: primaries[8],
+            selection: primaries[8],
+            search: primaries[8],
+            contrast: primaries[1],
             negative: palette.red,
             warn: palette.yellow,
             info: palette.blue,
@@ -25,10 +25,10 @@ export default function (primaries: Primaries, palette: Palette): UI {
         },
         fg: {
             default: primaries[1],
-            subtle: primaries[0],
+            subtle: primaries[3],
             accent: palette.yellow,
-            disabled: primaries[3],
-            contrast: primaries[7],
+            disabled: primaries[5],
+            contrast: primaries[9],
             negative: palette.red,
             warn: palette.yellow,
             info: palette.blue,

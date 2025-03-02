@@ -14,25 +14,24 @@ const meta: Theme.Meta = {
     },
 };
 
-// Original primaries had 9 entries, expanded to 12 for consistency
 const primaries: Theme.Primaries = [
-    "#1d2730", // Original lows (0-2)
+    "#1d2730",
     "#344859",
     "#415a70",
-    "#566e84", // Added transition color
-    "#6c7f92", // Original mids (4-6)
+    "#566e84",
+    "#6c7f92",
     "#8999a8",
     "#a2b5c5",
-    "#bfcbd5", // Added transition color
-    "#e2e6ea", // Original highs (8-10)
-    "#f0f3f6",
-    "#feffff",
-    "#ffffff", // Added brightest color
+    "#bfcbd5",
+    "#cdd9e4",
+    "#d8e2ea",
+    "#e8eef2",
+    "#eff5fb",
 ];
 
 const palette: Theme.Palette = {
     black: primaries[1],
-    gray: primaries[3],
+    gray: primaries[4],
 
     darkRed: "#f2280d",
     red: "#ff4b33",
