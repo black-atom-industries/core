@@ -20,6 +20,7 @@
 - **Imports**: Use import map for external dependencies (@std/\*, @zod, @eta)
 - **Error Handling**: Use log utility with appropriate level (error/warn/info/success)
 - **Template Files**: Use naming convention `{name}.template.{target-ext}`
+- **Pre-commit**: Always run `deno task format` before creating a commit
 
 ## Project Architecture
 
@@ -36,7 +37,8 @@
 
 The CLI provides various commands:
 
-- `generate`: Process templates and create theme files
+- `adapt`: Process templates and create theme files
+- `adapt-all`: Process templates for all adapter repositories
 
 <!-- - `list`: List all available themes-->
 <!-- - `info`: Display detailed information about a theme -->
@@ -154,7 +156,7 @@ interface SyntaxTheme {
 
 3. **Theme Generation**:
 
-   - Run `black-atom-core generate` in the adapter repository
+   - Run `black-atom-core adapt` in the adapter repository
    - Verify generated files match expected output
 
 4. **Testing**:
