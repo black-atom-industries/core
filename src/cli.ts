@@ -1,6 +1,6 @@
 import log from "./lib/log.ts";
-import generate from "./commands/generate.ts";
-import generateAll from "./commands/generate-all.ts";
+import adapt from "./commands/adapt.ts";
+import adaptAll from "./commands/adapt-all.ts";
 import { config } from "./config.ts";
 
 if (import.meta.main) {
@@ -8,11 +8,11 @@ if (import.meta.main) {
 
     switch (command) {
         case "adapt":
-            generate(config.themeMap);
+            adapt(config.themeMap);
             break;
-            
+
         case "adapt-all":
-            generateAll();
+            adaptAll();
             break;
 
         case "-h":

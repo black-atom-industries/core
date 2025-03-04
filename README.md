@@ -152,21 +152,21 @@ Themes are defined in TypeScript and follow a structured format:
 
 ```typescript
 export const theme: Theme = {
-  meta: {
-    name: "Theme Name",
-    description: "Theme description",
-    author: "Black Atom Industries",
-  },
-  appearance: "dark", // or "light"
-  primaries: {
-    accent: "#hexcolor",
-    // other primary colors
-  },
-  palette: {
-    // 16-color terminal palette
-  },
-  ui: uiDark, // or uiLight, imported from shared components
-  syntax: syntaxDark, // or syntaxLight, imported from shared components
+    meta: {
+        name: "Theme Name",
+        description: "Theme description",
+        author: "Black Atom Industries",
+    },
+    appearance: "dark", // or "light"
+    primaries: {
+        accent: "#hexcolor",
+        // other primary colors
+    },
+    palette: {
+        // 16-color terminal palette
+    },
+    ui: uiDark, // or uiLight, imported from shared components
+    syntax: syntaxDark, // or syntaxLight, imported from shared components
 };
 ```
 
@@ -199,4 +199,3 @@ MIT - See [LICENSE](./LICENSE) for details
 - [Black Atom for Ghostty](https://github.com/black-atom-industries/ghostty)
 - [Black Atom for Zed](https://github.com/black-atom-industries/zed)
 - [Black Atom for Obsidian](https://github.com/black-atom-industries/obsidian)
-

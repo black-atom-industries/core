@@ -66,44 +66,44 @@ The CLI provides various commands:
 ```typescript
 // Theme interface
 interface Theme {
-  meta: {
-    name: string;
-    description: string;
-    author: string;
-  };
-  appearance: "dark" | "light";
-  primaries: {
-    accent: string;
-    // other primary colors
-  };
-  palette: {
-    // 16-color terminal palette
-  };
-  ui: UITheme;
-  syntax: SyntaxTheme;
+    meta: {
+        name: string;
+        description: string;
+        author: string;
+    };
+    appearance: "dark" | "light";
+    primaries: {
+        accent: string;
+        // other primary colors
+    };
+    palette: {
+        // 16-color terminal palette
+    };
+    ui: UITheme;
+    syntax: SyntaxTheme;
 }
 
 // UI theme interface
 interface UITheme {
-  bg: {
-    default: string;
-    // other background colors
-  };
-  fg: {
-    default: string;
-    // other foreground colors
-  };
-  // other UI element colors
+    bg: {
+        default: string;
+        // other background colors
+    };
+    fg: {
+        default: string;
+        // other foreground colors
+    };
+    // other UI element colors
 }
 
 // Syntax theme interface
 interface SyntaxTheme {
-  base: {
-    // base syntax colors
-  };
-  syntax: {
-    // specific syntax element colors
-  };
+    base: {
+        // base syntax colors
+    };
+    syntax: {
+        // specific syntax element colors
+    };
 }
 ```
 
