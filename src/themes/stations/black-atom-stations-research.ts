@@ -23,10 +23,10 @@ const primaries: Theme.Primaries = [
     "#5b8972",
     "#75a490",
     "#95b8ac",
-    "#c4d3cc",
-    "#d2ded8",
-    "#e3ebe7",
-    "#eef4f2",
+    "#d3ded9",
+    "#e1e9e5",
+    "#eff3f1",
+    "#f7faf9",
 ];
 
 const palette: Theme.Palette = {
