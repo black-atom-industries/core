@@ -29,10 +29,10 @@ type CollectionLabel = string;
 interface Meta {
     key: Key;
     label:
-        | "Black Atom - Engineering Station"
-        | "Black Atom - Operations Station"
-        | "Black Atom - Medical Station"
-        | "Black Atom - Research Station"
+        | "Black Atom - Station Engineering"
+        | "Black Atom - Station Operations"
+        | "Black Atom - Station Medical"
+        | "Black Atom - Station Research"
         | "Black Atom - Carbon NULL"
         | "Black Atom - Carbon SUPR"
         | "Black Atom - JPN Koyo Yoru"

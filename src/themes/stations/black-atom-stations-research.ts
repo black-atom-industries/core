@@ -5,7 +5,7 @@ import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-stations-research",
-    label: "Black Atom - Research Station",
+    label: "Black Atom - Station Research",
     appearance: "light",
     status: "release",
     collection: {
