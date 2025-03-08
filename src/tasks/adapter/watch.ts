@@ -1,6 +1,7 @@
 import * as colors from "@std/fmt/colors";
 import { dirname, join } from "@std/path";
 import { existsSync } from "@std/fs";
+import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
 import { adaptAllRepositories } from "./adapt-all.ts";
 
@@ -9,12 +10,10 @@ import { adaptAllRepositories } from "./adapt-all.ts";
  * without committing changes.
  */
 export async function watchAdapters() {
-    const coreDir = Deno.cwd();
-    const themesDir = join(coreDir, "src", "themes");
-
-    // Determine the parent directory of black-atom-industries
-    const parentDir = dirname(dirname(coreDir));
-    const orgDir = join(parentDir, "black-atom-industries");
+    // Use the configured paths
+    const themesDir = config.dir.themes;
+    const orgParentDir = config.dir.parent || dirname(config.dir.core);
+    const orgDir = join(orgParentDir, config.orgName);
 
     log.info(`Using organization directory: ${orgDir}`);
 
@@ -22,7 +21,7 @@ export async function watchAdapters() {
     if (!existsSync(orgDir)) {
         log.error(`Organization directory not found: ${orgDir}`);
         log.error(
-            "Please ensure you are running this command from within the black-atom-industries directory structure",
+            `Please ensure you are running this command from within the ${config.orgName} directory structure`,
         );
         Deno.exit(1);
     }

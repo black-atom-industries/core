@@ -1,4 +1,4 @@
-import { join } from "@std/path";
+import { dirname, join } from "@std/path";
 
 import black_atom_jpn_koyo_yoru from "./themes/jpn/black-atom-jpn-koyo-yoru.ts";
 import black_atom_jpn_koyo_hiru from "./themes/jpn/black-atom-jpn-koyo-hiru.ts";
@@ -21,12 +21,15 @@ import { Key, ThemeMap } from "./types/theme.ts";
 
 export type Config = {
     dir: {
+        core: string;
         themes: string;
+        parent?: string; // Parent directory of the organization
     };
     adapterFileName: string;
     themeKeys: Key[];
     themeMap: ThemeMap;
     adapters: string[]; // List of adapter repository names
+    orgName: string; // Organization directory name
 };
 
 const themeMap: ThemeMap = {
@@ -49,12 +52,16 @@ const themeMap: ThemeMap = {
     "black-atom-terra-winter-night": black_atom_terra_winter_night,
 };
 
-const cwd = Deno.cwd();
+const coreDir = Deno.cwd();
+const parentDir = dirname(dirname(coreDir));
 
 export const config: Config = {
     dir: {
-        themes: join(cwd, "src", "themes"),
+        core: coreDir,
+        themes: join(coreDir, "src", "themes"),
+        parent: parentDir,
     },
+    orgName: "black-atom-industries",
     adapterFileName: "black-atom-adapter.json",
     themeKeys: [
         "black-atom-stations-engineering",

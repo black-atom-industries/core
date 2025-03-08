@@ -23,14 +23,14 @@ export interface AdaptRepositoriesOptions {
 export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {}) {
     const { commit = true, orgDir } = options;
 
-    // Use provided orgDir or determine it
-    const coreDir = Deno.cwd();
-    const actualOrgDir = orgDir || join(dirname(dirname(coreDir)), "black-atom-industries");
+    // Use provided orgDir or calculate from config
+    const orgParentDir = config.dir.parent || dirname(config.dir.core);
+    const actualOrgDir = orgDir || join(orgParentDir, config.orgName);
 
     if (!orgDir && !existsSync(actualOrgDir)) {
         log.error(`Organization directory not found: ${actualOrgDir}`);
         log.error(
-            "Please ensure you are running this command from within the black-atom-industries directory structure",
+            `Please ensure you are running this command from within the ${config.orgName} directory structure`,
         );
         Deno.exit(1);
     }
