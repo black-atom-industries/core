@@ -5,7 +5,7 @@ import ui_dark from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-stations-engineering",
-    label: "Black Atom • Stations ∷ Engineering",
+    label: "Black At•m — STA ∷ Engineering",
     appearance: "dark",
     status: "release",
     collection: {

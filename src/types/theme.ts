@@ -29,23 +29,23 @@ type CollectionLabel = string;
 interface Meta {
     key: Key;
     label:
-        | "Black Atom • Stations ∷ Engineering"
-        | "Black Atom • Station ∷ Operations"
-        | "Black Atom • Station ∷ Medical"
-        | "Black Atom • Station ∷ Research"
-        | "Black Atom • Carbon ∷ NULL"
-        | "Black Atom • Carbon ∷ SUPR"
-        | "Black Atom • JPN ∷ Koyo Yoru"
-        | "Black Atom • JPN ∷ Koyo Hiru"
-        | "Black Atom • JPN ∷ Tsuki Yoru"
-        | "Black Atom • Terra ∷ Spring Day"
-        | "Black Atom • Terra ∷ Spring Night"
-        | "Black Atom • Terra ∷ Fall Day"
-        | "Black Atom • Terra ∷ Fall Night"
-        | "Black Atom • Terra ∷ Summer Day"
-        | "Black Atom • Terra ∷ Summer Night"
-        | "Black Atom • Terra ∷ Winter Day"
-        | "Black Atom • Terra ∷ Winter Night";
+        | "Black At•m — STA ∷ Engineering"
+        | "Black At•m — STA ∷ Operations"
+        | "Black At•m — STA ∷ Medical"
+        | "Black At•m — STA ∷ Research"
+        | "Black At•m — CRB ∷ NULL"
+        | "Black At•m — CRB ∷ SUPR"
+        | "Black At•m — JPN ∷ Koyo Yoru"
+        | "Black At•m — JPN ∷ Koyo Hiru"
+        | "Black At•m — JPN ∷ Tsuki Yoru"
+        | "Black At•m — TER ∷ Spring Day"
+        | "Black At•m — TER ∷ Spring Night"
+        | "Black At•m — TER ∷ Fall Day"
+        | "Black At•m — TER ∷ Fall Night"
+        | "Black At•m — TER ∷ Summer Day"
+        | "Black At•m — TER ∷ Summer Night"
+        | "Black At•m — TER ∷ Winter Day"
+        | "Black At•m — TER ∷ Winter Night";
     appearance: "light" | "dark";
     status: "development" | "beta" | "release";
     collection: {
