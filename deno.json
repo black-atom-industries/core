@@ -8,7 +8,10 @@
         "check": "deno check --import-map=import_map.json .",
         "format": "deno fmt .",
         "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json .",
-        "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts"
+        "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts",
+        "dev:adapter:watch": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapter:watch",
+        "dev:adapter:commit": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapter:commit",
+        "dev:adapter:adapt": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapter:adapt"
     },
     "fmt": {
         "useTabs": false,

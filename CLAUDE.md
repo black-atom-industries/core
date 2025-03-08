@@ -10,7 +10,9 @@
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
 - Adapt themes: `black-atom-core adapt`
-- Adapt all adapters: `black-atom-core adapt-all` (requires repositories to be cloned as siblings)
+- Watch and adapt all adapters: `deno task dev:adapter:watch` (requires repositories to be cloned as siblings)
+- Adapt all repositories without commit: `deno task dev:adapter:adapt`
+- Adapt and commit all repositories: `deno task dev:adapter:commit`
 
 ## Code Style Guide
 
@@ -38,7 +40,12 @@
 The CLI provides various commands:
 
 - `adapt`: Process templates and create theme files
-- `adapt-all`: Process templates for all adapter repositories
+
+The Deno task system provides development workflow commands:
+
+- `dev:adapter:watch`: Watch for theme changes and adapt all repositories
+- `dev:adapter:adapt`: Adapt all repositories without committing
+- `dev:adapter:commit`: Adapt and commit all repositories
 
 <!-- - `list`: List all available themes-->
 <!-- - `info`: Display detailed information about a theme -->
