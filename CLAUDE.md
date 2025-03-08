@@ -15,6 +15,7 @@
 - Adapt and commit all repositories: `deno task dev:adapters:commit`
 - Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
 - Show repositories status: `deno task dev:adapters:status`
+- Interactive TUI for adapters: `deno task dev:adapters:tui`
 - Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
 
 ## Code Style Guide
