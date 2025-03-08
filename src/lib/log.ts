@@ -1,6 +1,6 @@
 import * as colors from "@std/fmt/colors";
 
-export const icon = {
+const icon = {
     success: "󰦕",
     error: "󱄊",
     warn: "󰲼",
@@ -41,6 +41,21 @@ function stripAnsiCodes(str: string): string {
     return result;
 }
 
+// Helper function to create horizontal rules
+function createHorizontalRule(prefix: string, charType: string): string {
+    // Handle prefix
+    const prefixText = prefix ? `${prefix} ` : "";
+
+    // Estimate visible length of prefixText
+    const visibleLength = stripAnsiCodes(prefixText).length;
+
+    // Calculate remaining space for separator characters
+    const finalHrLength = Math.max(hr_length - visibleLength, 0);
+
+    // Combine prefix with repeated characters
+    return prefixText + charType.repeat(finalHrLength);
+}
+
 const logMenu = () => {
     console.log(`Usage: black-atom-core <command>
 
@@ -63,38 +78,11 @@ const log = {
         console.log(colors.green(icon.success + separator + message));
     },
     hr_thick: (prefix: string = "") => {
-        // Handle prefix
-        const prefixText = prefix ? `${prefix} ` : "";
-
-        // For simplicity, we'll use fixed length calculations
-        // Estimate visible length of prefixText
-        // This isn't perfect but handles common cases
-        const visibleLength = stripAnsiCodes(prefixText).length;
-
-        // Calculate remaining space for separator characters
-        const finalHrLength = Math.max(hr_length - visibleLength, 0);
-        let hr = prefixText;
-
-        // Fill with separator characters
-        hr += hr_thick_char.repeat(finalHrLength);
-
+        const hr = createHorizontalRule(prefix, hr_thick_char);
         console.log(colors.brightYellow(hr));
     },
     hr_thin: (prefix: string = "") => {
-        // Handle prefix
-        const prefixText = prefix ? `${prefix} ` : "";
-
-        // For simplicity, we'll use fixed length calculations
-        // Estimate visible length of prefixText
-        const visibleLength = stripAnsiCodes(prefixText).length;
-
-        // Calculate remaining space for separator characters
-        const finalHrLength = Math.max(hr_length - visibleLength, 0);
-        let hr = prefixText;
-
-        // Fill with separator characters
-        hr += hr_thin_char.repeat(finalHrLength);
-
+        const hr = createHorizontalRule(prefix, hr_thin_char);
         console.log(colors.brightYellow(hr));
     },
     menu: logMenu,
