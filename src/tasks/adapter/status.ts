@@ -12,85 +12,109 @@ interface RepoStatus {
 }
 
 /**
- * Show status overview of all adapter repositories
+ * Get repository status information
+ */
+async function getRepoStatus(repoPath?: string): Promise<RepoStatus> {
+    // Change to repository path if provided
+    const originalDir = repoPath ? Deno.cwd() : undefined;
+    if (repoPath) {
+        Deno.chdir(repoPath);
+    }
+
+    try {
+        const status: RepoStatus = {
+            branch: "",
+            changes: false,
+            ahead: 0,
+            behind: 0,
+            hasRemote: false,
+            hasAdapter: false,
+        };
+
+        // Check if adapter config exists
+        try {
+            const adapterConfigPath = "black-atom-adapter.json";
+            const result = await Deno.stat(adapterConfigPath);
+            status.hasAdapter = result.isFile;
+        } catch {
+            status.hasAdapter = false;
+        }
+
+        // Get current branch
+        const branch = await runCommand(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+            .then((output) => output.trim())
+            .catch(() => "unknown");
+
+        status.branch = branch;
+
+        // Check for uncommitted changes
+        const gitStatus = await runCommand(["git", "status", "--porcelain"]);
+        status.changes = gitStatus.trim() !== "";
+
+        // Check for remote tracking branch
+        const hasRemote = await runCommand([
+            "git",
+            "rev-parse",
+            "--abbrev-ref",
+            "--symbolic-full-name",
+            "@{u}",
+        ]).then(() => true).catch(() => false);
+
+        status.hasRemote = hasRemote;
+
+        // If we have a remote branch, check ahead/behind counts
+        if (hasRemote) {
+            // First fetch to ensure we have latest info
+            await runCommand(["git", "fetch"]).catch(() => {
+                // Ignore fetch errors, just proceed with local info
+            });
+
+            // Get ahead/behind counts
+            const revList = await runCommand([
+                "git",
+                "rev-list",
+                "--left-right",
+                "--count",
+                `${branch}...@{u}`,
+            ]).then((output) => output.trim().split(/\s+/))
+                .catch(() => ["0", "0"]);
+
+            status.ahead = parseInt(revList[0] || "0", 10);
+            status.behind = parseInt(revList[1] || "0", 10);
+        }
+
+        return status;
+    } finally {
+        // Return to original directory if we changed
+        if (originalDir) {
+            Deno.chdir(originalDir);
+        }
+    }
+}
+
+/**
+ * Show status overview of all repositories
  */
 export async function showAdapterStatuses(): Promise<void> {
     // Store statuses to display a summary table at the end
     const statuses: Record<string, RepoStatus> = {};
 
+    // First, get core repository status
+    log.info("Checking core repository status...");
+    statuses["core"] = await getRepoStatus();
+
+    // Then check adapter repositories
     await forEachAdapter(
-        async ({ adapter }) => {
-            // Initialize status object
-            statuses[adapter] = {
-                branch: "",
-                changes: false,
-                ahead: 0,
-                behind: 0,
-                hasRemote: false,
-                hasAdapter: false,
-            };
-
-            // Check if adapter config exists
-            try {
-                const adapterConfigPath = "black-atom-adapter.json";
-                const result = await Deno.stat(adapterConfigPath);
-                statuses[adapter].hasAdapter = result.isFile;
-            } catch {
-                statuses[adapter].hasAdapter = false;
-            }
-
-            // Get current branch
-            const branch = await runCommand(["git", "rev-parse", "--abbrev-ref", "HEAD"])
-                .then((output) => output.trim())
-                .catch(() => "unknown");
-
-            statuses[adapter].branch = branch;
-
-            // Check for uncommitted changes
-            const gitStatus = await runCommand(["git", "status", "--porcelain"]);
-            statuses[adapter].changes = gitStatus.trim() !== "";
-
-            // Check for remote tracking branch
-            const hasRemote = await runCommand([
-                "git",
-                "rev-parse",
-                "--abbrev-ref",
-                "--symbolic-full-name",
-                "@{u}",
-            ]).then(() => true).catch(() => false);
-
-            statuses[adapter].hasRemote = hasRemote;
-
-            // If we have a remote branch, check ahead/behind counts
-            if (hasRemote) {
-                // First fetch to ensure we have latest info
-                await runCommand(["git", "fetch"]).catch(() => {
-                    // Ignore fetch errors, just proceed with local info
-                });
-
-                // Get ahead/behind counts
-                const revList = await runCommand([
-                    "git",
-                    "rev-list",
-                    "--left-right",
-                    "--count",
-                    `${branch}...@{u}`,
-                ]).then((output) => output.trim().split(/\s+/))
-                    .catch(() => ["0", "0"]);
-
-                statuses[adapter].ahead = parseInt(revList[0] || "0", 10);
-                statuses[adapter].behind = parseInt(revList[1] || "0", 10);
-            }
-
-            // No need to show detailed status per adapter
-            // We'll show a summary table at the end
+        async ({ adapter, adapterDir }) => {
+            log.info(`Checking ${adapter} repository status...`);
+            statuses[adapter] = await getRepoStatus(adapterDir);
             return { continue: true };
         },
         { title: "Checking adapter repository statuses..." },
     );
 
     // Display summary table
-    log.hr_thick(" Adapter Repositories Status ");
+    log.hr_thick(" Repository Status Overview ");
     console.log("");
 
     // Define cell and table types
@@ -107,8 +131,8 @@ export async function showAdapterStatuses(): Promise<void> {
     // Table structure
     const table = {
         columns: [
-            { header: "Adapter", width: 25 },
-            { header: "Branch", width: 15 },
+            { header: "Repository", width: 25 },
+            { header: "Branch", width: 25 },
             { header: "Changes", width: 10 },
             { header: "Remote", width: 20 },
             { header: "Adapter Config", width: 15 },
@@ -122,8 +146,17 @@ export async function showAdapterStatuses(): Promise<void> {
         return color ? color(paddedContent) : paddedContent;
     }
 
+    // Get a sorted list of repositories with core first, then alphabetic
+    const sortedRepos = Object.keys(statuses).sort((a, b) => {
+        if (a === "core") return -1;
+        if (b === "core") return 1;
+        return a.localeCompare(b);
+    });
+
     // Fill the rows
-    Object.entries(statuses).forEach(([adapter, status]) => {
+    sortedRepos.forEach((repo) => {
+        const status = statuses[repo];
+
         // Changes column
         const changesDisplay = status.changes ? "✘" : "✓";
         const changesColor = status.changes ? colors.red : colors.green;
@@ -147,14 +180,31 @@ export async function showAdapterStatuses(): Promise<void> {
             }
         }
 
-        // Adapter config column
-        const adapterConfigDisplay = status.hasAdapter ? "✓" : "✘";
-        const adapterConfigColor = status.hasAdapter ? colors.green : colors.red;
+        // Adapter config column (core doesn't need an adapter)
+        let adapterConfigDisplay = status.hasAdapter ? "✓" : "✘";
+        let adapterConfigColor = status.hasAdapter ? colors.green : colors.red;
 
-        // Add row
+        // Special case for core
+        if (repo === "core") {
+            adapterConfigDisplay = "N/A";
+            adapterConfigColor = colors.dim;
+        }
+
+        // Truncate long branch names
+        let branchName = status.branch;
+        const maxBranchLength = 23; // Leave room for ellipsis
+        if (branchName.length > maxBranchLength) {
+            branchName = branchName.substring(0, maxBranchLength) + "…";
+        }
+
+        // Add row with special highlighting for core
+        const repoColor = repo === "core"
+            ? (str: string) => colors.bold(colors.yellow(str))
+            : colors.cyan;
+
         table.rows.push([
-            { content: adapter, color: colors.cyan },
-            { content: status.branch, color: undefined },
+            { content: repo, color: repoColor },
+            { content: branchName, color: undefined },
             { content: changesDisplay, color: changesColor },
             { content: remoteDisplay, color: remoteColor },
             { content: adapterConfigDisplay, color: adapterConfigColor },
@@ -167,7 +217,8 @@ export async function showAdapterStatuses(): Promise<void> {
     console.log(headerRow);
 
     // Display a divider
-    console.log("-".repeat(table.columns.reduce((sum, col) => sum + col.width, 0)));
+    const dividerWidth = table.columns.reduce((sum, col) => sum + col.width, 0);
+    console.log("-".repeat(dividerWidth));
 
     // Display each row
     table.rows.forEach((row) => {
