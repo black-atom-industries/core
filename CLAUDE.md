@@ -10,11 +10,11 @@
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
 - Adapt themes: `black-atom-core adapt`
-- Watch and adapt all adapters: `deno task dev:adapter:watch` (requires repositories to be cloned as siblings)
-- Adapt all repositories without commit: `deno task dev:adapter:adapt`
-- Adapt and commit all repositories: `deno task dev:adapter:commit`
-- Push all adapter repositories: `deno task dev:adapter:push` (aborts if uncommitted changes)
-- Show adapter repositories status: `deno task dev:adapter:status`
+- Watch and adapt all adapters: `deno task dev:adapters:watch` (requires repositories to be cloned as siblings)
+- Adapt all repositories without commit: `deno task dev:adapters:adapt`
+- Adapt and commit all repositories: `deno task dev:adapters:commit`
+- Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
+- Show repositories status: `deno task dev:adapters:status`
 
 ## Code Style Guide
 
@@ -54,11 +54,11 @@ The CLI provides various commands:
 
 The Deno task system provides development workflow commands:
 
-- `dev:adapter:watch`: Watch for theme changes and adapt all repositories
-- `dev:adapter:adapt`: Adapt all repositories without committing
-- `dev:adapter:commit`: Adapt and commit all repositories with confirmation
-- `dev:adapter:push`: Push repositories to remote (aborts if uncommitted changes)
-- `dev:adapter:status`: Show status overview of all adapter repositories
+- `dev:adapters:watch`: Watch for theme changes and adapt all repositories
+- `dev:adapters:adapt`: Adapt all repositories without committing
+- `dev:adapters:commit`: Adapt and commit all repositories with confirmation
+- `dev:adapters:push`: Push repositories to remote (aborts if uncommitted changes)
+- `dev:adapters:status`: Show status overview of all repositories
 
 The task system is organized in the `src/tasks/` directory:
 

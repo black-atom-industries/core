@@ -1,8 +1,8 @@
-import { watchAdapters } from "./adapter/watch.ts";
-import { adaptAllRepositories } from "./adapter/adapt-all.ts";
-import { pushAllRepositories } from "./adapter/push-all.ts";
-import { showAdapterStatuses } from "./adapter/status.ts";
-import { getUserConfirmation } from "./adapter/utils.ts";
+import { watchAdapters } from "./adapters/watch.ts";
+import { adaptAllRepositories } from "./adapters/adapt-all.ts";
+import { pushAllRepositories } from "./adapters/push-all.ts";
+import { showAdapterStatuses } from "./adapters/status.ts";
+import { getUserConfirmation } from "./adapters/utils.ts";
 import log from "../lib/log.ts";
 
 /**
@@ -12,12 +12,12 @@ if (import.meta.main) {
     const taskName = Deno.args[0];
 
     switch (taskName) {
-        case "dev:adapter:watch": {
+        case "dev:adapters:watch": {
             await watchAdapters();
             break;
         }
 
-        case "dev:adapter:commit": {
+        case "dev:adapters:commit": {
             log.info("Running adapt-all with commit...");
 
             const confirmCommit = await getUserConfirmation(
@@ -32,19 +32,19 @@ if (import.meta.main) {
             break;
         }
 
-        case "dev:adapter:adapt": {
+        case "dev:adapters:adapt": {
             log.info("Running adapt-all without commit...");
             await adaptAllRepositories({ commit: false });
             break;
         }
 
-        case "dev:adapter:push": {
+        case "dev:adapters:push": {
             log.info("Pushing all adapter repositories...");
             await pushAllRepositories();
             break;
         }
 
-        case "dev:adapter:status": {
+        case "dev:adapters:status": {
             await showAdapterStatuses();
             break;
         }
@@ -52,11 +52,13 @@ if (import.meta.main) {
         default: {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
-            log.info("  - dev:adapter:watch: Watch for theme changes and adapt all repositories");
-            log.info("  - dev:adapter:commit: Adapt all repositories and commit changes");
-            log.info("  - dev:adapter:adapt: Adapt all repositories without committing");
-            log.info("  - dev:adapter:push: Push all repositories (aborts if uncommitted changes)");
-            log.info("  - dev:adapter:status: Show status overview of all adapter repositories");
+            log.info("  - dev:adapters:watch: Watch for theme changes and adapt all repositories");
+            log.info("  - dev:adapters:commit: Adapt all repositories and commit changes");
+            log.info("  - dev:adapters:adapt: Adapt all repositories without committing");
+            log.info(
+                "  - dev:adapters:push: Push all repositories (aborts if uncommitted changes)",
+            );
+            log.info("  - dev:adapters:status: Show status overview of all repositories");
             Deno.exit(1);
         }
     }
