@@ -1,5 +1,6 @@
 import { adaptAllRepositories } from "./adapter/adapt-all.ts";
 import { watchAdapters } from "./adapter/watch.ts";
+import { pushAllRepositories } from "./adapter/push.ts";
 import { getUserConfirmation } from "./adapter/utils.ts";
 import log from "../lib/log.ts";
 
@@ -18,7 +19,6 @@ if (import.meta.main) {
         case "dev:adapter:commit": {
             log.info("Running adapt-all with commit...");
 
-            // Get user confirmation before committing
             const confirmCommit = await getUserConfirmation(
                 "This will commit changes to all adapter repositories. Continue? (y/n): ",
             );
@@ -37,12 +37,19 @@ if (import.meta.main) {
             break;
         }
 
+        case "dev:adapter:push": {
+            log.info("Pushing all adapter repositories...");
+            await pushAllRepositories();
+            break;
+        }
+
         default: {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
             log.info("  - dev:adapter:watch: Watch for theme changes and adapt all repositories");
             log.info("  - dev:adapter:commit: Adapt all repositories and commit changes");
             log.info("  - dev:adapter:adapt: Adapt all repositories without committing");
+            log.info("  - dev:adapter:push: Push all repositories (aborts if uncommitted changes)");
             Deno.exit(1);
         }
     }

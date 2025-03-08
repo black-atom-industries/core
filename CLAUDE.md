@@ -13,6 +13,7 @@
 - Watch and adapt all adapters: `deno task dev:adapter:watch` (requires repositories to be cloned as siblings)
 - Adapt all repositories without commit: `deno task dev:adapter:adapt`
 - Adapt and commit all repositories: `deno task dev:adapter:commit`
+- Push all adapter repositories: `deno task dev:adapter:push` (aborts if uncommitted changes)
 
 ## Code Style Guide
 
@@ -55,12 +56,14 @@ The Deno task system provides development workflow commands:
 - `dev:adapter:watch`: Watch for theme changes and adapt all repositories
 - `dev:adapter:adapt`: Adapt all repositories without committing
 - `dev:adapter:commit`: Adapt and commit all repositories with confirmation
+- `dev:adapter:push`: Push repositories to remote (aborts if uncommitted changes)
 
 The task system is organized in the `src/tasks/` directory:
 
 - `adapter/`: Contains adapter-related tasks
   - `adapt-all.ts`: Handles processing all repositories
   - `watch.ts`: Implements file watching functionality
+  - `push.ts`: Handles pushing changes to remote repositories
   - `utils.ts`: Shared utility functions
 
 ### Theme System (`src/themes/`)

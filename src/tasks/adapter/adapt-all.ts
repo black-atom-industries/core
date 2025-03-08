@@ -10,8 +10,6 @@ import { runCommand } from "./utils.ts";
  * Options for adapting repositories
  */
 export interface AdaptRepositoriesOptions {
-    /** Optional custom organization directory path */
-    orgDir?: string;
     /** Whether to commit changes (default: true) */
     commit?: boolean;
 }
@@ -20,12 +18,11 @@ export interface AdaptRepositoriesOptions {
  * Adapt all repositories and optionally commit changes
  */
 export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {}) {
-    const { commit = true, orgDir } = options;
+    const { commit = true } = options;
 
-    // Use provided orgDir or get from config
-    const actualOrgDir = orgDir || config.dir.org || join(dirname(config.dir.core), config.orgName);
+    const actualOrgDir = config.dir.org || join(dirname(config.dir.core), config.orgName);
 
-    if (!orgDir && !existsSync(actualOrgDir)) {
+    if (!existsSync(actualOrgDir)) {
         log.error(`Organization directory not found: ${actualOrgDir}`);
         log.error(
             `Please ensure you are running this command from within the ${config.orgName} directory structure`,
@@ -47,9 +44,6 @@ export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {
         log.hr_thin(adapterName);
 
         try {
-            // Save current directory
-            const originalDir = Deno.cwd();
-
             // Change to adapter directory
             Deno.chdir(adapterDir);
             log.info(`Changed to directory: ${adapterDir}`);
@@ -96,8 +90,8 @@ export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {
                 log.info(`No changes detected in ${adapterName}`);
             }
 
-            // Return to original directory
-            Deno.chdir(originalDir);
+            // Return to original core directory
+            Deno.chdir(config.dir.core);
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
             log.error(`Error processing adapter ${adapter}: ${errorMessage}`);
