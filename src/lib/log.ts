@@ -1,16 +1,20 @@
 import * as colors from "@std/fmt/colors";
 
-const icon = {
-    success: "󰦕",
-    error: "󱄊",
-    warn: "󰲼",
-    info: "󰲼",
+// Configuration for the log system
+const config = {
+    icon: {
+        success: "󰦕",
+        error: "󱄊",
+        warn: "󰲼",
+        info: "󰲼",
+    },
+    separator: "  ",
+    hr: {
+        thick: "•",
+        thin: "⋅",
+        length: 72,
+    },
 };
-
-const separator = "  ";
-const hr_thick_char = "•";
-const hr_thin_char = "⋅";
-const hr_length = 72; // Standardized line length
 
 // Helper to strip ANSI color codes from strings
 // Using a simple string approach instead of regex to avoid linter issues
@@ -50,39 +54,39 @@ function createHorizontalRule(prefix: string, charType: string): string {
     const visibleLength = stripAnsiCodes(prefixText).length;
 
     // Calculate remaining space for separator characters
-    const finalHrLength = Math.max(hr_length - visibleLength, 0);
+    const finalHrLength = Math.max(config.hr.length - visibleLength, 0);
 
     // Combine prefix with repeated characters
     return prefixText + charType.repeat(finalHrLength);
 }
 
-const logMenu = () => {
+function logMenu() {
     console.log(`Usage: black-atom-core <command>
 
 Commands:
   ${colors.yellow("adapt")}           Adapt theme files from templates
 `);
-};
+}
 
 const log = {
     error: (message: string) => {
-        console.error(colors.red(icon.error + separator + message));
+        console.error(colors.red(config.icon.error + config.separator + message));
     },
     info: (message: string) => {
-        console.info(colors.white(icon.info + separator + message));
+        console.info(colors.white(config.icon.info + config.separator + message));
     },
     warn: (message: string) => {
-        console.warn(colors.yellow(icon.warn + separator + message));
+        console.warn(colors.yellow(config.icon.warn + config.separator + message));
     },
     success: (message: string) => {
-        console.log(colors.green(icon.success + separator + message));
+        console.log(colors.green(config.icon.success + config.separator + message));
     },
     hr_thick: (prefix: string = "") => {
-        const hr = createHorizontalRule(prefix, hr_thick_char);
+        const hr = createHorizontalRule(prefix, config.hr.thick);
         console.log(colors.brightYellow(hr));
     },
     hr_thin: (prefix: string = "") => {
-        const hr = createHorizontalRule(prefix, hr_thin_char);
+        const hr = createHorizontalRule(prefix, config.hr.thin);
         console.log(colors.brightYellow(hr));
     },
     menu: logMenu,
