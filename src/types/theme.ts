@@ -1,4 +1,4 @@
-import { HexColor } from "./color.ts";
+export type HexColor = `#${string}`;
 
 export const themeKeys = [
     "black-atom-stations-engineering",
