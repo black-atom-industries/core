@@ -1,5 +1,5 @@
-import log from "./lib/log.ts";
 import adapt from "./commands/adapt.ts";
+import help from "./commands/help.ts";
 import { config } from "./config.ts";
 
 if (import.meta.main) {
@@ -12,11 +12,11 @@ if (import.meta.main) {
 
         case "-h":
         case "--help":
-            log.menu();
+            help();
             break;
 
         default:
-            log.menu();
+            help();
             Deno.exit(1);
     }
 }

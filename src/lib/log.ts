@@ -60,14 +60,6 @@ function createHorizontalRule(prefix: string, charType: string): string {
     return prefixText + charType.repeat(finalHrLength);
 }
 
-function logMenu() {
-    console.log(`Usage: black-atom-core <command>
-
-Commands:
-  ${colors.yellow("adapt")}           Adapt theme files from templates
-`);
-}
-
 const log = {
     error: (message: string) => {
         console.error(colors.red(config.icon.error + config.separator + message));
@@ -89,7 +81,6 @@ const log = {
         const hr = createHorizontalRule(prefix, config.hr.thin);
         console.log(colors.brightYellow(hr));
     },
-    menu: logMenu,
 };
 
 export default log;
