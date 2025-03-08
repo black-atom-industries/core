@@ -32,6 +32,8 @@
 - **File Generation**: Creates output files alongside templates (removing .template)
 - **Theme Structure**: Organized by collections (stations/jpn/terra/crbn)
 - **Shared Components**: Themes can share UI and syntax definitions (dark/light)
+- **Task System**: Provides development workflow automation via Deno tasks
+- **Dynamic Theme Loading**: Uses TypeScript to validate theme loading at compile-time
 
 ## Core Components
 
@@ -40,16 +42,26 @@
 The CLI provides various commands:
 
 - `adapt`: Process templates and create theme files
+- `help`: Display help information for commands
+
+<!-- - `list`: List all available themes-->
+<!-- - `info`: Display detailed information about a theme -->
+<!-- - `init`: Initialize a new adapter repository with template structure-->
+
+### Task System (`src/tasks/`)
 
 The Deno task system provides development workflow commands:
 
 - `dev:adapter:watch`: Watch for theme changes and adapt all repositories
 - `dev:adapter:adapt`: Adapt all repositories without committing
-- `dev:adapter:commit`: Adapt and commit all repositories
+- `dev:adapter:commit`: Adapt and commit all repositories with confirmation
 
-<!-- - `list`: List all available themes-->
-<!-- - `info`: Display detailed information about a theme -->
-<!-- - `init`: Initialize a new adapter repository with template structure-->
+The task system is organized in the `src/tasks/` directory:
+
+- `adapter/`: Contains adapter-related tasks
+  - `adapt-all.ts`: Handles processing all repositories
+  - `watch.ts`: Implements file watching functionality
+  - `utils.ts`: Shared utility functions
 
 ### Theme System (`src/themes/`)
 
@@ -57,12 +69,14 @@ The Deno task system provides development workflow commands:
 - **Shared Components**: UI and syntax definitions are shared across themes
 - **Theme Definition**: Each theme has its own TypeScript file defining colors and properties
 
-### Adapter System (`src/adapter/`)
+### Adapter System
 
 - **Configuration**: Reads `black-atom-adapter.json` from adapter repositories
 - **Template Processing**: Uses Eta template engine to process template files
 - **Variable Injection**: Injects theme properties into templates
 - **File Generation**: Creates theme files from processed templates
+- **Commands**: Implemented in `src/commands/adapt.ts` and `src/commands/adapt-all.ts`
+- **Task System**: Advanced adapter operations in `src/tasks/adapter/`
 
 ### Type System (`src/types/`)
 
