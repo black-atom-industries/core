@@ -15,6 +15,7 @@
 - Adapt and commit all repositories: `deno task dev:adapters:commit`
 - Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
 - Show repositories status: `deno task dev:adapters:status`
+- Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
 
 ## Code Style Guide
 
@@ -59,13 +60,15 @@ The Deno task system provides development workflow commands:
 - `dev:adapters:commit`: Adapt and commit all repositories with confirmation
 - `dev:adapters:push`: Push repositories to remote (aborts if uncommitted changes)
 - `dev:adapters:status`: Show status overview of all repositories
+- `dev:adapters:reset`: Reset repositories to their remote state (with confirmation)
 
 The task system is organized in the `src/tasks/` directory:
 
-- `adapter/`: Contains adapter-related tasks
+- `adapters/`: Contains adapter-related tasks
   - `adapt-all.ts`: Handles processing all repositories
   - `watch.ts`: Implements file watching functionality
   - `push-all.ts`: Handles pushing changes to remote repositories
+  - `reset.ts`: Handles resetting repositories to remote state
   - `status.ts`: Provides status overview of all repositories
   - `utils.ts`: Shared utility functions including:
     - `forEachAdapter()`: Common repository iteration logic

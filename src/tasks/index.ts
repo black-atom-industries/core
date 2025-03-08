@@ -1,6 +1,7 @@
 import { watchAdapters } from "./adapters/watch.ts";
 import { adaptAllRepositories } from "./adapters/adapt-all.ts";
 import { pushAllRepositories } from "./adapters/push-all.ts";
+import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
 import { getUserConfirmation } from "./adapters/utils.ts";
 import log from "../lib/log.ts";
@@ -49,6 +50,28 @@ if (import.meta.main) {
             break;
         }
 
+        case "dev:adapters:reset": {
+            log.info("Checking adapters for reset...");
+
+            // Parse args to see if auto-stash is requested
+            const autoStash = Deno.args.includes("--auto-stash");
+
+            if (!autoStash) {
+                const confirm = await getUserConfirmation(
+                    "This will reset all adapter repositories to their remote state. " +
+                        "Local changes will be lost. Continue? (y/n): ",
+                );
+
+                if (!confirm) {
+                    log.info("Operation cancelled");
+                    break;
+                }
+            }
+
+            await resetAllRepositories({ autoStash });
+            break;
+        }
+
         default: {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
@@ -59,6 +82,9 @@ if (import.meta.main) {
                 "  - dev:adapters:push: Push all repositories (aborts if uncommitted changes)",
             );
             log.info("  - dev:adapters:status: Show status overview of all repositories");
+            log.info(
+                "  - dev:adapters:reset: Reset repositories to remote state (use --auto-stash to stash changes)",
+            );
             Deno.exit(1);
         }
     }
