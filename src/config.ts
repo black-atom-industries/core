@@ -23,7 +23,7 @@ export type Config = {
     dir: {
         core: string;
         themes: string;
-        parent?: string; // Parent directory of the organization
+        org?: string; // Organization directory (parent of core)
     };
     adapterFileName: string;
     themeKeys: Key[];
@@ -53,13 +53,13 @@ const themeMap: ThemeMap = {
 };
 
 const coreDir = Deno.cwd();
-const parentDir = dirname(dirname(coreDir));
+const orgDir = join(dirname(dirname(coreDir)), "black-atom-industries");
 
 export const config: Config = {
     dir: {
         core: coreDir,
         themes: join(coreDir, "src", "themes"),
-        parent: parentDir,
+        org: orgDir,
     },
     orgName: "black-atom-industries",
     adapterFileName: "black-atom-adapter.json",

@@ -23,9 +23,8 @@ export interface AdaptRepositoriesOptions {
 export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {}) {
     const { commit = true, orgDir } = options;
 
-    // Use provided orgDir or calculate from config
-    const orgParentDir = config.dir.parent || dirname(config.dir.core);
-    const actualOrgDir = orgDir || join(orgParentDir, config.orgName);
+    // Use provided orgDir or get from config
+    const actualOrgDir = orgDir || config.dir.org || join(dirname(config.dir.core), config.orgName);
 
     if (!orgDir && !existsSync(actualOrgDir)) {
         log.error(`Organization directory not found: ${actualOrgDir}`);

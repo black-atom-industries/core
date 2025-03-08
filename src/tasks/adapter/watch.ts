@@ -12,8 +12,7 @@ import { adaptAllRepositories } from "./adapt-all.ts";
 export async function watchAdapters() {
     // Use the configured paths
     const themesDir = config.dir.themes;
-    const orgParentDir = config.dir.parent || dirname(config.dir.core);
-    const orgDir = join(orgParentDir, config.orgName);
+    const orgDir = config.dir.org || join(dirname(config.dir.core), config.orgName);
 
     log.info(`Using organization directory: ${orgDir}`);
 
