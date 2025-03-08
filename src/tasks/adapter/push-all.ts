@@ -16,7 +16,7 @@ export async function pushAllRepositories() {
                     "Please commit changes manually or run 'deno task dev:adapter:commit' first.",
                 );
                 log.info(`Changes:\n${gitStatus}`);
-                
+
                 return { continue: false };
             }
 
@@ -39,6 +39,6 @@ export async function pushAllRepositories() {
             await runCommand(["git", "push"]);
             log.success(`Successfully pushed ${adapterName} to remote`);
         },
-        { title: "Pushing all adapter repositories..." }
+        { title: "Pushing all adapter repositories..." },
     );
 }

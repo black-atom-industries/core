@@ -1,6 +1,7 @@
 import { watchAdapters } from "./adapter/watch.ts";
 import { adaptAllRepositories } from "./adapter/adapt-all.ts";
 import { pushAllRepositories } from "./adapter/push-all.ts";
+import { showAdapterStatuses } from "./adapter/status.ts";
 import { getUserConfirmation } from "./adapter/utils.ts";
 import log from "../lib/log.ts";
 
@@ -43,6 +44,11 @@ if (import.meta.main) {
             break;
         }
 
+        case "dev:adapter:status": {
+            await showAdapterStatuses();
+            break;
+        }
+
         default: {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
@@ -50,6 +56,7 @@ if (import.meta.main) {
             log.info("  - dev:adapter:commit: Adapt all repositories and commit changes");
             log.info("  - dev:adapter:adapt: Adapt all repositories without committing");
             log.info("  - dev:adapter:push: Push all repositories (aborts if uncommitted changes)");
+            log.info("  - dev:adapter:status: Show status overview of all adapter repositories");
             Deno.exit(1);
         }
     }
