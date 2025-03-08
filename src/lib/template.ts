@@ -27,14 +27,14 @@ export async function processThemeTemplates(
 
     for (const path of templatePaths) {
         try {
-            log.info(`Processing template: "${path}"`);
+            // log.info(`Processing template: "${path}"`);
 
             // Read and process template
             const template = await Deno.readTextFile(path);
             const content = eta.renderString(template, theme);
 
             await writeOutput(content, path);
-            log.success(`Generated: "${path.replace(".template.", ".")}"`);
+            // log.success(`Generated: "${path.replace(".template.", ".")}"`);
         } catch (error) {
             if (error instanceof Deno.errors.NotFound) {
                 log.error(`Template file not found: ${path}`);

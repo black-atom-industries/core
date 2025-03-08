@@ -5,7 +5,7 @@ import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-jpn-koyo-hiru",
-    label: "Black Atom - JPN Koyo Hiru",
+    label: "Black At•m — JPN ∷ Koyo Hiru",
     appearance: "light",
     status: "release",
     collection: {

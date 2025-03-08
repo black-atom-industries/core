@@ -10,7 +10,13 @@
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
 - Adapt themes: `black-atom-core adapt`
-- Adapt all adapters: `black-atom-core adapt-all` (requires repositories to be cloned as siblings)
+- Watch and adapt all adapters: `deno task dev:adapters:watch` (requires repositories to be cloned as siblings)
+- Adapt all repositories without commit: `deno task dev:adapters:adapt`
+- Adapt and commit all repositories: `deno task dev:adapters:commit`
+- Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
+- Show repositories status: `deno task dev:adapters:status`
+- Interactive TUI for adapters: `deno task dev:adapters:tui`
+- Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
 
 ## Code Style Guide
 
@@ -30,6 +36,8 @@
 - **File Generation**: Creates output files alongside templates (removing .template)
 - **Theme Structure**: Organized by collections (stations/jpn/terra/crbn)
 - **Shared Components**: Themes can share UI and syntax definitions (dark/light)
+- **Task System**: Provides development workflow automation via Deno tasks
+- **Dynamic Theme Loading**: Uses TypeScript to validate theme loading at compile-time
 
 ## Core Components
 
@@ -38,11 +46,35 @@
 The CLI provides various commands:
 
 - `adapt`: Process templates and create theme files
-- `adapt-all`: Process templates for all adapter repositories
+- `help`: Display help information for commands
 
 <!-- - `list`: List all available themes-->
 <!-- - `info`: Display detailed information about a theme -->
 <!-- - `init`: Initialize a new adapter repository with template structure-->
+
+### Task System (`src/tasks/`)
+
+The Deno task system provides development workflow commands:
+
+- `dev:adapters:watch`: Watch for theme changes and adapt all repositories
+- `dev:adapters:adapt`: Adapt all repositories without committing
+- `dev:adapters:commit`: Adapt and commit all repositories with confirmation
+- `dev:adapters:push`: Push repositories to remote (aborts if uncommitted changes)
+- `dev:adapters:status`: Show status overview of all repositories
+- `dev:adapters:reset`: Reset repositories to their remote state (with confirmation)
+
+The task system is organized in the `src/tasks/` directory:
+
+- `adapters/`: Contains adapter-related tasks
+  - `adapt-all.ts`: Handles processing all repositories
+  - `watch.ts`: Implements file watching functionality
+  - `push-all.ts`: Handles pushing changes to remote repositories
+  - `reset.ts`: Handles resetting repositories to remote state
+  - `status.ts`: Provides status overview of all repositories
+  - `utils.ts`: Shared utility functions including:
+    - `forEachAdapter()`: Common repository iteration logic
+    - `runCommand()`: Execute shell commands
+    - `getUserConfirmation()`: Handle user prompts
 
 ### Theme System (`src/themes/`)
 
@@ -50,12 +82,14 @@ The CLI provides various commands:
 - **Shared Components**: UI and syntax definitions are shared across themes
 - **Theme Definition**: Each theme has its own TypeScript file defining colors and properties
 
-### Adapter System (`src/adapter/`)
+### Adapter System
 
 - **Configuration**: Reads `black-atom-adapter.json` from adapter repositories
 - **Template Processing**: Uses Eta template engine to process template files
 - **Variable Injection**: Injects theme properties into templates
 - **File Generation**: Creates theme files from processed templates
+- **Commands**: Implemented in `src/commands/adapt.ts` and `src/commands/adapt-all.ts`
+- **Task System**: Advanced adapter operations in `src/tasks/adapter/`
 
 ### Type System (`src/types/`)
 

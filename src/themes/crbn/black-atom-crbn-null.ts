@@ -5,7 +5,7 @@ import ui_dark from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-crbn-null",
-    label: "Black Atom - Carbon NULL",
+    label: "Black At•m — CRB ∷ NULL",
     appearance: "dark",
     status: "release",
     collection: {

@@ -1,27 +1,21 @@
-import log from "./lib/log.ts";
 import adapt from "./commands/adapt.ts";
-import adaptAll from "./commands/adapt-all.ts";
-import { config } from "./config.ts";
+import help from "./commands/help.ts";
 
 if (import.meta.main) {
     const command = Deno.args[0];
 
     switch (command) {
         case "adapt":
-            adapt(config.themeMap);
-            break;
-
-        case "adapt-all":
-            adaptAll();
+            adapt();
             break;
 
         case "-h":
         case "--help":
-            log.menu();
+            help();
             break;
 
         default:
-            log.menu();
+            help();
             Deno.exit(1);
     }
 }
