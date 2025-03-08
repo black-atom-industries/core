@@ -1,71 +1,76 @@
-import { ThemeMap } from "../types/theme.ts";
+import { Key, ThemeMap } from "../types/theme.ts";
+import { config } from "../config.ts";
 import log from "./log.ts";
+
+/**
+ * A utility mapping to convert theme keys to their file paths
+ */
+const themePathMap: Record<Key, string> = {
+    // Stations
+    "black-atom-stations-engineering": "stations/black-atom-stations-engineering",
+    "black-atom-stations-operations": "stations/black-atom-stations-operations",
+    "black-atom-stations-medical": "stations/black-atom-stations-medical",
+    "black-atom-stations-research": "stations/black-atom-stations-research",
+
+    // JPNs
+    "black-atom-jpn-koyo-yoru": "jpn/black-atom-jpn-koyo-yoru",
+    "black-atom-jpn-koyo-hiru": "jpn/black-atom-jpn-koyo-hiru",
+    "black-atom-jpn-tsuki-yoru": "jpn/black-atom-jpn-tsuki-yoru",
+
+    // Terra
+    "black-atom-terra-spring-day": "terra/black-atom-terra-spring-day",
+    "black-atom-terra-spring-night": "terra/black-atom-terra-spring-night",
+    "black-atom-terra-fall-day": "terra/black-atom-terra-fall-day",
+    "black-atom-terra-fall-night": "terra/black-atom-terra-fall-night",
+    "black-atom-terra-summer-day": "terra/black-atom-terra-summer-day",
+    "black-atom-terra-summer-night": "terra/black-atom-terra-summer-night",
+    "black-atom-terra-winter-day": "terra/black-atom-terra-winter-day",
+    "black-atom-terra-winter-night": "terra/black-atom-terra-winter-night",
+
+    // CRBN
+    "black-atom-crbn-null": "crbn/black-atom-crbn-null",
+    "black-atom-crbn-supr": "crbn/black-atom-crbn-supr",
+};
 
 /**
  * Dynamically loads theme modules to ensure we have the latest versions
  * This is important for the watch functionality to pick up changes
  */
 export async function loadThemeMap(): Promise<ThemeMap> {
-    // Using 'as ThemeMap' to avoid TypeScript errors during initialization
     const themeMap = {} as ThemeMap;
+    const errorList: string[] = [];
 
     log.info("Dynamically loading theme files to get latest changes...");
 
     try {
-        // JPNs
-        themeMap["black-atom-jpn-koyo-yoru"] =
-            (await import("../themes/jpn/black-atom-jpn-koyo-yoru.ts?t=" + Date.now())).default;
-        themeMap["black-atom-jpn-koyo-hiru"] =
-            (await import("../themes/jpn/black-atom-jpn-koyo-hiru.ts?t=" + Date.now())).default;
-        themeMap["black-atom-jpn-tsuki-yoru"] =
-            (await import("../themes/jpn/black-atom-jpn-tsuki-yoru.ts?t=" + Date.now())).default;
+        // Load each theme module dynamically
+        for (const themeKey of config.themeKeys) {
+            try {
+                // With Record<Key, string>, TypeScript guarantees the path exists
+                const themePath = themePathMap[themeKey];
 
-        // Stations
-        themeMap["black-atom-stations-engineering"] =
-            (await import("../themes/stations/black-atom-stations-engineering.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-stations-operations"] =
-            (await import("../themes/stations/black-atom-stations-operations.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-stations-medical"] =
-            (await import("../themes/stations/black-atom-stations-medical.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-stations-research"] =
-            (await import("../themes/stations/black-atom-stations-research.ts?t=" + Date.now()))
-                .default;
+                const importPath = `../themes/${themePath}.ts?t=${Date.now()}`;
+                const module = await import(importPath);
 
-        // Terra
-        themeMap["black-atom-terra-spring-day"] =
-            (await import("../themes/terra/black-atom-terra-spring-day.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-spring-night"] =
-            (await import("../themes/terra/black-atom-terra-spring-night.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-fall-day"] =
-            (await import("../themes/terra/black-atom-terra-fall-day.ts?t=" + Date.now())).default;
-        themeMap["black-atom-terra-fall-night"] =
-            (await import("../themes/terra/black-atom-terra-fall-night.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-summer-day"] =
-            (await import("../themes/terra/black-atom-terra-summer-day.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-summer-night"] =
-            (await import("../themes/terra/black-atom-terra-summer-night.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-winter-day"] =
-            (await import("../themes/terra/black-atom-terra-winter-day.ts?t=" + Date.now()))
-                .default;
-        themeMap["black-atom-terra-winter-night"] =
-            (await import("../themes/terra/black-atom-terra-winter-night.ts?t=" + Date.now()))
-                .default;
+                if (!module.default) {
+                    errorList.push(`Theme module missing default export: ${themeKey}`);
+                    continue;
+                }
 
-        // CRBN
-        themeMap["black-atom-crbn-null"] =
-            (await import("../themes/crbn/black-atom-crbn-null.ts?t=" + Date.now())).default;
-        themeMap["black-atom-crbn-supr"] =
-            (await import("../themes/crbn/black-atom-crbn-supr.ts?t=" + Date.now())).default;
+                themeMap[themeKey] = module.default;
+            } catch (err) {
+                const errorMessage = err instanceof Error ? err.message : String(err);
+                errorList.push(`Failed to load theme ${themeKey}: ${errorMessage}`);
+            }
+        }
 
-        log.success("Theme files loaded successfully");
+        // If there were any errors during loading, report them
+        if (errorList.length > 0) {
+            const errorReport = errorList.join("\n- ");
+            throw new Error(`Failed to load some themes:\n- ${errorReport}`);
+        }
+
+        log.success(`Successfully loaded ${Object.keys(themeMap).length} theme files`);
         return themeMap;
     } catch (error) {
         log.error(`Error loading theme files: ${error}`);
