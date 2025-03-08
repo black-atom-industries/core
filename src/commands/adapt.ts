@@ -1,11 +1,12 @@
 import * as z from "@zod";
 
-import { Config, config } from "../config.ts";
+import { config } from "../config.ts";
 import { Key } from "../types/theme.ts";
 
 import { AdapterConfig, adapterConfigSchema, TemplateConfig } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
 import { processThemeTemplates } from "../lib/template.ts";
+import { loadThemeMap } from "../lib/theme-loader.ts";
 
 async function getAdapterConfig(): Promise<AdapterConfig> {
     try {
@@ -27,8 +28,9 @@ async function getAdapterConfig(): Promise<AdapterConfig> {
     }
 }
 
-export default async function (themeMap: Config["themeMap"]) {
+export default async function () {
     const adapterConfig = await getAdapterConfig();
+    const themeMap = await loadThemeMap();
     const { $schema: _, ...configs } = adapterConfig;
 
     log.success(
@@ -41,9 +43,10 @@ export default async function (themeMap: Config["themeMap"]) {
 
     if (configEntries.length === 0) {
         log.warn("No theme keys defined!");
+        return;
     }
 
-    for (const [themeKey, config] of configEntries) {
-        await processThemeTemplates(themeKey, config.templates, themeMap);
+    for (const [themeKey, templateConfig] of configEntries) {
+        await processThemeTemplates(themeKey, templateConfig.templates, themeMap);
     }
 }

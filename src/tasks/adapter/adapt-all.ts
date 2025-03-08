@@ -5,7 +5,6 @@ import adapt from "../../commands/adapt.ts";
 import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
 import { runCommand } from "./utils.ts";
-import { loadThemeMap } from "../../lib/theme-loader.ts";
 
 /**
  * Options for adapting repositories
@@ -55,11 +54,7 @@ export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {
             Deno.chdir(adapterDir);
             log.info(`Changed to directory: ${adapterDir}`);
 
-            // Dynamically load the latest theme definitions
-            const themeMap = await loadThemeMap();
-
-            // Run adapt command with fresh theme data
-            await adapt(themeMap);
+            await adapt();
 
             // Check for changes
             const gitStatus = await runCommand(["git", "status", "--porcelain"]);
