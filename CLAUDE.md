@@ -64,7 +64,10 @@ The task system is organized in the `src/tasks/` directory:
   - `adapt-all.ts`: Handles processing all repositories
   - `watch.ts`: Implements file watching functionality
   - `push.ts`: Handles pushing changes to remote repositories
-  - `utils.ts`: Shared utility functions
+  - `utils.ts`: Shared utility functions including:
+    - `forEachAdapter()`: Common repository iteration logic
+    - `runCommand()`: Execute shell commands
+    - `getUserConfirmation()`: Handle user prompts
 
 ### Theme System (`src/themes/`)
 

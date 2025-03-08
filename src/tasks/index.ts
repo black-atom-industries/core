@@ -1,6 +1,6 @@
-import { adaptAllRepositories } from "./adapter/adapt-all.ts";
 import { watchAdapters } from "./adapter/watch.ts";
-import { pushAllRepositories } from "./adapter/push.ts";
+import { adaptAllRepositories } from "./adapter/adapt-all.ts";
+import { pushAllRepositories } from "./adapter/push-all.ts";
 import { getUserConfirmation } from "./adapter/utils.ts";
 import log from "../lib/log.ts";
 
