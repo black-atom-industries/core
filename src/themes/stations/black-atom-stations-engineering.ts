@@ -23,33 +23,33 @@ const primaries: Theme.Primaries = [
     "#5b8972",
     "#75a490",
     "#91bcad",
-    "#9bdebe",
-    "#abe7ca",
-    "#c1efd5",
-    "#cef6de",
+    "#b2e5cd",
+    "#c3eed9",
+    "#d5f4e3",
+    "#e8fbf0",
 ];
 
 const palette: Theme.Palette = {
     black: primaries[2],
     gray: primaries[5],
 
-    darkRed: "#ef95ba",
-    red: "#f4acc9",
+    darkRed: "#eb7aa8",
+    red: "#f08cb4",
 
     darkGreen: "#5dba5d",
     green: "#80c980",
 
-    darkYellow: "#c6db6e",
-    yellow: "#a6dc6e",
+    darkYellow: "#e9b565",
+    yellow: "#b7db6e",
 
     darkBlue: primaries[7],
     blue: primaries[9],
 
-    darkMagenta: "#a2b0e0",
-    magenta: "#b6bee0",
+    darkMagenta: "#8b9dd8",
+    magenta: "#9baae6",
 
-    darkCyan: "#59bf6f",
-    cyan: "#75d689",
+    darkCyan: "#59bf84",
+    cyan: "#75d69e",
 
     lightGray: primaries[7],
     white: primaries[10],

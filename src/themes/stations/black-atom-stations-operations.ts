@@ -15,10 +15,10 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = [
-    "#252e2c",
-    "#2e3f3b",
-    "#384e48",
-    "#425d55",
+    "#192323",
+    "#21302d",
+    "#293c36",
+    "#354e46",
     "#51796d",
     "#5b8972",
     "#75a490",
@@ -33,14 +33,14 @@ const palette: Theme.Palette = {
     black: primaries[2],
     gray: primaries[5],
 
-    darkRed: "#ef95ba",
-    red: "#f4acc9",
+    darkRed: "#eb7aa8",
+    red: "#f08cb4",
 
     darkGreen: "#5dba5d",
     green: "#80c980",
 
-    darkYellow: "#c6db6e",
-    yellow: "#a6dc6e",
+    darkYellow: "#e9b565",
+    yellow: "#b7db6e",
 
     darkBlue: primaries[7],
     blue: primaries[9],
@@ -48,8 +48,8 @@ const palette: Theme.Palette = {
     darkMagenta: "#a2b0e0",
     magenta: "#b6bee0",
 
-    darkCyan: "#59bf6f",
-    cyan: "#75d689",
+    darkCyan: "#59bf84",
+    cyan: "#75d69e",
 
     lightGray: primaries[7],
     white: primaries[10],
