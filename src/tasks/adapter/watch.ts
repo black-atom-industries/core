@@ -53,7 +53,7 @@ export async function watchAdapters() {
         );
 
         pendingChanges.clear();
-        await adaptAllRepositories(orgDir, false);
+        await adaptAllRepositories({ orgDir, commit: false });
 
         isProcessing = false;
 

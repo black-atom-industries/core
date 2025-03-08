@@ -8,9 +8,21 @@ import { runCommand } from "./utils.ts";
 import { loadThemeMap } from "../../lib/theme-loader.ts";
 
 /**
+ * Options for adapting repositories
+ */
+export interface AdaptRepositoriesOptions {
+    /** Optional custom organization directory path */
+    orgDir?: string;
+    /** Whether to commit changes (default: true) */
+    commit?: boolean;
+}
+
+/**
  * Adapt all repositories and optionally commit changes
  */
-export async function adaptAllRepositories(orgDir?: string, shouldCommit = true) {
+export async function adaptAllRepositories(options: AdaptRepositoriesOptions = {}) {
+    const { commit = true, orgDir } = options;
+
     // Use provided orgDir or determine it
     const coreDir = Deno.cwd();
     const actualOrgDir = orgDir || join(dirname(dirname(coreDir)), "black-atom-industries");
@@ -61,7 +73,7 @@ export async function adaptAllRepositories(orgDir?: string, shouldCommit = true)
                 // Get a summary of changes
                 const diffSummary = await runCommand(["git", "diff", "--staged", "--stat"]);
 
-                if (shouldCommit) {
+                if (commit) {
                     log.info(`Changes detected in ${adapterName}, committing...`);
                     log.info(`Changes summary: \n${diffSummary.trim()}`);
 

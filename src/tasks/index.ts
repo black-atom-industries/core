@@ -24,7 +24,7 @@ if (import.meta.main) {
             );
 
             if (confirmCommit) {
-                await adaptAllRepositories(undefined, true); // Commit changes
+                await adaptAllRepositories({ commit: true });
             } else {
                 log.info("Operation cancelled");
             }
@@ -33,7 +33,7 @@ if (import.meta.main) {
 
         case "dev:adapter:adapt": {
             log.info("Running adapt-all without commit...");
-            await adaptAllRepositories(undefined, false); // Don't commit changes
+            await adaptAllRepositories({ commit: false });
             break;
         }
 
