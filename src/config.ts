@@ -28,7 +28,7 @@ export type Config = {
     adapterFileName: string;
     themeKeys: Key[];
     themeMap: ThemeMap;
-    adapters: string[]; // List of adapter repository names
+    adapters: ("nvim" | "ghostty" | "zed" | "obsidian")[]; // List of cloned adapter repository names
     orgName: string; // Organization directory name
 };
 
@@ -52,16 +52,15 @@ const themeMap: ThemeMap = {
     "black-atom-terra-winter-night": black_atom_terra_winter_night,
 };
 
-const coreDir = Deno.cwd();
-const orgDir = join(dirname(dirname(coreDir)), "black-atom-industries");
-
 export const config: Config = {
-    dir: {
-        core: coreDir,
-        themes: join(coreDir, "src", "themes"),
-        org: orgDir,
-    },
     orgName: "black-atom-industries",
+    get dir() {
+        return {
+            core: Deno.cwd(),
+            themes: join(Deno.cwd(), "src", "themes"),
+            org: join(dirname(dirname(Deno.cwd())), this.orgName),
+        };
+    },
     adapterFileName: "black-atom-adapter.json",
     themeKeys: [
         "black-atom-stations-engineering",
