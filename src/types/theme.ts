@@ -29,23 +29,23 @@ type CollectionLabel = string;
 interface Meta {
     key: Key;
     label:
-        | "Black Atom - Station Engineering"
-        | "Black Atom - Station Operations"
-        | "Black Atom - Station Medical"
-        | "Black Atom - Station Research"
-        | "Black Atom - Carbon NULL"
-        | "Black Atom - Carbon SUPR"
-        | "Black Atom - JPN Koyo Yoru"
-        | "Black Atom - JPN Koyo Hiru"
-        | "Black Atom - JPN Tsuki Yoru"
-        | "Black Atom - Terra Spring Day"
-        | "Black Atom - Terra Spring Night"
-        | "Black Atom - Terra Fall Day"
-        | "Black Atom - Terra Fall Night"
-        | "Black Atom - Terra Summer Day"
-        | "Black Atom - Terra Summer Night"
-        | "Black Atom - Terra Winter Day"
-        | "Black Atom - Terra Winter Night";
+        | "Black Atom • Stations ∷ Engineering"
+        | "Black Atom • Station ∷ Operations"
+        | "Black Atom • Station ∷ Medical"
+        | "Black Atom • Station ∷ Research"
+        | "Black Atom • Carbon ∷ NULL"
+        | "Black Atom • Carbon ∷ SUPR"
+        | "Black Atom • JPN ∷ Koyo Yoru"
+        | "Black Atom • JPN ∷ Koyo Hiru"
+        | "Black Atom • JPN ∷ Tsuki Yoru"
+        | "Black Atom • Terra ∷ Spring Day"
+        | "Black Atom • Terra ∷ Spring Night"
+        | "Black Atom • Terra ∷ Fall Day"
+        | "Black Atom • Terra ∷ Fall Night"
+        | "Black Atom • Terra ∷ Summer Day"
+        | "Black Atom • Terra ∷ Summer Night"
+        | "Black Atom • Terra ∷ Winter Day"
+        | "Black Atom • Terra ∷ Winter Night";
     appearance: "light" | "dark";
     status: "development" | "beta" | "release";
     collection: {

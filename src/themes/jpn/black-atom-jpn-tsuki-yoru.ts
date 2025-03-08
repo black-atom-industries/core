@@ -5,7 +5,7 @@ import ui_dark from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-jpn-tsuki-yoru",
-    label: "Black Atom - JPN Tsuki Yoru",
+    label: "Black Atom • JPN ∷ Tsuki Yoru",
     appearance: "dark",
     status: "release",
     collection: {
