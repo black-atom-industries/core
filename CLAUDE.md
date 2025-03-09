@@ -113,13 +113,13 @@ interface Theme {
         d20: HexColor;
         d30: HexColor;
         d40: HexColor; // Transition to medium
-        
+
         /* Middle range */
         m10: HexColor; // Mid-dark
         m20: HexColor;
         m30: HexColor;
         m40: HexColor; // Transition to high
-        
+
         /* Light range */
         l10: HexColor; // Light
         l20: HexColor;
