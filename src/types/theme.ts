@@ -57,20 +57,25 @@ interface Meta {
 // NOTE: The `null` is only temporary until I have everything migrated
 type ThemeMap = Record<Key, Definition | null>;
 
-type Primaries = [
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-    HexColor,
-];
+interface Primaries {
+    /* Dark range */
+    d10: HexColor;
+    d20: HexColor;
+    d30: HexColor;
+    d40: HexColor;
+
+    /* Middle range */
+    m10: HexColor;
+    m20: HexColor;
+    m30: HexColor;
+    m40: HexColor;
+
+    /* Light range */
+    l10: HexColor;
+    l20: HexColor;
+    l30: HexColor;
+    l40: HexColor;
+}
 
 interface Palette {
     black: HexColor;

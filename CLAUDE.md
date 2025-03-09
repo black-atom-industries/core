@@ -101,44 +101,59 @@ The task system is organized in the `src/tasks/` directory:
 ```typescript
 // Theme interface
 interface Theme {
-  meta: {
-    name: string;
-    description: string;
-    author: string;
-  };
-  appearance: "dark" | "light";
-  primaries: {
-    accent: string;
-    // other primary colors
-  };
-  palette: {
-    // 16-color terminal palette
-  };
-  ui: UITheme;
-  syntax: SyntaxTheme;
+    meta: {
+        name: string;
+        description: string;
+        author: string;
+    };
+    appearance: "dark" | "light";
+    primaries: {
+        /* Dark range */
+        d10: HexColor; // Darkest
+        d20: HexColor;
+        d30: HexColor;
+        d40: HexColor; // Transition to medium
+        
+        /* Middle range */
+        m10: HexColor; // Mid-dark
+        m20: HexColor;
+        m30: HexColor;
+        m40: HexColor; // Transition to high
+        
+        /* Light range */
+        l10: HexColor; // Light
+        l20: HexColor;
+        l30: HexColor;
+        l40: HexColor; // Brightest
+    };
+    palette: {
+        // 16-color terminal palette
+    };
+    ui: UITheme;
+    syntax: SyntaxTheme;
 }
 
 // UI theme interface
 interface UITheme {
-  bg: {
-    default: string;
-    // other background colors
-  };
-  fg: {
-    default: string;
-    // other foreground colors
-  };
-  // other UI element colors
+    bg: {
+        default: string;
+        // other background colors
+    };
+    fg: {
+        default: string;
+        // other foreground colors
+    };
+    // other UI element colors
 }
 
 // Syntax theme interface
 interface SyntaxTheme {
-  base: {
-    // base syntax colors
-  };
-  syntax: {
-    // specific syntax element colors
-  };
+    base: {
+        // base syntax colors
+    };
+    syntax: {
+        // specific syntax element colors
+    };
 }
 ```
 

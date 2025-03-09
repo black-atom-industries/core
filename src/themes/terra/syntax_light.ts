@@ -56,7 +56,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         punctuation: {
             default: palette.gray,
-            delimiter: primaries[7],
+            delimiter: primaries.m40,
             bracket: palette.gray,
             special: palette.gray,
         },
@@ -90,15 +90,15 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             math: palette.darkGreen,
             link: palette.green,
             code: {
-                fg: primaries[5],
-                bg: primaries[9],
+                fg: primaries.m20,
+                bg: primaries.l20,
             },
         },
         tag: {
             default: palette.yellow,
             builtin: palette.darkYellow,
-            attribute: primaries[4],
-            delimiter: primaries[3],
+            attribute: primaries.m10,
+            delimiter: primaries.d40,
         },
     };
 }

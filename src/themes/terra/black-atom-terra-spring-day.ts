@@ -14,24 +14,26 @@ const meta: Theme.Meta = {
     },
 };
 
-const primaries: Theme.Primaries = [
-    "#304a3f",
-    "#385547",
-    "#416353",
-    "#517b67",
-    "#55816a",
-    "#62937a",
-    "#78a48e",
-    "#8bb19e",
-    "#b9c6bf",
-    "#c7d1cc",
-    "#d4dcd8",
-    "#e2eae6",
-];
+const primaries: Theme.Primaries = {
+    d10: "#304a3f",
+    d20: "#385547",
+    d30: "#416353",
+    d40: "#517b67",
+
+    m10: "#55816a",
+    m20: "#62937a",
+    m30: "#78a48e",
+    m40: "#8bb19e",
+
+    l10: "#b9c6bf",
+    l20: "#c7d1cc",
+    l30: "#d4dcd8",
+    l40: "#e2eae6",
+};
 
 const palette: Theme.Palette = {
-    black: primaries[2],
-    gray: primaries[5],
+    black: primaries.d30,
+    gray: primaries.m20,
 
     darkRed: "#ca6d4c",
     red: "#dd7e5d",
@@ -51,8 +53,8 @@ const palette: Theme.Palette = {
     darkCyan: "#0e945d",
     cyan: "#10ab6a",
 
-    lightGray: primaries[8],
-    white: primaries[10],
+    lightGray: primaries.l10,
+    white: primaries.l30,
 };
 
 const theme: Theme.Definition = {
