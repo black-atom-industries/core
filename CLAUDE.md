@@ -15,7 +15,6 @@
 - Adapt and commit all repositories: `deno task dev:adapters:commit`
 - Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
 - Show repositories status: `deno task dev:adapters:status`
-- Interactive TUI for adapters: `deno task dev:adapters:tui`
 - Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
 
 ## Code Style Guide
@@ -102,44 +101,44 @@ The task system is organized in the `src/tasks/` directory:
 ```typescript
 // Theme interface
 interface Theme {
-    meta: {
-        name: string;
-        description: string;
-        author: string;
-    };
-    appearance: "dark" | "light";
-    primaries: {
-        accent: string;
-        // other primary colors
-    };
-    palette: {
-        // 16-color terminal palette
-    };
-    ui: UITheme;
-    syntax: SyntaxTheme;
+  meta: {
+    name: string;
+    description: string;
+    author: string;
+  };
+  appearance: "dark" | "light";
+  primaries: {
+    accent: string;
+    // other primary colors
+  };
+  palette: {
+    // 16-color terminal palette
+  };
+  ui: UITheme;
+  syntax: SyntaxTheme;
 }
 
 // UI theme interface
 interface UITheme {
-    bg: {
-        default: string;
-        // other background colors
-    };
-    fg: {
-        default: string;
-        // other foreground colors
-    };
-    // other UI element colors
+  bg: {
+    default: string;
+    // other background colors
+  };
+  fg: {
+    default: string;
+    // other foreground colors
+  };
+  // other UI element colors
 }
 
 // Syntax theme interface
 interface SyntaxTheme {
-    base: {
-        // base syntax colors
-    };
-    syntax: {
-        // specific syntax element colors
-    };
+  base: {
+    // base syntax colors
+  };
+  syntax: {
+    // specific syntax element colors
+  };
 }
 ```
 

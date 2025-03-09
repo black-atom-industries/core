@@ -3,7 +3,6 @@ import { adaptAllRepositories } from "./adapters/adapt-all.ts";
 import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
-import { startTUI } from "./adapters/tui.ts";
 import { getUserConfirmation } from "./adapters/utils.ts";
 import log from "../lib/log.ts";
 
@@ -51,12 +50,6 @@ if (import.meta.main) {
             break;
         }
 
-        case "dev:adapters:tui": {
-            log.info("Starting adapter TUI...");
-            await startTUI();
-            break;
-        }
-
         case "dev:adapters:reset": {
             log.info("Checking adapters for reset...");
 
@@ -89,7 +82,6 @@ if (import.meta.main) {
                 "  - dev:adapters:push: Push all repositories (aborts if uncommitted changes)",
             );
             log.info("  - dev:adapters:status: Show status overview of all repositories");
-            log.info("  - dev:adapters:tui: Start interactive TUI for adapter management");
             log.info(
                 "  - dev:adapters:reset: Reset repositories to remote state (use --auto-stash to stash changes)",
             );
