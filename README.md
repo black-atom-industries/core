@@ -16,6 +16,8 @@ Black Atom Core is the central repository for all theme definitions in the Black
 
 This modular architecture ensures consistent styling across all supported platforms while allowing for platform-specific optimizations through adapter repositories.
 
+For details on our color token system, see [COLOR_TOKEN_SYSTEM.md](./COLOR_TOKEN_SYSTEM.md).
+
 ## Available Theme Collections
 
 Black Atom includes multiple theme collections, each with its own distinct style:

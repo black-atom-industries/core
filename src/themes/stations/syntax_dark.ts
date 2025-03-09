@@ -18,7 +18,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             escape: palette.red,
         },
         constant: {
-            default: primaries[9],
+            default: primaries.l20,
             builtin: palette.darkRed,
         },
         module: {
@@ -56,7 +56,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         punctuation: {
             default: palette.lightGray,
-            delimiter: primaries[7],
+            delimiter: primaries.m40,
             bracket: palette.lightGray,
             special: palette.lightGray,
         },
@@ -97,8 +97,8 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         tag: {
             default: palette.yellow,
             builtin: palette.darkYellow,
-            attribute: primaries[7],
-            delimiter: primaries[8],
+            attribute: primaries.m40,
+            delimiter: primaries.l10,
         },
     };
 }

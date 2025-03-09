@@ -3,13 +3,13 @@ import { Palette, Primaries, Syntax } from "../../types/theme.ts";
 export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
-            default: primaries[4],
-            builtin: primaries[2],
-            member: primaries[4],
+            default: primaries.m10,
+            builtin: primaries.d30,
+            member: primaries.m10,
             parameter: palette.darkYellow,
         },
         property: {
-            default: primaries[4],
+            default: primaries.m10,
         },
         string: {
             default: palette.green,
@@ -56,12 +56,12 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         punctuation: {
             default: palette.gray,
-            delimiter: primaries[7],
+            delimiter: primaries.m40,
             bracket: palette.gray,
             special: palette.gray,
         },
         comment: {
-            default: primaries[6],
+            default: primaries.m30,
             doc: palette.darkGreen,
             todo: palette.green,
             error: palette.red,
@@ -90,14 +90,14 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             math: palette.darkGreen,
             link: palette.green,
             code: {
-                fg: primaries[5],
-                bg: primaries[9],
+                fg: primaries.m20,
+                bg: primaries.l20,
             },
         },
         tag: {
             default: palette.yellow,
             builtin: palette.darkYellow,
-            attribute: primaries[4],
+            attribute: primaries.m10,
             delimiter: palette.darkGreen,
         },
     };
