@@ -47,6 +47,6 @@ export const config: Config = {
         "nvim",
         "ghostty",
         "zed",
-        "obsidian",
+        // "obsidian", // Disabled until ready
     ],
 };
