@@ -201,6 +201,7 @@ interface SyntaxTheme {
    - Create template files with `.template.{ext}` naming
    - Use Eta template syntax for variable interpolation
    - Reference theme properties with `<%= theme.property.path %>`
+   - **IMPORTANT**: Templates should use UI, syntax colors, or palette colors, but never primaries directly
 
 3. **Theme Generation**:
 
@@ -210,6 +211,21 @@ interface SyntaxTheme {
 4. **Testing**:
    - Test generated files in the target application
    - Verify colors and styling match the theme definitions
+
+## Adapter Best Practices
+
+### Avoid Using Primaries Directly
+
+Adapters should never access primaries directly in templates. Instead, use:
+
+- **UI colors**: `<%= theme.ui.bg.default %>`, `<%= theme.ui.fg.accent %>`, etc.
+- **Syntax colors**: `<%= theme.syntax.string.default %>`, `<%= theme.syntax.keyword.default %>`, etc.
+- **Palette colors**: `<%= theme.palette.red %>`, `<%= theme.palette.blue %>`, etc.
+
+- **❌ DO NOT USE**: `<%= theme.primaries.d10 %>` or `<%= theme.primaries[0] %>`
+- **✅ DO USE**: `<%= theme.ui.bg.default %>`, `<%= theme.palette.red %>`, etc.
+
+This abstraction keeps adapters more stable when the core theme structure changes, as UI, syntax, and palette colors provide a consistent interface while primaries may evolve.
 
 ## Troubleshooting
 
