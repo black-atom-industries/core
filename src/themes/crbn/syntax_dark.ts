@@ -3,23 +3,23 @@ import { Palette, Primaries, Syntax } from "../../types/theme.ts";
 export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
-            default: primaries[5],
-            builtin: primaries[5],
-            member: primaries[4],
+            default: primaries.m20,
+            builtin: primaries.m20,
+            member: primaries.m10,
             parameter: palette.darkYellow,
         },
         property: {
-            default: primaries[6],
+            default: primaries.m30,
         },
         string: {
-            default: primaries[4],
-            doc: primaries[3],
-            regexp: primaries[8],
-            escape: primaries[8],
+            default: primaries.m10,
+            doc: primaries.d40,
+            regexp: primaries.l10,
+            escape: primaries.l10,
         },
         constant: {
-            default: primaries[5],
-            builtin: primaries[6],
+            default: primaries.m20,
+            builtin: primaries.m30,
         },
         module: {
             default: palette.yellow,
@@ -28,11 +28,11 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             default: palette.gray,
         },
         number: {
-            default: primaries[5],
+            default: primaries.m20,
         },
         type: {
-            default: primaries[8],
-            builtin: primaries[6],
+            default: primaries.l10,
+            builtin: primaries.m30,
         },
         attribute: {
             default: palette.darkYellow,
@@ -47,9 +47,9 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             default: palette.yellow,
         },
         keyword: {
-            default: primaries[7],
-            import: primaries[5],
-            export: primaries[5],
+            default: primaries.m40,
+            import: primaries.m20,
+            export: primaries.m20,
         },
         operator: {
             default: palette.white,
@@ -62,7 +62,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         comment: {
             default: palette.gray,
-            doc: primaries[5],
+            doc: primaries.m20,
             todo: palette.green,
             error: palette.red,
             warn: palette.yellow,
@@ -90,15 +90,15 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             math: palette.darkGreen,
             link: palette.green,
             code: {
-                fg: primaries[6],
-                bg: primaries[1],
+                fg: primaries.m30,
+                bg: primaries.d20,
             },
         },
         tag: {
             default: palette.yellow,
             builtin: palette.darkYellow,
-            attribute: primaries[4],
-            delimiter: primaries[4],
+            attribute: primaries.m10,
+            delimiter: primaries.m10,
         },
     };
 }

@@ -3,8 +3,8 @@ import { Palette, Primaries, Syntax } from "../../types/theme.ts";
 export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
-            default: primaries[4],
-            builtin: primaries[6],
+            default: primaries.m10,
+            builtin: primaries.m30,
             member: palette.blue,
             parameter: palette.darkMagenta,
         },
@@ -91,14 +91,14 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             },
             code: {
                 fg: palette.gray,
-                bg: primaries[9],
+                bg: primaries.l20,
             },
         },
         tag: {
             default: palette.yellow,
             builtin: palette.darkYellow,
-            attribute: primaries[4],
-            delimiter: primaries[3],
+            attribute: primaries.m10,
+            delimiter: primaries.d40,
         },
     };
 }
