@@ -15,42 +15,42 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#1d2730",
-    d20: "#344859",
-    d30: "#415a70",
-    d40: "#566e84",
+    d10: "#1f1f1f",
+    d20: "#282828",
+    d30: "#3d3d3d",
+    d40: "#515151",
 
-    m10: "#6c7f92",
-    m20: "#8999a8",
-    m30: "#a2b5c5",
-    m40: "#bfcbd5",
+    m10: "#727272",
+    m20: "#8c8c8c",
+    m30: "#a6a6a6",
+    m40: "#c0c0c0",
 
-    l10: "#cdd9e4",
-    l20: "#d8e2ea",
-    l30: "#e8eef2",
-    l40: "#eff5fb",
+    l10: "#cdcdcd",
+    l20: "#dadada",
+    l30: "#ececec",
+    l40: "#f1f1f1",
 };
 
 const palette: Theme.Palette = {
-    black: primaries.d20,
+    black: primaries.d10,
     gray: primaries.m10,
 
-    darkRed: "#f2280d",
-    red: "#ff4b33",
+    darkRed: primaries.d20,
+    red: primaries.d30,
 
-    darkGreen: "#50b82e",
-    green: "#69d148",
+    darkGreen: primaries.d20,
+    green: primaries.d30,
 
-    darkYellow: "#ff4302",
-    yellow: "#FF6833",
+    darkYellow: "#d95a26",
+    yellow: "#f06f42",
 
-    darkBlue: "#1661EB",
-    blue: "#337AFF",
+    darkBlue: primaries.d20,
+    blue: primaries.d30,
 
-    darkMagenta: primaries.m10,
-    magenta: primaries.m20,
+    darkMagenta: primaries.d20,
+    magenta: primaries.d30,
 
-    darkCyan: primaries.d30,
+    darkCyan: primaries.d10,
     cyan: primaries.d20,
 
     lightGray: primaries.m30,

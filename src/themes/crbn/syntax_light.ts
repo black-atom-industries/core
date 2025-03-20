@@ -12,7 +12,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             default: primaries.m10,
         },
         string: {
-            default: primaries.m10,
+            default: primaries.d20,
             doc: primaries.m20,
             regexp: primaries.d10,
             escape: primaries.d10,
