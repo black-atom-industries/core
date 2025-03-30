@@ -5,7 +5,7 @@ import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-crbn-supr",
-    label: "Black At•m — CRB ∷ SUPR",
+    label: "Black Atom — CRB ∷ SUPR",
     appearance: "light",
     status: "release",
     collection: {

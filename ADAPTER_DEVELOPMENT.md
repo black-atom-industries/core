@@ -137,7 +137,7 @@ You can refer to these existing adapters for examples:
 {
   meta: {
     key: "black-atom-jpn-koyo-yoru",
-    label: "Black At•m — JPN ∷ Koyo Yoru",
+    label: "Black Atom — JPN ∷ Koyo Yoru",
     appearance: "dark",
     collection: { key: "jpn", label: "JPN" },
   },

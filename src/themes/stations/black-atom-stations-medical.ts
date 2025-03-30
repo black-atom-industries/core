@@ -5,7 +5,7 @@ import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-stations-medical",
-    label: "Black At•m — STA ∷ Medical",
+    label: "Black Atom — STA ∷ Medical",
     appearance: "light",
     status: "release",
     collection: {

@@ -5,7 +5,7 @@ import ui_dark from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-terra-spring-night",
-    label: "Black At•m — TER ∷ Spring Night",
+    label: "Black Atom — TER ∷ Spring Night",
     appearance: "dark",
     status: "release",
     collection: {

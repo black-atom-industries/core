@@ -5,7 +5,7 @@ import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-terra-spring-day",
-    label: "Black At•m — TER ∷ Spring Day",
+    label: "Black Atom — TER ∷ Spring Day",
     appearance: "light",
     status: "beta",
     collection: {

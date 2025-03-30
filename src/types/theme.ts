@@ -29,23 +29,23 @@ type CollectionLabel = string;
 interface Meta {
     key: Key;
     label:
-        | "Black At•m — STA ∷ Engineering"
-        | "Black At•m — STA ∷ Operations"
-        | "Black At•m — STA ∷ Medical"
-        | "Black At•m — STA ∷ Research"
-        | "Black At•m — CRB ∷ NULL"
-        | "Black At•m — CRB ∷ SUPR"
-        | "Black At•m — JPN ∷ Koyo Yoru"
-        | "Black At•m — JPN ∷ Koyo Hiru"
-        | "Black At•m — JPN ∷ Tsuki Yoru"
-        | "Black At•m — TER ∷ Spring Day"
-        | "Black At•m — TER ∷ Spring Night"
-        | "Black At•m — TER ∷ Fall Day"
-        | "Black At•m — TER ∷ Fall Night"
-        | "Black At•m — TER ∷ Summer Day"
-        | "Black At•m — TER ∷ Summer Night"
-        | "Black At•m — TER ∷ Winter Day"
-        | "Black At•m — TER ∷ Winter Night";
+        | "Black Atom — STA ∷ Engineering"
+        | "Black Atom — STA ∷ Operations"
+        | "Black Atom — STA ∷ Medical"
+        | "Black Atom — STA ∷ Research"
+        | "Black Atom — CRB ∷ NULL"
+        | "Black Atom — CRB ∷ SUPR"
+        | "Black Atom — JPN ∷ Koyo Yoru"
+        | "Black Atom — JPN ∷ Koyo Hiru"
+        | "Black Atom — JPN ∷ Tsuki Yoru"
+        | "Black Atom — TER ∷ Spring Day"
+        | "Black Atom — TER ∷ Spring Night"
+        | "Black Atom — TER ∷ Fall Day"
+        | "Black Atom — TER ∷ Fall Night"
+        | "Black Atom — TER ∷ Summer Day"
+        | "Black Atom — TER ∷ Summer Night"
+        | "Black Atom — TER ∷ Winter Day"
+        | "Black Atom — TER ∷ Winter Night";
     appearance: "light" | "dark";
     status: "development" | "beta" | "release";
     collection: {
