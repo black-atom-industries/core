@@ -10,7 +10,7 @@ export type Config = {
     };
     adapterFileName: string;
     themeKeys: Key[];
-    adapters: ("nvim" | "ghostty" | "zed" | "obsidian")[]; // List of cloned adapter repository names
+    adapters: ("nvim" | "ghostty" | "zed" | "wezterm" | "obsidian")[]; // List of cloned adapter repository names
     orgName: string; // Organization directory name
 };
 
@@ -47,6 +47,7 @@ export const config: Config = {
         "nvim",
         "ghostty",
         "zed",
+        "wezterm",
         // "obsidian", // Disabled until ready
     ],
 };
