@@ -15,10 +15,10 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#271f27",
-    d20: "#332733",
-    d30: "#3f2f3f",
-    d40: "#4a384a",
+    d10: "#131116",
+    d20: "#1D1A22",
+    d30: "#27232e",
+    d40: "#312c3a",
 
     m10: "#605872",
     m20: "#6e6a86",
