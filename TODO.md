@@ -8,25 +8,30 @@ Currently, each theme has its own template file, even though templates within a 
 
 ### Schema Changes
 
-- [ ] Update `adapter.schema.json` to add collection-based template structure
-- [ ] Modify `src/lib/validate-adapter.ts` to support new schema with collections
+- [x] Update `adapter.schema.json` to add collection-based template structure
+- [x] Modify `src/lib/validate-adapter.ts` to support new schema with collections
 
 ### Core Code Changes
 
-- [ ] Update `src/lib/template.ts` to handle collection templates
-- [ ] Add collection-to-theme mapping functionality
-- [ ] Modify theme processing to use collection templates
+- [x] Update `src/lib/template.ts` to handle collection templates
+- [x] Add collection-to-theme mapping functionality
+- [x] Modify theme processing to use collection templates
 
 ### Migration
 
-- [ ] Create collection template files for each theme family (jpn, crbn, etc.)
-- [ ] Update all adapter configuration files (nvim, zed, wezterm, etc.)
-- [ ] Test with full adaptation process
+- [x] Create collection template files for each theme family (jpn, crbn, etc.)
+- [x] Update nvim adapter configuration to use collection templates (as a test case)
+- [x] Test with full adaptation process
 
 ### Cleanup
 
-- [ ] Remove redundant theme-specific template files
-- [ ] Update documentation in ADAPTER_DEVELOPMENT.md
+- [x] Update documentation in ADAPTER_DEVELOPMENT.md
+- [x] Migrate other adapters (zed, wezterm, etc.) to use collection templates
+  - [x] zed
+  - [x] wezterm
+  - [x] ghostty
+  - [x] obsidian
+- [ ] Remove redundant theme-specific template files after all adapters are migrated
 
 ## Proposed Structure
 

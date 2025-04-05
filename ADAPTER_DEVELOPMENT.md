@@ -36,26 +36,46 @@ Alternatively, you can create a repository from scratch:
 
 ### 3. Adapter Configuration
 
-Your `black-atom-adapter.json` should look like:
+Configure your adapter with the `black-atom-adapter.json` file using collection-based templates:
 
-```json
+```jsonc
 {
   "$schema": "https://raw.githubusercontent.com/black-atom-industries/core/refs/heads/main/adapter.schema.json",
-  "black-atom-stations-engineering": {
-    "templates": ["./themes/stations/black-atom-stations-engineering.template.json"]
+  "collections": {
+    "jpn": {
+      "template": "./themes/jpn/collection.template.json",
+      "themes": [
+        "black-atom-jpn-koyo-yoru",
+        "black-atom-jpn-koyo-hiru",
+        "black-atom-jpn-tsuki-yoru",
+        "black-atom-jpn-murasaki-yoru",
+      ],
+    },
+    "stations": {
+      "template": "./themes/stations/collection.template.json",
+      "themes": [
+        "black-atom-stations-engineering",
+        "black-atom-stations-operations",
+        "black-atom-stations-medical",
+        "black-atom-stations-research",
+      ],
+    },
+    // ... other collections
   },
-  "black-atom-jpn-koyo-yoru": {
-    "templates": ["./themes/jpn/black-atom-jpn-koyo-yoru.template.json"]
-  }
-  // ... other themes
 }
 ```
+
+This collection-based approach:
+
+- Reduces template duplication
+- Simplifies maintenance
+- Ensures consistency across themes in the same collection
 
 ## Theme Adaptation Process
 
 1. Run `black-atom-core adapt` in the adapter repository
 2. The CLI reads your `black-atom-adapter.json` file
-3. For each theme, the corresponding template is processed
+3. For each collection, the template is processed for each theme in the collection
 4. Variables are replaced with values from the core theme definitions
 5. Generated files are written to their specified locations
 
@@ -70,12 +90,14 @@ Adapters should **never** access primaries directly in templates. Instead, use:
 - **Palette colors**: `<%= theme.palette.red %>`, `<%= theme.palette.blue %>`, etc.
 
 #### Do Not Use:
+
 ```
 <%= theme.primaries.d10 %>
 <%= theme.primaries[0] %>
 ```
 
 #### Do Use:
+
 ```
 <%= theme.ui.bg.default %>
 <%= theme.syntax.string.default %>
@@ -85,6 +107,8 @@ Adapters should **never** access primaries directly in templates. Instead, use:
 This abstraction keeps adapters more stable when the core theme structure changes, as UI, syntax, and palette colors provide a consistent interface while primaries may evolve.
 
 ### Template Organization
+
+#### Individual Theme Templates
 
 Organize template files by theme collection:
 
@@ -96,6 +120,19 @@ themes/
   stations/
     black-atom-stations-engineering.template.json
     ...
+```
+
+#### Collection-Based Templates
+
+Use a single template file per collection with a clear naming convention:
+
+```
+themes/
+  jpn/
+    collection.template.json  # Template for all jpn themes
+  stations/
+    collection.template.json  # Template for all stations themes
+  ...
 ```
 
 ### Testing Templates
@@ -149,7 +186,7 @@ You can refer to these existing adapters for examples:
   },
   // Access these in templates
   palette: {
-    black: "#3f2f3f", gray: "#6e6a86", dark_red: "#b46371", red: "#eb6f84", 
+    black: "#3f2f3f", gray: "#6e6a86", dark_red: "#b46371", red: "#eb6f84",
     // ... other colors
   },
   ui: {
@@ -169,3 +206,4 @@ You can refer to these existing adapters for examples:
   }
 }
 ```
+

@@ -2,7 +2,7 @@ import { Eta } from "@eta";
 import { dirname } from "@std/path";
 import type { Definition, Key } from "../types/theme.ts";
 import log from "./log.ts";
-import { TemplateConfig } from "./validate-adapter.ts";
+import { AdapterConfig } from "./validate-adapter.ts";
 
 // Initialize Eta with options
 const eta = new Eta({
@@ -13,38 +13,84 @@ const eta = new Eta({
     autoTrim: false,
 });
 
-export async function processThemeTemplates(
-    themeKey: Key,
-    templatePaths: TemplateConfig["templates"],
+/**
+ * Process collection-based templates
+ * @param adapterConfig The adapter configuration
+ * @param themeMap Map of theme keys to theme definitions
+ */
+export async function processTemplates(
+    adapterConfig: AdapterConfig,
     themeMap: Record<Key, Definition | null>,
 ) {
-    const theme = themeMap[themeKey];
-
-    if (!theme) {
-        log.error(`Theme "${themeKey}" not found`);
-        return;
+    // Process collection templates
+    if (adapterConfig.collections) {
+        await processCollectionTemplates(adapterConfig.collections, themeMap);
+    } else {
+        log.error("No collections defined in adapter configuration");
     }
+}
 
-    for (const path of templatePaths) {
+/**
+ * Process collection-based templates
+ * @param collections The collections configuration object
+ * @param themeMap Map of theme keys to theme definitions
+ */
+async function processCollectionTemplates(
+    collections: NonNullable<AdapterConfig["collections"]>,
+    themeMap: Record<Key, Definition | null>,
+) {
+    // Go through each collection
+    for (const [collectionKey, collectionConfig] of Object.entries(collections)) {
+        if (!collectionConfig) continue;
+        
+        const { template: templatePath, themes } = collectionConfig;
+        
         try {
-            // log.info(`Processing template: "${path}"`);
-
-            // Read and process template
-            const template = await Deno.readTextFile(path);
-            const content = eta.renderString(template, theme);
-
-            await writeOutput(content, path);
-            // log.success(`Generated: "${path.replace(".template.", ".")}"`);
+            // Read the collection template once
+            const template = await Deno.readTextFile(templatePath);
+            
+            // Process each theme in the collection
+            for (const themeKey of themes) {
+                const theme = themeMap[themeKey as Key];
+                
+                if (!theme) {
+                    log.error(`Theme "${themeKey}" specified in collection "${collectionKey}" not found`);
+                    continue;
+                }
+                
+                // Determine the output path by replacing the collection name in the template path
+                const outputPath = templatePath
+                    .replace(".template.", ".")
+                    .replace(/collection/, themeKey);
+                
+                try {
+                    log.info(`Processing theme "${themeKey}" with collection template "${templatePath}"`);
+                    
+                    // Render the template with the theme data
+                    const content = eta.renderString(template, theme);
+                    
+                    // Write the output
+                    await writeOutput(content, outputPath);
+                    log.success(`Generated: "${outputPath}"`);
+                } catch (error) {
+                    log.error(`Failed to process template for theme "${themeKey}": ${error instanceof Error ? error.message : String(error)}`);
+                }
+            }
         } catch (error) {
             if (error instanceof Deno.errors.NotFound) {
-                log.error(`Template file not found: ${path}`);
+                log.error(`Collection template file not found: ${templatePath}`);
             } else if (error instanceof Error) {
-                log.error(`Failed to process template ${path}: ${error.message}`);
+                log.error(`Failed to process collection template ${templatePath}: ${error.message}`);
             }
         }
     }
 }
 
+/**
+ * Write processed content to an output file
+ * @param content The processed content to write
+ * @param templatePath The template path to derive the output path from or the explicit output path 
+ */
 export async function writeOutput(content: string, templatePath: string): Promise<void> {
     // Generate output path by removing .template from the file name
     const outputPath = templatePath.replace(".template.", ".");
