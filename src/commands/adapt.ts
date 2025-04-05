@@ -30,7 +30,7 @@ async function getAdapterConfig(): Promise<AdapterConfig> {
 
 export default async function () {
     const adapterConfig = await getAdapterConfig();
-    const themeMap = await loadThemeMap();
+    const themeMap = await loadThemeMap(config.themePathMap);
     const { $schema: _, ...configs } = adapterConfig;
 
     log.success(

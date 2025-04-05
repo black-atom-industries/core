@@ -23,6 +23,8 @@ export const themeKeys = [
 
 type Key = typeof themeKeys[number];
 
+type ThemeKeyPathMap = Record<Key, string>;
+
 type CollectionKey = "crbn" | "terra" | "jpn" | "stations";
 
 type CollectionLabel = string;
@@ -257,6 +259,7 @@ export type {
     Palette,
     Primaries,
     Syntax,
+    ThemeKeyPathMap,
     ThemeMap,
     UI,
 };

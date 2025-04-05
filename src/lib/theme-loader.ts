@@ -1,44 +1,15 @@
-import { Key, ThemeMap } from "../types/theme.ts";
+import * as Theme from "../types/theme.ts";
 import { config } from "../config.ts";
 import log from "./log.ts";
-
-/**
- * A utility mapping to convert theme keys to their file paths
- */
-const themePathMap: Record<Key, string> = {
-    // Stations
-    "black-atom-stations-engineering": "stations/black-atom-stations-engineering",
-    "black-atom-stations-operations": "stations/black-atom-stations-operations",
-    "black-atom-stations-medical": "stations/black-atom-stations-medical",
-    "black-atom-stations-research": "stations/black-atom-stations-research",
-
-    // JPNs
-    "black-atom-jpn-koyo-yoru": "jpn/black-atom-jpn-koyo-yoru",
-    "black-atom-jpn-koyo-hiru": "jpn/black-atom-jpn-koyo-hiru",
-    "black-atom-jpn-tsuki-yoru": "jpn/black-atom-jpn-tsuki-yoru",
-    "black-atom-jpn-murasaki-yoru": "jpn/black-atom-jpn-murasaki-yoru",
-
-    // Terra
-    "black-atom-terra-spring-day": "terra/black-atom-terra-spring-day",
-    "black-atom-terra-spring-night": "terra/black-atom-terra-spring-night",
-    "black-atom-terra-fall-day": "terra/black-atom-terra-fall-day",
-    "black-atom-terra-fall-night": "terra/black-atom-terra-fall-night",
-    "black-atom-terra-summer-day": "terra/black-atom-terra-summer-day",
-    "black-atom-terra-summer-night": "terra/black-atom-terra-summer-night",
-    "black-atom-terra-winter-day": "terra/black-atom-terra-winter-day",
-    "black-atom-terra-winter-night": "terra/black-atom-terra-winter-night",
-
-    // CRBN
-    "black-atom-crbn-null": "crbn/black-atom-crbn-null",
-    "black-atom-crbn-supr": "crbn/black-atom-crbn-supr",
-};
 
 /**
  * Dynamically loads theme modules to ensure we have the latest versions
  * This is important for the watch functionality to pick up changes
  */
-export async function loadThemeMap(): Promise<ThemeMap> {
-    const themeMap = {} as ThemeMap;
+export async function loadThemeMap(
+    themePathMap: Theme.ThemeKeyPathMap,
+): Promise<Theme.ThemeMap> {
+    const themeMap = {} as Theme.ThemeMap;
     const errorList: string[] = [];
 
     log.info("Dynamically loading theme files to get latest changes...");
@@ -50,7 +21,7 @@ export async function loadThemeMap(): Promise<ThemeMap> {
                 // With Record<Key, string>, TypeScript guarantees the path exists
                 const themePath = themePathMap[themeKey];
 
-                const importPath = `../themes/${themePath}.ts?t=${Date.now()}`;
+                const importPath = `../${themePath}.ts?t=${Date.now()}`;
                 const module = await import(importPath);
 
                 if (!module.default) {
