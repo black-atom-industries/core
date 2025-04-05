@@ -10,6 +10,7 @@ export const themeKeys = [
     "black-atom-jpn-koyo-yoru",
     "black-atom-jpn-koyo-hiru",
     "black-atom-jpn-tsuki-yoru",
+    "black-atom-jpn-murasaki-yoru",
     "black-atom-terra-spring-day",
     "black-atom-terra-spring-night",
     "black-atom-terra-fall-day",
@@ -38,6 +39,7 @@ interface Meta {
         | "Black Atom — JPN ∷ Koyo Yoru"
         | "Black Atom — JPN ∷ Koyo Hiru"
         | "Black Atom — JPN ∷ Tsuki Yoru"
+        | "Black Atom — JPN ∷ Murasaki Yoru"
         | "Black Atom — TER ∷ Spring Day"
         | "Black Atom — TER ∷ Spring Night"
         | "Black Atom — TER ∷ Fall Day"

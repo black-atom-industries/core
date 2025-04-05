@@ -16,6 +16,7 @@ const themePathMap: Record<Key, string> = {
     "black-atom-jpn-koyo-yoru": "jpn/black-atom-jpn-koyo-yoru",
     "black-atom-jpn-koyo-hiru": "jpn/black-atom-jpn-koyo-hiru",
     "black-atom-jpn-tsuki-yoru": "jpn/black-atom-jpn-tsuki-yoru",
+    "black-atom-jpn-murasaki-yoru": "jpn/black-atom-jpn-murasaki-yoru",
 
     // Terra
     "black-atom-terra-spring-day": "terra/black-atom-terra-spring-day",

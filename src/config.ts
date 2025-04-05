@@ -34,6 +34,7 @@ export const config: Config = {
         "black-atom-jpn-koyo-yoru",
         "black-atom-jpn-koyo-hiru",
         "black-atom-jpn-tsuki-yoru",
+        "black-atom-jpn-murasaki-yoru",
         "black-atom-terra-spring-day",
         "black-atom-terra-spring-night",
         "black-atom-terra-fall-day",
