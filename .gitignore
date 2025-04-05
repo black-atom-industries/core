@@ -19,3 +19,5 @@ lerna-debug.log*
 *.sw?
 .aider*
 black-atom-core
+
+**/CLAUDE.local.md

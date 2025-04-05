@@ -1,11 +1,10 @@
 import * as z from "@zod";
 
 import { config } from "../config.ts";
-import { Key } from "../types/theme.ts";
 
-import { AdapterConfig, adapterConfigSchema, TemplateConfig } from "../lib/validate-adapter.ts";
+import { AdapterConfig, adapterConfigSchema } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
-import { processThemeTemplates } from "../lib/template.ts";
+import { processTemplates } from "../lib/template.ts";
 import { loadThemeMap } from "../lib/theme-loader.ts";
 
 async function getAdapterConfig(): Promise<AdapterConfig> {
@@ -31,22 +30,24 @@ async function getAdapterConfig(): Promise<AdapterConfig> {
 export default async function () {
     const adapterConfig = await getAdapterConfig();
     const themeMap = await loadThemeMap(config.themePathMap);
-    const { $schema: _, ...configs } = adapterConfig;
-
-    log.success(
-        `Adapter configuration loaded successfully. Found ${
-            Object.keys(configs).length
-        } theme keys.`,
-    );
-
-    const configEntries = Object.entries(configs) as [Key, TemplateConfig][];
-
-    if (configEntries.length === 0) {
-        log.warn("No theme keys defined!");
+    
+    log.success("Adapter configuration loaded successfully.");
+    
+    // Log collection count
+    if (adapterConfig.collections) {
+        const collectionCount = Object.keys(adapterConfig.collections).length;
+        const themeCountInCollections = Object.values(adapterConfig.collections)
+            .filter(Boolean)
+            .reduce((acc, collection) => acc + (collection?.themes.length || 0), 0);
+            
+        log.success(
+            `Found ${collectionCount} collection${collectionCount !== 1 ? 's' : ''} with ${themeCountInCollections} theme${themeCountInCollections !== 1 ? 's' : ''}.`
+        );
+    } else {
+        log.warn("No collections defined!");
         return;
     }
-
-    for (const [themeKey, templateConfig] of configEntries) {
-        await processThemeTemplates(themeKey, templateConfig.templates, themeMap);
-    }
+    
+    // Process templates
+    await processTemplates(adapterConfig, themeMap);
 }
