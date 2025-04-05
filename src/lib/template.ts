@@ -49,12 +49,16 @@ async function processCollectionTemplates(
             // Read the collection template once
             const template = await Deno.readTextFile(templatePath);
             
+            log.info(`Processing collection "${collectionKey}" with ${themes.length} themes using template "${templatePath}"`);
+            const generatedFiles: string[] = [];
+            const errors: string[] = [];
+            
             // Process each theme in the collection
             for (const themeKey of themes) {
                 const theme = themeMap[themeKey as Key];
                 
                 if (!theme) {
-                    log.error(`Theme "${themeKey}" specified in collection "${collectionKey}" not found`);
+                    errors.push(`Theme "${themeKey}" not found`);
                     continue;
                 }
                 
@@ -64,16 +68,26 @@ async function processCollectionTemplates(
                     .replace(/collection/, themeKey);
                 
                 try {
-                    log.info(`Processing theme "${themeKey}" with collection template "${templatePath}"`);
-                    
                     // Render the template with the theme data
                     const content = eta.renderString(template, theme);
                     
                     // Write the output
                     await writeOutput(content, outputPath);
-                    log.success(`Generated: "${outputPath}"`);
+                    generatedFiles.push(outputPath);
                 } catch (error) {
-                    log.error(`Failed to process template for theme "${themeKey}": ${error instanceof Error ? error.message : String(error)}`);
+                    errors.push(`Failed to process theme "${themeKey}": ${error instanceof Error ? error.message : String(error)}`);
+                }
+            }
+            
+            // Log a summary of the results
+            if (generatedFiles.length > 0) {
+                log.success(`Generated ${generatedFiles.length} theme files for collection "${collectionKey}"`);
+            }
+            
+            if (errors.length > 0) {
+                log.error(`Encountered ${errors.length} errors in collection "${collectionKey}":`);
+                for (const error of errors) {
+                    log.error(`  - ${error}`);
                 }
             }
         } catch (error) {
