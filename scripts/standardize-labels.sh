@@ -40,15 +40,20 @@ for repo in "${REPOS[@]}"; do
     # delete all existing labels
     delete_labels "$repo"
     
-    # Common labels for all repositories
-    create_label "$repo" "feature" "a2eeef" "New feature or request"
-    create_label "$repo" "refactor" "AEA320" "Code refactoring without functional changes"
-    create_label "$repo" "optimization" "5F609E" "Performance or efficiency improvements"
-    create_label "$repo" "documentation" "0075ca" "Improvements or additions to documentation"
-    create_label "$repo" "bug" "d73a4a" "Something isn't working"
-    create_label "$repo" "bugfix" "A0EDB0" "Fixes for bugs"
+    # Topic Labels (orange hues) - Areas of the codebase/project
+    create_label "$repo" "themes" "FF7700" "Theme-related changes"
+    create_label "$repo" "tokens" "FF2200" "Color tokens and token system"
+    create_label "$repo" "templates" "FF3300" "Template-related changes"
+    create_label "$repo" "cli" "FF6600" "Command-line interface"
+    create_label "$repo" "build" "FF4400" "Build system, dependencies, packaging"
+    create_label "$repo" "infrastructure" "FF1100" "CI/CD, deployment, repos"
+    create_label "$repo" "documentation" "FF0000" "Documentation related changes"
+
+    # Special Visibility Labels (limited to essential cases)
+    create_label "$repo" "blocked" "E11D21" "Blocked by external factors or dependencies"
     create_label "$repo" "needs-review" "369A23" "Needs detailed code review"
     create_label "$repo" "good first issue" "7057ff" "Good for newcomers"
+    create_label "$repo" "help wanted" "008672" "Seeking community contributions"
 
     echo "Processing complete."
 done
