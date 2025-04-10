@@ -19,10 +19,12 @@ const primaries: Theme.Primaries = {
     d20: "#332031",
     d30: "#462c43",
     d40: "#573954",
+
     m10: "#6d4769",
     m20: "#7d5178",
     m30: "#865f88",
     m40: "#946996",
+
     l10: "#b796b8",
     l20: "#c9b1cb",
     l30: "#D4BFD6",
@@ -40,7 +42,7 @@ const palette: Theme.Palette = {
     green: "#6dc29f",
 
     darkYellow: "#FE9B16",
-    yellow: "#e6b119",
+    yellow: "#e6a319",
 
     darkBlue: "#39a6cd",
     blue: "#71c0db",
