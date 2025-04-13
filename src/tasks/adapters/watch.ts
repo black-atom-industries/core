@@ -1,7 +1,7 @@
 import * as colors from "@std/fmt/colors";
 import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
-import { adaptAllRepositories } from "./adapt-all.ts";
+import { generateAllRepositories } from "./generate-all.ts";
 
 /**
  * Watch for changes in the core themes directory and adapt all repositories
@@ -37,7 +37,7 @@ export async function watchAdapters() {
         );
 
         pendingChanges.clear();
-        await adaptAllRepositories({ commit: false });
+        await generateAllRepositories({ commit: false });
 
         isProcessing = false;
 

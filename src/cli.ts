@@ -1,4 +1,4 @@
-import adapt from "./commands/adapt.ts";
+import generate from "./commands/generate.ts";
 import help from "./commands/help.ts";
 
 if (import.meta.main) {
@@ -6,8 +6,8 @@ if (import.meta.main) {
     const options = Deno.args.slice(1);
 
     switch (command) {
-        case "adapt":
-            adapt(options);
+        case "generate":
+            generate(options);
             break;
 
         case "-h":

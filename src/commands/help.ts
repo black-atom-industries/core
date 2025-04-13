@@ -7,7 +7,7 @@ export default function help(): void {
     console.log(`Usage: black-atom-core <command> [options]
 
 Commands:
-  ${colors.yellow("adapt")}           Adapt theme files from templates
+  ${colors.yellow("generate")}        Generate theme files from templates
     ${colors.dim("Options:")}
     ${colors.cyan("--watch, -w")}       Watch for changes and regenerate themes
 
