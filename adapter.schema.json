@@ -1,81 +1,81 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Black Atom Adapter Configuration",
-  "description": "Configuration schema for Black Atom theme adapters",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "description": "The JSON Schema URL"
-    },
-    "collections": {
-      "type": "object",
-      "description": "Collection-based template configuration",
-      "properties": {
-        "jpn": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "crbn": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "stations": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "terra": {
-          "$ref": "#/$defs/collectionConfig"
-        }
-      },
-      "additionalProperties": false
-    }
-  },
-  "required": [
-    "$schema",
-    "collections"
-  ],
-  "additionalProperties": false,
-  "minProperties": 2,
-  "$defs": {
-    "collectionConfig": {
-      "type": "object",
-      "properties": {
-        "template": {
-          "type": "string",
-          "description": "Path to the collection template file"
-        },
-        "themes": {
-          "type": "array",
-          "items": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Black Atom Adapter Configuration",
+    "description": "Configuration schema for Black Atom theme adapters",
+    "type": "object",
+    "properties": {
+        "$schema": {
             "type": "string",
-            "description": "Theme key that belongs to this collection",
-            "enum": [
-              "black-atom-stations-engineering",
-              "black-atom-stations-operations",
-              "black-atom-stations-medical",
-              "black-atom-stations-research",
-              "black-atom-crbn-null",
-              "black-atom-crbn-supr",
-              "black-atom-jpn-koyo-yoru",
-              "black-atom-jpn-koyo-hiru",
-              "black-atom-jpn-tsuki-yoru",
-              "black-atom-jpn-murasaki-yoru",
-              "black-atom-terra-spring-day",
-              "black-atom-terra-spring-night",
-              "black-atom-terra-fall-day",
-              "black-atom-terra-fall-night",
-              "black-atom-terra-summer-day",
-              "black-atom-terra-summer-night",
-              "black-atom-terra-winter-day",
-              "black-atom-terra-winter-night"
-            ]
-          },
-          "minItems": 1
+            "description": "The JSON Schema URL"
+        },
+        "collections": {
+            "type": "object",
+            "description": "Collection-based template configuration",
+            "properties": {
+                "jpn": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "crbn": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "stations": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "terra": {
+                    "$ref": "#/$defs/collectionConfig"
+                }
+            },
+            "additionalProperties": false
         }
-      },
-      "required": [
-        "template",
-        "themes"
-      ],
-      "additionalProperties": false
+    },
+    "required": [
+        "$schema",
+        "collections"
+    ],
+    "additionalProperties": false,
+    "minProperties": 2,
+    "$defs": {
+        "collectionConfig": {
+            "type": "object",
+            "properties": {
+                "template": {
+                    "type": "string",
+                    "description": "Path to the collection template file"
+                },
+                "themes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "Theme key that belongs to this collection",
+                        "enum": [
+                            "black-atom-stations-engineering",
+                            "black-atom-stations-operations",
+                            "black-atom-stations-medical",
+                            "black-atom-stations-research",
+                            "black-atom-crbn-null",
+                            "black-atom-crbn-supr",
+                            "black-atom-jpn-koyo-yoru",
+                            "black-atom-jpn-koyo-hiru",
+                            "black-atom-jpn-tsuki-yoru",
+                            "black-atom-jpn-murasaki-yoru",
+                            "black-atom-terra-spring-day",
+                            "black-atom-terra-spring-night",
+                            "black-atom-terra-fall-day",
+                            "black-atom-terra-fall-night",
+                            "black-atom-terra-summer-day",
+                            "black-atom-terra-summer-night",
+                            "black-atom-terra-winter-day",
+                            "black-atom-terra-winter-night"
+                        ]
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "template",
+                "themes"
+            ],
+            "additionalProperties": false
+        }
     }
-  }
 }

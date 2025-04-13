@@ -1,4 +1,5 @@
 import * as z from "@zod";
+import * as colors from "@std/fmt/colors";
 
 import { config } from "../config.ts";
 
@@ -27,27 +28,131 @@ async function getAdapterConfig(): Promise<AdapterConfig> {
     }
 }
 
-export default async function () {
+/**
+ * Watch for changes in the adapter's template files and reprocess them
+ * when changes are detected.
+ */
+async function watchAdapter(adapterConfig: AdapterConfig) {
+    const cwd = Deno.cwd();
+    const templatePaths = new Set<string>();
+
+    // Collect template paths from the adapter config
+    if (adapterConfig.collections) {
+        for (const collection of Object.values(adapterConfig.collections)) {
+            if (collection?.template) {
+                templatePaths.add(collection.template);
+            }
+        }
+    }
+
+    // Watch the current directory for changes to template files
+    log.info(`Watching for changes in template files in ${cwd}...`);
+    log.info("Press Ctrl+C to stop watching");
+
+    // Create a watcher for the current directory
+    const watcher = Deno.watchFs(cwd);
+
+    // Debounce mechanism
+    let debounceTimer: number | null = null;
+    let isProcessing = false;
+    const pendingChanges = new Set<string>();
+
+    // Process changes after debounce period
+    const processChanges = async () => {
+        if (isProcessing || pendingChanges.size === 0) return;
+
+        isProcessing = true;
+        const changes = Array.from(pendingChanges);
+
+        // Filter changes to only include template files or the adapter config
+        const relevantChanges = changes.filter((path) =>
+            path.includes(".template.") ||
+            path.endsWith(config.adapterFileName)
+        );
+
+        if (relevantChanges.length > 0) {
+            log.hr_thick("👀 Template changes detected");
+            log.info(
+                `Processing changes:\n${
+                    relevantChanges.map((p) => `   - ${colors.yellow(p)}`)
+                        .join("\n")
+                }`,
+            );
+
+            try {
+                // Reload adapter config if it changed
+                const updatedAdapterConfig = await getAdapterConfig();
+                // Reload theme map
+                const themeMap = await loadThemeMap(config.themePathMap);
+                // Process templates
+                await processTemplates(updatedAdapterConfig, themeMap);
+            } catch (error) {
+                log.error(
+                    `Error processing changes: ${
+                        error instanceof Error ? error.message : String(error)
+                    }`,
+                );
+            }
+        }
+
+        pendingChanges.clear();
+        isProcessing = false;
+
+        // If more changes accumulated during processing, handle them
+        if (pendingChanges.size > 0) {
+            debounceTimer = setTimeout(processChanges, 100);
+        }
+    };
+
+    for await (const event of watcher) {
+        if (event.kind === "modify" || event.kind === "create") {
+            // Add paths to pending changes
+            for (const path of event.paths) {
+                pendingChanges.add(path);
+            }
+
+            // Clear existing timer if there is one
+            if (debounceTimer !== null) {
+                clearTimeout(debounceTimer);
+                debounceTimer = null;
+            }
+
+            // Set new timer for debouncing
+            debounceTimer = setTimeout(processChanges, 500);
+        }
+    }
+}
+
+export default async function (options: string[] = []) {
+    const watchMode = options.includes("--watch") || options.includes("-w");
+
     const adapterConfig = await getAdapterConfig();
     const themeMap = await loadThemeMap(config.themePathMap);
-    
+
     log.success("Adapter configuration loaded successfully.");
-    
+
     // Log collection count
     if (adapterConfig.collections) {
         const collectionCount = Object.keys(adapterConfig.collections).length;
         const themeCountInCollections = Object.values(adapterConfig.collections)
             .filter(Boolean)
             .reduce((acc, collection) => acc + (collection?.themes.length || 0), 0);
-            
+
         log.success(
-            `Found ${collectionCount} collection${collectionCount !== 1 ? 's' : ''} with ${themeCountInCollections} theme${themeCountInCollections !== 1 ? 's' : ''}.`
+            `Found ${collectionCount} collection${
+                collectionCount !== 1 ? "s" : ""
+            } with ${themeCountInCollections} theme${themeCountInCollections !== 1 ? "s" : ""}.`,
         );
     } else {
         log.warn("No collections defined!");
         return;
     }
-    
+
     // Process templates
     await processTemplates(adapterConfig, themeMap);
+
+    // If watch mode is enabled, watch for changes
+    if (watchMode) {
+        await watchAdapter(adapterConfig);
+    }
 }

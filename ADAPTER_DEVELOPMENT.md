@@ -40,28 +40,28 @@ Configure your adapter with the `black-atom-adapter.json` file using collection-
 
 ```jsonc
 {
-  "$schema": "https://raw.githubusercontent.com/black-atom-industries/core/refs/heads/main/adapter.schema.json",
-  "collections": {
-    "jpn": {
-      "template": "./themes/jpn/collection.template.json",
-      "themes": [
-        "black-atom-jpn-koyo-yoru",
-        "black-atom-jpn-koyo-hiru",
-        "black-atom-jpn-tsuki-yoru",
-        "black-atom-jpn-murasaki-yoru",
-      ],
-    },
-    "stations": {
-      "template": "./themes/stations/collection.template.json",
-      "themes": [
-        "black-atom-stations-engineering",
-        "black-atom-stations-operations",
-        "black-atom-stations-medical",
-        "black-atom-stations-research",
-      ],
-    },
-    // ... other collections
-  },
+    "$schema": "https://raw.githubusercontent.com/black-atom-industries/core/refs/heads/main/adapter.schema.json",
+    "collections": {
+        "jpn": {
+            "template": "./themes/jpn/collection.template.json",
+            "themes": [
+                "black-atom-jpn-koyo-yoru",
+                "black-atom-jpn-koyo-hiru",
+                "black-atom-jpn-tsuki-yoru",
+                "black-atom-jpn-murasaki-yoru"
+            ]
+        },
+        "stations": {
+            "template": "./themes/stations/collection.template.json",
+            "themes": [
+                "black-atom-stations-engineering",
+                "black-atom-stations-operations",
+                "black-atom-stations-medical",
+                "black-atom-stations-research"
+            ]
+        }
+        // ... other collections
+    }
 }
 ```
 
@@ -206,4 +206,3 @@ You can refer to these existing adapters for examples:
   }
 }
 ```
-
