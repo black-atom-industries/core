@@ -42,48 +42,56 @@ async function processCollectionTemplates(
     // Go through each collection
     for (const [collectionKey, collectionConfig] of Object.entries(collections)) {
         if (!collectionConfig) continue;
-        
+
         const { template: templatePath, themes } = collectionConfig;
-        
+
         try {
             // Read the collection template once
             const template = await Deno.readTextFile(templatePath);
-            
-            log.info(`Processing collection "${collectionKey}" with ${themes.length} themes using template "${templatePath}"`);
+
+            log.info(
+                `Processing collection "${collectionKey}" with ${themes.length} themes using template "${templatePath}"`,
+            );
             const generatedFiles: string[] = [];
             const errors: string[] = [];
-            
+
             // Process each theme in the collection
             for (const themeKey of themes) {
                 const theme = themeMap[themeKey as Key];
-                
+
                 if (!theme) {
                     errors.push(`Theme "${themeKey}" not found`);
                     continue;
                 }
-                
+
                 // Determine the output path by replacing the collection name in the template path
                 const outputPath = templatePath
                     .replace(".template.", ".")
                     .replace(/collection/, themeKey);
-                
+
                 try {
                     // Render the template with the theme data
                     const content = eta.renderString(template, theme);
-                    
+
                     // Write the output
                     await writeOutput(content, outputPath);
                     generatedFiles.push(outputPath);
                 } catch (error) {
-                    errors.push(`Failed to process theme "${themeKey}": ${error instanceof Error ? error.message : String(error)}`);
+                    errors.push(
+                        `Failed to process theme "${themeKey}": ${
+                            error instanceof Error ? error.message : String(error)
+                        }`,
+                    );
                 }
             }
-            
+
             // Log a summary of the results
             if (generatedFiles.length > 0) {
-                log.success(`Generated ${generatedFiles.length} theme files for collection "${collectionKey}"`);
+                log.success(
+                    `Generated ${generatedFiles.length} theme files for collection "${collectionKey}"`,
+                );
             }
-            
+
             if (errors.length > 0) {
                 log.error(`Encountered ${errors.length} errors in collection "${collectionKey}":`);
                 for (const error of errors) {
@@ -94,7 +102,9 @@ async function processCollectionTemplates(
             if (error instanceof Deno.errors.NotFound) {
                 log.error(`Collection template file not found: ${templatePath}`);
             } else if (error instanceof Error) {
-                log.error(`Failed to process collection template ${templatePath}: ${error.message}`);
+                log.error(
+                    `Failed to process collection template ${templatePath}: ${error.message}`,
+                );
             }
         }
     }
@@ -103,7 +113,7 @@ async function processCollectionTemplates(
 /**
  * Write processed content to an output file
  * @param content The processed content to write
- * @param templatePath The template path to derive the output path from or the explicit output path 
+ * @param templatePath The template path to derive the output path from or the explicit output path
  */
 export async function writeOutput(content: string, templatePath: string): Promise<void> {
     // Generate output path by removing .template from the file name

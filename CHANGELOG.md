@@ -33,4 +33,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic adapter functionality with per-theme templates
 - CLI commands for generating theme files
 - Watch mode for development
-
