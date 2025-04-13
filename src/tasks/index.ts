@@ -13,8 +13,19 @@ if (import.meta.main) {
     const taskName = Deno.args[0];
 
     switch (taskName) {
-        case "dev:adapters:watch": {
+        case "dev:adapters:generate": {
+            log.info("Generating themes for all repositories without commit...");
+            await generateAllRepositories({ commit: false });
+            break;
+        }
+
+        case "dev:adapters:generate:watch": {
             await watchAdapters();
+            break;
+        }
+
+        case "dev:adapters:status": {
+            await showAdapterStatuses();
             break;
         }
 
@@ -33,20 +44,9 @@ if (import.meta.main) {
             break;
         }
 
-        case "dev:adapters:generate": {
-            log.info("Generating themes for all repositories without commit...");
-            await generateAllRepositories({ commit: false });
-            break;
-        }
-
         case "dev:adapters:push": {
             log.info("Pushing all adapter repositories...");
             await pushAllRepositories();
-            break;
-        }
-
-        case "dev:adapters:status": {
-            await showAdapterStatuses();
             break;
         }
 
@@ -76,18 +76,18 @@ if (import.meta.main) {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
             log.info(
-                "  - dev:adapters:watch: Watch for theme changes and generate for all repositories",
+                "  - dev:adapters:generate: Generate themes for all repositories without committing",
             );
+            log.info(
+                "  - dev:adapters:generate:watch: Watch for theme changes and generate for all repositories",
+            );
+            log.info("  - dev:adapters:status: Show status overview of all repositories");
             log.info(
                 "  - dev:adapters:commit: Generate themes for all repositories and commit changes",
             );
             log.info(
-                "  - dev:adapters:generate: Generate themes for all repositories without committing",
-            );
-            log.info(
                 "  - dev:adapters:push: Push all repositories (aborts if uncommitted changes)",
             );
-            log.info("  - dev:adapters:status: Show status overview of all repositories");
             log.info(
                 "  - dev:adapters:reset: Reset repositories to remote state (use --auto-stash to stash changes)",
             );

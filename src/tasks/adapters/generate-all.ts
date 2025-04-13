@@ -13,9 +13,7 @@ export interface AdaptRepositoriesOptions {
 /**
  * Generate themes for all repositories and optionally commit changes
  */
-export async function generateAllRepositories(options: AdaptRepositoriesOptions = {}) {
-    const { commit = true } = options;
-
+export async function generateAllRepositories({ commit = true }: AdaptRepositoriesOptions = {}) {
     const title = commit
         ? "Generating themes for all repositories with commit..."
         : "Generating themes for all repositories without commit...";
