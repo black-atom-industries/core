@@ -9,10 +9,11 @@
 - Lint code: `deno task lint`
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
-- Adapt themes: `black-atom-core adapt`
-- Watch and adapt all adapters: `deno task dev:adapters:watch` (requires repositories to be cloned as siblings)
-- Adapt all repositories without commit: `deno task dev:adapters:adapt`
-- Adapt and commit all repositories: `deno task dev:adapters:commit`
+- Generate themes: `black-atom-core generate`
+- Watch and generate themes: `black-atom-core generate --watch`
+- Watch and generate for all adapters: `deno task dev:adapters:watch` (requires repositories to be cloned as siblings)
+- Generate for all repositories without commit: `deno task dev:adapters:generate`
+- Generate and commit all repositories: `deno task dev:adapters:commit`
 - Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
 - Show repositories status: `deno task dev:adapters:status`
 - Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
@@ -44,7 +45,7 @@
 
 The CLI provides various commands:
 
-- `adapt`: Process templates and create theme files
+- `generate`: Process templates and create theme files
 - `help`: Display help information for commands
 
 <!-- - `list`: List all available themes-->
