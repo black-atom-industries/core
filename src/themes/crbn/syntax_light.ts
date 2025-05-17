@@ -12,13 +12,13 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             default: primaries.m10,
         },
         string: {
-            default: primaries.m10,
-            doc: primaries.m20,
+            default: primaries.d30,
+            doc: primaries.d40,
             regexp: primaries.d10,
             escape: primaries.d10,
         },
         constant: {
-            default: primaries.d10,
+            default: primaries.d20,
             builtin: primaries.d10,
         },
         module: {
@@ -48,17 +48,17 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         keyword: {
             default: primaries.d30,
-            import: primaries.m10,
-            export: primaries.m10,
+            import: palette.red,
+            export: palette.darkRed,
         },
         operator: {
-            default: palette.black,
+            default: primaries.d20,
         },
         punctuation: {
-            default: palette.black,
-            delimiter: palette.black,
-            bracket: palette.black,
-            special: palette.black,
+            default: primaries.d40,
+            delimiter: primaries.d40,
+            bracket: primaries.d40,
+            special: primaries.d40,
         },
         comment: {
             default: palette.gray,
