@@ -20,10 +20,10 @@ const primaries: Theme.Primaries = {
     d30: "#664a66",
     d40: "#735673",
 
-    m10: "#605872",
-    m20: "#6e6a86",
-    m30: "#908caa",
-    m40: "#aaa7be",
+    m10: "#8f6e8f",
+    m20: "#9a7f9a",
+    m30: "#b398b3",
+    m40: "#c9b6c9",
 
     l10: "#eedcc5",
     l20: "#f4e8d9",

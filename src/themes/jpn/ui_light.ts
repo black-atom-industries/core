@@ -23,8 +23,8 @@ export default function (primaries: Primaries, palette: Palette): UI {
         },
         fg: {
             default: primaries.d20,
-            subtle: primaries.d40,
-            disabled: primaries.m20,
+            subtle: primaries.m30,
+            disabled: primaries.m40,
             accent: palette.yellow,
             contrast: primaries.l30,
             negative: palette.red,

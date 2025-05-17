@@ -3,9 +3,9 @@ import { Palette, Primaries, Syntax } from "../../types/theme.ts";
 export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
-            default: primaries.m10,
-            builtin: primaries.m30,
-            member: palette.blue,
+            default: palette.blue,
+            builtin: palette.darkBlue,
+            member: palette.darkMagenta,
             parameter: palette.darkMagenta,
         },
         property: {
