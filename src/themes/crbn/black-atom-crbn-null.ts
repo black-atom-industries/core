@@ -41,7 +41,7 @@ const palette: Theme.Palette = {
     darkGreen: primaries.m30,
     green: primaries.m40,
 
-    darkYellow: "#ff7c4f",
+    darkYellow: "#ff8f69",
     yellow: "#ff964c",
 
     darkBlue: primaries.m30,
