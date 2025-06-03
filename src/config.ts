@@ -53,6 +53,11 @@ export const config: Config = {
         // CRBN
         "black-atom-crbn-null": "./themes/crbn/black-atom-crbn-null",
         "black-atom-crbn-supr": "./themes/crbn/black-atom-crbn-supr",
+
+        // North
+        "black-atom-north-night": "./themes/north/black-atom-north-night",
+        "black-atom-north-dark-night": "./themes/north/black-atom-north-dark-night",
+        "black-atom-north-day": "./themes/north/black-atom-north-day",
     },
     adapters: [
         "nvim",

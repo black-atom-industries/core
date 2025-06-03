@@ -1,5 +1,6 @@
 import * as z from "@zod";
 import { config } from "../config.ts";
+import type { CollectionKey } from "../types/theme.ts";
 
 const collectionConfigSchema = z.object({
     template: z.string(),
@@ -8,12 +9,21 @@ const collectionConfigSchema = z.object({
 
 export type CollectionConfig = z.infer<typeof collectionConfigSchema>;
 
-const collectionsSchema = z.object({
-    jpn: collectionConfigSchema,
-    crbn: collectionConfigSchema,
-    stations: collectionConfigSchema,
-    terra: collectionConfigSchema,
-}).partial();
+// Create a type-safe collections schema that requires all CollectionKey values
+const createCollectionsSchema = () => {
+    // This ensures we have a schema entry for each collection key
+    const collectionEntries: Record<CollectionKey, typeof collectionConfigSchema> = {
+        jpn: collectionConfigSchema,
+        crbn: collectionConfigSchema,
+        stations: collectionConfigSchema,
+        terra: collectionConfigSchema,
+        north: collectionConfigSchema,
+    };
+    
+    return z.object(collectionEntries).partial();
+};
+
+const collectionsSchema = createCollectionsSchema();
 
 export const adapterConfigSchema = z.object({
     $schema: z.string(),

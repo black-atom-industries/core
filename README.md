@@ -178,8 +178,17 @@ To create a new theme:
 
 1. Create a new TypeScript file in the appropriate collection directory
 2. Define the theme structure following the `Theme` interface
-3. Update the theme map in `config.ts`
-4. Run typechecking and linting
+3. Update the theme keys in `src/types/theme.ts`:
+   - Add to `themeKeys` array
+   - Add to `Meta.label` union type
+4. Update the theme path map in `src/config.ts`
+5. If creating a new collection:
+   - Add the collection key to `CollectionKey` type in `src/types/theme.ts`
+   - Add the collection to `collectionsSchema` in `src/lib/validate-adapter.ts`
+   - Create shared UI and syntax files for the collection
+6. Run typechecking and linting: `deno task check`
+7. Generate schema: `deno task schema`
+8. **Important**: Reinstall the global CLI to pick up changes: `deno task install`
 
 ## Contributing
 

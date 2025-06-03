@@ -21,3 +21,4 @@ lerna-debug.log*
 black-atom-core
 
 **/CLAUDE.local.md
+.DS_Store
