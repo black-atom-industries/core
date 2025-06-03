@@ -153,7 +153,24 @@ interface SyntaxTheme {
 }
 ```
 
+## Theme Development Guides
+
+Comprehensive guides for theme development are available in the `prompts/` directory:
+
+- **`prompts/new-theme.md`** - Creating new themes within existing collections
+- **`prompts/new-collection.md`** - Creating entirely new theme collections
+- **`prompts/migration-rename.md`** - Renaming themes or collections across all repositories
+
+Each guide includes:
+- Step-by-step instructions with code examples
+- Comprehensive testing procedures for all platforms
+- Visual verification checklists
+- Common issues and debugging tips
+- Cross-platform compatibility testing
+
 ## Creating a New Collection
+
+For detailed instructions, see `prompts/new-collection.md`. Quick overview:
 
 1. **Create Collection Directory**:
 
