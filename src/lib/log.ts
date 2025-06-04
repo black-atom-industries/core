@@ -65,7 +65,7 @@ const log = {
         console.error(colors.red(config.icon.error + config.separator + message));
     },
     info: (message: string) => {
-        console.info(colors.white(config.icon.info + config.separator + message));
+        console.info(colors.gray(config.icon.info + config.separator + message));
     },
     warn: (message: string) => {
         console.warn(colors.yellow(config.icon.warn + config.separator + message));
