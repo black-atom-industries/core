@@ -7,7 +7,7 @@ const meta: Theme.Meta = {
     key: "black-atom-north-day",
     label: "Black Atom — NORTH ∷ Day",
     appearance: "light",
-    status: "development",
+    status: "beta",
     collection: {
         key: "north",
         label: "NORTH",
@@ -20,14 +20,14 @@ const primaries: Theme.Primaries = {
     d30: "#434C5E",
     d40: "#4C566A",
 
-    m10: "#5E81AC",
-    m20: "#81A1C1",
-    m30: "#88C0D0",
-    m40: "#8FBCBB",
+    m10: "#4e6f98",
+    m20: "#668db4",
+    m30: "#6eb2c6",
+    m40: "#7fb2b1",
 
-    l10: "#D8DEE9",
-    l20: "#E5E9F0",
-    l30: "#ECEFF4",
+    l10: "#ced6e3",
+    l20: "#dfe4ec",
+    l30: "#e9ecf2",
     l40: "#ECEFF4",
 };
 
@@ -35,23 +35,23 @@ const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: "#BF616A",
-    red: "#BF616A",
+    darkRed: "#A85560",
+    red: "#B45A63",
 
-    darkGreen: "#A3BE8C",
-    green: "#A3BE8C",
+    darkGreen: "#8FA678",
+    green: "#96AD7F",
 
-    darkYellow: "#D08770",
-    yellow: "#EBCB8B",
+    darkYellow: "#c77257",
+    yellow: "#ddbb79",
 
-    darkBlue: "#5E81AC",
-    blue: "#81A1C1",
+    darkBlue: "#52719A",
+    blue: "#7391B0",
 
-    darkMagenta: "#B48EAD",
-    magenta: "#B48EAD",
+    darkMagenta: "#9D7E99",
+    magenta: "#A685A1",
 
-    darkCyan: "#88C0D0",
-    cyan: "#8FBCBB",
+    darkCyan: "#79ACBD",
+    cyan: "#7FA9A8",
 
     lightGray: primaries.l10,
     white: primaries.l30,
