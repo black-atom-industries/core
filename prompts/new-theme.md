@@ -13,8 +13,9 @@ This guide walks you through creating a new theme for an existing Black Atom col
 ### 1. Choose Your Collection
 
 Decide which collection your theme belongs to:
+
 - `stations` - Space station inspired themes
-- `jpn` - Japanese inspired themes  
+- `jpn` - Japanese inspired themes
 - `terra` - Earth seasons inspired themes
 - `crbn` - Carbon minimal themes
 - `north` - Nordic inspired themes
@@ -32,14 +33,14 @@ touch src/themes/stations/black-atom-stations-science.ts
 
 ```typescript
 import * as Theme from "../../types/theme.ts";
-import syntax_dark from "./syntax_dark.ts";  // or syntax_light
-import ui_dark from "./ui_dark.ts";          // or ui_light
+import syntax_dark from "./syntax_dark.ts"; // or syntax_light
+import ui_dark from "./ui_dark.ts"; // or ui_light
 
 const meta: Theme.Meta = {
     key: "black-atom-stations-science",
-    label: "Black Atom — STA ∷ Science",  // Follow collection pattern
-    appearance: "dark",                    // or "light"
-    status: "development",                 // Start with development
+    label: "Black Atom — STA ∷ Science", // Follow collection pattern
+    appearance: "dark", // or "light"
+    status: "development", // Start with development
     collection: {
         key: "stations",
         label: "STATIONS",
@@ -48,33 +49,32 @@ const meta: Theme.Meta = {
 
 const primaries: Theme.Primaries = {
     // Define your 16-color gradient from dark to light
-    d10: "#000000",  // Darkest
+    d10: "#000000", // Darkest
     d20: "#111111",
     d30: "#222222",
     d40: "#333333",
-    
-    m10: "#444444",  // Mid-dark
+
+    m10: "#444444", // Mid-dark
     m20: "#555555",
     m30: "#666666",
     m40: "#777777",
-    
-    l10: "#888888",  // Light
+
+    l10: "#888888", // Light
     l20: "#999999",
     l30: "#AAAAAA",
-    l40: "#BBBBBB",  // Lightest
+    l40: "#BBBBBB", // Lightest
 };
 
 const palette: Theme.Palette = {
     // Map ANSI colors - use primaries or custom colors
     black: primaries.d20,
     gray: primaries.m20,
-    
+
     darkRed: "#AA0000",
     red: "#FF0000",
-    
+
     darkGreen: "#00AA00",
     green: "#00FF00",
-    
     // ... complete all 16 colors
 };
 
@@ -82,7 +82,7 @@ const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_dark(primaries, palette),      // Use shared UI
+    ui: ui_dark(primaries, palette), // Use shared UI
     syntax: syntax_dark(primaries, palette), // Use shared syntax
 };
 
@@ -141,6 +141,7 @@ cd ../ghostty
 ```
 
 Test with:
+
 - `ls -la` with colorized output
 - `git diff` to see diff colors
 - Run `htop` or `btop` for UI elements
@@ -172,6 +173,7 @@ cd ../zed
 ```
 
 Test with:
+
 - Multiple file types
 - Terminal integration
 - Git diff view
@@ -212,16 +214,19 @@ deno task dev:adapters:status
 ## Common Issues
 
 ### Type Errors
+
 - Ensure all required properties are defined
 - Check hex color format (must include #)
 - Verify theme key matches everywhere
 
-### Generation Errors  
+### Generation Errors
+
 - Run `deno task check` first
 - Ensure no duplicate theme keys
 - Check adapter configurations are valid
 
 ### Visual Issues
+
 - Adjust primaries for better contrast
 - Tweak palette colors for syntax clarity
 - Test in both light and dark environments

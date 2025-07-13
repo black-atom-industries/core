@@ -102,4 +102,3 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
     };
 }
-

@@ -20,7 +20,7 @@ const createCollectionsSchema = () => {
         north: collectionConfigSchema,
         term: collectionConfigSchema,
     };
-    
+
     return z.object(collectionEntries).partial();
 };
 

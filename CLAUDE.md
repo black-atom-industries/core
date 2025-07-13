@@ -162,6 +162,7 @@ Comprehensive guides for theme development are available in the `prompts/` direc
 - **`prompts/migration-rename.md`** - Renaming themes or collections across all repositories
 
 Each guide includes:
+
 - Step-by-step instructions with code examples
 - Comprehensive testing procedures for all platforms
 - Visual verification checklists

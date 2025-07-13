@@ -13,7 +13,8 @@ This guide helps you rename themes or collections across the entire Black Atom e
 ### 1. Plan the Rename
 
 Document what you're changing:
-- Old name: `nord` 
+
+- Old name: `nord`
 - New name: `north`
 - Affected themes: List all theme keys
 - Label format: Define new label pattern
@@ -25,11 +26,13 @@ cd core
 ```
 
 #### a. Rename directory
+
 ```bash
 mv src/themes/nord src/themes/north
 ```
 
 #### b. Rename theme files
+
 ```bash
 cd src/themes/north
 mv black-atom-nord-night.ts black-atom-north-night.ts
@@ -38,7 +41,9 @@ mv black-atom-nord-day.ts black-atom-north-day.ts
 ```
 
 #### c. Update theme files
+
 In each theme file, update:
+
 - `key`: "black-atom-nord-night" → "black-atom-north-night"
 - `label`: "Black Atom — NRD ∷ Night" → "Black Atom — NORTH ∷ Night"
 - `collection.key`: "nord" → "north"
@@ -47,6 +52,7 @@ In each theme file, update:
 #### d. Update configuration files
 
 `src/types/theme.ts`:
+
 ```typescript
 // Update themeKeys array
 "black-atom-north-night",  // was nord
@@ -63,6 +69,7 @@ type CollectionKey = "crbn" | "terra" | "jpn" | "stations" | "north";
 ```
 
 `src/config.ts`:
+
 ```typescript
 // Update themePathMap
 "black-atom-north-night": "./themes/north/black-atom-north-night",
@@ -71,6 +78,7 @@ type CollectionKey = "crbn" | "terra" | "jpn" | "stations" | "north";
 ```
 
 `src/lib/validate-adapter.ts`:
+
 ```typescript
 // Update collection entries
 north: collectionConfigSchema,  // was nord
@@ -94,22 +102,24 @@ deno run --allow-read src/lib/theme-loader.ts
 For each adapter (nvim, wezterm, ghostty, zed):
 
 #### a. Update adapter configuration
+
 ```json
 {
-  "collections": {
-    "north": {  // was "nord"
-      "template": "./themes/north/collection.template.ext",
-      "themes": [
-        "black-atom-north-night",
-        "black-atom-north-dark-night", 
-        "black-atom-north-day"
-      ]
+    "collections": {
+        "north": { // was "nord"
+            "template": "./themes/north/collection.template.ext",
+            "themes": [
+                "black-atom-north-night",
+                "black-atom-north-dark-night",
+                "black-atom-north-day"
+            ]
+        }
     }
-  }
 }
 ```
 
 #### b. Rename directories and files
+
 ```bash
 # Example for nvim
 cd nvim
@@ -128,6 +138,7 @@ deno task dev:adapters:generate
 ## Testing the Migration
 
 ### 1. Verify File Structure
+
 ```bash
 # Check all files renamed
 find . -name "*nord*" -type f  # Should return nothing
@@ -137,6 +148,7 @@ find . -name "*north*" -type f # Should list new files
 ### 2. Test in Each Application
 
 #### Terminal (WezTerm/Ghostty)
+
 ```bash
 # WezTerm - check theme list
 wezterm ls-fonts --list-system  # Restart and check theme picker
@@ -146,6 +158,7 @@ theme = themes/north/black-atom-north-night
 ```
 
 #### Neovim
+
 ```vim
 :colorscheme black-atom-north-night
 " Should load without errors
@@ -153,6 +166,7 @@ theme = themes/north/black-atom-north-night
 ```
 
 #### Zed
+
 - Open settings
 - Search for "Black Atom — NORTH"
 - Verify all variants appear
@@ -160,6 +174,7 @@ theme = themes/north/black-atom-north-night
 ### 3. Visual Verification
 
 Create test files to verify colors:
+
 ```bash
 # Create a test script with various colors
 cat > test-colors.sh << 'EOF'
@@ -179,6 +194,7 @@ chmod +x test-colors.sh
 ```
 
 ### 4. Git Verification
+
 ```bash
 # Check nothing references old name
 git grep -i "nord" --exclude-dir=node_modules
@@ -187,6 +203,7 @@ git grep -i "nord" --exclude-dir=node_modules
 ## Commit Strategy
 
 ### Option 1: Single Coordinated Commit
+
 ```bash
 # Commit all repos with the same message
 cd core
@@ -200,6 +217,7 @@ git commit -m "feat: add North theme collection"
 ```
 
 ### Option 2: Staged Migration
+
 1. Commit core changes first
 2. Push and verify
 3. Update adapters one by one
@@ -208,29 +226,34 @@ git commit -m "feat: add North theme collection"
 ## Common Issues
 
 ### Type Errors
+
 - Ensure all references updated in types
 - Check CollectionKey type includes new name
 - Verify no old imports remain
 
-### Missing Files  
+### Missing Files
+
 - Check git status for untracked files
 - Ensure directories renamed, not just copied
 - Verify template files updated
 
 ### Theme Not Found
+
 - Clear editor caches
 - Restart applications
 - Check exact spelling/casing
 
 ### Broken Imports
+
 ```typescript
 // Find and update all imports
-import theme from "./themes/north/..."  // was nord
+import theme from "./themes/north/..."; // was nord
 ```
 
 ## Rollback Plan
 
 If something goes wrong:
+
 ```bash
 # In each repo
 git reset --hard HEAD~1  # Undo last commit
@@ -245,7 +268,7 @@ git reset --hard origin/main
 
 - [ ] All files renamed (no references to old name)
 - [ ] Type checking passes
-- [ ] Schema regenerated  
+- [ ] Schema regenerated
 - [ ] All adapters updated
 - [ ] Themes load correctly in each application
 - [ ] Colors display properly
