@@ -58,6 +58,10 @@ export const config: Config = {
         "black-atom-north-night": "./themes/north/black-atom-north-night",
         "black-atom-north-dark-night": "./themes/north/black-atom-north-dark-night",
         "black-atom-north-day": "./themes/north/black-atom-north-day",
+
+        // Term
+        "black-atom-term-dark": "./themes/term/black-atom-term-dark",
+        "black-atom-term-light": "./themes/term/black-atom-term-light",
     },
     adapters: [
         "nvim",

@@ -18,6 +18,7 @@ const createCollectionsSchema = () => {
         stations: collectionConfigSchema,
         terra: collectionConfigSchema,
         north: collectionConfigSchema,
+        term: collectionConfigSchema,
     };
     
     return z.object(collectionEntries).partial();

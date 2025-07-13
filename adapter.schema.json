@@ -70,6 +70,12 @@
     },
     "black-atom-north-day": {
       "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-term-dark": {
+      "$ref": "#/$defs/templateConfig"
+    },
+    "black-atom-term-light": {
+      "$ref": "#/$defs/templateConfig"
     }
   },
   "required": [
@@ -181,6 +187,16 @@
     {
       "required": [
         "black-atom-north-day"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-term-dark"
+      ]
+    },
+    {
+      "required": [
+        "black-atom-term-light"
       ]
     }
   ],
