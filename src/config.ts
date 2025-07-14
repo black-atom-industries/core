@@ -50,18 +50,16 @@ export const config: Config = {
         "black-atom-terra-winter-day": "./themes/terra/black-atom-terra-winter-day",
         "black-atom-terra-winter-night": "./themes/terra/black-atom-terra-winter-night",
 
-        // CRBN
-        "black-atom-crbn-null": "./themes/crbn/black-atom-crbn-null",
-        "black-atom-crbn-supr": "./themes/crbn/black-atom-crbn-supr",
-
         // North
         "black-atom-north-night": "./themes/north/black-atom-north-night",
         "black-atom-north-dark-night": "./themes/north/black-atom-north-dark-night",
         "black-atom-north-day": "./themes/north/black-atom-north-day",
 
-        // Term
-        "black-atom-term-dark": "./themes/term/black-atom-term-dark",
-        "black-atom-term-light": "./themes/term/black-atom-term-light",
+        // MNML
+        "black-atom-mnml-mono-dark": "./themes/mnml/black-atom-mnml-mono-dark",
+        "black-atom-mnml-mono-light": "./themes/mnml/black-atom-mnml-mono-light",
+        "black-atom-mnml-orange-dark": "./themes/mnml/black-atom-mnml-orange-dark",
+        "black-atom-mnml-orange-light": "./themes/mnml/black-atom-mnml-orange-light",
     },
     adapters: [
         "nvim",

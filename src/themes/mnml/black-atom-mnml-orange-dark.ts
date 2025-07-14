@@ -4,13 +4,13 @@ import syntax_dark from "./syntax_dark.ts";
 import ui_dark from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-crbn-null",
-    label: "Black Atom — CRB ∷ NULL",
+    key: "black-atom-mnml-orange-dark",
+    label: "Black Atom — MNM ∷ Orange Dark",
     appearance: "dark",
-    status: "release",
+    status: "development",
     collection: {
-        key: "crbn",
-        label: "CRBN",
+        key: "mnml",
+        label: "MNM",
     },
 };
 
@@ -57,12 +57,20 @@ const palette: Theme.Palette = {
     white: primaries.l10,
 };
 
+const accents: Theme.Accents = {
+    a10: palette.yellow,
+    a20: palette.red,
+    a30: palette.darkYellow,
+    a40: palette.darkRed,
+};
+
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_dark(primaries, palette),
-    syntax: syntax_dark(primaries, palette),
+    ui: ui_dark(primaries, palette, accents),
+    syntax: syntax_dark(primaries, palette, accents),
 };
 
 export default theme;
+

@@ -1,13 +1,11 @@
-import { Palette, Primaries, UI } from "../../types/theme.ts";
+import { Accents, Palette, Primaries, UI } from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette): UI {
-    // Note: The original code used darken(palette.darkYellow, 0.25) for selection and search
-    // Since we don't have that function here, we'll use the primaries directly
+export default function (primaries: Primaries, palette: Palette, accents: Accents): UI {
     return {
         bg: {
-            default: primaries.d20,
-            panel: primaries.d10,
-            float: primaries.d10,
+            default: primaries.d10,
+            panel: primaries.d20,
+            float: primaries.d20,
             active: primaries.d30,
             disabled: primaries.d40,
             hover: primaries.d30,
@@ -15,9 +13,9 @@ export default function (primaries: Primaries, palette: Palette): UI {
             search: primaries.d40,
             contrast: primaries.l10,
             negative: palette.red,
-            warn: palette.yellow,
+            warn: accents.a20,
             info: palette.blue,
-            hint: palette.darkYellow,
+            hint: accents.a30,
             positive: palette.green,
             add: palette.green,
             delete: palette.red,
@@ -26,13 +24,13 @@ export default function (primaries: Primaries, palette: Palette): UI {
         fg: {
             default: primaries.l10,
             subtle: primaries.m30,
-            accent: palette.yellow,
+            accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.d20,
             negative: palette.red,
-            warn: palette.yellow,
+            warn: accents.a20,
             info: palette.blue,
-            hint: palette.darkYellow,
+            hint: accents.a30,
             positive: palette.green,
             add: palette.green,
             delete: palette.red,
@@ -40,3 +38,4 @@ export default function (primaries: Primaries, palette: Palette): UI {
         },
     };
 }
+

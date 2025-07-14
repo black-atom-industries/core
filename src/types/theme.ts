@@ -5,8 +5,6 @@ export const themeKeys = [
     "black-atom-stations-operations",
     "black-atom-stations-medical",
     "black-atom-stations-research",
-    "black-atom-crbn-null",
-    "black-atom-crbn-supr",
     "black-atom-jpn-koyo-yoru",
     "black-atom-jpn-koyo-hiru",
     "black-atom-jpn-tsuki-yoru",
@@ -22,15 +20,17 @@ export const themeKeys = [
     "black-atom-north-night",
     "black-atom-north-dark-night",
     "black-atom-north-day",
-    "black-atom-term-dark",
-    "black-atom-term-light",
+    "black-atom-mnml-mono-dark",
+    "black-atom-mnml-mono-light",
+    "black-atom-mnml-orange-dark",
+    "black-atom-mnml-orange-light",
 ] as const;
 
 type Key = typeof themeKeys[number];
 
 type ThemeKeyPathMap = Record<Key, string>;
 
-type CollectionKey = "crbn" | "terra" | "jpn" | "stations" | "north" | "term";
+type CollectionKey = "terra" | "jpn" | "stations" | "north" | "mnml";
 
 type CollectionLabel = string;
 
@@ -41,8 +41,6 @@ interface Meta {
         | "Black Atom — STA ∷ Operations"
         | "Black Atom — STA ∷ Medical"
         | "Black Atom — STA ∷ Research"
-        | "Black Atom — CRB ∷ NULL"
-        | "Black Atom — CRB ∷ SUPR"
         | "Black Atom — JPN ∷ Koyo Yoru"
         | "Black Atom — JPN ∷ Koyo Hiru"
         | "Black Atom — JPN ∷ Tsuki Yoru"
@@ -58,8 +56,10 @@ interface Meta {
         | "Black Atom — NORTH ∷ Night"
         | "Black Atom — NORTH ∷ Dark Night"
         | "Black Atom — NORTH ∷ Day"
-        | "Black Atom — TRM ∷ Dark"
-        | "Black Atom — TRM ∷ Light";
+        | "Black Atom — MNM ∷ Mono Dark"
+        | "Black Atom — MNM ∷ Mono Light"
+        | "Black Atom — MNM ∷ Orange Dark"
+        | "Black Atom — MNM ∷ Orange Light";
     appearance: "light" | "dark";
     status: "development" | "beta" | "release";
     collection: {
@@ -108,6 +108,13 @@ interface Palette {
     cyan: HexColor;
     lightGray: HexColor;
     white: HexColor;
+}
+
+interface Accents {
+    a10: HexColor; // Primary accent (most prominent)
+    a20: HexColor; // Secondary accent
+    a30: HexColor; // Tertiary accent
+    a40: HexColor; // Subtle accent
 }
 
 interface UIBackground {
@@ -261,6 +268,7 @@ interface Definition {
 }
 
 export type {
+    Accents,
     CollectionKey,
     CollectionLabel,
     Definition,

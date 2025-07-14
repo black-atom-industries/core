@@ -1,13 +1,11 @@
-import { Palette, Primaries, UI } from "../../types/theme.ts";
+import { Accents, Palette, Primaries, UI } from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette): UI {
-    // Note: The original code used lighten(palette.darkYellow, 0.1) for selection and search
-    // Since we don't have that function here, we'll use the primaries directly
+export default function (primaries: Primaries, palette: Palette, accents: Accents): UI {
     return {
         bg: {
-            default: primaries.l30,
-            panel: primaries.l20,
-            float: primaries.l20,
+            default: primaries.l40,
+            panel: primaries.l30,
+            float: primaries.l30,
             active: primaries.l10,
             disabled: primaries.m20,
             hover: primaries.l10,
@@ -15,9 +13,9 @@ export default function (primaries: Primaries, palette: Palette): UI {
             search: primaries.l10,
             contrast: primaries.d20,
             negative: palette.red,
-            warn: palette.yellow,
+            warn: accents.a20,
             info: palette.blue,
-            hint: palette.darkYellow,
+            hint: accents.a30,
             positive: palette.green,
             add: palette.green,
             delete: palette.red,
@@ -26,13 +24,13 @@ export default function (primaries: Primaries, palette: Palette): UI {
         fg: {
             default: primaries.d20,
             subtle: primaries.d40,
-            accent: palette.yellow,
+            accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.l20,
             negative: palette.red,
-            warn: palette.yellow,
+            warn: accents.a20,
             info: palette.blue,
-            hint: palette.darkYellow,
+            hint: accents.a30,
             positive: palette.green,
             add: palette.green,
             delete: palette.red,

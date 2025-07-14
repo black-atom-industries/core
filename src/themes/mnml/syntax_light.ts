@@ -1,12 +1,12 @@
-import { Palette, Primaries, Syntax } from "../../types/theme.ts";
+import { Accents, Palette, Primaries, Syntax } from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette): Syntax {
+export default function (primaries: Primaries, palette: Palette, accents: Accents): Syntax {
     return {
         variable: {
             default: primaries.d40,
             builtin: primaries.d40,
             member: primaries.m10,
-            parameter: palette.darkYellow,
+            parameter: accents.a10,
         },
         property: {
             default: primaries.m10,
@@ -35,16 +35,16 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             builtin: primaries.d40,
         },
         attribute: {
-            default: palette.darkYellow,
-            builtin: palette.darkYellow,
+            default: accents.a20,
+            builtin: accents.a20,
         },
         func: {
-            default: palette.yellow,
-            builtin: palette.darkYellow,
-            method: palette.yellow,
+            default: accents.a10,
+            builtin: accents.a20,
+            method: accents.a10,
         },
         constructor: {
-            default: palette.yellow,
+            default: accents.a10,
         },
         keyword: {
             default: primaries.d30,
@@ -65,15 +65,15 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             doc: primaries.m20,
             todo: palette.green,
             error: palette.red,
-            warn: palette.yellow,
+            warn: accents.a10,
             info: palette.blue,
-            hint: palette.darkYellow,
+            hint: accents.a20,
         },
         markup: {
             heading: {
-                h1: palette.yellow,
-                h2: palette.yellow,
-                h3: palette.yellow,
+                h1: accents.a10,
+                h2: accents.a10,
+                h3: accents.a10,
                 h4: palette.gray,
                 h5: palette.gray,
                 h6: palette.gray,
@@ -83,9 +83,9 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
                 checked: palette.green,
                 unchecked: palette.gray,
             },
-            strong: palette.yellow,
-            italic: palette.yellow,
-            strikethrough: palette.yellow,
+            strong: accents.a10,
+            italic: accents.a10,
+            strikethrough: accents.a10,
             quote: palette.green,
             math: palette.darkGreen,
             link: palette.green,
@@ -95,8 +95,8 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             },
         },
         tag: {
-            default: palette.yellow,
-            builtin: palette.darkYellow,
+            default: accents.a10,
+            builtin: accents.a20,
             attribute: primaries.m10,
             delimiter: primaries.d40,
         },

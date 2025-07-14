@@ -14,11 +14,10 @@ const createCollectionsSchema = () => {
     // This ensures we have a schema entry for each collection key
     const collectionEntries: Record<CollectionKey, typeof collectionConfigSchema> = {
         jpn: collectionConfigSchema,
-        crbn: collectionConfigSchema,
         stations: collectionConfigSchema,
         terra: collectionConfigSchema,
         north: collectionConfigSchema,
-        term: collectionConfigSchema,
+        mnml: collectionConfigSchema,
     };
 
     return z.object(collectionEntries).partial();

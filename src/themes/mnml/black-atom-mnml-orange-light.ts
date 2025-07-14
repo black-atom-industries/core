@@ -4,13 +4,13 @@ import syntax_light from "./syntax_light.ts";
 import ui_light from "./ui_light.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-crbn-supr",
-    label: "Black Atom — CRB ∷ SUPR",
+    key: "black-atom-mnml-orange-light",
+    label: "Black Atom — MNM ∷ Orange Light",
     appearance: "light",
-    status: "release",
+    status: "development",
     collection: {
-        key: "crbn",
-        label: "CRBN",
+        key: "mnml",
+        label: "MNM",
     },
 };
 
@@ -27,7 +27,7 @@ const primaries: Theme.Primaries = {
 
     l10: "#e5ebf1",
     l20: "#ebf1f4",
-    l30: "#f9fbfc",
+    l30: "#f2f6f9",
     l40: "#ffffff",
 };
 
@@ -57,12 +57,19 @@ const palette: Theme.Palette = {
     white: primaries.l10,
 };
 
+const accents: Theme.Accents = {
+    a10: palette.yellow,
+    a20: palette.red,
+    a30: palette.darkYellow,
+    a40: palette.darkRed,
+};
+
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_light(primaries, palette),
-    syntax: syntax_light(primaries, palette),
+    ui: ui_light(primaries, palette, accents),
+    syntax: syntax_light(primaries, palette, accents),
 };
 
 export default theme;
