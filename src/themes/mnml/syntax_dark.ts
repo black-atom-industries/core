@@ -5,11 +5,11 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
         variable: {
             default: primaries.l10,
             builtin: primaries.l10,
-            member: primaries.m40,
-            parameter: accents.a20,
+            member: accents.a20,
+            parameter: accents.a10,
         },
         property: {
-            default: primaries.m40,
+            default: accents.a20,
         },
         string: {
             default: primaries.l20,
@@ -41,7 +41,7 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
         func: {
             default: accents.a10,
             builtin: accents.a20,
-            method: accents.a10,
+            method: accents.a20,
         },
         constructor: {
             default: accents.a10,
@@ -102,4 +102,3 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
         },
     };
 }
-

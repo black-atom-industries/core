@@ -6,7 +6,7 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
             default: primaries.l40,
             panel: primaries.l30,
             float: primaries.l30,
-            active: primaries.l10,
+            active: primaries.l20,
             disabled: primaries.m20,
             hover: primaries.l10,
             selection: primaries.l10,

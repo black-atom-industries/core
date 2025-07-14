@@ -60,6 +60,8 @@ export const config: Config = {
         "black-atom-mnml-mono-light": "./themes/mnml/black-atom-mnml-mono-light",
         "black-atom-mnml-orange-dark": "./themes/mnml/black-atom-mnml-orange-dark",
         "black-atom-mnml-orange-light": "./themes/mnml/black-atom-mnml-orange-light",
+        "black-atom-mnml-blue-dark": "./themes/mnml/black-atom-mnml-blue-dark",
+        "black-atom-mnml-blue-light": "./themes/mnml/black-atom-mnml-blue-light",
     },
     adapters: [
         "nvim",
