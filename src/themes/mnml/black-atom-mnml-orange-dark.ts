@@ -35,8 +35,8 @@ const palette: Theme.Palette = {
     black: primaries.d20,
     gray: primaries.m10,
 
-    darkRed: "#eb6247",
-    red: "#f7866f",
+    darkRed: "#ff8c64",
+    red: "#ff9c4d",
 
     darkGreen: primaries.m30,
     green: primaries.m40,
@@ -73,4 +73,3 @@ const theme: Theme.Definition = {
 };
 
 export default theme;
-

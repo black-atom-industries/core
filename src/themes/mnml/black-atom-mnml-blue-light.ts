@@ -1,4 +1,5 @@
 import * as Theme from "../../types/theme.ts";
+import palette_light from "./palette_light.ts";
 
 import syntax_light from "./syntax_light.ts";
 import ui_light from "./ui_light.ts";
@@ -31,38 +32,12 @@ const primaries: Theme.Primaries = {
     l40: "#ffffff",
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d10,
-    gray: primaries.m10,
-
-    darkRed: primaries.m20,
-    red: primaries.m30,
-
-    darkGreen: primaries.m20,
-    green: primaries.m30,
-
-    darkYellow: primaries.m20,
-    yellow: primaries.m30,
-
-    darkBlue: primaries.m20,
-    blue: primaries.m30,
-
-    darkMagenta: primaries.m10,
-    magenta: primaries.m20,
-
-    darkCyan: primaries.m10,
-    cyan: primaries.m20,
-
-    lightGray: primaries.m30,
-    white: primaries.l10,
+const accents: Theme.MnmlAccents = {
+    a10: "#1550FF",
+    a20: "#2c5ce8",
 };
 
-const accents: Theme.Accents = {
-    a10: "#005CC5",
-    a20: "#004A9F",
-    a30: "#79B8FF",
-    a40: "#3393ff",
-};
+const palette = palette_light(primaries, accents);
 
 const theme: Theme.Definition = {
     meta,

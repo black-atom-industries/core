@@ -17,17 +17,17 @@ const meta: Theme.Meta = {
 const primaries: Theme.Primaries = {
     d10: "#000000",
     d20: "#1a1a1a",
-    d30: "#333333",
-    d40: "#4d4d4d",
+    d30: "#2c2c2c",
+    d40: "#404040",
 
-    m10: "#666666",
-    m20: "#808080",
-    m30: "#999999",
-    m40: "#b3b3b3",
+    m10: "#565656",
+    m20: "#6c6c6c",
+    m30: "#828282",
+    m40: "#9a9a9a",
 
-    l10: "#cccccc",
-    l20: "#e6e6e6",
-    l30: "#f5f5f5",
+    l10: "#b2b2b2",
+    l20: "#cbcbcb",
+    l30: "#e5e5e5",
     l40: "#ffffff",
 };
 
@@ -73,4 +73,3 @@ const theme: Theme.Definition = {
 };
 
 export default theme;
-

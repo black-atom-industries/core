@@ -1,4 +1,5 @@
 import * as Theme from "../../types/theme.ts";
+import palette_light from "./palette_light.ts";
 
 import syntax_light from "./syntax_light.ts";
 import ui_light from "./ui_light.ts";
@@ -17,52 +18,26 @@ const meta: Theme.Meta = {
 const primaries: Theme.Primaries = {
     d10: "#000000",
     d20: "#1a1a1a",
-    d30: "#333333",
-    d40: "#4d4d4d",
+    d30: "#2c2c2c",
+    d40: "#404040",
 
-    m10: "#666666",
-    m20: "#808080",
-    m30: "#999999",
-    m40: "#b3b3b3",
+    m10: "#565656",
+    m20: "#6c6c6c",
+    m30: "#828282",
+    m40: "#9a9a9a",
 
-    l10: "#cccccc",
-    l20: "#e6e6e6",
-    l30: "#f5f5f5",
+    l10: "#b2b2b2",
+    l20: "#cbcbcb",
+    l30: "#e5e5e5",
     l40: "#ffffff",
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d10,
-    gray: primaries.m10,
-
-    darkRed: primaries.m20,
-    red: primaries.m30,
-
-    darkGreen: primaries.m20,
-    green: primaries.m30,
-
-    darkYellow: primaries.m20,
-    yellow: primaries.m30,
-
-    darkBlue: primaries.m20,
-    blue: primaries.m30,
-
-    darkMagenta: primaries.m10,
-    magenta: primaries.m20,
-
-    darkCyan: primaries.m10,
-    cyan: primaries.m20,
-
-    lightGray: primaries.m30,
-    white: primaries.l10,
-};
-
-const accents: Theme.Accents = {
+const accents: Theme.MnmlAccents = {
     a10: primaries.d10,
     a20: primaries.d20,
-    a30: primaries.d30,
-    a40: primaries.d40,
 };
+
+const palette = palette_light(primaries, accents);
 
 const theme: Theme.Definition = {
     meta,
@@ -73,4 +48,3 @@ const theme: Theme.Definition = {
 };
 
 export default theme;
-

@@ -1,25 +1,26 @@
-import { Accents, Palette, Primaries, UI } from "../../types/theme.ts";
+import { MnmlAccents, Palette, Primaries, UI } from "../../types/theme.ts";
+import feedback from "./feedback_light.ts";
 
-export default function (primaries: Primaries, palette: Palette, accents: Accents): UI {
+export default function (primaries: Primaries, palette: Palette, accents: MnmlAccents): UI {
     return {
         bg: {
             default: primaries.l40,
             panel: primaries.l30,
             float: primaries.l30,
-            active: primaries.l20,
+            active: primaries.l30,
             disabled: primaries.m20,
             hover: primaries.l10,
             selection: primaries.l10,
             search: primaries.l10,
             contrast: primaries.d20,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            negative: feedback.red,
+            info: feedback.blue,
+            hint: feedback.yellow,
+            warn: feedback.yellow,
+            positive: feedback.green,
+            add: feedback.green,
+            delete: feedback.red,
+            modify: feedback.blue,
         },
         fg: {
             default: primaries.d20,
@@ -27,14 +28,14 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
             accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.l20,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            negative: feedback.red,
+            info: feedback.blue,
+            hint: feedback.yellow,
+            warn: feedback.yellow,
+            positive: feedback.green,
+            add: feedback.green,
+            delete: feedback.red,
+            modify: feedback.blue,
         },
     };
 }
