@@ -1,40 +1,41 @@
-import { Accents, Palette, Primaries, UI } from "../../types/theme.ts";
+import * as Theme from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette, accents: Accents): UI {
+export default function (
+    primaries: Theme.Primaries,
+    feedback: Theme.MnmlFeedback,
+    accents: Theme.MnmlAccents,
+): Theme.UI {
+    const shared = {
+        negative: feedback.negative,
+        info: feedback.info,
+        hint: feedback.warning,
+        warn: feedback.warning,
+        positive: feedback.success,
+        add: feedback.success,
+        delete: feedback.negative,
+        modify: feedback.info,
+    };
+
     return {
         bg: {
             default: primaries.l40,
             panel: primaries.l30,
             float: primaries.l30,
             active: primaries.l20,
-            disabled: primaries.m20,
-            hover: primaries.l10,
+            disabled: primaries.l10,
+            hover: primaries.l20,
             selection: primaries.l10,
             search: primaries.l10,
-            contrast: primaries.d20,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            contrast: primaries.d40,
+            ...shared,
         },
         fg: {
             default: primaries.d20,
-            subtle: primaries.d40,
+            subtle: primaries.m10,
             accent: accents.a10,
-            disabled: primaries.m20,
+            disabled: primaries.m30,
             contrast: primaries.l20,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            ...shared,
         },
     };
 }

@@ -5,8 +5,8 @@ import syntax from "./syntax_light.ts";
 import ui from "./ui_light.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-mnml-blue-light",
-    label: "Black Atom — MNM ∷ Blue Light",
+    key: "black-atom-mnml-47-light",
+    label: "Black Atom — MNM ∷ 47 Light",
     appearance: "light",
     status: "development",
     collection: {
@@ -16,32 +16,32 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#23262a",
-    d20: "#2a313b",
-    d30: "#363d48",
-    d40: "#404956",
+    d10: "#2a2723",
+    d20: "#3b362a",
+    d30: "#484436",
+    d40: "#655f4b",
 
-    m10: "#515862",
-    m20: "#5c6470",
-    m30: "#67707e",
-    m40: "#818a98",
+    m10: "#516258",
+    m20: "#5c7064",
+    m30: "#677e70",
+    m40: "#81988a",
 
-    l10: "#b8c8e0",
-    l20: "#d2def0",
-    l30: "#e1e9f5",
-    l40: "#ebf1fa",
+    l10: "#d3c3ad",
+    l20: "#dbcfbc",
+    l30: "#ece3d5",
+    l40: "#f9f9ed",
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#1550FF",
-    a20: "#3862dc",
+    a10: "#016F5C",
+    a20: "#FF6513",
 };
 
 const feedback: Theme.MnmlFeedback = {
-    info: accents.a20,
-    warning: "#f7bd08",
-    negative: "#e64433",
-    success: "#2fd073",
+    info: "#3b94b1",
+    warning: "#b57520",
+    negative: "#f44624",
+    success: "#2aa889",
 };
 
 const theme: Theme.Definition = {

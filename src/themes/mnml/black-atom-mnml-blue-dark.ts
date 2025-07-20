@@ -1,7 +1,8 @@
 import * as Theme from "../../types/theme.ts";
 
-import syntax_dark from "./syntax_dark.ts";
-import ui_dark from "./ui_dark.ts";
+import palette from "./palette.ts";
+import syntax from "./syntax_dark.ts";
+import ui from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-mnml-blue-dark",
@@ -15,61 +16,40 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#000000",
-    d20: "#1a1a1a",
-    d30: "#333333",
-    d40: "#4d4d4d",
+    d10: "#17191c",
+    d20: "#191d23",
+    d30: "#22272e",
+    d40: "#333a45",
 
-    m10: "#666666",
-    m20: "#808080",
-    m30: "#999999",
-    m40: "#b3b3b3",
+    m10: "#5d6570",
+    m20: "#68717e",
+    m30: "#727c8c",
+    m40: "#8f97a3",
 
-    l10: "#cccccc",
-    l20: "#e6e6e6",
-    l30: "#f5f5f5",
-    l40: "#ffffff",
+    l10: "#adbcd3",
+    l20: "#bcc8db",
+    l30: "#cbd6e7",
+    l40: "#dae4f2",
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d10,
-    gray: primaries.m10,
-
-    darkRed: primaries.m20,
-    red: primaries.m30,
-
-    darkGreen: primaries.m20,
-    green: primaries.m30,
-
-    darkYellow: primaries.m20,
-    yellow: primaries.m30,
-
-    darkBlue: primaries.m20,
-    blue: primaries.m30,
-
-    darkMagenta: primaries.m10,
-    magenta: primaries.m20,
-
-    darkCyan: primaries.m10,
-    cyan: primaries.m20,
-
-    lightGray: primaries.m30,
-    white: primaries.l10,
+const accents: Theme.MnmlAccents = {
+    a10: "#57a5ff",
+    a20: "#3493ff",
 };
 
-const accents: Theme.Accents = {
-    a10: "#005CC5",
-    a20: "#004A9F",
-    a30: "#0083c5",
-    a40: "#006699",
+const feedback: Theme.MnmlFeedback = {
+    info: accents.a20,
+    warning: "#f7c423",
+    negative: "#e64433",
+    success: "#43d480",
 };
 
 const theme: Theme.Definition = {
     meta,
     primaries,
-    palette,
-    ui: ui_dark(primaries, palette, accents),
-    syntax: syntax_dark(primaries, palette, accents),
+    palette: palette(primaries),
+    ui: ui(primaries, feedback, accents),
+    syntax: syntax(primaries, feedback, accents),
 };
 
 export default theme;

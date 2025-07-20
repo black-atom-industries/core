@@ -35,6 +35,7 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 6. **If approved, commit each repository** with the approved messages
 
 **Semantic commit guidelines:**
+
 - `feat:` - New themes, collections, or major features
 - `fix:` - Bug fixes, color corrections, or fixes
 - `refactor:` - Structural changes, architecture improvements
@@ -45,6 +46,7 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 **Arguments:** $ARGUMENTS (optional context or specific instructions)
 
 **Expected behavior:**
+
 - Analyze changes intelligently rather than using generic automation
 - Create meaningful, descriptive commit messages for each repository
 - Ensure commits accurately reflect the nature of changes (new features vs fixes vs refactoring)

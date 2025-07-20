@@ -70,4 +70,3 @@ Where:
 - For other collections: Follow existing patterns in that collection
 - Maintain consistent code style (no comments in theme definitions)
 - Use semantic color mapping (grayscale base + strategic accent placement)
-

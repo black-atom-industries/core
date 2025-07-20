@@ -20,12 +20,6 @@
         "black-atom-stations-research": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-crbn-null": {
-            "$ref": "#/$defs/templateConfig"
-        },
-        "black-atom-crbn-supr": {
-            "$ref": "#/$defs/templateConfig"
-        },
         "black-atom-jpn-koyo-yoru": {
             "$ref": "#/$defs/templateConfig"
         },
@@ -71,10 +65,25 @@
         "black-atom-north-day": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-term-dark": {
+        "black-atom-mnml-mono-dark": {
             "$ref": "#/$defs/templateConfig"
         },
-        "black-atom-term-light": {
+        "black-atom-mnml-mono-light": {
+            "$ref": "#/$defs/templateConfig"
+        },
+        "black-atom-mnml-orange-dark": {
+            "$ref": "#/$defs/templateConfig"
+        },
+        "black-atom-mnml-orange-light": {
+            "$ref": "#/$defs/templateConfig"
+        },
+        "black-atom-mnml-blue-dark": {
+            "$ref": "#/$defs/templateConfig"
+        },
+        "black-atom-mnml-blue-light": {
+            "$ref": "#/$defs/templateConfig"
+        },
+        "black-atom-mnml-47-light": {
             "$ref": "#/$defs/templateConfig"
         }
     },
@@ -102,16 +111,6 @@
         {
             "required": [
                 "black-atom-stations-research"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-crbn-null"
-            ]
-        },
-        {
-            "required": [
-                "black-atom-crbn-supr"
             ]
         },
         {
@@ -191,12 +190,37 @@
         },
         {
             "required": [
-                "black-atom-term-dark"
+                "black-atom-mnml-mono-dark"
             ]
         },
         {
             "required": [
-                "black-atom-term-light"
+                "black-atom-mnml-mono-light"
+            ]
+        },
+        {
+            "required": [
+                "black-atom-mnml-orange-dark"
+            ]
+        },
+        {
+            "required": [
+                "black-atom-mnml-orange-light"
+            ]
+        },
+        {
+            "required": [
+                "black-atom-mnml-blue-dark"
+            ]
+        },
+        {
+            "required": [
+                "black-atom-mnml-blue-light"
+            ]
+        },
+        {
+            "required": [
+                "black-atom-mnml-47-light"
             ]
         }
     ],

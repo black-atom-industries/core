@@ -1,6 +1,10 @@
-import { Accents, Palette, Primaries, Syntax } from "../../types/theme.ts";
+import * as Theme from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette, accents: Accents): Syntax {
+export default function (
+    primaries: Theme.Primaries,
+    feedback: Theme.MnmlFeedback,
+    accents: Theme.MnmlAccents,
+): Theme.Syntax {
     return {
         variable: {
             default: primaries.l10,
@@ -22,10 +26,10 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
             builtin: primaries.l20,
         },
         module: {
-            default: palette.blue,
+            default: primaries.l20,
         },
         boolean: {
-            default: palette.gray,
+            default: primaries.m40,
         },
         number: {
             default: primaries.l10,
@@ -48,8 +52,8 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
         },
         keyword: {
             default: primaries.l20,
-            import: palette.red,
-            export: palette.darkRed,
+            import: primaries.l30,
+            export: primaries.l30,
         },
         operator: {
             default: primaries.l30,
@@ -61,37 +65,37 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
             special: primaries.l10,
         },
         comment: {
-            default: palette.gray,
-            doc: primaries.m20,
-            todo: palette.green,
-            error: palette.red,
-            warn: accents.a10,
-            info: palette.blue,
-            hint: accents.a20,
+            default: primaries.m30,
+            doc: primaries.m30,
+            todo: feedback.success,
+            error: feedback.negative,
+            warn: feedback.warning,
+            info: feedback.info,
+            hint: feedback.info,
         },
         markup: {
             heading: {
                 h1: accents.a10,
                 h2: accents.a10,
                 h3: accents.a10,
-                h4: palette.gray,
-                h5: palette.gray,
-                h6: palette.gray,
+                h4: primaries.m40,
+                h5: primaries.m40,
+                h6: primaries.m40,
             },
             list: {
-                default: palette.gray,
-                checked: palette.green,
-                unchecked: palette.gray,
+                default: primaries.m40,
+                checked: feedback.success,
+                unchecked: primaries.m40,
             },
             strong: accents.a10,
             italic: accents.a10,
             strikethrough: accents.a10,
-            quote: palette.green,
-            math: palette.darkGreen,
-            link: palette.green,
+            quote: primaries.m20,
+            math: primaries.m20,
+            link: accents.a20,
             code: {
                 fg: primaries.l10,
-                bg: primaries.d40,
+                bg: primaries.d20,
             },
         },
         tag: {

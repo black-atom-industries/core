@@ -26,9 +26,11 @@ export const themeKeys = [
     "black-atom-mnml-orange-light",
     "black-atom-mnml-blue-dark",
     "black-atom-mnml-blue-light",
+    "black-atom-mnml-47-light",
+    "black-atom-mnml-47-dark",
 ] as const;
 
-type Key = typeof themeKeys[number];
+type Key = (typeof themeKeys)[number];
 
 type ThemeKeyPathMap = Record<Key, string>;
 
@@ -62,6 +64,8 @@ interface Meta {
         | "Black Atom — MNM ∷ Mono Light"
         | "Black Atom — MNM ∷ Orange Dark"
         | "Black Atom — MNM ∷ Orange Light"
+        | "Black Atom — MNM ∷ 47 Light"
+        | "Black Atom — MNM ∷ 47 Dark"
         | "Black Atom — MNM ∷ Blue Dark"
         | "Black Atom — MNM ∷ Blue Light";
     appearance: "light" | "dark";
@@ -114,11 +118,26 @@ interface Palette {
     white: HexColor;
 }
 
+/** This is currently only a helper for the mnml mono styled themes */
 interface Accents {
     a10: HexColor; // Primary accent (most prominent)
     a20: HexColor; // Secondary accent
     a30: HexColor; // Tertiary accent
     a40: HexColor; // Subtle accent
+}
+
+/** Minimal accent interface for mnml themes */
+interface MnmlAccents {
+    a10: HexColor;
+    a20: HexColor;
+}
+
+/** Minimal feedback interface for mnml themes */
+export interface MnmlFeedback {
+    negative: HexColor;
+    success: HexColor;
+    info: HexColor;
+    warning: HexColor;
 }
 
 interface UIBackground {
@@ -278,6 +297,7 @@ export type {
     Definition,
     Key,
     Meta,
+    MnmlAccents,
     Palette,
     Primaries,
     Syntax,

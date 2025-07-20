@@ -12,7 +12,7 @@ export type Config = {
     adapterFileName: string;
     themeKeys: readonly Theme.Key[];
     themePathMap: Theme.ThemeKeyPathMap;
-    adapters: ("nvim" | "ghostty" | "zed" | "wezterm" | "obsidian")[]; // List of cloned adapter repository names
+    adapters: ("nvim" | "ghostty" | "zed" | "wezterm" | "obsidian" | "tmux")[]; // List of cloned adapter repository names
     orgName: string; // Organization directory name
 };
 
@@ -62,12 +62,15 @@ export const config: Config = {
         "black-atom-mnml-orange-light": "./themes/mnml/black-atom-mnml-orange-light",
         "black-atom-mnml-blue-dark": "./themes/mnml/black-atom-mnml-blue-dark",
         "black-atom-mnml-blue-light": "./themes/mnml/black-atom-mnml-blue-light",
+        "black-atom-mnml-47-light": "./themes/mnml/black-atom-mnml-47-light",
+        "black-atom-mnml-47-dark": "./themes/mnml/black-atom-mnml-47-dark",
     },
     adapters: [
         "nvim",
         "ghostty",
         "zed",
         "wezterm",
+        "tmux",
         // "obsidian", // Disabled until ready
     ],
 };

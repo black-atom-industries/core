@@ -1,6 +1,21 @@
-import { Accents, Palette, Primaries, UI } from "../../types/theme.ts";
+import * as Theme from "../../types/theme.ts";
 
-export default function (primaries: Primaries, palette: Palette, accents: Accents): UI {
+export default function (
+    primaries: Theme.Primaries,
+    feedback: Theme.MnmlFeedback,
+    accents: Theme.MnmlAccents,
+): Theme.UI {
+    const shared = {
+        negative: feedback.negative,
+        info: feedback.info,
+        hint: feedback.warning,
+        warn: feedback.warning,
+        positive: feedback.success,
+        add: feedback.success,
+        delete: feedback.negative,
+        modify: feedback.info,
+    };
+
     return {
         bg: {
             default: primaries.d10,
@@ -12,29 +27,15 @@ export default function (primaries: Primaries, palette: Palette, accents: Accent
             selection: primaries.d40,
             search: primaries.d40,
             contrast: primaries.l10,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            ...shared,
         },
         fg: {
-            default: primaries.l10,
-            subtle: primaries.m30,
+            default: primaries.l30,
+            subtle: primaries.m40,
             accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.d20,
-            negative: palette.red,
-            warn: accents.a20,
-            info: palette.blue,
-            hint: accents.a30,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            ...shared,
         },
     };
 }

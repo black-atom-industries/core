@@ -1,7 +1,8 @@
 import * as Theme from "../../types/theme.ts";
 
-import syntax_light from "./syntax_light.ts";
-import ui_light from "./ui_light.ts";
+import palette from "./palette.ts";
+import syntax from "./syntax_light.ts";
+import ui from "./ui_light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-mnml-mono-light",
@@ -16,61 +17,39 @@ const meta: Theme.Meta = {
 
 const primaries: Theme.Primaries = {
     d10: "#000000",
-    d20: "#1a1a1a",
+    d20: "#242424",
     d30: "#333333",
-    d40: "#4d4d4d",
+    d40: "#404040",
 
-    m10: "#666666",
-    m20: "#808080",
-    m30: "#999999",
-    m40: "#b3b3b3",
+    m10: "#5a5a5a",
+    m20: "#666666",
+    m30: "#737373",
+    m40: "#8c8c8c",
 
-    l10: "#cccccc",
-    l20: "#e6e6e6",
-    l30: "#f5f5f5",
-    l40: "#ffffff",
+    l10: "#c0c0c0",
+    l20: "#cccccc",
+    l30: "#e1e1e1",
+    l40: "#f3f3f3",
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d10,
-    gray: primaries.m10,
-
-    darkRed: primaries.m20,
-    red: primaries.m30,
-
-    darkGreen: primaries.m20,
-    green: primaries.m30,
-
-    darkYellow: primaries.m20,
-    yellow: primaries.m30,
-
-    darkBlue: primaries.m20,
-    blue: primaries.m30,
-
-    darkMagenta: primaries.m10,
-    magenta: primaries.m20,
-
-    darkCyan: primaries.m10,
-    cyan: primaries.m20,
-
-    lightGray: primaries.m30,
-    white: primaries.l10,
-};
-
-const accents: Theme.Accents = {
+const accents: Theme.MnmlAccents = {
     a10: primaries.d10,
-    a20: primaries.d20,
-    a30: primaries.d30,
-    a40: primaries.d40,
+    a20: primaries.d30,
+};
+
+const feedback: Theme.MnmlFeedback = {
+    info: "#3498db",
+    warning: "#eab308",
+    negative: "#e74c3c",
+    success: "#27ae60",
 };
 
 const theme: Theme.Definition = {
     meta,
     primaries,
-    palette,
-    ui: ui_light(primaries, palette, accents),
-    syntax: syntax_light(primaries, palette, accents),
+    palette: palette(primaries),
+    ui: ui(primaries, feedback, accents),
+    syntax: syntax(primaries, feedback, accents),
 };
 
 export default theme;
-
