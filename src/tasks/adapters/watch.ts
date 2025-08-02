@@ -1,22 +1,41 @@
-import * as colors from "@std/fmt/colors";
+import { dirname, join } from "@std/path";
+import { existsSync } from "@std/fs";
 import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
-import { generateAllRepositories } from "./generate-all.ts";
+import { generateAllRepositories, generateSingleAdapter } from "./generate-all.ts";
 
 /**
- * Watch for changes in the core themes directory and adapt all repositories
- * without committing changes.
+ * Watch for changes in core themes and adapter template directories.
+ * Triggers regeneration when any relevant file changes.
  */
 export async function watchAdapters() {
-    const themesDir = config.dir.themes;
+    const coreThemesDir = config.dir.themes;
 
-    log.info(`Watching for changes in ${themesDir}...`);
+    // Resolve organization directory and get adapter template directories
+    const orgDir = config.dir.org || join(dirname(config.dir.core), config.orgName);
+    const watchDirs: string[] = [coreThemesDir];
+
+    // Add adapter template directories
+    for (const adapter of config.adapters) {
+        const adapterDir = join(orgDir, adapter);
+        const adapterThemesDir = join(adapterDir, "themes");
+
+        if (existsSync(adapterThemesDir)) {
+            watchDirs.push(adapterThemesDir);
+        }
+    }
+
+    log.info(`Watching for changes in:`);
+    watchDirs.forEach((dir) => {
+        const relativePath = dir.replace(dirname(orgDir) + "/", "");
+        log.info(`  📁 ${relativePath}`);
+    });
     log.info("Press Ctrl+C to stop watching");
 
     // Run initial generation to ensure everything is in sync
     log.hr_thick("🚀 Running initial generation...");
     try {
-        await generateAllRepositories({ commit: false });
+        await generateAllRepositories({ commit: false, logErrors: true });
         log.success("Initial generation completed successfully");
     } catch (error) {
         log.error(
@@ -25,12 +44,9 @@ export async function watchAdapters() {
         log.info("Continuing with file watching...");
     }
 
-    // Simple state management
-    let debounceTimer: number | null = null;
-    let isProcessing = false;
-    const pendingChanges = new Set<string>();
+    log.info(`👁️  Now watching for file changes...`);
 
-    // Files to ignore - expanded for better filtering
+    // Files to ignore
     const ignorePatterns = [
         /\.DS_Store$/,
         /~$/,
@@ -50,41 +66,19 @@ export async function watchAdapters() {
         return ignorePatterns.some((pattern) => pattern.test(path));
     };
 
-    // Process changes after debounce period
-    const processChanges = async () => {
-        if (isProcessing) {
-            log.warn("Generation already in progress, skipping...");
-            return;
+    // Check if a file is a template file or core theme file
+    const isRelevantFile = (path: string): boolean => {
+        // Core theme files (in core/src/themes/)
+        if (path.includes(coreThemesDir) && path.endsWith(".ts")) {
+            return true;
         }
 
-        // Filter out ignored files
-        const changes = Array.from(pendingChanges).filter((path) => !shouldIgnoreFile(path));
-
-        if (changes.length === 0) {
-            pendingChanges.clear();
-            return;
+        // Template files (*.template.* in adapter themes directories)
+        if (path.includes("/themes/") && path.includes(".template.")) {
+            return true;
         }
 
-        isProcessing = true;
-        pendingChanges.clear();
-
-        log.hr_thick("👀 Changes detected!");
-        log.info(
-            `Processing changes:\n${
-                changes.map((p) => `   - ${colors.yellow(p.split("/").pop() ?? "")}`).join("\n")
-            }`,
-        );
-
-        try {
-            await generateAllRepositories({ commit: false });
-            log.success("✅ Generation completed successfully");
-        } catch (error) {
-            log.error(
-                `❌ Generation failed: ${error instanceof Error ? error.message : String(error)}`,
-            );
-        } finally {
-            isProcessing = false;
-        }
+        return false;
     };
 
     // Set up graceful shutdown
@@ -93,60 +87,160 @@ export async function watchAdapters() {
     // Handle Ctrl+C gracefully
     Deno.addSignalListener("SIGINT", () => {
         log.info("\n🛑 Shutting down watch process...");
-        abortController.abort();
 
-        // Clean up any pending timers
-        if (debounceTimer !== null) {
-            clearTimeout(debounceTimer);
+        // Clear all pending timers
+        for (const timer of pendingChanges.values()) {
+            clearTimeout(timer);
         }
+        pendingChanges.clear();
 
+        abortController.abort();
         log.info("Watch process terminated.");
         Deno.exit(0);
     });
 
-    // Create file watcher
-    const watcher = Deno.watchFs(themesDir, { recursive: true });
+    // Debouncing for file changes
+    const pendingChanges = new Map<string, number>();
+    const debounceMs = 300; // 300ms debounce
 
-    try {
-        for await (const event of watcher) {
-            // Check if we've been aborted
-            if (abortController.signal.aborted) {
-                break;
-            }
-
-            // Only process modify and create events
-            if (event.kind !== "modify" && event.kind !== "create") {
-                continue;
-            }
-
-            // Filter out paths we want to ignore early
-            const relevantPaths = event.paths.filter((path) => !shouldIgnoreFile(path));
-
-            if (relevantPaths.length === 0) {
-                continue;
-            }
-
-            // Add paths to pending changes
-            for (const path of relevantPaths) {
-                pendingChanges.add(path);
-            }
-
-            // Clear existing timer and set new one
-            if (debounceTimer !== null) {
-                clearTimeout(debounceTimer);
-            }
-
-            // Debounce with 1.5 second delay for stability
-            debounceTimer = setTimeout(() => {
-                processChanges().catch((error) => {
-                    log.error(`Unexpected error in processChanges: ${error}`);
-                });
-            }, 1500);
+    // Handle file change events
+    const handleFileChange = (changedPath: string) => {
+        // Filter out ignored files and only include relevant files
+        if (shouldIgnoreFile(changedPath) || !isRelevantFile(changedPath)) {
+            return;
         }
-    } catch (error) {
-        if (!abortController.signal.aborted) {
-            log.error(`Watch error: ${error instanceof Error ? error.message : String(error)}`);
-            log.info("Watch process failed. Please restart manually.");
+
+        // Clear any existing timer for this file
+        const existingTimer = pendingChanges.get(changedPath);
+        if (existingTimer) {
+            clearTimeout(existingTimer);
+        }
+
+        // Set a new timer for this file
+        const timer = setTimeout(async () => {
+            pendingChanges.delete(changedPath);
+            await processFileChange(changedPath);
+        }, debounceMs);
+
+        pendingChanges.set(changedPath, timer);
+    };
+
+    // Process individual file changes
+    const processFileChange = async (changedPath: string) => {
+        // Get changed file name and directory for display
+        const changedFile = changedPath.split("/").pop() || "unknown";
+        const isTemplate = changedPath.includes("/themes/") && !changedPath.includes("/core/");
+
+        if (isTemplate) {
+            // Extract adapter name and relative path
+            const pathParts = changedPath.split("/");
+            const adapterIndex = pathParts.findIndex((part) => part === "themes") - 1;
+            const adapterName = adapterIndex >= 0 ? pathParts[adapterIndex] : "unknown";
+
+            // Get the relative path from themes onwards
+            const themesIndex = pathParts.findIndex((part) => part === "themes");
+            const relativePath = themesIndex >= 0
+                ? pathParts.slice(themesIndex).join("/")
+                : changedFile;
+
+            log.info(
+                `📝 [${adapterName}] template changed (${relativePath}) → regenerating ${adapterName}...`,
+            );
+
+            try {
+                const result = await generateSingleAdapter(adapterName);
+
+                if (result.error) {
+                    log.error(`⚠️ Encountered error: ${result.error}`);
+                    log.warn(`⚠️ ${adapterName} not updated - Waiting for fix...`);
+                } else if (result.hasChanges) {
+                    log.success(`✅ ${adapterName} updated successfully`);
+                } else {
+                    log.info(`ℹ️ ${adapterName} - no changes needed`);
+                }
+            } catch (error) {
+                log.error(
+                    `❌ Generation failed: ${
+                        error instanceof Error ? error.message : String(error)
+                    }`,
+                );
+            }
+        } else {
+            log.info(`🎨 Core theme changed (${changedFile}) → regenerating all adapters...`);
+
+            try {
+                const results = await generateAllRepositories({ commit: false });
+
+                // Show concise summary
+                const changedAdapters = results.filter((r) => r.hasChanges).length;
+                const errorAdapters = results.filter((r) => r.error);
+
+                if (errorAdapters.length > 0) {
+                    // Extract the first error and make it more user-friendly
+                    const firstError = errorAdapters[0].error;
+                    const cleanError = firstError?.includes("Template contains undefined variable:")
+                        ? firstError
+                        : "Template error occurred";
+
+                    log.error(`⚠️ Encountered error: ${cleanError}`);
+                    log.warn(`⚠️ ${changedAdapters} adapters updated partially`);
+                } else {
+                    log.success(`✅ ${changedAdapters} adapters updated successfully`);
+                }
+            } catch (error) {
+                log.error(
+                    `❌ Generation failed: ${
+                        error instanceof Error ? error.message : String(error)
+                    }`,
+                );
+            }
+        }
+    };
+
+    // Create and start watchers for all directories
+    const startWatchers = async () => {
+        const watchers = [];
+
+        for (const dir of watchDirs) {
+            const watcherPromise = (async () => {
+                const watcher = Deno.watchFs(dir, { recursive: true });
+
+                for await (const event of watcher) {
+                    if (abortController.signal.aborted) break;
+
+                    if (event.kind === "modify" || event.kind === "create") {
+                        for (const path of event.paths) {
+                            handleFileChange(path);
+                        }
+                    }
+                }
+            })();
+
+            watchers.push(watcherPromise);
+        }
+
+        // Wait for any watcher to complete (which should only happen on abort or error)
+        await Promise.race(watchers);
+    };
+
+    // Main watch loop with restart capability
+    while (!abortController.signal.aborted) {
+        try {
+            await startWatchers();
+
+            // If we get here, the watchers closed unexpectedly
+            if (!abortController.signal.aborted) {
+                log.warn("File watchers closed unexpectedly, restarting...");
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+            }
+        } catch (error) {
+            if (!abortController.signal.aborted) {
+                log.error(`Watch error: ${error instanceof Error ? error.message : String(error)}`);
+                log.info("Restarting file watchers in 2 seconds...");
+                await new Promise((resolve) => setTimeout(resolve, 2000));
+            }
         }
     }
+
+    log.info("Watch process terminated.");
 }

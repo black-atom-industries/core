@@ -39,6 +39,5 @@ export async function pushAllRepositories() {
             await runCommand(["git", "push"]);
             log.success(`Successfully pushed ${adapterName} to remote`);
         },
-        { title: "Pushing all adapter repositories..." },
     );
 }

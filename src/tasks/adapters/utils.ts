@@ -71,14 +71,6 @@ type AdapterOperationCallback = (params: {
 }) => Promise<AdapterCallbackResult | void>;
 
 /**
- * Options for forEachAdapter function
- */
-export interface ForEachAdapterOptions {
-    /** Title to display at the beginning of execution */
-    title?: string;
-}
-
-/**
  * Execute an operation on each adapter repository
  *
  * This handles common tasks like:
@@ -88,18 +80,10 @@ export interface ForEachAdapterOptions {
  * - Directory navigation
  *
  * @param callback Function to execute for each adapter
- * @param options Additional options
  */
 export async function forEachAdapter(
     callback: AdapterOperationCallback,
-    options: ForEachAdapterOptions = {},
 ): Promise<void> {
-    const { title } = options;
-
-    if (title) {
-        log.info(title);
-    }
-
     // Resolve organization directory
     const orgDir = config.dir.org || join(dirname(config.dir.core), config.orgName);
 
@@ -127,12 +111,9 @@ export async function forEachAdapter(
             continue;
         }
 
-        log.hr_thin(`🚧 ${adapterName}`);
-
         try {
             // Change to adapter directory
             Deno.chdir(adapterDir);
-            log.info(`Changed to directory: ${adapterDir}`);
 
             // Execute the callback function
             const result = await callback({
@@ -156,6 +137,4 @@ export async function forEachAdapter(
             Deno.chdir(coreDir);
         }
     }
-
-    log.hr_thin("🚀 Done");
 }

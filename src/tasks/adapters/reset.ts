@@ -93,7 +93,6 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
 
             return { continue: true };
         },
-        { title: "Checking adapter repositories..." },
     );
 
     // Display summary

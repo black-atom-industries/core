@@ -12,8 +12,6 @@ export async function loadThemeMap(
     const themeMap = {} as Theme.ThemeMap;
     const errorList: string[] = [];
 
-    log.info("Dynamically loading theme files to get latest changes...");
-
     try {
         // Load each theme module dynamically
         for (const themeKey of config.themeKeys) {
@@ -42,7 +40,6 @@ export async function loadThemeMap(
             throw new Error(`Failed to load some themes:\n- ${errorReport}`);
         }
 
-        log.success(`Successfully loaded ${Object.keys(themeMap).length} theme files`);
         return themeMap;
     } catch (error) {
         log.error(`Error loading theme files: ${error}`);

@@ -110,7 +110,6 @@ export async function showAdapterStatuses(): Promise<void> {
             statuses[adapter] = await getRepoStatus(adapterDir);
             return { continue: true };
         },
-        { title: "Checking adapter repository statuses..." },
     );
 
     // Display summary table

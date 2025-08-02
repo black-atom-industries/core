@@ -129,27 +129,13 @@ export default async function (options: string[] = []) {
     const adapterConfig = await getAdapterConfig();
     const themeMap = await loadThemeMap(config.themePathMap);
 
-    log.success("Adapter configuration loaded successfully.");
-
-    // Log collection count
-    if (adapterConfig.collections) {
-        const collectionCount = Object.keys(adapterConfig.collections).length;
-        const themeCountInCollections = Object.values(adapterConfig.collections)
-            .filter(Boolean)
-            .reduce((acc, collection) => acc + (collection?.themes.length || 0), 0);
-
-        log.success(
-            `Found ${collectionCount} collection${
-                collectionCount !== 1 ? "s" : ""
-            } with ${themeCountInCollections} theme${themeCountInCollections !== 1 ? "s" : ""}.`,
-        );
-    } else {
-        log.warn("No collections defined!");
-        return;
-    }
-
     // Process templates
-    await processTemplates(adapterConfig, themeMap);
+    const templateErrors = await processTemplates(adapterConfig, themeMap);
+
+    // If there are template errors, throw them so they can be caught by the caller
+    if (templateErrors.length > 0) {
+        throw new Error(templateErrors[0]); // Just throw the first error for simplicity
+    }
 
     // If watch mode is enabled, watch for changes
     if (watchMode) {

@@ -1,7 +1,6 @@
 import { Eta } from "@eta";
 import { dirname } from "@std/path";
 import type { Definition, Key } from "../types/theme.ts";
-import log from "./log.ts";
 import { AdapterConfig } from "./validate-adapter.ts";
 
 // Initialize Eta with options
@@ -21,12 +20,12 @@ const eta = new Eta({
 export async function processTemplates(
     adapterConfig: AdapterConfig,
     themeMap: Record<Key, Definition | null>,
-) {
+): Promise<string[]> {
     // Process collection templates
     if (adapterConfig.collections) {
-        await processCollectionTemplates(adapterConfig.collections, themeMap);
+        return await processCollectionTemplates(adapterConfig.collections, themeMap);
     } else {
-        log.error("No collections defined in adapter configuration");
+        throw new Error("No collections defined in adapter configuration");
     }
 }
 
@@ -38,9 +37,11 @@ export async function processTemplates(
 async function processCollectionTemplates(
     collections: NonNullable<AdapterConfig["collections"]>,
     themeMap: Record<Key, Definition | null>,
-) {
+): Promise<string[]> {
+    const allErrors: string[] = [];
+
     // Go through each collection
-    for (const [collectionKey, collectionConfig] of Object.entries(collections)) {
+    for (const [, collectionConfig] of Object.entries(collections)) {
         if (!collectionConfig) continue;
 
         const { template: templatePath, themes } = collectionConfig;
@@ -49,9 +50,6 @@ async function processCollectionTemplates(
             // Read the collection template once
             const template = await Deno.readTextFile(templatePath);
 
-            log.info(
-                `Processing collection "${collectionKey}" with ${themes.length} themes using template "${templatePath}"`,
-            );
             const generatedFiles: string[] = [];
             const errors: string[] = [];
 
@@ -73,6 +71,41 @@ async function processCollectionTemplates(
                     // Render the template with the theme data
                     const content = eta.renderString(template, theme);
 
+                    // Check for undefined values in the rendered content and extract variable names
+                    const undefinedMatches = content.match(/\bundefined\b/g);
+                    if (undefinedMatches) {
+                        // Try to find the undefined variable in the template
+                        const templateVariablePattern = /<%=\s*(theme\.[^%]+?)\s*%>/g;
+                        const templateVars = Array.from(template.matchAll(templateVariablePattern));
+
+                        // Find which variable is undefined by checking each one
+                        for (const match of templateVars) {
+                            const varPath = match[1].trim();
+                            // Simple check: try to access the property path and see if it throws or returns undefined
+                            try {
+                                const checkFunction = new Function(
+                                    "theme",
+                                    `try { return ${varPath}; } catch { return undefined; }`,
+                                );
+                                const result = checkFunction(theme);
+                                if (result === undefined) {
+                                    errors.push(`Template contains undefined variable: ${varPath}`);
+                                    break;
+                                }
+                            } catch {
+                                errors.push(`Template contains undefined variable: ${varPath}`);
+                                break;
+                            }
+                        }
+
+                        if (errors.length === 0) {
+                            errors.push(
+                                `Template contains ${undefinedMatches.length} undefined variable(s)`,
+                            );
+                        }
+                        continue;
+                    }
+
                     // Write the output
                     await writeOutput(content, outputPath);
                     generatedFiles.push(outputPath);
@@ -85,29 +118,22 @@ async function processCollectionTemplates(
                 }
             }
 
-            // Log a summary of the results
-            if (generatedFiles.length > 0) {
-                log.success(
-                    `Generated ${generatedFiles.length} theme files for collection "${collectionKey}"`,
-                );
-            }
-
+            // Collect errors for this collection
             if (errors.length > 0) {
-                log.error(`Encountered ${errors.length} errors in collection "${collectionKey}":`);
-                for (const error of errors) {
-                    log.error(`  - ${error}`);
-                }
+                allErrors.push(...errors);
             }
         } catch (error) {
             if (error instanceof Deno.errors.NotFound) {
-                log.error(`Collection template file not found: ${templatePath}`);
+                allErrors.push(`Collection template file not found: ${templatePath}`);
             } else if (error instanceof Error) {
-                log.error(
+                allErrors.push(
                     `Failed to process collection template ${templatePath}: ${error.message}`,
                 );
             }
         }
     }
+
+    return allErrors;
 }
 
 /**
