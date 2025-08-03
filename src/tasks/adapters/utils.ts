@@ -5,13 +5,9 @@ import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
 
 /**
- * Options for running commands
+ * Additional options for running commands beyond Deno.CommandOptions
  */
-export interface RunCommandOptions {
-    /** Working directory to run the command in */
-    cwd?: string;
-    /** Environment variables to pass to the command */
-    env?: Record<string, string>;
+export interface RunCommandOptions extends Deno.CommandOptions {
     /** Expected exit codes that should not be treated as errors */
     expectedExitCodes?: number[];
 }
@@ -25,15 +21,14 @@ export async function runCommand(
     command: string[],
     options: RunCommandOptions = {},
 ): Promise<string> {
-    const { cwd, env, expectedExitCodes = [] } = options;
+    const { expectedExitCodes = [], ...commandOptions } = options;
 
     try {
         const process = new Deno.Command(command[0], {
             args: command.slice(1),
             stdout: "piped",
             stderr: "piped",
-            cwd,
-            env,
+            ...commandOptions,
         });
 
         const output = await process.output();
