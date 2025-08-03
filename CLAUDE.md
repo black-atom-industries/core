@@ -1,7 +1,8 @@
 # Black Atom Core Development Guide
 
-## Build/Test Commands
+## Commands
 
+### Development Commands
 - Install global CLI: `deno task install`
 - Compile binary: `deno task compile`
 - Run typecheck: `deno task check`
@@ -9,12 +10,17 @@
 - Lint code: `deno task lint`
 - Generate schema: `deno task schema`
 - Update dependencies: `deno task lock`
-- Generate for all repositories without commit: `deno task dev:adapters:generate`
-- Watch and generate for all adapters: `deno task dev:adapters:generate:watch` (requires repositories to be cloned as siblings)
-- Show repositories status: `deno task dev:adapters:status`
-- Generate and commit all repositories: `deno task dev:adapters:commit`
-- Push all adapter repositories: `deno task dev:adapters:push` (aborts if uncommitted changes)
-- Reset repositories to remote: `deno task dev:adapters:reset` (use `--auto-stash` to automatically stash changes)
+
+### Single Adapter Commands (run from adapter directory)
+- Generate themes: `black-atom-core generate`
+
+### Multi-Adapter Commands (run from core directory)
+- Generate all adapters: `deno task adapters:gen`
+- Watch and auto-regenerate: `deno task adapters:watch`
+- Show repositories status: `deno task adapters:status`
+- Generate and commit all: `deno task adapters:commit`
+- Push all repositories: `deno task adapters:push`
+- Reset repositories to remote: `deno task adapters:reset` (use `--auto-stash` to automatically stash changes)
 
 ## Code Style Guide
 
@@ -51,18 +57,18 @@ The CLI provides various commands:
 
 The Deno task system provides development workflow commands:
 
-- `dev:adapters:generate`: Adapt all repositories without committing
-- `dev:adapters:generate:watch`: Watch for theme changes and adapt all repositories
-- `dev:adapters:status`: Show status overview of all repositories
-- `dev:adapters:commit`: Adapt and commit all repositories with confirmation
-- `dev:adapters:push`: Push repositories to remote (aborts if uncommitted changes)
-- `dev:adapters:reset`: Reset repositories to their remote state (with confirmation)
+- `adapters:gen`: Generate all repositories without committing
+- `adapters:watch`: Watch for theme changes and auto-regenerate
+- `adapters:status`: Show status overview of all repositories
+- `adapters:commit`: Generate and commit all repositories with confirmation
+- `adapters:push`: Push repositories to remote (aborts if uncommitted changes)
+- `adapters:reset`: Reset repositories to their remote state (with confirmation)
 
 The task system is organized in the `src/tasks/` directory:
 
 - `adapters/`: Contains adapter-related tasks
   - `generate-all.ts`: Handles processing all repositories
-  - `watch.ts`: Implements file watching functionality
+  - `watch.ts`: Implements intelligent file watching functionality
   - `push-all.ts`: Handles pushing changes to remote repositories
   - `reset.ts`: Handles resetting repositories to remote state
   - `status.ts`: Provides status overview of all repositories
@@ -219,7 +225,7 @@ For detailed instructions, see `prompts/new-collection.md`. Quick overview:
 
 3. **Theme Generation**:
 
-   - Run `black-atom-core adapt` in the adapter repository
+   - Run `black-atom-core generate` in the adapter repository
    - Verify generated files match expected output
 
 4. **Testing**:

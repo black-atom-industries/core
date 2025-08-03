@@ -24,17 +24,8 @@ export async function generateAllRepositories(
     await forEachAdapter(
         async ({ adapter, adapterName }) => {
             try {
-                // Run black-atom-core generate command to ensure fresh module loading
-                const cmd = new Deno.Command("black-atom-core", {
-                    args: ["generate"],
-                    stdout: "inherit",
-                    stderr: "inherit",
-                });
-                
-                const { success } = await cmd.output();
-                if (!success) {
-                    throw new Error("Generate command failed");
-                }
+                // Use the CLI binary directly with absolute path resolution
+                await runCommand(["black-atom-core", "generate"]);
 
                 // Check for changes
                 const gitStatus = await runCommand(["git", "status", "--porcelain"]);
@@ -103,17 +94,8 @@ export async function generateSingleAdapter(
         // Change to adapter directory
         Deno.chdir(adapterDir);
 
-        // Run black-atom-core generate command to ensure fresh module loading
-        const cmd = new Deno.Command("black-atom-core", {
-            args: ["generate"],
-            stdout: "inherit",
-            stderr: "inherit",
-        });
-        
-        const { success } = await cmd.output();
-        if (!success) {
-            throw new Error("Generate command failed");
-        }
+        // Use the global CLI command which handles import maps correctly
+        await runCommand(["black-atom-core", "generate"]);
 
         // Check for changes
         const gitStatus = await runCommand(["git", "status", "--porcelain"]);

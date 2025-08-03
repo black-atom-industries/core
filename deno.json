@@ -9,12 +9,12 @@
         "format": "deno fmt .",
         "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts",
-        "dev:adapters:commit": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:commit",
-        "dev:adapters:generate": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:generate",
-        "dev:adapters:generate:watch": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:generate:watch",
-        "dev:adapters:push": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:push",
-        "dev:adapters:status": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:status",
-        "dev:adapters:reset": "deno run --allow-read --allow-write --allow-run --allow-env --import-map=import_map.json src/tasks/index.ts dev:adapters:reset"
+        "adapters:gen": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:gen",
+        "adapters:watch": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:watch",
+        "adapters:status": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:status",
+        "adapters:commit": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:commit",
+        "adapters:push": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:push",
+        "adapters:reset": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:reset"
     },
     "fmt": {
         "useTabs": false,

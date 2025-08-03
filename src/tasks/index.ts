@@ -1,8 +1,8 @@
-import { watchAdapters } from "./adapters/watch.ts";
 import { generateAllRepositories } from "./adapters/generate-all.ts";
 import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
+import { watch } from "./adapters/watch.ts";
 import { getUserConfirmation } from "./adapters/utils.ts";
 import log from "../lib/log.ts";
 
@@ -13,23 +13,23 @@ if (import.meta.main) {
     const taskName = Deno.args[0];
 
     switch (taskName) {
-        case "dev:adapters:generate": {
-            log.info("Generating themes for all repositories without commit...");
+        case "adapters:gen": {
+            log.info("Generating themes for adapters...");
             await generateAllRepositories({ commit: false });
             break;
         }
 
-        case "dev:adapters:generate:watch": {
-            await watchAdapters();
+        case "adapters:watch": {
+            await watch();
             break;
         }
 
-        case "dev:adapters:status": {
+        case "adapters:status": {
             await showAdapterStatuses();
             break;
         }
 
-        case "dev:adapters:commit": {
+        case "adapters:commit": {
             log.info("Generating themes for all repositories with commit...");
 
             const confirmCommit = await getUserConfirmation(
@@ -44,13 +44,13 @@ if (import.meta.main) {
             break;
         }
 
-        case "dev:adapters:push": {
+        case "adapters:push": {
             log.info("Pushing all adapter repositories...");
             await pushAllRepositories();
             break;
         }
 
-        case "dev:adapters:reset": {
+        case "adapters:reset": {
             log.info("Checking adapters for reset...");
 
             // Parse args to see if auto-stash is requested
@@ -76,10 +76,10 @@ if (import.meta.main) {
             log.error(`Unknown task: ${taskName}`);
             log.info("Available tasks:");
             log.info(
-                "  - dev:adapters:generate: Generate themes for all repositories without committing",
+                "  - dev:adapters:gen: Generate themes for all repositories without committing",
             );
             log.info(
-                "  - dev:adapters:generate:watch: Watch for theme changes and generate for all repositories",
+                "  - dev:adapters:multi-watch: Watch core and all adapter templates with intelligent routing",
             );
             log.info("  - dev:adapters:status: Show status overview of all repositories");
             log.info(
