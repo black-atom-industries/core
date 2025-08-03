@@ -1,5 +1,5 @@
-import generate from "./commands/generate.ts";
-import help from "./commands/help.ts";
+import generate from "./generate.ts";
+import help from "./help.ts";
 
 if (import.meta.main) {
     const command = Deno.args[0];

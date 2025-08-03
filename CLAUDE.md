@@ -3,8 +3,9 @@
 ## Commands
 
 ### Development Commands
-- Install global CLI: `deno task install`
-- Compile binary: `deno task compile`
+
+- Install global CLI: `deno task cli:install`
+- Compile binary: `deno task cli:compile`
 - Run typecheck: `deno task check`
 - Format code: `deno task format`
 - Lint code: `deno task lint`
@@ -12,9 +13,11 @@
 - Update dependencies: `deno task lock`
 
 ### Single Adapter Commands (run from adapter directory)
+
 - Generate themes: `black-atom-core generate`
 
 ### Multi-Adapter Commands (run from core directory)
+
 - Generate all adapters: `deno task adapters:gen`
 - Watch and auto-regenerate: `deno task adapters:watch`
 - Show repositories status: `deno task adapters:status`
