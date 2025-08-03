@@ -23,10 +23,12 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
     const reposFailed: string[] = [];
 
     await forEachAdapter(
-        async ({ adapter, adapterName }) => {
+        async ({ adapter, adapterDir, adapterName }) => {
             try {
                 // Check for uncommitted changes
-                const gitStatus = await runCommand(["git", "status", "--porcelain"]);
+                const gitStatus = await runCommand(["git", "status", "--porcelain"], {
+                    cwd: adapterDir,
+                });
                 const hasChanges = gitStatus.trim() !== "";
 
                 if (hasChanges) {
@@ -52,7 +54,7 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
                         "stash",
                         "save",
                         `Auto-stashed by black-atom-core reset task`,
-                    ]);
+                    ], { cwd: adapterDir });
                     reposStashed.push(adapter);
                     log.success(`Changes stashed in ${adapterName}`);
                 }
@@ -64,7 +66,7 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
                     "--abbrev-ref",
                     "--symbolic-full-name",
                     "@{u}",
-                ]).then(() => true).catch(() => false);
+                ], { cwd: adapterDir }).then(() => true).catch(() => false);
 
                 if (!hasRemote) {
                     log.warn(
@@ -76,11 +78,11 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
 
                 // Fetch latest from remote
                 log.info(`Fetching latest changes for ${adapterName}...`);
-                await runCommand(["git", "fetch"]);
+                await runCommand(["git", "fetch"], { cwd: adapterDir });
 
                 // Reset to remote
                 log.info(`Resetting ${adapterName} to remote state...`);
-                await runCommand(["git", "reset", "--hard", "@{u}"]);
+                await runCommand(["git", "reset", "--hard", "@{u}"], { cwd: adapterDir });
 
                 reposReset.push(adapter);
                 log.success(`Successfully reset ${adapterName} to remote state`);

@@ -6,9 +6,11 @@ import log from "../../lib/log.ts";
  */
 export async function pushAllRepositories() {
     await forEachAdapter(
-        async ({ adapterName }) => {
+        async ({ adapterDir, adapterName }) => {
             // Check for uncommitted changes
-            const gitStatus = await runCommand(["git", "status", "--porcelain"]);
+            const gitStatus = await runCommand(["git", "status", "--porcelain"], {
+                cwd: adapterDir,
+            });
 
             if (gitStatus.trim() !== "") {
                 log.error(`Uncommitted changes detected in ${adapterName}. Aborting push.`);
@@ -27,7 +29,7 @@ export async function pushAllRepositories() {
                 "--abbrev-ref",
                 "--symbolic-full-name",
                 "@{u}",
-            ]).catch(() => "");
+            ], { cwd: adapterDir }).catch(() => "");
 
             if (!trackingBranch) {
                 log.warn(`No tracking branch found for ${adapterName}. Skipping push.`);
@@ -36,7 +38,7 @@ export async function pushAllRepositories() {
 
             // Push changes
             log.info(`Pushing ${adapterName} to remote...`);
-            await runCommand(["git", "push"]);
+            await runCommand(["git", "push"], { cwd: adapterDir });
             log.success(`Successfully pushed ${adapterName} to remote`);
         },
     );

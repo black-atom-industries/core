@@ -15,81 +15,72 @@ interface RepoStatus {
  * Get repository status information
  */
 async function getRepoStatus(repoPath?: string): Promise<RepoStatus> {
-    // Change to repository path if provided
-    const originalDir = repoPath ? Deno.cwd() : undefined;
-    if (repoPath) {
-        Deno.chdir(repoPath);
-    }
+    const status: RepoStatus = {
+        branch: "",
+        changes: false,
+        ahead: 0,
+        behind: 0,
+        hasRemote: false,
+        hasAdapter: false,
+    };
 
+    const cwd = repoPath || Deno.cwd();
+
+    // Check if adapter config exists
     try {
-        const status: RepoStatus = {
-            branch: "",
-            changes: false,
-            ahead: 0,
-            behind: 0,
-            hasRemote: false,
-            hasAdapter: false,
-        };
-
-        // Check if adapter config exists
-        try {
-            const adapterConfigPath = "black-atom-adapter.json";
-            const result = await Deno.stat(adapterConfigPath);
-            status.hasAdapter = result.isFile;
-        } catch {
-            status.hasAdapter = false;
-        }
-
-        // Get current branch
-        const branch = await runCommand(["git", "rev-parse", "--abbrev-ref", "HEAD"])
-            .then((output) => output.trim())
-            .catch(() => "unknown");
-
-        status.branch = branch;
-
-        // Check for uncommitted changes
-        const gitStatus = await runCommand(["git", "status", "--porcelain"]);
-        status.changes = gitStatus.trim() !== "";
-
-        // Check for remote tracking branch
-        const hasRemote = await runCommand([
-            "git",
-            "rev-parse",
-            "--abbrev-ref",
-            "--symbolic-full-name",
-            "@{u}",
-        ]).then(() => true).catch(() => false);
-
-        status.hasRemote = hasRemote;
-
-        // If we have a remote branch, check ahead/behind counts
-        if (hasRemote) {
-            // First fetch to ensure we have latest info
-            await runCommand(["git", "fetch"]).catch(() => {
-                // Ignore fetch errors, just proceed with local info
-            });
-
-            // Get ahead/behind counts
-            const revList = await runCommand([
-                "git",
-                "rev-list",
-                "--left-right",
-                "--count",
-                `${branch}...@{u}`,
-            ]).then((output) => output.trim().split(/\s+/))
-                .catch(() => ["0", "0"]);
-
-            status.ahead = parseInt(revList[0] || "0", 10);
-            status.behind = parseInt(revList[1] || "0", 10);
-        }
-
-        return status;
-    } finally {
-        // Return to original directory if we changed
-        if (originalDir) {
-            Deno.chdir(originalDir);
-        }
+        const adapterConfigPath = repoPath
+            ? `${repoPath}/black-atom-adapter.json`
+            : "black-atom-adapter.json";
+        const result = await Deno.stat(adapterConfigPath);
+        status.hasAdapter = result.isFile;
+    } catch {
+        status.hasAdapter = false;
     }
+
+    // Get current branch
+    const branch = await runCommand(["git", "rev-parse", "--abbrev-ref", "HEAD"], { cwd })
+        .then((output) => output.trim())
+        .catch(() => "unknown");
+
+    status.branch = branch;
+
+    // Check for uncommitted changes
+    const gitStatus = await runCommand(["git", "status", "--porcelain"], { cwd });
+    status.changes = gitStatus.trim() !== "";
+
+    // Check for remote tracking branch
+    const hasRemote = await runCommand([
+        "git",
+        "rev-parse",
+        "--abbrev-ref",
+        "--symbolic-full-name",
+        "@{u}",
+    ], { cwd }).then(() => true).catch(() => false);
+
+    status.hasRemote = hasRemote;
+
+    // If we have a remote branch, check ahead/behind counts
+    if (hasRemote) {
+        // First fetch to ensure we have latest info
+        await runCommand(["git", "fetch"], { cwd }).catch(() => {
+            // Ignore fetch errors, just proceed with local info
+        });
+
+        // Get ahead/behind counts
+        const revList = await runCommand([
+            "git",
+            "rev-list",
+            "--left-right",
+            "--count",
+            `${branch}...@{u}`,
+        ], { cwd }).then((output) => output.trim().split(/\s+/))
+            .catch(() => ["0", "0"]);
+
+        status.ahead = parseInt(revList[0] || "0", 10);
+        status.behind = parseInt(revList[1] || "0", 10);
+    }
+
+    return status;
 }
 
 /**

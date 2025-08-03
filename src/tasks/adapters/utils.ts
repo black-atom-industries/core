@@ -5,16 +5,35 @@ import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
 
 /**
+ * Options for running commands
+ */
+export interface RunCommandOptions {
+    /** Working directory to run the command in */
+    cwd?: string;
+    /** Environment variables to pass to the command */
+    env?: Record<string, string>;
+    /** Expected exit codes that should not be treated as errors */
+    expectedExitCodes?: number[];
+}
+
+/**
  * Run a command and return its output
  * For certain Git commands like `git diff --staged --quiet`, we need to handle
  * exit code 1 differently (it's expected for indicating changes)
  */
-export async function runCommand(command: string[]): Promise<string> {
+export async function runCommand(
+    command: string[],
+    options: RunCommandOptions = {},
+): Promise<string> {
+    const { cwd, env, expectedExitCodes = [] } = options;
+
     try {
         const process = new Deno.Command(command[0], {
             args: command.slice(1),
             stdout: "piped",
             stderr: "piped",
+            cwd,
+            env,
         });
 
         const output = await process.output();
@@ -27,8 +46,10 @@ export async function runCommand(command: string[]): Promise<string> {
             command.includes("diff") &&
             command.includes("--quiet");
 
-        if (!output.success && !isGitDiffQuiet) {
-            throw new Error(`Command failed: ${stderr}`);
+        const isExpectedExitCode = expectedExitCodes.includes(output.code);
+
+        if (!output.success && !isGitDiffQuiet && !isExpectedExitCode) {
+            throw new Error(`Command failed with exit code ${output.code}: ${stderr}`);
         }
 
         return stdout;
@@ -77,7 +98,6 @@ type AdapterOperationCallback = (params: {
  * - Directory resolution and validation
  * - Logging
  * - Error handling
- * - Directory navigation
  *
  * @param callback Function to execute for each adapter
  */
@@ -97,9 +117,6 @@ export async function forEachAdapter(
         Deno.exit(1);
     }
 
-    // Save the core directory to return to
-    const coreDir = config.dir.core;
-
     // Iterate through each adapter
     for (const adapter of config.adapters) {
         const adapterName = colors.bold(colors.brightMagenta(adapter));
@@ -112,10 +129,7 @@ export async function forEachAdapter(
         }
 
         try {
-            // Change to adapter directory
-            Deno.chdir(adapterDir);
-
-            // Execute the callback function
+            // Execute the callback function with the adapter directory path
             const result = await callback({
                 adapter,
                 adapterDir,
@@ -132,9 +146,6 @@ export async function forEachAdapter(
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
             log.error(`Error processing adapter ${adapter}: ${errorMessage}`);
-        } finally {
-            // Always return to core directory
-            Deno.chdir(coreDir);
         }
     }
 }
