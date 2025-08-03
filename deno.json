@@ -1,20 +1,19 @@
 {
-    "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
-    "version": "1.0.0",
+    "$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
     "tasks": {
-        "lock": "deno cache --lock=deno.lock --reload --import-map=import_map.json .",
-        "check": "deno check --import-map=import_map.json .",
+        "lock": "deno cache --lock=deno.lock --reload .",
+        "check": "deno check .",
         "format": "deno fmt .",
         "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts",
-        "cli:install": "deno install --global --allow-read --allow-write --import-map=import_map.json -f -n black-atom-core src/cli/index.ts",
-        "cli:compile": "deno compile --allow-read --allow-write --allow-env --import-map=import_map.json -o black-atom-core src/cli/index.ts",
-        "adapters:gen": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:gen",
-        "adapters:watch": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:watch",
-        "adapters:status": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:status",
-        "adapters:commit": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:commit",
-        "adapters:push": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:push",
-        "adapters:reset": "deno run -A --import-map=import_map.json src/tasks/index.ts adapters:reset"
+        "cli:install": "deno install --global --allow-read --allow-write -f -n black-atom-core src/cli/index.ts",
+        "cli:compile": "deno compile --allow-read --allow-write --allow-env -o black-atom-core src/cli/index.ts",
+        "adapters:gen": "deno run -A src/tasks/index.ts adapters:gen",
+        "adapters:watch": "deno run -A src/tasks/index.ts adapters:watch",
+        "adapters:status": "deno run -A src/tasks/index.ts adapters:status",
+        "adapters:commit": "deno run -A src/tasks/index.ts adapters:commit",
+        "adapters:push": "deno run -A src/tasks/index.ts adapters:push",
+        "adapters:reset": "deno run -A src/tasks/index.ts adapters:reset"
     },
     "fmt": {
         "useTabs": false,
@@ -24,5 +23,11 @@
         "singleQuote": false,
         "proseWrap": "preserve"
     },
-    "importMap": "./import_map.json"
+    "imports": {
+        "@std/fmt/colors": "jsr:@std/fmt@1.0.5/colors",
+        "@std/path": "jsr:@std/path@^1.0.8",
+        "@std/fs": "jsr:@std/fs@^1.0.0",
+        "@zod": "https://deno.land/x/zod@v3.24.2/mod.ts",
+        "@eta": "jsr:@eta-dev/eta@3.5.0"
+    }
 }
