@@ -5,8 +5,8 @@ import syntax from "./syntax_light.ts";
 import ui from "./ui_light.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-mnml-blue-light",
-    label: "Black Atom — MNM ∷ Blue Light",
+    key: "black-atom-mnml-mikado-light",
+    label: "Black Atom — MNM ∷ Mikado Light",
     appearance: "light",
     status: "development",
     collection: {
@@ -16,25 +16,25 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#23262a",
-    d20: "#2a313b",
-    d30: "#363d48",
-    d40: "#404956",
+    d10: "#121b21",
+    d20: "#0f212d",
+    d30: "#1c2b34",
+    d40: "#2d404b",
 
-    m10: "#515862",
-    m20: "#5c6470",
-    m30: "#67707e",
-    m40: "#818a98",
+    m10: "#576a76",
+    m20: "#627684",
+    m30: "#6c8392",
+    m40: "#8a9da8",
 
-    l10: "#b8c8e0",
-    l20: "#d2def0",
-    l30: "#e1e9f5",
-    l40: "#ebf1fa",
+    l10: "#a8b9c0",
+    l20: "#b4c3c9",
+    l30: "#c3cfd4",
+    l40: "#d2dbdf",
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#3862dc",
-    a20: "#1550FF",
+    a10: "#cc9700",
+    a20: "#4a6d82",
 };
 
 const palette = basePalette(primaries, {

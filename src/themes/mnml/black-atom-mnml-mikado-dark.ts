@@ -5,8 +5,8 @@ import syntax from "./syntax_dark.ts";
 import ui from "./ui_dark.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-mnml-blue-dark",
-    label: "Black Atom — MNM ∷ Blue Dark",
+    key: "black-atom-mnml-mikado-dark",
+    label: "Black Atom — MNM ∷ Mikado Dark",
     appearance: "dark",
     status: "development",
     collection: {
