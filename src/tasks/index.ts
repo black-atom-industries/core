@@ -1,4 +1,4 @@
-import { generateAllRepositories } from "./adapters/generate-all.ts";
+import { generateAllRepositories } from "./adapters/generate.ts";
 import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";

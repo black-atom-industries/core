@@ -4,7 +4,7 @@ import * as colors from "@std/fmt/colors";
 import { config } from "../../config.ts";
 import { adapterConfigSchema } from "../../lib/validate-adapter.ts";
 import log from "../../lib/log.ts";
-import { generateAllRepositories, generateSingleAdapter } from "./generate-all.ts";
+import { generateAllRepositories, generateSingleAdapter } from "./generate.ts";
 
 /**
  * Multi-directory file watcher that handles both core theme changes and adapter template changes.

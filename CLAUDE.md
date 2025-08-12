@@ -70,7 +70,7 @@ The Deno task system provides development workflow commands:
 The task system is organized in the `src/tasks/` directory:
 
 - `adapters/`: Contains adapter-related tasks
-  - `generate-all.ts`: Handles processing all repositories
+  - `generate.ts`: Handles processing all repositories
   - `watch.ts`: Implements intelligent file watching functionality
   - `push-all.ts`: Handles pushing changes to remote repositories
   - `reset.ts`: Handles resetting repositories to remote state
