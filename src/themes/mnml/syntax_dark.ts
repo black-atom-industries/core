@@ -51,9 +51,9 @@ export default function (
             default: accents.a10,
         },
         keyword: {
-            default: primaries.l20,
-            import: primaries.l30,
-            export: primaries.l30,
+            default: primaries.l30,
+            import: primaries.l40,
+            export: primaries.l40,
         },
         operator: {
             default: primaries.l30,
