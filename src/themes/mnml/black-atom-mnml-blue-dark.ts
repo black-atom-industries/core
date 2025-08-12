@@ -16,41 +16,43 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#17191c",
-    d20: "#191d23",
-    d30: "#22272e",
-    d40: "#333a45",
+    d10: "#121b21",
+    d20: "#0f212d",
+    d30: "#1c2b34",
+    d40: "#2d404b",
 
-    m10: "#5d6570",
-    m20: "#68717e",
-    m30: "#727c8c",
-    m40: "#8f97a3",
+    m10: "#576a76",
+    m20: "#627684",
+    m30: "#6c8392",
+    m40: "#8a9da8",
 
-    l10: "#adbcd3",
-    l20: "#bcc8db",
-    l30: "#cbd6e7",
-    l40: "#dae4f2",
+    l10: "#a8b9c0",
+    l20: "#b4c3c9",
+    l30: "#c3cfd4",
+    l40: "#d2dbdf",
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#57a5ff",
-    a20: "#3493ff",
+    a10: "#ffc41b",
+    a20: "#5c88a3",
 };
 
 const palette = basePalette(primaries, {
     debug: false,
     override: (palette) => ({
         ...palette,
-        blue: accents.a10,
-        darkBlue: accents.a10,
+        yellow: accents.a10,
+        darkYellow: accents.a10,
+        blue: accents.a20,
+        darkBlue: accents.a20,
     }),
 });
 
 const feedback: Theme.MnmlFeedback = {
     info: accents.a20,
-    warning: "#f7c423",
-    negative: "#e64433",
-    success: "#43d480",
+    warning: accents.a10,
+    negative: "#DB504A",
+    success: "#44884e",
 };
 
 const theme: Theme.Definition = {
