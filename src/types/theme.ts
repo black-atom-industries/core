@@ -118,14 +118,6 @@ interface Palette {
     white: HexColor;
 }
 
-/** This is currently only a helper for the mnml mono styled themes */
-interface Accents {
-    a10: HexColor; // Primary accent (most prominent)
-    a20: HexColor; // Secondary accent
-    a30: HexColor; // Tertiary accent
-    a40: HexColor; // Subtle accent
-}
-
 /** Minimal accent interface for mnml themes */
 interface MnmlAccents {
     a10: HexColor;
@@ -291,7 +283,6 @@ interface Definition {
 }
 
 export type {
-    Accents,
     CollectionKey,
     CollectionLabel,
     Definition,
