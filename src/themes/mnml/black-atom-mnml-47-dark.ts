@@ -1,6 +1,6 @@
-import * as Theme from "../../types/theme.ts";
+import type * as Theme from "../../types/theme.ts";
 
-import palette from "./palette.ts";
+import basePalette from "./base_palette.ts";
 import syntax from "./syntax_dark.ts";
 import ui from "./ui_dark.ts";
 
@@ -21,15 +21,15 @@ const primaries: Theme.Primaries = {
     d30: "#2e2b22",
     d40: "#454133",
 
-    m10: "#5d7065",
-    m20: "#687e71",
-    m30: "#728c7c",
-    m40: "#8fa397",
+    m10: "#61705d",
+    m20: "#6d7e68",
+    m30: "#788c72",
+    m40: "#93a38f",
 
-    l10: "#d3c3ad",
-    l20: "#dbcfbc",
-    l30: "#e7dccb",
-    l40: "#f2f2da",
+    l10: "#b2d7a8",
+    l20: "#c0dfb9",
+    l30: "#d0e7cb",
+    l40: "#e0efdc",
 };
 
 const accents: Theme.MnmlAccents = {
@@ -37,17 +37,28 @@ const accents: Theme.MnmlAccents = {
     a20: "#ff8b4d",
 };
 
+const palette = basePalette(primaries, {
+    debug: false,
+    override: (palette) => ({
+        ...palette,
+        green: accents.a10,
+        darkGreen: accents.a10,
+        yellow: accents.a20,
+        darkYellow: accents.a20,
+    }),
+});
+
 const feedback: Theme.MnmlFeedback = {
-    info: "#6eb7cf",
-    warning: "#e4ae67",
+    info: "#805E73",
+    warning: "#EDE5A6",
     negative: "#f77b63",
-    success: "#34cca7",
+    success: accents.a10,
 };
 
 const theme: Theme.Definition = {
     meta,
     primaries,
-    palette: palette(primaries),
+    palette,
     ui: ui(primaries, feedback, accents),
     syntax: syntax(primaries, feedback, accents),
 };

@@ -1,6 +1,6 @@
 import * as Theme from "../../types/theme.ts";
 
-import palette from "./palette.ts";
+import basePalette from "./base_palette.ts";
 import syntax from "./syntax_light.ts";
 import ui from "./ui_light.ts";
 
@@ -37,6 +37,15 @@ const accents: Theme.MnmlAccents = {
     a20: primaries.d30,
 };
 
+const palette = basePalette(primaries, {
+    debug: false,
+    override: (palette) => ({
+        ...palette,
+        white: accents.a10,
+        lightGray: accents.a20,
+    }),
+});
+
 const feedback: Theme.MnmlFeedback = {
     info: "#3498db",
     warning: "#eab308",
@@ -47,7 +56,7 @@ const feedback: Theme.MnmlFeedback = {
 const theme: Theme.Definition = {
     meta,
     primaries,
-    palette: palette(primaries),
+    palette,
     ui: ui(primaries, feedback, accents),
     syntax: syntax(primaries, feedback, accents),
 };
