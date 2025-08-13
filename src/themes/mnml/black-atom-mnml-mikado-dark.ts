@@ -16,8 +16,8 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#121b21",
-    d20: "#0f212d",
+    d10: "#0a1d29",
+    d20: "#0c2230",
     d30: "#1c2b34",
     d40: "#2d404b",
 
@@ -33,8 +33,8 @@ const primaries: Theme.Primaries = {
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#ffc41b",
-    a20: "#5c88a3",
+    a10: "#ffb000",
+    a20: "#5a89a6",
 };
 
 const palette = basePalette(primaries, {
@@ -52,7 +52,7 @@ const feedback: Theme.MnmlFeedback = {
     info: accents.a20,
     warning: accents.a10,
     negative: "#DB504A",
-    success: "#44884e",
+    success: "#4EBA65",
 };
 
 const theme: Theme.Definition = {
