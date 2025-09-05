@@ -21,10 +21,10 @@ const primaries: Theme.Primaries = {
     d30: "#1c2b34",
     d40: "#2d404b",
 
-    m10: "#576a76",
-    m20: "#627684",
-    m30: "#6c8392",
-    m40: "#8a9da8",
+    m10: "#4c5d67",
+    m20: "#576975",
+    m30: "#617683",
+    m40: "#7b919d",
 
     l10: "#a8b9c0",
     l20: "#b4c3c9",
@@ -33,8 +33,8 @@ const primaries: Theme.Primaries = {
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#cc9700",
-    a20: "#4a6d82",
+    a10: "#cc8f00",
+    a20: "#457ea1",
 };
 
 const palette = basePalette(primaries, {
