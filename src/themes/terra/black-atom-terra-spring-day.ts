@@ -38,8 +38,8 @@ const palette: Theme.Palette = {
     darkRed: "#ca6d4c",
     red: "#dd7e5d",
 
-    darkGreen: "#0d8a4e",
-    green: "#0f9d58",
+    darkGreen: "#0e9b55",
+    green: "#12b066",
 
     darkYellow: "#de7b1f",
     yellow: "#e49f19",

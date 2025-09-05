@@ -52,7 +52,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             export: palette.darkRed,
         },
         operator: {
-            default: palette.black,
+            default: primaries.d20,
         },
         punctuation: {
             default: palette.gray,

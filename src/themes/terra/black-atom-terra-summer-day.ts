@@ -44,11 +44,11 @@ const palette: Theme.Palette = {
     darkYellow: "#e3913d",
     yellow: "#dca958",
 
-    darkBlue: "#5c72d6",
-    blue: "#578fdc",
+    darkBlue: "#5a7eb3",
+    blue: "#6994c7",
 
-    darkMagenta: "#8253c5",
-    magenta: "#c65295",
+    darkMagenta: "#a67a85",
+    magenta: "#b8939f",
 
     darkCyan: "#619f80",
     cyan: "#7bb7a4",
