@@ -35,23 +35,23 @@ const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: "#b85c47",
-    red: "#c76d56",
+    darkRed: "#4a6785",
+    red: "#5d7ca0",
 
-    darkGreen: "#5a7a3d",
-    green: "#6b8f49",
+    darkGreen: "#5a7085",
+    green: "#6d8599",
 
-    darkYellow: "#b8814d",
-    yellow: "#c89355",
+    darkYellow: "#6b7a8a",
+    yellow: "#7e8f9c",
 
-    darkBlue: "#4a6985",
-    blue: "#5d7ca0",
+    darkBlue: "#3d5a77",
+    blue: "#506f94",
 
-    darkMagenta: "#9a7b8f",
-    magenta: "#a98ba1",
+    darkMagenta: "#5a6785",
+    magenta: "#6d7ca0",
 
-    darkCyan: "#4a7a67",
-    cyan: "#5d8f7a",
+    darkCyan: "#4a677a",
+    cyan: "#5d7c94",
 
     lightGray: primaries.l10,
     white: primaries.l30,

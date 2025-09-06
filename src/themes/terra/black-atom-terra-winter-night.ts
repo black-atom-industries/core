@@ -20,10 +20,10 @@ const primaries: Theme.Primaries = {
     d30: "#434C5E",
     d40: "#4C566A",
 
-    m10: "#5E81AC",
-    m20: "#81A1C1",
-    m30: "#88C0D0",
-    m40: "#8FBCBB",
+    m10: "#5a6b7a",
+    m20: "#6b7c8a", 
+    m30: "#7c8d9c",
+    m40: "#8d9eac",
 
     l10: "#D8DEE9",
     l20: "#E5E9F0",
@@ -35,23 +35,23 @@ const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: "#bf7070",
-    red: "#d08a8a",
+    darkRed: "#bf9999",
+    red: "#d1adad",
 
-    darkGreen: "#7ba588",
-    green: "#95c4a8",
+    darkGreen: "#99ad99",
+    green: "#adc7ad",
 
-    darkYellow: "#d4a76f",
-    yellow: "#e6ba82",
+    darkYellow: "#D08770",
+    yellow: "#EBCB8B",
 
-    darkBlue: "#7a9bc7",
-    blue: "#96b4d8",
+    darkBlue: "#7a8db8",
+    blue: "#94a3d1",
 
-    darkMagenta: "#b897b3",
-    magenta: "#d3b2ce",
+    darkMagenta: "#a699bf",
+    magenta: "#c2add1",
 
-    darkCyan: "#72a5a5",
-    cyan: "#8cc4c4",
+    darkCyan: "#99b8bf",
+    cyan: "#add1d6",
 
     lightGray: primaries.l10,
     white: primaries.l30,
