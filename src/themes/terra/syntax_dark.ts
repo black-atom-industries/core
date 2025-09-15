@@ -90,8 +90,8 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             math: palette.darkGreen,
             link: palette.green,
             code: {
-                fg: primaries.l20,
-                bg: primaries.m20,
+                fg: primaries.l10,
+                bg: primaries.d40,
             },
         },
         tag: {
