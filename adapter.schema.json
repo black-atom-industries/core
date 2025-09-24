@@ -8,245 +8,54 @@
       "type": "string",
       "description": "The JSON Schema URL"
     },
-    "black-atom-stations-engineering": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-stations-operations": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-stations-medical": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-stations-research": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-jpn-koyo-yoru": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-jpn-koyo-hiru": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-jpn-tsuki-yoru": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-jpn-murasaki-yoru": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-spring-day": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-spring-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-fall-day": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-fall-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-summer-day": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-summer-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-winter-day": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-terra-winter-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-north-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-north-dark-night": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-north-day": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-mono-dark": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-mono-light": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-orange-dark": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-orange-light": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-mikado-dark": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-mikado-light": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-47-light": {
-      "$ref": "#/$defs/templateConfig"
-    },
-    "black-atom-mnml-47-dark": {
-      "$ref": "#/$defs/templateConfig"
+    "collections": {
+      "type": "object",
+      "properties": {
+        "stations": {
+          "$ref": "#/$defs/collectionConfig"
+        },
+        "jpn": {
+          "$ref": "#/$defs/collectionConfig"
+        },
+        "terra": {
+          "$ref": "#/$defs/collectionConfig"
+        },
+        "north": {
+          "$ref": "#/$defs/collectionConfig"
+        },
+        "mnml": {
+          "$ref": "#/$defs/collectionConfig"
+        }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
     }
   },
   "required": [
-    "$schema"
+    "$schema",
+    "collections"
   ],
   "additionalProperties": false,
-  "minProperties": 2,
-  "anyOf": [
-    {
-      "required": [
-        "black-atom-stations-engineering"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-stations-operations"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-stations-medical"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-stations-research"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-jpn-koyo-yoru"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-jpn-koyo-hiru"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-jpn-tsuki-yoru"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-jpn-murasaki-yoru"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-spring-day"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-spring-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-fall-day"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-fall-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-summer-day"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-summer-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-winter-day"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-terra-winter-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-north-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-north-dark-night"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-north-day"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-mono-dark"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-mono-light"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-orange-dark"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-orange-light"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-mikado-dark"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-mikado-light"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-47-light"
-      ]
-    },
-    {
-      "required": [
-        "black-atom-mnml-47-dark"
-      ]
-    }
-  ],
   "$defs": {
-    "templateConfig": {
+    "collectionConfig": {
       "type": "object",
       "properties": {
-        "templates": {
+        "template": {
+          "type": "string",
+          "description": "Path to the collection template file"
+        },
+        "themes": {
           "type": "array",
           "items": {
             "type": "string",
-            "description": "Path to a template file"
+            "description": "Theme key from the core theme definitions"
           },
           "minItems": 1
         }
       },
       "required": [
-        "templates"
+        "template",
+        "themes"
       ],
       "additionalProperties": false
     }
