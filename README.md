@@ -24,10 +24,11 @@ Black Atom includes multiple theme collections, each with its own distinct style
 
 | Collection   | Themes                                                     | Description                   |
 | ------------ | ---------------------------------------------------------- | ----------------------------- |
-| **JPN**      | koyo-hiru, koyo-yoru, tsuki-yoru                           | Japanese-inspired themes      |
+| **JPN**      | koyo-hiru, koyo-yoru, murasaki-yoru, tsuki-yoru           | Japanese-inspired themes      |
 | **Stations** | engineering, operations, medical, research                 | Space station-inspired themes |
 | **Terra**    | seasons (spring, summer, fall, winter) × time (day, night) | Earth season-inspired themes  |
-| **CRBN**     | null, supr                                                 | Minimalist carbon themes      |
+| **MNML**     | 47, mikado, mono, orange (dark/light variants)            | Minimalist themes             |
+| **North**    | dark-night, day, night                                     | Nordic-inspired themes        |
 
 All themes are available in both dark and light variants.
 
@@ -49,7 +50,7 @@ cd core
 2. Install the CLI globally:
 
 ```bash
-deno task install
+deno task cli:install
 ```
 
 3. Verify the installation:
@@ -68,13 +69,11 @@ The `black-atom-core` CLI provides the following commands:
 # Display help information
 black-atom-core --help
 
-# Adapt theme files for the current adapter
-black-atom-core adapt
+# Generate theme files for the current adapter
+black-atom-core generate
 
-# Adapt theme files for all adapters and commit changes
-# NOTE: Requires all adapter repositories to be cloned as siblings under the same parent directory
-# Example structure: ~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian}
-black-atom-core adapt-all
+# Generate theme files with file watching
+black-atom-core generate --watch
 
 # List all available themes (Not available yet)
 # black-atom-core list
@@ -96,8 +95,8 @@ The core CLI adapts theme files by:
 # Navigate to an adapter repository
 cd ../nvim
 
-# Adapt theme files for this adapter
-black-atom-core adapt
+# Generate theme files for this adapter
+black-atom-core generate
 ```
 
 ## Adapter Pattern
@@ -126,9 +125,6 @@ Each adapter repository contains:
 ### Development Commands
 
 ```bash
-# Install dependencies
-deno task deps
-
 # Run typechecking
 deno task check
 
@@ -144,9 +140,38 @@ deno task schema
 # Update dependency lock file
 deno task lock
 
+# Install CLI globally
+deno task cli:install
+
 # Compile binary
-deno task compile
+deno task cli:compile
 ```
+
+### Multi-Adapter Management
+
+The core repository provides advanced tasks for managing all adapter repositories:
+
+```bash
+# Generate themes for all adapters
+deno task adapters:gen
+
+# Watch for changes and auto-regenerate themes
+deno task adapters:watch
+
+# Show status of all adapter repositories
+deno task adapters:status
+
+# Generate and commit themes to all adapters
+deno task adapters:commit
+
+# Push all adapter repositories to remote
+deno task adapters:push
+
+# Reset all adapter repositories to remote state
+deno task adapters:reset
+```
+
+**Note**: Multi-adapter commands require all adapter repositories to be cloned as siblings under the same parent directory. Example structure: `~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian}`
 
 ### Theme Structure
 
@@ -188,7 +213,7 @@ To create a new theme:
    - Create shared UI and syntax files for the collection
 6. Run typechecking and linting: `deno task check`
 7. Generate schema: `deno task schema`
-8. **Important**: Reinstall the global CLI to pick up changes: `deno task install`
+8. **Important**: Reinstall the global CLI to pick up changes: `deno task cli:install`
 
 ## Contributing
 
