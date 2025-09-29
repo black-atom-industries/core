@@ -4,12 +4,12 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
     return {
         variable: {
             default: palette.blue,
-            builtin: palette.blue,
-            parameter: palette.darkYellow,
+            builtin: palette.darkBlue,
             member: palette.darkBlue,
+            parameter: palette.darkYellow,
         },
         property: {
-            default: palette.blue,
+            default: palette.darkBlue,
         },
         constant: {
             default: palette.darkYellow,
@@ -51,8 +51,8 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         keyword: {
             default: palette.red,
-            import: palette.magenta,
-            export: palette.magenta,
+            import: palette.red,
+            export: palette.red,
         },
         punctuation: {
             default: palette.lightGray,

@@ -48,8 +48,8 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
         },
         keyword: {
             default: palette.red,
-            import: palette.darkGreen,
-            export: palette.darkRed,
+            import: palette.red,
+            export: palette.red,
         },
         operator: {
             default: primaries.d20,
