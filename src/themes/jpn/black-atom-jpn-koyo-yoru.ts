@@ -15,43 +15,43 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#14131e",
-    d20: "#1d1b2a",
-    d30: "#262337",
-    d40: "#332f4a",
+    d10: "#291d2e",
+    d20: "#35293a",
+    d30: "#413446",
+    d40: "#4d4053",
 
     m10: "#605872",
     m20: "#76718f",
     m30: "#8d89a8",
     m40: "#9c98b3",
 
-    l10: "#e0af9f",
-    l20: "#e6bfb2",
-    l30: "#eccfc5",
-    l40: "#f2dfd8",
+    l10: "#dcaf87",
+    l20: "#ecbd96",
+    l30: "#fbcaa4",
+    l40: "#ffdbbf",
 };
 
 const palette: Theme.Palette = {
     black: primaries.d40,
     gray: primaries.m20,
 
-    darkRed: "#ba5d6d",
-    red: "#e27889",
+    darkRed: "#d56b7c",
+    red: "#e47889",
 
-    darkGreen: "#619f81",
-    green: "#80b29a",
+    darkGreen: "#4fa480",
+    green: "#5db28d",
 
-    darkYellow: "#e29f77",
-    yellow: "#e4ae67",
+    darkYellow: "#fd9e66",
+    yellow: "#edaa4b",
 
-    darkBlue: "#ad8593",
-    blue: "#a095a8",
+    darkBlue: "#958aab",
+    blue: "#a298b9",
 
-    darkMagenta: "#ef9d6c",
-    magenta: "#ffb488",
+    darkMagenta: "#d08c63",
+    magenta: "#eda77d",
 
-    darkCyan: "#70a997",
-    cyan: "#91bcaf",
+    darkCyan: "#719b8f",
+    cyan: "#7ea99c",
 
     lightGray: primaries.m40,
     white: primaries.l30,
