@@ -47,7 +47,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             default: palette.yellow,
         },
         keyword: {
-            default: palette.red,
+            default: palette.magenta,
             import: palette.red,
             export: palette.red,
         },
