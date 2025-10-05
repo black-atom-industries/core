@@ -17,7 +17,7 @@ function generateSchema() {
     const collectionProperties: Record<string, unknown> = {};
     for (const collectionKey of collections) {
         collectionProperties[collectionKey] = {
-            "$ref": "#/$defs/collectionConfig"
+            "$ref": "#/$defs/collectionConfig",
         };
     }
 

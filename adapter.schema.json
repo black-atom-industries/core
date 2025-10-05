@@ -1,63 +1,63 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Black Atom Adapter Configuration",
-  "description": "Configuration schema for Black Atom theme adapters",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "description": "The JSON Schema URL"
-    },
-    "collections": {
-      "type": "object",
-      "properties": {
-        "stations": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "jpn": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "terra": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "north": {
-          "$ref": "#/$defs/collectionConfig"
-        },
-        "mnml": {
-          "$ref": "#/$defs/collectionConfig"
-        }
-      },
-      "additionalProperties": false,
-      "minProperties": 1
-    }
-  },
-  "required": [
-    "$schema",
-    "collections"
-  ],
-  "additionalProperties": false,
-  "$defs": {
-    "collectionConfig": {
-      "type": "object",
-      "properties": {
-        "template": {
-          "type": "string",
-          "description": "Path to the collection template file"
-        },
-        "themes": {
-          "type": "array",
-          "items": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Black Atom Adapter Configuration",
+    "description": "Configuration schema for Black Atom theme adapters",
+    "type": "object",
+    "properties": {
+        "$schema": {
             "type": "string",
-            "description": "Theme key from the core theme definitions"
-          },
-          "minItems": 1
+            "description": "The JSON Schema URL"
+        },
+        "collections": {
+            "type": "object",
+            "properties": {
+                "stations": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "jpn": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "terra": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "north": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
+                "mnml": {
+                    "$ref": "#/$defs/collectionConfig"
+                }
+            },
+            "additionalProperties": false,
+            "minProperties": 1
         }
-      },
-      "required": [
-        "template",
-        "themes"
-      ],
-      "additionalProperties": false
+    },
+    "required": [
+        "$schema",
+        "collections"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "collectionConfig": {
+            "type": "object",
+            "properties": {
+                "template": {
+                    "type": "string",
+                    "description": "Path to the collection template file"
+                },
+                "themes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "Theme key from the core theme definitions"
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "template",
+                "themes"
+            ],
+            "additionalProperties": false
+        }
     }
-  }
 }

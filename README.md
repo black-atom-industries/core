@@ -24,10 +24,10 @@ Black Atom includes multiple theme collections, each with its own distinct style
 
 | Collection   | Themes                                                     | Description                   |
 | ------------ | ---------------------------------------------------------- | ----------------------------- |
-| **JPN**      | koyo-hiru, koyo-yoru, murasaki-yoru, tsuki-yoru           | Japanese-inspired themes      |
+| **JPN**      | koyo-hiru, koyo-yoru, murasaki-yoru, tsuki-yoru            | Japanese-inspired themes      |
 | **Stations** | engineering, operations, medical, research                 | Space station-inspired themes |
 | **Terra**    | seasons (spring, summer, fall, winter) × time (day, night) | Earth season-inspired themes  |
-| **MNML**     | 47, mikado, mono, orange (dark/light variants)            | Minimalist themes             |
+| **MNML**     | 47, mikado, mono, orange (dark/light variants)             | Minimalist themes             |
 | **North**    | dark-night, day, night                                     | Nordic-inspired themes        |
 
 All themes are available in both dark and light variants.

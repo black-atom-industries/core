@@ -1,11 +1,12 @@
 import * as Theme from "../../types/theme.ts";
+import { darken } from "../../utils/color.ts";
 
 export default function (
     primaries: Theme.Primaries,
     feedback: Theme.MnmlFeedback,
     accents: Theme.MnmlAccents,
 ): Theme.UI {
-    const shared = {
+    const sharedFg = {
         negative: feedback.negative,
         info: feedback.info,
         hint: feedback.warning,
@@ -14,6 +15,17 @@ export default function (
         add: feedback.success,
         delete: feedback.negative,
         modify: feedback.info,
+    };
+
+    const sharedBg = {
+        negative: darken({ color: feedback.negative, bg: primaries.d10 }),
+        info: darken({ color: feedback.info, bg: primaries.d10 }),
+        hint: darken({ color: feedback.warning, bg: primaries.d10 }),
+        warn: darken({ color: feedback.warning, bg: primaries.d10 }),
+        positive: darken({ color: feedback.success, bg: primaries.d10 }),
+        add: darken({ color: feedback.success, bg: primaries.d10 }),
+        delete: darken({ color: feedback.negative, bg: primaries.d10 }),
+        modify: darken({ color: feedback.info, bg: primaries.d10 }),
     };
 
     return {
@@ -27,7 +39,7 @@ export default function (
             selection: primaries.d40,
             search: primaries.d40,
             contrast: primaries.l10,
-            ...shared,
+            ...sharedBg,
         },
         fg: {
             default: primaries.l30,
@@ -35,7 +47,7 @@ export default function (
             accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.d20,
-            ...shared,
+            ...sharedFg,
         },
     };
 }
