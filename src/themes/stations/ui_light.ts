@@ -2,6 +2,10 @@ import { Palette, Primaries, UI } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (primaries: Primaries, palette: Palette): UI {
+    function t(color: string) {
+        return tint({ color, with: primaries.l30 });
+    }
+
     return {
         bg: {
             default: primaries.l30,
@@ -13,14 +17,14 @@ export default function (primaries: Primaries, palette: Palette): UI {
             selection: primaries.l10,
             search: primaries.l10,
             contrast: primaries.d20,
-            negative: tint({ color: palette.red, with: primaries.l30 }),
-            warn: tint({ color: palette.yellow, with: primaries.l30 }),
-            info: tint({ color: palette.blue, with: primaries.l30 }),
-            hint: tint({ color: palette.darkYellow, with: primaries.l30 }),
-            positive: tint({ color: palette.green, with: primaries.l30 }),
-            add: tint({ color: palette.green, with: primaries.l30 }),
-            delete: tint({ color: palette.red, with: primaries.l30 }),
-            modify: tint({ color: palette.blue, with: primaries.l30 }),
+            negative: t(palette.red),
+            warn: t(palette.yellow),
+            info: t(palette.blue),
+            hint: t(palette.darkYellow),
+            positive: t(palette.green),
+            add: t(palette.green),
+            delete: t(palette.red),
+            modify: t(palette.blue),
         },
         fg: {
             default: primaries.d20,

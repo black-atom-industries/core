@@ -6,6 +6,10 @@ export default function (
     feedback: Theme.MnmlFeedback,
     accents: Theme.MnmlAccents,
 ): Theme.UI {
+    function t(color: string) {
+        return tint({ color, with: primaries.l40 });
+    }
+
     const sharedFg = {
         negative: feedback.negative,
         info: feedback.info,
@@ -18,14 +22,14 @@ export default function (
     };
 
     const sharedBg = {
-        negative: tint({ color: feedback.negative, with: primaries.l40 }),
-        info: tint({ color: feedback.info, with: primaries.l40 }),
-        hint: tint({ color: feedback.warning, with: primaries.l40 }),
-        warn: tint({ color: feedback.warning, with: primaries.l40 }),
-        positive: tint({ color: feedback.success, with: primaries.l40 }),
-        add: tint({ color: feedback.success, with: primaries.l40 }),
-        delete: tint({ color: feedback.negative, with: primaries.l40 }),
-        modify: tint({ color: feedback.info, with: primaries.l40 }),
+        negative: t(feedback.negative),
+        info: t(feedback.info),
+        hint: t(feedback.warning),
+        warn: t(feedback.warning),
+        positive: t(feedback.success),
+        add: t(feedback.success),
+        delete: t(feedback.negative),
+        modify: t(feedback.info),
     };
 
     return {
