@@ -55,38 +55,24 @@ export function blend({ fg, bg, alpha }: { fg: string; bg: string; alpha: number
 }
 
 /**
- * Darkens a color by blending it with black or a custom background
- * @param params - Darken parameters
- * @param params.color - Color to darken (hex)
- * @param params.amount - Amount to darken (0-1). Lower = more darkening, higher = less darkening (default: 0.15)
- * @param params.bg - Background color to blend with (default: black)
- * @returns Darkened hex color
+ * Tints a base color with another color
+ * @param params - Tint parameters
+ * @param params.color - Color to tint with (hex)
+ * @param params.with - Base color to apply tint to (default: black)
+ * @param params.amount - Amount of tint to apply (0-1). Lower = more base color, higher = more tint (default: 0.15)
+ * @returns Tinted hex color
  * @example
- * darken({ color: '#ff0000' }) // Returns '#260000' (85% black + 15% red using default amount)
- * darken({ color: '#ff0000', amount: 0.1 }) // Returns '#1a0000' (90% black + 10% red = heavily darkened)
- * darken({ color: '#ff0000', amount: 0.5 }) // Returns '#800000' (50% black + 50% red = medium darkening)
- * darken({ color: '#f44747', amount: 0.15, bg: '#1e1e1e' }) // Returns '#3c2424' (subtle red background)
+ * tint({ color: '#ff0000', with: '#1e1e1e' }) // Returns '#3c2424' (dark background with 15% red tint)
+ * tint({ color: '#ff0000', with: '#f5f5f5' }) // Returns '#f5d2d2' (light background with 15% red tint)
+ * tint({ color: '#ff0000', with: '#000000', amount: 0.1 }) // Returns '#1a0000' (10% red on black)
+ * tint({ color: '#ff0000', with: '#000000', amount: 0.5 }) // Returns '#800000' (50% red on black)
  */
-export function darken(
-    { color, amount = 0.15, bg = "#000000" }: { color: string; amount?: number; bg?: string },
+export function tint(
+    { color, with: baseColor = "#000000", amount = 0.15 }: {
+        color: string;
+        with?: string;
+        amount?: number;
+    },
 ): HexColor {
-    return blend({ fg: color, bg: bg, alpha: Math.abs(amount) });
-}
-
-/**
- * Lightens a color by blending it with white or a custom foreground
- * @param params - Lighten parameters
- * @param params.color - Color to lighten (hex)
- * @param params.amount - Amount to lighten (0-1). Lower = more lightening, higher = less lightening (default: 0.15)
- * @param params.fg - Foreground color to blend with (default: white)
- * @returns Lightened hex color
- * @example
- * lighten({ color: '#ff0000' }) // Returns '#ffd9d9' (85% white + 15% red using default amount)
- * lighten({ color: '#ff0000', amount: 0.1 }) // Returns '#ffe6e6' (90% white + 10% red = heavily lightened)
- * lighten({ color: '#ff0000', amount: 0.5 }) // Returns '#ff8080' (50% white + 50% red = medium lightening)
- */
-export function lighten(
-    { color, amount = 0.15, fg = "#ffffff" }: { color: string; amount?: number; fg?: string },
-): HexColor {
-    return blend({ fg: color, bg: fg, alpha: Math.abs(amount) });
+    return blend({ fg: color, bg: baseColor, alpha: Math.abs(amount) });
 }

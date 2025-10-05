@@ -1,5 +1,5 @@
 import { Palette, Primaries, UI } from "../../types/theme.ts";
-import { darken } from "../../utils/color.ts";
+import { tint } from "../../utils/color.ts";
 
 export default function (primaries: Primaries, palette: Palette): UI {
     return {
@@ -13,14 +13,14 @@ export default function (primaries: Primaries, palette: Palette): UI {
             selection: primaries.d40,
             search: primaries.d40,
             contrast: primaries.l30,
-            negative: darken({ color: palette.red, bg: primaries.d20 }),
-            warn: darken({ color: palette.yellow, bg: primaries.d20 }),
-            info: darken({ color: palette.blue, bg: primaries.d20 }),
-            hint: darken({ color: palette.darkYellow, bg: primaries.d20 }),
-            positive: darken({ color: palette.green, bg: primaries.d20 }),
-            add: darken({ color: palette.green, bg: primaries.d20 }),
-            delete: darken({ color: palette.red, bg: primaries.d20 }),
-            modify: darken({ color: palette.blue, bg: primaries.d20 }),
+            negative: tint({ color: palette.red, with: primaries.d20 }),
+            warn: tint({ color: palette.yellow, with: primaries.d20 }),
+            info: tint({ color: palette.blue, with: primaries.d20 }),
+            hint: tint({ color: palette.darkYellow, with: primaries.d20 }),
+            positive: tint({ color: palette.green, with: primaries.d20 }),
+            add: tint({ color: palette.green, with: primaries.d20 }),
+            delete: tint({ color: palette.red, with: primaries.d20 }),
+            modify: tint({ color: palette.blue, with: primaries.d20 }),
         },
         fg: {
             default: primaries.l30,

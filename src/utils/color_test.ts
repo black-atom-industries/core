@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "jsr:@std/assert";
-import { blend, darken, lighten } from "./color.ts";
+import { blend, tint } from "./color.ts";
 
 Deno.test("blend() - basic blending", () => {
     // 50/50 blend
@@ -42,65 +42,43 @@ Deno.test("blend() - invalid hex color throws error", () => {
     );
 });
 
-Deno.test("darken() - default background (black)", () => {
-    // Heavily darkened (90% black + 10% red)
-    assertEquals(darken({ color: "#ff0000", amount: 0.1 }), "#1a0000");
+Deno.test("tint() - default base (black)", () => {
+    // Heavy tint (90% black + 10% red)
+    assertEquals(tint({ color: "#ff0000", amount: 0.1 }), "#1a0000");
 
-    // Medium darkening (50% black + 50% red)
-    assertEquals(darken({ color: "#ff0000", amount: 0.5 }), "#800000");
+    // Medium tint (50% black + 50% red)
+    assertEquals(tint({ color: "#ff0000", amount: 0.5 }), "#800000");
 
-    // No darkening (100% original color)
-    assertEquals(darken({ color: "#ff0000", amount: 1 }), "#ff0000");
+    // Full tint color (100% original color)
+    assertEquals(tint({ color: "#ff0000", amount: 1 }), "#ff0000");
 
-    // Complete darkening (100% black)
-    assertEquals(darken({ color: "#ff0000", amount: 0 }), "#000000");
+    // No tint (100% base)
+    assertEquals(tint({ color: "#ff0000", amount: 0 }), "#000000");
 });
 
-Deno.test("darken() - custom background", () => {
-    // Darken with custom dark gray background
-    assertEquals(darken({ color: "#f44747", amount: 0.1, bg: "#1e1e1e" }), "#332222");
+Deno.test("tint() - custom base color", () => {
+    // Tint dark gray with red
+    assertEquals(tint({ color: "#f44747", amount: 0.1, with: "#1e1e1e" }), "#332222");
 
-    // Darken with medium gray background
-    assertEquals(darken({ color: "#ffffff", amount: 0.5, bg: "#808080" }), "#c0c0c0");
+    // Tint medium gray with white
+    assertEquals(tint({ color: "#ffffff", amount: 0.5, with: "#808080" }), "#c0c0c0");
 });
 
-Deno.test("darken() - negative amount (should use absolute value)", () => {
-    assertEquals(darken({ color: "#ff0000", amount: -0.5 }), "#800000");
-});
-
-Deno.test("lighten() - default foreground (white)", () => {
-    // Heavily lightened (90% white + 10% red)
-    assertEquals(lighten({ color: "#ff0000", amount: 0.1 }), "#ffe6e6");
-
-    // Medium lightening (50% white + 50% red)
-    assertEquals(lighten({ color: "#ff0000", amount: 0.5 }), "#ff8080");
-
-    // No lightening (100% original color)
-    assertEquals(lighten({ color: "#ff0000", amount: 1 }), "#ff0000");
-
-    // Complete lightening (100% white)
-    assertEquals(lighten({ color: "#ff0000", amount: 0 }), "#ffffff");
-});
-
-Deno.test("lighten() - custom foreground", () => {
-    // Lighten with custom light gray foreground
-    assertEquals(lighten({ color: "#000000", amount: 0.5, fg: "#e0e0e0" }), "#707070");
-});
-
-Deno.test("lighten() - negative amount (should use absolute value)", () => {
-    assertEquals(lighten({ color: "#ff0000", amount: -0.5 }), "#ff8080");
+Deno.test("tint() - negative amount (should use absolute value)", () => {
+    assertEquals(tint({ color: "#ff0000", amount: -0.5 }), "#800000");
 });
 
 Deno.test("color utilities - real-world examples", () => {
     // Subtle red background for diagnostics (dark theme)
     const darkBg = "#1e1e1e";
     const red = "#f44747";
-    const subtleRedBg = darken({ color: red, amount: 0.2, bg: darkBg });
+    const subtleRedBg = tint({ color: red, amount: 0.2, with: darkBg });
     assertEquals(subtleRedBg, "#492626");
 
     // Subtle red background for diagnostics (light theme)
     const lightBg = "#f5f5f5";
-    const subtleRedBgLight = lighten({ color: red, amount: 0.2, fg: lightBg });
+    const red2 = "#f44747";
+    const subtleRedBgLight = tint({ color: red2, amount: 0.2, with: lightBg });
     assertEquals(subtleRedBgLight, "#f5d2d2");
 });
 
@@ -109,9 +87,9 @@ Deno.test("color utilities - boundary values", () => {
     assertEquals(blend({ fg: "#abcdef", bg: "#123456", alpha: 0 }), "#123456");
     assertEquals(blend({ fg: "#abcdef", bg: "#123456", alpha: 1 }), "#abcdef");
 
-    // Amount = 0 should give full darkening/lightening
-    assertEquals(darken({ color: "#ff0000", amount: 0 }), "#000000");
-    assertEquals(lighten({ color: "#ff0000", amount: 0 }), "#ffffff");
+    // Amount = 0 should give full base color
+    assertEquals(tint({ color: "#ff0000", amount: 0 }), "#000000");
+    assertEquals(tint({ color: "#ff0000", amount: 0, with: "#ffffff" }), "#ffffff");
 });
 
 Deno.test("color utilities - hex format variations", () => {

@@ -1,5 +1,5 @@
 import * as Theme from "../../types/theme.ts";
-import { darken } from "../../utils/color.ts";
+import { tint } from "../../utils/color.ts";
 
 export default function (
     primaries: Theme.Primaries,
@@ -18,14 +18,14 @@ export default function (
     };
 
     const sharedBg = {
-        negative: darken({ color: feedback.negative, bg: primaries.l40 }),
-        info: darken({ color: feedback.info, bg: primaries.l40 }),
-        hint: darken({ color: feedback.warning, bg: primaries.l40 }),
-        warn: darken({ color: feedback.warning, bg: primaries.l40 }),
-        positive: darken({ color: feedback.success, bg: primaries.l40 }),
-        add: darken({ color: feedback.success, bg: primaries.l40 }),
-        delete: darken({ color: feedback.negative, bg: primaries.l40 }),
-        modify: darken({ color: feedback.info, bg: primaries.l40 }),
+        negative: tint({ color: feedback.negative, with: primaries.l40 }),
+        info: tint({ color: feedback.info, with: primaries.l40 }),
+        hint: tint({ color: feedback.warning, with: primaries.l40 }),
+        warn: tint({ color: feedback.warning, with: primaries.l40 }),
+        positive: tint({ color: feedback.success, with: primaries.l40 }),
+        add: tint({ color: feedback.success, with: primaries.l40 }),
+        delete: tint({ color: feedback.negative, with: primaries.l40 }),
+        modify: tint({ color: feedback.info, with: primaries.l40 }),
     };
 
     return {
