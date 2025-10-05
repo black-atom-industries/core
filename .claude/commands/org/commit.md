@@ -14,11 +14,13 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 
 2. **Generate themes for all adapters** (without committing):
    ```bash
-   cd /Users/nbr/repos/black-atom-industries/core && deno task dev:adapters:generate
+   deno task adapters:gen
    ```
 
 3. **Examine each adapter repository** to understand what changed:
-   - Check git status in each: nvim, ghostty, zed, wezterm
+   ```bash
+   cd ~/repos/black-atom-industries && ford git status --short
+   ```
    - Analyze the nature of changes (new files, modifications, etc.)
 
 4. **Analyze and propose commit messages**:
@@ -32,7 +34,17 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 
 5. **Wait for user approval** before proceeding with commits
 
-6. **If approved, commit each repository** with the approved messages
+6. **If approved, commit repositories** using ford:
+   - Commit core repository with the approved message
+   - Use `ford` to commit all adapter repositories:
+     ```bash
+     cd ~/repos/black-atom-industries && ford bash -c 'git add -A && git commit -m "message"'
+     ```
+
+7. **Push all repositories** using ford:
+   ```bash
+   cd ~/repos/black-atom-industries && ford git push
+   ```
 
 **Semantic commit guidelines:**
 
