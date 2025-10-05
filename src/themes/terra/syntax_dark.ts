@@ -91,7 +91,7 @@ export default function (primaries: Primaries, palette: Palette): Syntax {
             link: palette.green,
             code: {
                 fg: primaries.l10,
-                bg: primaries.d40,
+                bg: primaries.d30,
             },
         },
         tag: {
