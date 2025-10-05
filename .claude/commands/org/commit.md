@@ -3,7 +3,10 @@ description: "Intelligently commit theme changes across all Black Atom repositor
 allowed-tools: ["Bash", "Read", "Glob", "LS"]
 ---
 
-You are performing an intelligent organization-wide commit for the Black Atom theme project. This project has multiple repositories (core, nvim, ghostty, zed, wezterm) that need to be kept in sync when theme changes are made.
+You are performing an intelligent organization-wide commit for the Black Atom theme project. This project has multiple repositories that need to be kept in sync when theme changes are made.
+
+**Theme adapter repositories:** nvim, ghostty, zed, wezterm, tmux
+**Non-theme repositories to exclude:** radar.nvim, adapter-template, claude, obsidian, website
 
 **Your task:**
 
@@ -19,7 +22,7 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 
 3. **Examine each adapter repository** to understand what changed:
    ```bash
-   cd ~/repos/black-atom-industries && ford git status --short
+   cd ~/repos/black-atom-industries && ford --exclude radar.nvim,adapter-template,claude,obsidian,website git status --short
    ```
    - Analyze the nature of changes (new files, modifications, etc.)
 
@@ -36,14 +39,14 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 
 6. **If approved, commit repositories** using ford:
    - Commit core repository with the approved message
-   - Use `ford` to commit all adapter repositories:
+   - Use `ford` to commit all theme adapter repositories:
      ```bash
-     cd ~/repos/black-atom-industries && ford bash -c 'git add -A && git commit -m "message"'
+     cd ~/repos/black-atom-industries && ford --exclude radar.nvim,adapter-template,claude,obsidian,website bash -c 'git add -A && git commit -m "message"'
      ```
 
 7. **Push all repositories** using ford:
    ```bash
-   cd ~/repos/black-atom-industries && ford git push
+   cd ~/repos/black-atom-industries && ford --exclude radar.nvim,adapter-template,claude,obsidian,website git push
    ```
 
 **Semantic commit guidelines:**
