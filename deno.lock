@@ -7,7 +7,8 @@
     "jsr:@std/fs@1": "1.0.13",
     "jsr:@std/internal@^1.0.10": "1.0.10",
     "jsr:@std/path@^1.0.8": "1.0.8",
-    "npm:@types/node@*": "22.13.4"
+    "npm:@types/node@*": "22.13.4",
+    "npm:culori@4": "4.0.2"
   },
   "jsr": {
     "@eta-dev/eta@3.5.0": {
@@ -42,6 +43,9 @@
         "undici-types"
       ]
     },
+    "culori@4.0.2": {
+      "integrity": "sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw=="
+    },
     "undici-types@6.20.0": {
       "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="
     }
@@ -67,7 +71,8 @@
       "jsr:@eta-dev/eta@3.5.0",
       "jsr:@std/fmt@1.0.5",
       "jsr:@std/fs@1",
-      "jsr:@std/path@^1.0.8"
+      "jsr:@std/path@^1.0.8",
+      "npm:culori@4"
     ]
   }
 }

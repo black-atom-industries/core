@@ -1,4 +1,5 @@
 import * as Theme from "../../types/theme.ts";
+import { oklch } from "../../utils/color.ts";
 
 import syntax_light from "./syntax_light.ts";
 import ui_light from "./ui_light.ts";
@@ -15,43 +16,43 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#280e02",
-    d20: "#422617",
-    d30: "#4f3222",
-    d40: "#694a39",
+    d10: oklch(0.202, 0.05, 47.49),
+    d20: oklch(0.301, 0.049, 48.35),
+    d30: oklch(0.348, 0.05, 49.42),
+    d40: oklch(0.438, 0.05, 49.73),
 
-    m10: "#815137",
-    m20: "#9b6a4f",
-    m30: "#b78368",
-    m40: "#d39e82",
+    m10: oklch(0.483, 0.075, 48.75),
+    m20: oklch(0.569, 0.074, 49.6),
+    m30: oklch(0.655, 0.075, 48.42),
+    m40: oklch(0.742, 0.075, 49.01),
 
-    l10: "#e3bfa4",
-    l20: "#eeceb6",
-    l30: "#f8ddc7",
-    l40: "#ffe6d2",
+    l10: oklch(0.829, 0.055, 58.77),
+    l20: oklch(0.872, 0.048, 58.95),
+    l30: oklch(0.914, 0.042, 61.44),
+    l40: oklch(0.94, 0.038, 61),
 };
 
 const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: "#a23125",
-    red: "#bf4d3f",
+    darkRed: oklch(0.482, 0.151, 29.67),
+    red: oklch(0.568, 0.15, 29.52),
 
-    darkGreen: "#546540",
-    green: "#6d7e57",
+    darkGreen: oklch(0.482, 0.06, 128.52),
+    green: oklch(0.569, 0.061, 127.36),
 
-    darkYellow: "#e16648",
-    yellow: "#d9710a",
+    darkYellow: oklch(0.656, 0.16, 34.94),
+    yellow: oklch(0.656, 0.16, 54.87),
 
-    darkBlue: "#755644",
-    blue: "#956d57",
+    darkBlue: oklch(0.481, 0.05, 51.31),
+    blue: oklch(0.57, 0.061, 49.91),
 
-    darkMagenta: "#864d37",
-    magenta: "#a26650",
+    darkMagenta: oklch(0.482, 0.084, 41.63),
+    magenta: oklch(0.57, 0.085, 40.86),
 
-    darkCyan: "#35695c",
-    cyan: "#4f8375",
+    darkCyan: oklch(0.481, 0.06, 175.39),
+    cyan: oklch(0.569, 0.06, 175),
 
     lightGray: primaries.l10,
     white: primaries.l30,

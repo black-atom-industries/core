@@ -1,4 +1,5 @@
 import * as Theme from "../../types/theme.ts";
+import { oklch } from "../../utils/color.ts";
 
 import basePalette from "./base_palette.ts";
 import syntax from "./syntax_light.ts";
@@ -16,20 +17,20 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: "#2a2723",
-    d20: "#3b362a",
-    d30: "#484436",
-    d40: "#655f4b",
+    d10: oklch(0.275, 0.008, 75.24),
+    d20: oklch(0.334, 0.021, 88.08),
+    d30: oklch(0.386, 0.023, 93.96),
+    d40: oklch(0.485, 0.031, 93.33),
 
-    m10: "#516258",
-    m20: "#5c7064",
-    m30: "#677e70",
-    m40: "#81988a",
+    m10: oklch(0.479, 0.026, 159.44),
+    m20: oklch(0.525, 0.03, 158.84),
+    m30: oklch(0.57, 0.034, 158.4),
+    m40: oklch(0.658, 0.033, 158.64),
 
-    l10: "#d3c3ad",
-    l20: "#dbcfbc",
-    l30: "#ece3d5",
-    l40: "#f9f9ed",
+    l10: oklch(0.825, 0.035, 75.92),
+    l20: oklch(0.859, 0.029, 79.46),
+    l30: oklch(0.919, 0.021, 79.09),
+    l40: oklch(0.979, 0.016, 106.69),
 };
 
 const accents: Theme.MnmlAccents = {

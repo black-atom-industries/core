@@ -85,6 +85,18 @@ The task system is organized in the `src/tasks/` directory:
 - **Collections**: Themes are organized into collections (JPN, Stations, Terra, CRBN)
 - **Shared Components**: UI and syntax definitions are shared across themes
 - **Theme Definition**: Each theme has its own TypeScript file defining colors and properties
+- **Color System**: Uses OKLCH color space with helper functions in `src/utils/color.ts`
+
+### Color Utilities (`src/utils/color.ts`)
+
+The color utility module provides functions for working with colors:
+
+- **`oklch(l, c, h)`**: Converts OKLCH values to hex color
+  - `l` (lightness): 0-1, where 0 is black and 1 is white
+  - `c` (chroma): typically 0-0.4, represents color intensity
+  - `h` (hue): 0-360 degrees, color angle on the color wheel
+- **`blend({fg, bg, alpha})`**: Blends two colors together
+- **`tint({color, with, amount})`**: Tints a base color with another color
 
 ### Adapter System
 
@@ -103,7 +115,11 @@ The task system is organized in the `src/tasks/` directory:
 
 ## Theme Definition Structure
 
+All themes use OKLCH color space for defining colors, which provides better perceptual uniformity and easier color manipulation compared to hex values. The `oklchToHex()` function converts OKLCH values to hex at build time.
+
 ```typescript
+import { oklchToHex } from "../../utils/color.ts";
+
 // Theme interface
 interface Theme {
     meta: {
@@ -114,7 +130,7 @@ interface Theme {
     appearance: "dark" | "light";
     primaries: {
         /* Dark range */
-        d10: HexColor; // Darkest
+        d10: HexColor; // Darkest - defined with oklchToHex()
         d20: HexColor;
         d30: HexColor;
         d40: HexColor; // Transition to medium
@@ -137,6 +153,13 @@ interface Theme {
     ui: UITheme;
     syntax: SyntaxTheme;
 }
+
+// Example theme definition using OKLCH
+const primaries: Theme.Primaries = {
+    d10: oklchToHex(0.199, 0.015, 196.04), // L: lightness (0-1), C: chroma, H: hue (0-360)
+    d20: oklchToHex(0.225, 0.016, 196.09),
+    // ... more colors
+};
 
 // UI theme interface
 interface UITheme {
