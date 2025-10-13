@@ -3,13 +3,14 @@ import * as colors from "@std/fmt/colors";
 
 import { config } from "../config.ts";
 
-import { AdapterConfig, adapterConfigSchema } from "../lib/validate-adapter.ts";
+import { AdapterConfig, createAdapterConfigSchema } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
 import { processTemplates } from "../lib/template.ts";
 import { loadThemeMap } from "../lib/theme-loader.ts";
 
 async function getAdapterConfig(): Promise<AdapterConfig> {
     try {
+        const adapterConfigSchema = createAdapterConfigSchema(config.themeKeys);
         const adapterConfig = await Deno.readTextFile(config.adapterFileName);
         return adapterConfigSchema.parse(JSON.parse(adapterConfig));
     } catch (error) {

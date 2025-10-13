@@ -1,4 +1,4 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assertEquals } from "@std/assert";
 import { tint } from "./color.ts";
 
 Deno.test("tint() - default base (black)", () => {

@@ -2,6 +2,7 @@ import { dirname, join } from "@std/path";
 
 import * as Theme from "./types/theme.ts";
 import { themeKeys } from "./types/theme.ts";
+import { discoverAdapters } from "./lib/discover-adapters.ts";
 
 export type Config = {
     dir: {
@@ -12,7 +13,7 @@ export type Config = {
     adapterFileName: string;
     themeKeys: readonly Theme.Key[];
     themePathMap: Theme.ThemeKeyPathMap;
-    adapters: ("nvim" | "ghostty" | "zed" | "wezterm" | "obsidian" | "tmux")[]; // List of cloned adapter repository names
+    getAdapters: () => Promise<string[]>; // Dynamically discover adapter repositories
     orgName: string; // Organization directory name
 };
 
@@ -27,6 +28,13 @@ export const config: Config = {
     },
     adapterFileName: "black-atom-adapter.json",
     themeKeys,
+    async getAdapters() {
+        const orgDir = this.dir.org;
+        if (!orgDir) {
+            throw new Error("Organization directory not configured");
+        }
+        return await discoverAdapters(orgDir);
+    },
     themePathMap: {
         // Stations
         "black-atom-stations-engineering": "./themes/stations/black-atom-stations-engineering",
@@ -65,12 +73,4 @@ export const config: Config = {
         "black-atom-mnml-47-light": "./themes/mnml/black-atom-mnml-47-light",
         "black-atom-mnml-47-dark": "./themes/mnml/black-atom-mnml-47-dark",
     },
-    adapters: [
-        "nvim",
-        "ghostty",
-        "zed",
-        "wezterm",
-        "tmux",
-        // "obsidian", // Disabled until ready
-    ],
 };

@@ -1,17 +1,18 @@
 import * as z from "@zod";
-import { config } from "../config.ts";
 import type { CollectionKey } from "../types/theme.ts";
 
-const collectionConfigSchema = z.object({
-    template: z.string(),
-    themes: z.array(z.enum(config.themeKeys as unknown as [string, ...string[]])).min(1),
-});
+/**
+ * Factory function that creates the adapter config schema
+ * @param themeKeys - Array of valid theme keys to validate against
+ * @returns Zod schema for adapter configuration
+ */
+export function createAdapterConfigSchema(themeKeys: readonly string[]) {
+    const collectionConfigSchema = z.object({
+        template: z.string(),
+        themes: z.array(z.enum(themeKeys as unknown as [string, ...string[]])).min(1),
+    });
 
-export type CollectionConfig = z.infer<typeof collectionConfigSchema>;
-
-// Create a type-safe collections schema that requires all CollectionKey values
-const createCollectionsSchema = () => {
-    // This ensures we have a schema entry for each collection key
+    // Create a type-safe collections schema that requires all CollectionKey values
     const collectionEntries: Record<CollectionKey, typeof collectionConfigSchema> = {
         jpn: collectionConfigSchema,
         stations: collectionConfigSchema,
@@ -20,14 +21,13 @@ const createCollectionsSchema = () => {
         mnml: collectionConfigSchema,
     };
 
-    return z.object(collectionEntries).partial();
-};
+    const collectionsSchema = z.object(collectionEntries).partial();
 
-const collectionsSchema = createCollectionsSchema();
+    return z.object({
+        $schema: z.string(),
+        enabled: z.boolean().optional().default(true),
+        collections: collectionsSchema,
+    });
+}
 
-export const adapterConfigSchema = z.object({
-    $schema: z.string(),
-    collections: collectionsSchema,
-});
-
-export type AdapterConfig = z.infer<typeof adapterConfigSchema>;
+export type AdapterConfig = z.infer<ReturnType<typeof createAdapterConfigSchema>>;

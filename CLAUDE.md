@@ -24,6 +24,7 @@
 - Generate and commit all: `deno task adapters:commit`
 - Push all repositories: `deno task adapters:push`
 - Reset repositories to remote: `deno task adapters:reset` (use `--auto-stash` to automatically stash changes)
+- Run command in each adapter: `deno task adapters:each <command>` (e.g., `deno task adapters:each git status`)
 
 ## Code Style Guide
 

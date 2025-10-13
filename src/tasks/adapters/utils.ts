@@ -112,8 +112,11 @@ export async function forEachAdapter(
         Deno.exit(1);
     }
 
+    // Discover adapter repositories dynamically
+    const adapters = await config.getAdapters();
+
     // Iterate through each adapter
-    for (const adapter of config.adapters) {
+    for (const adapter of adapters) {
         const adapterName = colors.bold(colors.brightMagenta(adapter));
         const adapterDir = join(orgDir, adapter);
 

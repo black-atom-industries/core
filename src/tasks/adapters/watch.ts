@@ -2,7 +2,7 @@ import { dirname, join, relative } from "@std/path";
 import { existsSync } from "@std/fs";
 import * as colors from "@std/fmt/colors";
 import { config } from "../../config.ts";
-import { adapterConfigSchema } from "../../lib/validate-adapter.ts";
+import { createAdapterConfigSchema } from "../../lib/validate-adapter.ts";
 import log from "../../lib/log.ts";
 import { generateAllRepositories, generateSingleAdapter } from "./generate.ts";
 
@@ -25,8 +25,14 @@ export async function watch() {
         { path: coreThemesDir, type: "core" },
     ];
 
+    // Discover adapter repositories dynamically
+    const adapters = await config.getAdapters();
+
+    // Create schema instance for validation
+    const adapterConfigSchema = createAdapterConfigSchema(config.themeKeys);
+
     // Add adapter template directories by reading their configurations
-    for (const adapter of config.adapters) {
+    for (const adapter of adapters) {
         const adapterDir = join(orgDir, adapter);
         const adapterConfigPath = join(adapterDir, config.adapterFileName);
 

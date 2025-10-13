@@ -31,6 +31,11 @@ function generateSchema() {
                 "type": "string",
                 "description": "The JSON Schema URL",
             },
+            "enabled": {
+                "type": "boolean",
+                "description": "Whether this adapter is active and should be processed",
+                "default": true,
+            },
             "collections": {
                 "type": "object",
                 "properties": collectionProperties,
