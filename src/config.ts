@@ -2,18 +2,16 @@ import { dirname, join } from "@std/path";
 
 import * as Theme from "./types/theme.ts";
 import { themeKeys } from "./types/theme.ts";
-import { discoverAdapters } from "./lib/discover-adapters.ts";
 
 export type Config = {
     dir: {
         core: string;
         themes: string;
-        org?: string; // Organization directory (parent of core)
+        org: string; // Organization directory (parent of core)
     };
     adapterFileName: string;
     themeKeys: readonly Theme.Key[];
     themePathMap: Theme.ThemeKeyPathMap;
-    getAdapters: () => Promise<string[]>; // Dynamically discover adapter repositories
     orgName: string; // Organization directory name
 };
 
@@ -28,13 +26,6 @@ export const config: Config = {
     },
     adapterFileName: "black-atom-adapter.json",
     themeKeys,
-    async getAdapters() {
-        const orgDir = this.dir.org;
-        if (!orgDir) {
-            throw new Error("Organization directory not configured");
-        }
-        return await discoverAdapters(orgDir);
-    },
     themePathMap: {
         // Stations
         "black-atom-stations-engineering": "./themes/stations/black-atom-stations-engineering",

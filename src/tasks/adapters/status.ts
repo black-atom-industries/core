@@ -1,5 +1,7 @@
 import * as colors from "@std/fmt/colors";
-import { forEachAdapter, runCommand } from "./utils.ts";
+import { forEachAdapter } from "./forEachAdapter.ts";
+import { runCommand } from "./utils.ts";
+import { getAdapters } from "../../lib/discover-adapters.ts";
 import log from "../../lib/log.ts";
 
 interface RepoStatus {
@@ -95,13 +97,15 @@ export async function showAdapterStatuses(): Promise<void> {
     statuses["core"] = await getRepoStatus();
 
     // Then check adapter repositories
-    await forEachAdapter(
-        async ({ adapter, adapterDir }) => {
+    const adapters = await getAdapters();
+
+    await forEachAdapter({
+        adapters,
+        cb: async ({ adapter, adapterDir }) => {
             log.info(`Checking ${adapter} repository status...`);
             statuses[adapter] = await getRepoStatus(adapterDir);
-            return { continue: true };
         },
-    );
+    });
 
     // Display summary table
     log.hr_thick(" Repository Status Overview ");

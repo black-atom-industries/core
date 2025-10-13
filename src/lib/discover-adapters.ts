@@ -2,9 +2,14 @@
  * Discovers adapter repositories by looking for black-atom-adapter.json files
  */
 
-import { join } from "@std/path";
+import { dirname, join } from "@std/path";
 import { themeKeys } from "../types/theme.ts";
 import { createAdapterConfigSchema } from "./validate-adapter.ts";
+
+/**
+ * Organization name for Black Atom Industries
+ */
+const ORG_NAME = "black-atom-industries";
 
 /**
  * Discovers all enabled adapter repositories in the organization directory
@@ -49,4 +54,14 @@ export async function discoverAdapters(orgDir: string): Promise<string[]> {
     }
 
     return adapters.sort(); // Sort alphabetically for consistency
+}
+
+/**
+ * Convenience function to get adapters using the current working directory
+ * Resolves the organization directory relative to core and discovers adapters
+ */
+export async function getAdapters(): Promise<string[]> {
+    const coreDir = Deno.cwd();
+    const orgDir = join(dirname(dirname(coreDir)), ORG_NAME);
+    return await discoverAdapters(orgDir);
 }

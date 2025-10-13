@@ -3,6 +3,7 @@ import { existsSync } from "@std/fs";
 import * as colors from "@std/fmt/colors";
 import { config } from "../../config.ts";
 import { createAdapterConfigSchema } from "../../lib/validate-adapter.ts";
+import { getAdapters } from "../../lib/discover-adapters.ts";
 import log from "../../lib/log.ts";
 import { generateAllRepositories, generateSingleAdapter } from "./generate.ts";
 
@@ -26,7 +27,7 @@ export async function watch() {
     ];
 
     // Discover adapter repositories dynamically
-    const adapters = await config.getAdapters();
+    const adapters = await getAdapters();
 
     // Create schema instance for validation
     const adapterConfigSchema = createAdapterConfigSchema(config.themeKeys);

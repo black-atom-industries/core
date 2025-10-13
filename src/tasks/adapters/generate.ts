@@ -1,6 +1,8 @@
-import { forEachAdapter, runCommand } from "./utils.ts";
+import { forEachAdapter } from "./forEachAdapter.ts";
+import { runCommand } from "./utils.ts";
+import { getAdapters } from "../../lib/discover-adapters.ts";
 import log from "../../lib/log.ts";
-import { dirname, join } from "@std/path";
+import { join } from "@std/path";
 import { config } from "../../config.ts";
 
 /**
@@ -20,9 +22,11 @@ export async function generateAllRepositories(
     { commit = true, logErrors = false }: AdaptRepositoriesOptions = {},
 ) {
     const results: { adapter: string; hasChanges: boolean; error?: string }[] = [];
+    const adapters = await getAdapters();
 
-    await forEachAdapter(
-        async ({ adapter, adapterDir, adapterName }) => {
+    await forEachAdapter({
+        adapters,
+        cb: async ({ adapter, adapterDir }) => {
             try {
                 // Use Deno directly with import map for proper module resolution
                 const coreDir = config.dir.core;
@@ -52,7 +56,7 @@ export async function generateAllRepositories(
                     });
 
                     if (commit) {
-                        log.info(`Changes detected in ${adapterName}, committing...`);
+                        log.info(`Changes detected in ${adapter}, committing...`);
                         log.info(`Changes summary: \n${diffSummary.trim()}`);
 
                         // Commit changes with a descriptive message
@@ -84,11 +88,11 @@ export async function generateAllRepositories(
 
                 // Log error immediately if requested (useful for initial generation)
                 if (logErrors) {
-                    log.error(`Error in ${adapterName}: ${errorMsg}`);
+                    log.error(`Error in ${adapter}: ${errorMsg}`);
                 }
             }
         },
-    );
+    });
 
     return results;
 }
@@ -99,8 +103,7 @@ export async function generateAllRepositories(
 export async function generateSingleAdapter(
     adapterName: string,
 ): Promise<{ adapter: string; hasChanges: boolean; error?: string }> {
-    const orgDir = config.dir.org || join(dirname(config.dir.core), config.orgName);
-    const adapterDir = join(orgDir, adapterName);
+    const adapterDir = join(config.dir.org, adapterName);
 
     try {
         // Use Deno directly with import map for proper module resolution

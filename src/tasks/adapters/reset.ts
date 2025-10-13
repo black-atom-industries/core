@@ -1,4 +1,6 @@
-import { forEachAdapter, runCommand } from "./utils.ts";
+import { forEachAdapter } from "./forEachAdapter.ts";
+import { runCommand } from "./utils.ts";
+import { getAdapters } from "../../lib/discover-adapters.ts";
 import log from "../../lib/log.ts";
 
 /**
@@ -22,8 +24,11 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
     const reposReset: string[] = [];
     const reposFailed: string[] = [];
 
-    await forEachAdapter(
-        async ({ adapter, adapterDir, adapterName }) => {
+    const adapters = await getAdapters();
+
+    await forEachAdapter({
+        adapters,
+        cb: async ({ adapter, adapterDir }) => {
             try {
                 // Check for uncommitted changes
                 const gitStatus = await runCommand(["git", "status", "--porcelain"], {
@@ -35,20 +40,17 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
                     reposWithChanges.push(adapter);
 
                     if (!autoStash) {
-                        log.warn(`Local changes detected in ${adapterName}.`);
+                        log.warn(`Local changes detected in ${adapter}.`);
                         log.info("Uncommitted changes:");
                         log.info(gitStatus);
-
-                        // Don't reset this repository, move to the next one
-                        return {
-                            continue: false,
-                            message:
-                                `Skipping reset for ${adapterName} due to local changes. Use --auto-stash to stash changes automatically.`,
-                        };
+                        log.info(
+                            `Skipping reset for ${adapter} due to local changes. Use --auto-stash to stash changes automatically.`,
+                        );
+                        return;
                     }
 
                     // Auto-stash changes if requested
-                    log.info(`Stashing changes in ${adapterName}...`);
+                    log.info(`Stashing changes in ${adapter}...`);
                     await runCommand([
                         "git",
                         "stash",
@@ -56,7 +58,7 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
                         `Auto-stashed by black-atom-core reset task`,
                     ], { cwd: adapterDir });
                     reposStashed.push(adapter);
-                    log.success(`Changes stashed in ${adapterName}`);
+                    log.success(`Changes stashed in ${adapter}`);
                 }
 
                 // Check if we're tracking a remote branch
@@ -70,32 +72,29 @@ export async function resetAllRepositories(options: ResetOptions = {}): Promise<
 
                 if (!hasRemote) {
                     log.warn(
-                        `No remote tracking branch found for ${adapterName}. Cannot reset to remote.`,
+                        `No remote tracking branch found for ${adapter}. Cannot reset to remote.`,
                     );
                     reposFailed.push(adapter);
-                    return { continue: false };
+                    return;
                 }
 
                 // Fetch latest from remote
-                log.info(`Fetching latest changes for ${adapterName}...`);
+                log.info(`Fetching latest changes for ${adapter}...`);
                 await runCommand(["git", "fetch"], { cwd: adapterDir });
 
                 // Reset to remote
-                log.info(`Resetting ${adapterName} to remote state...`);
+                log.info(`Resetting ${adapter} to remote state...`);
                 await runCommand(["git", "reset", "--hard", "@{u}"], { cwd: adapterDir });
 
                 reposReset.push(adapter);
-                log.success(`Successfully reset ${adapterName} to remote state`);
+                log.success(`Successfully reset ${adapter} to remote state`);
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : String(error);
                 log.error(`Error resetting ${adapter}: ${errorMessage}`);
                 reposFailed.push(adapter);
-                return { continue: false };
             }
-
-            return { continue: true };
         },
-    );
+    });
 
     // Display summary
     log.hr_thick(" Reset Summary ");

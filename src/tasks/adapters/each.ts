@@ -3,43 +3,9 @@
  * Similar to the `ford` command but specifically for adapter repos
  */
 
-import { config } from "../../config.ts";
 import log from "../../lib/log.ts";
-
-async function runCommandInRepo(
-    adapter: string,
-    command: string[],
-): Promise<{ success: boolean; code: number }> {
-    const orgDir = config.dir.org;
-    if (!orgDir) {
-        throw new Error("Organization directory not found");
-    }
-
-    const adapterDir = `${orgDir}/${adapter}`;
-
-    // Check if directory exists
-    try {
-        await Deno.stat(adapterDir);
-    } catch {
-        console.log(`Directory not found: ${adapterDir}`);
-        return { success: false, code: 1 };
-    }
-
-    // Run the command with inherited stdio to preserve colors
-    const cmd = new Deno.Command(command[0], {
-        args: command.slice(1),
-        cwd: adapterDir,
-        stdout: "inherit",
-        stderr: "inherit",
-    });
-
-    const { code } = await cmd.output();
-
-    return {
-        success: code === 0,
-        code,
-    };
-}
+import { getAdapters } from "../../lib/discover-adapters.ts";
+import { forEachAdapter } from "./forEachAdapter.ts";
 
 async function main() {
     const args = Deno.args;
@@ -55,20 +21,29 @@ async function main() {
         Deno.exit(1);
     }
 
-    // Discover adapter repositories dynamically
-    const adapters = await config.getAdapters();
+    const adapters = await getAdapters();
 
-    for (const adapter of adapters) {
-        console.log(`📂 Running command in ${adapter}`);
+    await forEachAdapter({
+        adapters,
+        cb: async ({ adapter, adapterDir }) => {
+            console.log(`📂 Running command in ${adapter}`);
 
-        const result = await runCommandInRepo(adapter, args);
+            const cmd = new Deno.Command(args[0], {
+                args: args.slice(1),
+                cwd: adapterDir,
+                stdout: "inherit",
+                stderr: "inherit",
+            });
 
-        if (!result.success) {
-            console.log(`❌ Command failed (exit code: ${result.code})`);
-        }
+            const output = await cmd.output();
 
-        console.log("─".repeat(80));
-    }
+            if (output.code !== 0) {
+                console.log(`❌ Command failed (exit code: ${output.code})`);
+            }
+
+            console.log("─".repeat(80));
+        },
+    });
 }
 
 if (import.meta.main) {
