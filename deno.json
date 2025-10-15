@@ -5,7 +5,7 @@
         "check": "deno check .",
         "format": "deno fmt .",
         "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json .",
-        "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts",
+        "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",
         "cli:install": "deno install --global --allow-read --allow-write -f -n black-atom-core src/cli/index.ts",
         "cli:compile": "deno compile --allow-read --allow-write --allow-env -o black-atom-core src/cli/index.ts",
         "adapters:gen": "deno run -A src/tasks/index.ts adapters:gen",
