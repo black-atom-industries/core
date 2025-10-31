@@ -16,7 +16,7 @@ export default function (
             default: accents.a20,
         },
         string: {
-            default: primaries.m40,
+            default: primaries.m20,
             doc: accents.a20,
             regexp: accents.a10,
             escape: accents.a10,
