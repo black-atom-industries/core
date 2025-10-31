@@ -122,6 +122,7 @@ interface Palette {
 interface MnmlAccents {
     a10: HexColor;
     a20: HexColor;
+    a30?: HexColor;
 }
 
 /** Minimal feedback interface for mnml themes */

@@ -7,10 +7,10 @@ export default function (
 ): Theme.Syntax {
     return {
         variable: {
-            default: primaries.l10,
+            default: primaries.l20,
             builtin: primaries.l10,
             member: accents.a20,
-            parameter: accents.a10,
+            parameter: accents.a20,
         },
         property: {
             default: accents.a20,
