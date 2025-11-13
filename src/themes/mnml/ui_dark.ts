@@ -34,9 +34,9 @@ export default function (
 
     return {
         bg: {
-            default: primaries.d10,
-            panel: primaries.d20,
-            float: primaries.d20,
+            default: primaries.d20,
+            panel: primaries.d10,
+            float: primaries.d10,
             active: primaries.d30,
             disabled: primaries.d40,
             hover: primaries.d30,
@@ -47,7 +47,7 @@ export default function (
         },
         fg: {
             default: primaries.l30,
-            subtle: primaries.m40,
+            subtle: primaries.m30,
             accent: accents.a10,
             disabled: primaries.m20,
             contrast: primaries.d20,

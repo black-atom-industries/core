@@ -34,10 +34,10 @@ export default function (
 
     return {
         bg: {
-            default: primaries.l40,
-            panel: primaries.l30,
-            float: primaries.l30,
-            active: primaries.l20,
+            default: primaries.l30,
+            panel: primaries.l20,
+            float: primaries.l20,
+            active: primaries.l10,
             disabled: primaries.l10,
             hover: primaries.l20,
             selection: primaries.l10,
