@@ -11,7 +11,7 @@
         "adapters:gen": "deno run -A src/tasks/index.ts adapters:gen",
         "adapters:watch": "deno run -A src/tasks/index.ts adapters:watch",
         "adapters:status": "deno run -A src/tasks/index.ts adapters:status",
-        "adapters:commit": "deno run -A src/tasks/index.ts adapters:commit",
+        "adapters:commit": "deno run -A src/tasks/adapters/each.ts git commit -m \"chore: generate themes with latest core definitions\"",
         "adapters:push": "deno run -A src/tasks/index.ts adapters:push",
         "adapters:reset": "deno run -A src/tasks/index.ts adapters:reset",
         "adapters:each": "deno run -A src/tasks/adapters/each.ts"

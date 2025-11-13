@@ -44,6 +44,21 @@ if (import.meta.main) {
             break;
         }
 
+        case "adapters:commit:amend": {
+            log.info("Generating themes for all repositories with commit and amending...");
+
+            const confirmCommit = await getUserConfirmation(
+                "This will commit changes to all adapter repositories and amend the last commit. Continue? (y/n): ",
+            );
+
+            if (confirmCommit) {
+                await generateAllRepositories({ commit: true, amend: true });
+            } else {
+                log.info("Operation cancelled");
+            }
+            break;
+        }
+
         case "adapters:push": {
             log.info("Pushing all adapter repositories...");
             await pushAllRepositories();
