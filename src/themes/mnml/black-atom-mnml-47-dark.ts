@@ -17,25 +17,25 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.219, 0.007, 78.18),
-    d20: oklch(0.244, 0.014, 87.57),
-    d30: oklch(0.289, 0.016, 91.78),
-    d40: oklch(0.375, 0.023, 93.98),
+    d10: oklch(0.20, 0.010, 125),
+    d20: oklch(0.25, 0.015, 125),
+    d30: oklch(0.35, 0.025, 125),
+    d40: oklch(0.40, 0.035, 125),
 
-    m10: oklch(0.527, 0.034, 139.11),
-    m20: oklch(0.573, 0.039, 138.6),
-    m30: oklch(0.617, 0.045, 138.5),
-    m40: oklch(0.697, 0.034, 139.43),
+    m10: oklch(0.50, 0.045, 125),
+    m20: oklch(0.55, 0.045, 125),
+    m30: oklch(0.60, 0.045, 125),
+    m40: oklch(0.70, 0.045, 125),
 
-    l10: oklch(0.84, 0.075, 139.06),
-    l20: oklch(0.871, 0.061, 139.91),
-    l30: oklch(0.903, 0.045, 140.09),
-    l40: oklch(0.936, 0.03, 139.1),
+    l10: oklch(0.86, 0.050, 75.0),
+    l20: oklch(0.90, 0.050, 75.0),
+    l30: oklch(0.94, 0.050, 75.0),
+    l40: oklch(0.96, 0.030, 75.0),
 };
 
 const accents: Theme.MnmlAccents = {
-    a10: "#02b193",
-    a20: "#ff8b4d",
+    a10: oklch(0.75, 0.125, 175.0),
+    a20: oklch(0.75, 0.160, 54.00),
 };
 
 const palette = basePalette(primaries, {
@@ -50,9 +50,9 @@ const palette = basePalette(primaries, {
 });
 
 const feedback: Theme.MnmlFeedback = {
-    info: "#805E73",
-    warning: "#EDE5A6",
-    negative: "#f77b63",
+    info: oklch(0.75, 0.05, 275),
+    warning: oklch(0.75, 0.15, 95),
+    negative: oklch(0.75, 0.15, 35),
     success: accents.a10,
 };
 
