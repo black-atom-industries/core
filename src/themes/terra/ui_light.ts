@@ -3,7 +3,7 @@ import { tint } from "../../utils/color.ts";
 
 export default function (primaries: Primaries, palette: Palette): UI {
     function t(color: string) {
-        return tint({ color, with: primaries.l30 });
+        return tint({ color, with: primaries.l40 });
     }
 
     return {
