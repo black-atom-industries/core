@@ -20,8 +20,8 @@ export const themeKeys = [
     "black-atom-north-night",
     "black-atom-north-dark-night",
     "black-atom-north-day",
-    "black-atom-mnml-mono-dark",
-    "black-atom-mnml-mono-light",
+    "black-atom-mnml-clay-dark",
+    "black-atom-mnml-clay-light",
     "black-atom-mnml-orange-dark",
     "black-atom-mnml-orange-light",
     "black-atom-mnml-mikado-dark",
@@ -60,8 +60,8 @@ interface Meta {
         | "Black Atom — NORTH ∷ Night"
         | "Black Atom — NORTH ∷ Dark Night"
         | "Black Atom — NORTH ∷ Day"
-        | "Black Atom — MNM ∷ Mono Dark"
-        | "Black Atom — MNM ∷ Mono Light"
+        | "Black Atom — MNM ∷ Clay Dark"
+        | "Black Atom — MNM ∷ Clay Light"
         | "Black Atom — MNM ∷ Orange Dark"
         | "Black Atom — MNM ∷ Orange Light"
         | "Black Atom — MNM ∷ 47 Light"

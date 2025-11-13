@@ -55,8 +55,8 @@ export const config: Config = {
         "black-atom-north-day": "./themes/north/black-atom-north-day",
 
         // MNML
-        "black-atom-mnml-mono-dark": "./themes/mnml/black-atom-mnml-mono-dark",
-        "black-atom-mnml-mono-light": "./themes/mnml/black-atom-mnml-mono-light",
+        "black-atom-mnml-clay-dark": "./themes/mnml/black-atom-mnml-clay-dark",
+        "black-atom-mnml-clay-light": "./themes/mnml/black-atom-mnml-clay-light",
         "black-atom-mnml-orange-dark": "./themes/mnml/black-atom-mnml-orange-dark",
         "black-atom-mnml-orange-light": "./themes/mnml/black-atom-mnml-orange-light",
         "black-atom-mnml-mikado-dark": "./themes/mnml/black-atom-mnml-mikado-dark",

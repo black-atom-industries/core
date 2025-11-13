@@ -6,8 +6,8 @@ import syntax from "./syntax_light.ts";
 import ui from "./ui_light.ts";
 
 const meta: Theme.Meta = {
-    key: "black-atom-mnml-mono-light",
-    label: "Black Atom — MNM ∷ Mono Light",
+    key: "black-atom-mnml-clay-light",
+    label: "Black Atom — MNM ∷ Clay Light",
     appearance: "light",
     status: "development",
     collection: {
