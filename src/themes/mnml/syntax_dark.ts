@@ -95,7 +95,7 @@ export default function (
             link: accents.a20,
             code: {
                 fg: primaries.l10,
-                bg: primaries.d20,
+                bg: primaries.d10,
             },
         },
         tag: {
