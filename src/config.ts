@@ -63,5 +63,7 @@ export const config: Config = {
         "black-atom-mnml-mikado-light": "./themes/mnml/black-atom-mnml-mikado-light",
         "black-atom-mnml-47-light": "./themes/mnml/black-atom-mnml-47-light",
         "black-atom-mnml-47-dark": "./themes/mnml/black-atom-mnml-47-dark",
+        "black-atom-mnml-eink-dark": "./themes/mnml/black-atom-mnml-eink-dark",
+        "black-atom-mnml-eink-light": "./themes/mnml/black-atom-mnml-eink-light",
     },
 };

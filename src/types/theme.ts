@@ -28,6 +28,8 @@ export const themeKeys = [
     "black-atom-mnml-mikado-light",
     "black-atom-mnml-47-light",
     "black-atom-mnml-47-dark",
+    "black-atom-mnml-eink-dark",
+    "black-atom-mnml-eink-light",
 ] as const;
 
 type Key = (typeof themeKeys)[number];
@@ -67,7 +69,9 @@ interface Meta {
         | "Black Atom — MNM ∷ 47 Light"
         | "Black Atom — MNM ∷ 47 Dark"
         | "Black Atom — MNM ∷ Mikado Dark"
-        | "Black Atom — MNM ∷ Mikado Light";
+        | "Black Atom — MNM ∷ Mikado Light"
+        | "Black Atom — MNM ∷ E-Ink Dark"
+        | "Black Atom — MNM ∷ E-Ink Light";
     appearance: "light" | "dark";
     status: "development" | "beta" | "release";
     collection: {
