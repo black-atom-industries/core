@@ -60,7 +60,7 @@ export default function (
         magenta: primaries.m30,
 
         lightGray: primaries.l10,
-        white: primaries.l20,
+        white: primaries.l10,
     };
 
     if (opts.override) {
