@@ -59,8 +59,8 @@ export default function (
         darkMagenta: primaries.m30,
         magenta: primaries.m30,
 
-        lightGray: primaries.m40,
-        white: primaries.m40,
+        lightGray: primaries.l10,
+        white: primaries.l20,
     };
 
     if (opts.override) {
