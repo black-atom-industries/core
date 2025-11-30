@@ -18,19 +18,19 @@ const meta: Theme.Meta = {
 
 const primaries: Theme.Primaries = {
     d10: oklch(0.26, 0, 0),
-    d20: oklch(0.32, 0, 0),
-    d30: oklch(0.38, 0, 0),
-    d40: oklch(0.44, 0, 0),
+    d20: oklch(0.30, 0, 0),
+    d30: oklch(0.34, 0, 0),
+    d40: oklch(0.38, 0, 0),
 
     m10: oklch(0.48, 0, 0),
     m20: oklch(0.52, 0, 0),
     m30: oklch(0.56, 0, 0),
     m40: oklch(0.60, 0, 0),
 
-    l10: oklch(0.88, 0, 0),
-    l20: oklch(0.91, 0, 0),
-    l30: oklch(0.94, 0, 0),
-    l40: oklch(0.97, 0, 0),
+    l10: oklch(0.82, 0, 0),
+    l20: oklch(0.86, 0, 0),
+    l30: oklch(0.90, 0, 0),
+    l40: oklch(0.94, 0, 0),
 };
 
 const accents: Theme.MnmlAccents = {

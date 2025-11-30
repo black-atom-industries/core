@@ -18,9 +18,9 @@ const meta: Theme.Meta = {
 
 const primaries: Theme.Primaries = {
     d10: oklch(0.26, 0, 0),
-    d20: oklch(0.32, 0, 0),
-    d30: oklch(0.36, 0, 0),
-    d40: oklch(0.40, 0, 0),
+    d20: oklch(0.30, 0, 0),
+    d30: oklch(0.34, 0, 0),
+    d40: oklch(0.38, 0, 0),
 
     m10: oklch(0.46, 0, 0),
     m20: oklch(0.52, 0, 0),
