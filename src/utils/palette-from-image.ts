@@ -188,8 +188,7 @@ function analyzePalette(
     appearance: "dark" | "light" | "auto",
 ): PaletteExtractionResult {
     const totalPixels = colors.reduce((sum, c) => sum + c.pixelCount, 0);
-    const avgLightness =
-        colors.reduce((sum, c) => sum + c.oklch.l * c.pixelCount, 0) / totalPixels;
+    const avgLightness = colors.reduce((sum, c) => sum + c.oklch.l * c.pixelCount, 0) / totalPixels;
     const avgChroma = colors.reduce((sum, c) => sum + c.oklch.c * c.pixelCount, 0) /
         totalPixels;
 
@@ -387,7 +386,11 @@ export function formatPaletteResult(result: PaletteExtractionResult): string {
     const lines: string[] = [];
 
     lines.push("Image Analysis:");
-    lines.push(`  Average Lightness: ${metadata.avgLightness.toFixed(2)} (suggests ${metadata.suggestedAppearance} theme)`);
+    lines.push(
+        `  Average Lightness: ${
+            metadata.avgLightness.toFixed(2)
+        } (suggests ${metadata.suggestedAppearance} theme)`,
+    );
     lines.push(`  Average Chroma: ${metadata.avgChroma.toFixed(2)}`);
     lines.push(`  Dominant Colors: ${dominantColors.length} unique colors`);
     lines.push("");
@@ -398,9 +401,17 @@ export function formatPaletteResult(result: PaletteExtractionResult): string {
         const accentHex = formatHex({ mode: "oklch", ...sug.accent }) as HexColor;
         lines.push(`${i + 1}. ${sug.name}`);
         lines.push(`   ${sug.description}`);
-        lines.push(`   Accent: oklch(${sug.accent.l.toFixed(2)}, ${sug.accent.c.toFixed(2)}, ${sug.accent.h.toFixed(0)}) = ${accentHex}`);
+        lines.push(
+            `   Accent: oklch(${sug.accent.l.toFixed(2)}, ${sug.accent.c.toFixed(2)}, ${
+                sug.accent.h.toFixed(0)
+            }) = ${accentHex}`,
+        );
         lines.push(`   Base Hue: ${sug.primaries.hue.toFixed(0)}°`);
-        lines.push(`   Chroma Range: ${sug.primaries.chromaRange[0].toFixed(3)}-${sug.primaries.chromaRange[1].toFixed(3)}`);
+        lines.push(
+            `   Chroma Range: ${sug.primaries.chromaRange[0].toFixed(3)}-${
+                sug.primaries.chromaRange[1].toFixed(3)
+            }`,
+        );
         lines.push(`   ${sug.primaries.reasoning}`);
         lines.push("");
     });

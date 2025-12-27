@@ -49,11 +49,6 @@ export const config: Config = {
         "black-atom-terra-winter-day": "./themes/terra/black-atom-terra-winter-day",
         "black-atom-terra-winter-night": "./themes/terra/black-atom-terra-winter-night",
 
-        // North
-        "black-atom-north-night": "./themes/north/black-atom-north-night",
-        "black-atom-north-dark-night": "./themes/north/black-atom-north-dark-night",
-        "black-atom-north-day": "./themes/north/black-atom-north-day",
-
         // MNML
         "black-atom-mnml-clay-dark": "./themes/mnml/black-atom-mnml-clay-dark",
         "black-atom-mnml-clay-light": "./themes/mnml/black-atom-mnml-clay-light",

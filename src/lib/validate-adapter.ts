@@ -17,7 +17,6 @@ export function createAdapterConfigSchema(themeKeys: readonly string[]) {
         jpn: collectionConfigSchema,
         stations: collectionConfigSchema,
         terra: collectionConfigSchema,
-        north: collectionConfigSchema,
         mnml: collectionConfigSchema,
     };
 

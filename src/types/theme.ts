@@ -17,9 +17,6 @@ export const themeKeys = [
     "black-atom-terra-summer-night",
     "black-atom-terra-winter-day",
     "black-atom-terra-winter-night",
-    "black-atom-north-night",
-    "black-atom-north-dark-night",
-    "black-atom-north-day",
     "black-atom-mnml-clay-dark",
     "black-atom-mnml-clay-light",
     "black-atom-mnml-orange-dark",
@@ -37,7 +34,7 @@ type Key = (typeof themeKeys)[number];
 
 type ThemeKeyPathMap = Record<Key, string>;
 
-type CollectionKey = "terra" | "jpn" | "stations" | "north" | "mnml";
+type CollectionKey = "terra" | "jpn" | "stations" | "mnml";
 
 type CollectionLabel = string;
 
@@ -60,9 +57,6 @@ interface Meta {
         | "Black Atom — TER ∷ Summer Night"
         | "Black Atom — TER ∷ Winter Day"
         | "Black Atom — TER ∷ Winter Night"
-        | "Black Atom — NORTH ∷ Night"
-        | "Black Atom — NORTH ∷ Dark Night"
-        | "Black Atom — NORTH ∷ Day"
         | "Black Atom — MNM ∷ Clay Dark"
         | "Black Atom — MNM ∷ Clay Light"
         | "Black Atom — MNM ∷ Orange Dark"

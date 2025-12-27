@@ -25,9 +25,6 @@
                 "terra": {
                     "$ref": "#/$defs/collectionConfig"
                 },
-                "north": {
-                    "$ref": "#/$defs/collectionConfig"
-                },
                 "mnml": {
                     "$ref": "#/$defs/collectionConfig"
                 }

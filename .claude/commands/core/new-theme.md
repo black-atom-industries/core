@@ -24,27 +24,35 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
    - **Use the AskUserQuestion tool** for structured questions (collection selection, palette selection, refinement options, etc.)
 
 1a. **If reference image is attached or mentioned**:
-   - Ask user for the file path to the image (if not already provided)
-   - Import palette extraction utility:
-     ```typescript
-     import { extractPaletteFromImage, formatPaletteResult, adjustPaletteSuggestion, generatePrimariesFromSuggestion } from "./src/utils/palette-from-image.ts";
-     ```
-   - Strip `@` prefix if present from image path
-   - Call `extractPaletteFromImage({ imagePath, numColors: 10, appearance })`
-   - Display formatted result using `formatPaletteResult(result)`
-   - **Use AskUserQuestion tool** to ask which palette to use (1-3)
-   - **Use AskUserQuestion tool** to ask if user wants to refine the palette
-     - If yes, ask for specific adjustments using the tool
-     - Apply adjustments using `adjustPaletteSuggestion()`
-   - Use the selected/adjusted palette for theme creation
+
+- Ask user for the file path to the image (if not already provided)
+- Import palette extraction utility:
+  ```typescript
+  import {
+      adjustPaletteSuggestion,
+      extractPaletteFromImage,
+      formatPaletteResult,
+      generatePrimariesFromSuggestion,
+  } from "./src/utils/palette-from-image.ts";
+  ```
+- Strip `@` prefix if present from image path
+- Call `extractPaletteFromImage({ imagePath, numColors: 10, appearance })`
+- Display formatted result using `formatPaletteResult(result)`
+- **Use AskUserQuestion tool** to ask which palette to use (1-3)
+- **Use AskUserQuestion tool** to ask if user wants to refine the palette
+  - If yes, ask for specific adjustments using the tool
+  - Apply adjustments using `adjustPaletteSuggestion()`
+- Use the selected/adjusted palette for theme creation
 
 1b. **If hex color provided**:
-   - Use the color directly
-   - Confirm it matches the theme vision
+
+- Use the color directly
+- Confirm it matches the theme vision
 
 1c. **If no color specified**:
-   - Ask: "Would you like to provide a hex color or a reference image?"
-   - Proceed based on response
+
+- Ask: "Would you like to provide a hex color or a reference image?"
+- Proceed based on response
 
 2. **Once requirements are clear** (collection, variant, appearance, colors), confirm with user before proceeding
 
@@ -110,12 +118,14 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 **Usage examples:**
 
 **Freetext/conversational approach (preferred):**
+
 - `/core:new-theme` [drag book cover image] "I want a theme based on this"
 - `/core:new-theme inspired by that murder mystery book cover`
 - `/core:new-theme something dark with vibrant red accents`
 - `/core:new-theme` (start completely blank, figure it out together)
 
 **Structured approach (also fine):**
+
 - `/core:new-theme mnml green dark #22C55E`
 - `/core:new-theme jpn sakura light #FF69B4`
 - `/core:new-theme mnml sunset dark @~/sunset.jpg`

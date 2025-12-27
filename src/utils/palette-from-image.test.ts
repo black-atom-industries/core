@@ -167,9 +167,7 @@ Deno.test("palette suggestions - analogous harmony has medium chroma range", asy
         imagePath: "./test/fixtures/test_image.jpg",
     });
 
-    const analogousSuggestion = result.suggestions.find((s) =>
-        s.name === "Analogous Harmony"
-    );
+    const analogousSuggestion = result.suggestions.find((s) => s.name === "Analogous Harmony");
     assertExists(analogousSuggestion);
 
     const [minChroma, maxChroma] = analogousSuggestion.primaries.chromaRange;
