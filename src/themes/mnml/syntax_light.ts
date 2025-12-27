@@ -13,7 +13,7 @@ export default function (
             parameter: accents.a10,
         },
         property: {
-            default: accents.a20,
+            default: primaries.m10,
         },
         string: {
             default: primaries.m20,
