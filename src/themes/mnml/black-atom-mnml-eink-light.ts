@@ -17,10 +17,10 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.26, 0, 0),
-    d20: oklch(0.30, 0, 0),
-    d30: oklch(0.34, 0, 0),
-    d40: oklch(0.38, 0, 0),
+    d10: oklch(0.20, 0, 0),
+    d20: oklch(0.28, 0, 0),
+    d30: oklch(0.36, 0, 0),
+    d40: oklch(0.42, 0, 0),
 
     m10: oklch(0.48, 0, 0),
     m20: oklch(0.58, 0, 0),
@@ -41,10 +41,10 @@ const accents: Theme.MnmlAccents = {
 const palette = basePalette(primaries);
 
 const feedback: Theme.MnmlFeedback = {
-    negative: oklch(0.62, 0.21, 25),
-    success: oklch(0.65, 0.17, 120),
-    info: oklch(0.58, 0.11, 175),
-    warning: oklch(0.72, 0.16, 80),
+    negative: oklch(0.65, 0.20, 25),
+    success: oklch(0.65, 0.20, 120),
+    info: oklch(0.65, 0.20, 225),
+    warning: oklch(0.65, 0.20, 80),
 };
 
 const theme: Theme.Definition = {
