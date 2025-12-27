@@ -16,43 +16,52 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.324, 0.023, 264.18),
-    d20: oklch(0.379, 0.029, 266.47),
-    d30: oklch(0.416, 0.032, 264.13),
-    d40: oklch(0.452, 0.035, 264.13),
+    // Dark range - deep cold blues for text
+    d10: oklch(0.20, 0.025, 255),
+    d20: oklch(0.28, 0.03, 252),
+    d30: oklch(0.35, 0.035, 250),
+    d40: oklch(0.42, 0.04, 248),
 
-    m10: oklch(0.534, 0.075, 254.34),
-    m20: oklch(0.63, 0.073, 249.06),
-    m30: oklch(0.726, 0.075, 218.6),
-    m40: oklch(0.728, 0.054, 194.5),
+    // Mid range - cold steel blues
+    m10: oklch(0.50, 0.045, 248),
+    m20: oklch(0.58, 0.05, 250),
+    m30: oklch(0.65, 0.045, 252),
+    m40: oklch(0.72, 0.04, 255),
 
-    l10: oklch(0.874, 0.02, 260.17),
-    l20: oklch(0.917, 0.012, 259.82),
-    l30: oklch(0.943, 0.009, 264.52),
-    l40: oklch(0.951, 0.007, 260.73),
+    // Light range - icy whites with blue tint for backgrounds
+    l10: oklch(0.88, 0.02, 255),
+    l20: oklch(0.92, 0.015, 258),
+    l30: oklch(0.95, 0.01, 260),
+    l40: oklch(0.98, 0.005, 260),
 };
 
 const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: oklch(0.504, 0.059, 249.9),
-    red: oklch(0.577, 0.066, 252.64),
+    // Cold violet/mauve - red shifted toward blue (lower L for light bg)
+    darkRed: oklch(0.48, 0.10, 290),
+    red: oklch(0.56, 0.11, 285),
 
-    darkGreen: oklch(0.535, 0.042, 247.41),
-    green: oklch(0.605, 0.041, 243.64),
+    // Icy teal - green shifted cold
+    darkGreen: oklch(0.48, 0.08, 220),
+    green: oklch(0.56, 0.09, 215),
 
-    darkYellow: oklch(0.573, 0.03, 250.06),
-    yellow: oklch(0.641, 0.028, 240.9),
+    // Pale icy lavender - yellow becomes cold
+    darkYellow: oklch(0.52, 0.08, 270),
+    yellow: oklch(0.60, 0.09, 265),
 
-    darkBlue: oklch(0.457, 0.059, 249.22),
-    blue: oklch(0.533, 0.069, 253.37),
+    // Signature blue - slightly more present
+    darkBlue: oklch(0.48, 0.11, 255),
+    blue: oklch(0.56, 0.12, 250),
 
-    darkMagenta: oklch(0.515, 0.05, 266.41),
-    magenta: oklch(0.588, 0.058, 267.02),
+    // Cold purple
+    darkMagenta: oklch(0.48, 0.09, 300),
+    magenta: oklch(0.56, 0.10, 295),
 
-    darkCyan: oklch(0.499, 0.046, 237.59),
-    cyan: oklch(0.572, 0.051, 242.03),
+    // Ice cyan - very cold
+    darkCyan: oklch(0.48, 0.07, 230),
+    cyan: oklch(0.56, 0.08, 225),
 
     lightGray: primaries.l10,
     white: primaries.l30,
