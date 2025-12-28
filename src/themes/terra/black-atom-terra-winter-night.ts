@@ -48,8 +48,9 @@ const palette: Theme.Palette = {
     green: oklch(0.78, 0.07, 215),
 
     // Pale icy lavender - yellow becomes cold
-    darkYellow: oklch(0.75, 0.06, 270),
-    yellow: oklch(0.82, 0.07, 265),
+    // Warm amber - lamplight in the cold
+    darkYellow: oklch(0.72, 0.14, 45),
+    yellow: oklch(0.80, 0.14, 65),
 
     // Signature blue - slightly more present
     darkBlue: oklch(0.68, 0.09, 255),
@@ -59,9 +60,9 @@ const palette: Theme.Palette = {
     darkMagenta: oklch(0.68, 0.07, 300),
     magenta: oklch(0.76, 0.08, 295),
 
-    // Ice cyan - very cold
-    darkCyan: oklch(0.70, 0.05, 230),
-    cyan: oklch(0.78, 0.06, 225),
+    // Ice cyan - frost accent
+    darkCyan: oklch(0.72, 0.08, 210),
+    cyan: oklch(0.80, 0.09, 205),
 
     lightGray: primaries.l10,
     white: primaries.l30,
