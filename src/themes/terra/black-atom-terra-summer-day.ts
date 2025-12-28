@@ -16,43 +16,52 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.313, 0.023, 253.63),
-    d20: oklch(0.361, 0.029, 258.36),
-    d30: oklch(0.408, 0.033, 255.26),
-    d40: oklch(0.452, 0.04, 255.37),
+    // Dark range - deep teal/olive for text
+    d10: oklch(0.22, 0.04, 175),
+    d20: oklch(0.28, 0.045, 170),
+    d30: oklch(0.35, 0.05, 165),
+    d40: oklch(0.42, 0.05, 160),
 
-    m10: oklch(0.529, 0.072, 256.57),
-    m20: oklch(0.57, 0.079, 256.97),
-    m30: oklch(0.661, 0.061, 257.46),
-    m40: oklch(0.703, 0.053, 257.68),
+    // Mid range - muted sage
+    m10: oklch(0.50, 0.045, 155),
+    m20: oklch(0.58, 0.04, 150),
+    m30: oklch(0.65, 0.035, 145),
+    m40: oklch(0.72, 0.03, 140),
 
-    l10: oklch(0.8, 0.019, 261.33),
-    l20: oklch(0.841, 0.015, 264.49),
-    l30: oklch(0.876, 0.016, 266.27),
-    l40: oklch(0.918, 0.01, 261.79),
+    // Light range - warm cream backgrounds
+    l10: oklch(0.90, 0.035, 85),
+    l20: oklch(0.93, 0.03, 80),
+    l30: oklch(0.95, 0.025, 75),
+    l40: oklch(0.97, 0.02, 70),
 };
 
 const palette: Theme.Palette = {
     black: primaries.d30,
     gray: primaries.m20,
 
-    darkRed: oklch(0.634, 0.127, 40.02),
-    red: oklch(0.69, 0.127, 39.78),
+    // Muted terracotta - restrained warmth
+    darkRed: oklch(0.50, 0.20, 45),
+    red: oklch(0.58, 0.20, 40),
 
-    darkGreen: oklch(0.652, 0.1, 137.01),
-    green: oklch(0.693, 0.115, 141.53),
+    // Sage/olive green - the signature
+    darkGreen: oklch(0.45, 0.09, 145),
+    green: oklch(0.52, 0.10, 150),
 
-    darkYellow: oklch(0.726, 0.139, 62.78),
-    yellow: oklch(0.766, 0.115, 77.14),
+    // Warm gold - elegant accent
+    darkYellow: oklch(0.7643, 0.1616, 66.04),
+    yellow: oklch(0.8162, 0.1626, 80.0),
 
-    darkBlue: oklch(0.589, 0.092, 257.91),
-    blue: oklch(0.656, 0.09, 253.29),
+    // Deep teal - like the frame
+    darkBlue: oklch(0.42, 0.10, 200),
+    blue: oklch(0.50, 0.11, 195),
 
-    darkMagenta: oklch(0.626, 0.057, 2.33),
-    magenta: oklch(0.701, 0.047, 357.01),
+    // Dusty rose - subtle
+    darkMagenta: oklch(0.50, 0.15, 10),
+    magenta: oklch(0.58, 0.15, 5),
 
-    darkCyan: oklch(0.651, 0.08, 161.32),
-    cyan: oklch(0.733, 0.068, 172.5),
+    // Muted teal/seafoam
+    darkCyan: oklch(0.45, 0.08, 175),
+    cyan: oklch(0.52, 0.09, 170),
 
     lightGray: primaries.l10,
     white: primaries.l30,
