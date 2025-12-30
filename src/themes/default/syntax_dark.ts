@@ -1,25 +1,31 @@
 import * as Theme from "../../types/theme.ts";
+import { Feedback } from "../../types/theme.ts";
 
+/**
+ * Default collection dark syntax - minimal grayscale with 2 accents
+ * a10 = teal (primary accent for strings, keywords, functions)
+ * a20 = purple (secondary accent for properties, parameters)
+ */
 export default function (
     primaries: Theme.Primaries,
-    feedback: Theme.Feedback,
+    feedback: Feedback,
     accents: Theme.Accents,
 ): Theme.Syntax {
     return {
         variable: {
-            default: primaries.l20,
+            default: primaries.l10,
             builtin: primaries.l10,
-            member: accents.a20,
-            parameter: accents.a20,
+            member: primaries.m30,
+            parameter: primaries.m40,
         },
         property: {
-            default: accents.a20,
+            default: primaries.m30,
         },
         string: {
-            default: primaries.l20,
-            doc: primaries.l10,
-            regexp: primaries.l40,
-            escape: primaries.l40,
+            default: accents.a20,
+            doc: accents.a20,
+            regexp: primaries.l30,
+            escape: primaries.l30,
         },
         constant: {
             default: primaries.l10,
@@ -29,34 +35,34 @@ export default function (
             default: primaries.l20,
         },
         boolean: {
-            default: primaries.m40,
+            default: primaries.l10,
         },
         number: {
             default: primaries.l10,
         },
         type: {
-            default: primaries.l40,
-            builtin: primaries.l40,
+            default: accents.a10,
+            builtin: accents.a20,
         },
         attribute: {
             default: accents.a20,
             builtin: accents.a20,
         },
         func: {
-            default: accents.a10,
-            builtin: accents.a20,
-            method: accents.a20,
+            default: primaries.l30,
+            builtin: primaries.l20,
+            method: primaries.l20,
         },
         constructor: {
             default: accents.a10,
         },
         keyword: {
-            default: primaries.l30,
-            import: primaries.l40,
-            export: primaries.l40,
+            default: accents.a30!,
+            import: accents.a40!,
+            export: accents.a40!,
         },
         operator: {
-            default: primaries.l30,
+            default: primaries.l20,
         },
         punctuation: {
             default: primaries.l10,
@@ -78,9 +84,9 @@ export default function (
                 h1: accents.a10,
                 h2: accents.a10,
                 h3: accents.a10,
-                h4: primaries.m40,
-                h5: primaries.m40,
-                h6: primaries.m40,
+                h4: primaries.l10,
+                h5: primaries.l10,
+                h6: primaries.l10,
             },
             list: {
                 default: primaries.m40,
@@ -89,9 +95,9 @@ export default function (
             },
             strong: accents.a10,
             italic: accents.a10,
-            strikethrough: accents.a10,
-            quote: primaries.m20,
-            math: primaries.m20,
+            strikethrough: primaries.m40,
+            quote: primaries.m30,
+            math: primaries.m30,
             link: accents.a20,
             code: {
                 fg: primaries.l10,
@@ -101,8 +107,8 @@ export default function (
         tag: {
             default: accents.a10,
             builtin: accents.a20,
-            attribute: primaries.m30,
-            delimiter: primaries.l10,
+            attribute: primaries.m40!,
+            delimiter: primaries.m40!,
         },
     };
 }

@@ -1,9 +1,10 @@
 import * as Theme from "../../types/theme.ts";
+import { Feedback } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (
     primaries: Theme.Primaries,
-    feedback: Theme.Feedback,
+    feedback: Feedback,
     accents: Theme.Accents,
 ): Theme.UI {
     function t(color: string) {

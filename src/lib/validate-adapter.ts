@@ -14,6 +14,7 @@ export function createAdapterConfigSchema(themeKeys: readonly string[]) {
 
     // Create a type-safe collections schema that requires all CollectionKey values
     const collectionEntries: Record<CollectionKey, typeof collectionConfigSchema> = {
+        default: collectionConfigSchema,
         jpn: collectionConfigSchema,
         stations: collectionConfigSchema,
         terra: collectionConfigSchema,

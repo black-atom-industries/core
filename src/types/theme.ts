@@ -1,6 +1,10 @@
 export type HexColor = `#${string}`;
 
 export const themeKeys = [
+    "black-atom-default-dark",
+    "black-atom-default-dark-dimmed",
+    "black-atom-default-light",
+    "black-atom-default-light-dimmed",
     "black-atom-stations-engineering",
     "black-atom-stations-operations",
     "black-atom-stations-medical",
@@ -34,13 +38,17 @@ type Key = (typeof themeKeys)[number];
 
 type ThemeKeyPathMap = Record<Key, string>;
 
-type CollectionKey = "terra" | "jpn" | "stations" | "mnml";
+type CollectionKey = "default" | "terra" | "jpn" | "stations" | "mnml";
 
 type CollectionLabel = string;
 
 interface Meta {
     key: Key;
     label:
+        | "Black Atom — Dark"
+        | "Black Atom — Dark Dimmed"
+        | "Black Atom — Light"
+        | "Black Atom — Light Dimmed"
         | "Black Atom — STA ∷ Engineering"
         | "Black Atom — STA ∷ Operations"
         | "Black Atom — STA ∷ Medical"
@@ -119,14 +127,15 @@ interface Palette {
 }
 
 /** Minimal accent interface for mnml themes */
-interface MnmlAccents {
+interface Accents {
     a10: HexColor;
     a20: HexColor;
     a30?: HexColor;
+    a40?: HexColor;
 }
 
-/** Minimal feedback interface for mnml themes */
-export interface MnmlFeedback {
+/** Feedback colors for semantic UI feedback (errors, warnings, etc.) */
+export interface Feedback {
     negative: HexColor;
     success: HexColor;
     info: HexColor;
@@ -284,12 +293,12 @@ interface Definition {
 }
 
 export type {
+    Accents,
     CollectionKey,
     CollectionLabel,
     Definition,
     Key,
     Meta,
-    MnmlAccents,
     Palette,
     Primaries,
     Syntax,

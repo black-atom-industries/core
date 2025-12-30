@@ -33,14 +33,14 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.95, 0.025, 95),
 };
 
-const accents: Theme.MnmlAccents = {
+const accents: Theme.Accents = {
     a10: oklch(0.75, 0.150, 40),
     a20: oklch(0.75, 0.050, 95),
 };
 
 const palette = basePalette(primaries);
 
-const feedback: Theme.MnmlFeedback = {
+const feedback: Theme.Feedback = {
     info: oklch(0.75, 0.10, 235),
     warning: oklch(0.75, 0.10, 75),
     negative: accents.a10,

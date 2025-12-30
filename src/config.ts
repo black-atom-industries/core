@@ -27,6 +27,12 @@ export const config: Config = {
     adapterFileName: "black-atom-adapter.json",
     themeKeys,
     themePathMap: {
+        // Default
+        "black-atom-default-dark": "./themes/default/black-atom-default-dark",
+        "black-atom-default-dark-dimmed": "./themes/default/black-atom-default-dark-dimmed",
+        "black-atom-default-light": "./themes/default/black-atom-default-light",
+        "black-atom-default-light-dimmed": "./themes/default/black-atom-default-light-dimmed",
+
         // Stations
         "black-atom-stations-engineering": "./themes/stations/black-atom-stations-engineering",
         "black-atom-stations-operations": "./themes/stations/black-atom-stations-operations",

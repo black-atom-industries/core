@@ -3,8 +3,8 @@ import { tint } from "../../utils/color.ts";
 
 export default function (
     primaries: Theme.Primaries,
-    feedback: Theme.MnmlFeedback,
-    accents: Theme.MnmlAccents,
+    feedback: Theme.Feedback,
+    accents: Theme.Accents,
 ): Theme.UI {
     function t(color: string) {
         return tint({ color, with: primaries.d10 });

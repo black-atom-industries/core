@@ -1,13 +1,14 @@
 import * as Theme from "../../types/theme.ts";
+import { Feedback } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (
     primaries: Theme.Primaries,
-    feedback: Theme.Feedback,
+    feedback: Feedback,
     accents: Theme.Accents,
 ): Theme.UI {
     function t(color: string) {
-        return tint({ color, with: primaries.l40 });
+        return tint({ color, with: primaries.d10 });
     }
 
     const sharedFg = {
@@ -34,23 +35,23 @@ export default function (
 
     return {
         bg: {
-            default: primaries.l30,
-            panel: primaries.l20,
-            float: primaries.l20,
-            active: primaries.l10,
-            disabled: primaries.l10,
-            hover: primaries.l20,
-            selection: primaries.l10,
-            search: primaries.l10,
-            contrast: primaries.d40,
+            default: primaries.d20,
+            panel: primaries.d10,
+            float: primaries.d10,
+            active: primaries.d30,
+            disabled: primaries.d40,
+            hover: primaries.d30,
+            selection: primaries.d40,
+            search: primaries.d40,
+            contrast: primaries.l10,
             ...sharedBg,
         },
         fg: {
-            default: primaries.d20,
-            subtle: primaries.m10,
+            default: primaries.l30,
+            subtle: primaries.m30,
             accent: accents.a10,
-            disabled: primaries.m30,
-            contrast: primaries.l20,
+            disabled: primaries.m20,
+            contrast: primaries.d20,
             ...sharedFg,
         },
     };
