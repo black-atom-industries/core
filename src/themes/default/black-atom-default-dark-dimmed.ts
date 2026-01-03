@@ -18,10 +18,10 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.16, 0.003, 195),
-    d20: oklch(0.20, 0.003, 195),
-    d30: oklch(0.32, 0.003, 195),
-    d40: oklch(0.38, 0.003, 195),
+    d10: oklch(0.20, 0.003, 195),
+    d20: oklch(0.24, 0.003, 195),
+    d30: oklch(0.28, 0.003, 195),
+    d40: oklch(0.32, 0.003, 195),
 
     m10: oklch(0.45, 0.005, 195),
     m20: oklch(0.52, 0.005, 195),
