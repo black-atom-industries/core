@@ -147,3 +147,7 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 - **Alphabetical order**: Maintain alphabetical order in adapter configurations
 - **Commit messages**: Use semantic format with collection scope (e.g., `feat(mnml): add sunset theme`)
 - **Testing**: Verify generated themes have no undefined values before committing
+
+---
+
+**Next step:** After theme creation, run `/nik:link-themes-to-dots` to symlink generated themes into your dotfiles.
