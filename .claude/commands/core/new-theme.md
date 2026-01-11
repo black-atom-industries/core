@@ -150,4 +150,4 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 
 ---
 
-**Next step:** After theme creation, run `/nik:link-themes-to-dots` to symlink generated themes into your dotfiles.
+**Next step:** Ask the user if they want to run `/nik:link-themes-to-dots` to symlink generated themes into their dotfiles.
