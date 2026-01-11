@@ -5,7 +5,7 @@ allowed-tools: ["Write", "Edit", "Read", "Bash", "Glob", "Grep"]
 
 You are creating a new theme for the Black Atom theme project. This is a **collaborative, conversational process** where you work with the user to develop the theme concept and details.
 
-**Theme adapter repositories:** nvim, ghostty, zed, wezterm, tmux
+**Theme adapter repositories:** nvim, ghostty, zed, wezterm, tmux, waybar
 **Non-theme repositories to exclude:** radar.nvim, adapter-template, claude, obsidian, website
 
 **Your task:**
@@ -76,7 +76,7 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
    - Fix any TypeScript errors before proceeding
 
 6. **Update adapter configurations**:
-   - For each adapter repository (nvim, ghostty, zed, wezterm, tmux):
+   - For each adapter repository (nvim, ghostty, zed, wezterm, tmux, waybar):
      - Read `black-atom-adapter.json`
      - Add new theme keys to the appropriate collection's themes array
      - Maintain alphabetical order within collections
@@ -92,6 +92,7 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
    - **zed**: No special handling needed (generated from templates)
    - **wezterm**: No special handling needed (generated from templates)
    - **tmux**: No special handling needed (generated from templates)
+   - **waybar**: No special handling needed (generated from templates)
 
 8. **Generate and verify**:
    - Generate all adapters: `deno task adapters:gen`
