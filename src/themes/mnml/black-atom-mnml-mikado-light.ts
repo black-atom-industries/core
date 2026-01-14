@@ -1,9 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import basePalette from "./base_palette.ts";
-import syntax from "./syntax_light.ts";
-import ui from "./ui_light.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-light.ts";
+import createUi from "./create-ui-light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-mnml-mikado-light",
@@ -38,7 +38,7 @@ const accents: Theme.Accents = {
     a20: "#457ea1",
 };
 
-const palette = basePalette(primaries, {
+const palette = createPalette(primaries, {
     debug: false,
     override: (palette) => ({
         ...palette,
@@ -54,12 +54,15 @@ const feedback: Theme.Feedback = {
     success: "#2fd073",
 };
 
+const ui = createUi(primaries, feedback, accents);
+const syntax = createSyntax(primaries, feedback, accents);
+
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui(primaries, feedback, accents),
-    syntax: syntax(primaries, feedback, accents),
+    ui,
+    syntax,
 };
 
 export default theme;

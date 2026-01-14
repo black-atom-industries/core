@@ -1,9 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import basePalette from "./base_palette.ts";
-import syntax from "./syntax_dark.ts";
-import ui from "./ui_dark.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-dark.ts";
+import createUi from "./create-ui-dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-mnml-eink-dark",
@@ -38,7 +38,7 @@ const accents: Theme.Accents = {
     a20: oklch(0.65, 0.02, 0),
 };
 
-const palette = basePalette(primaries);
+const palette = createPalette(primaries);
 
 const feedback: Theme.Feedback = {
     negative: oklch(0.68, 0.13, 20),
@@ -47,12 +47,15 @@ const feedback: Theme.Feedback = {
     warning: oklch(0.78, 0.09, 80),
 };
 
+const ui = createUi(primaries, feedback, accents);
+const syntax = createSyntax(primaries, feedback, accents);
+
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui(primaries, feedback, accents),
-    syntax: syntax(primaries, feedback, accents),
+    ui,
+    syntax,
 };
 
 export default theme;
