@@ -1,8 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import syntax_dark from "./syntax_dark.ts";
-import ui_dark from "./ui_dark.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-dark.ts";
+import createUi from "./create-ui-dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-stations-operations",
@@ -32,10 +33,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.938, 0.052, 158.88),
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d30,
-    gray: primaries.m20,
-
+const palette = createPalette(primaries, {
     darkRed: oklch(0.72, 0.147, 355.7),
     red: oklch(0.757, 0.129, 355.17),
 
@@ -53,17 +51,17 @@ const palette: Theme.Palette = {
 
     darkCyan: oklch(0.728, 0.129, 155.8),
     cyan: oklch(0.802, 0.123, 156.83),
+});
 
-    lightGray: primaries.m40,
-    white: primaries.l30,
-};
+const ui = createUi(primaries, palette);
+const syntax = createSyntax(primaries, palette);
 
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_dark(primaries, palette),
-    syntax: syntax_dark(primaries, palette),
+    ui,
+    syntax,
 };
 
 export default theme;
