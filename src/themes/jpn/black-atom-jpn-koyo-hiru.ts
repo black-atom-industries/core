@@ -1,8 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import syntax_light from "./syntax_light.ts";
-import ui_light from "./ui_light.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-light.ts";
+import createUi from "./create-ui-light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-jpn-koyo-hiru",
@@ -32,10 +33,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.989, 0.003, 67.78),
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d20,
-    gray: primaries.m20,
-
+const palette = createPalette(primaries, {
     darkRed: oklch(0.606, 0.135, 27.88),
     red: oklch(0.669, 0.134, 21.3),
 
@@ -53,17 +51,18 @@ const palette: Theme.Palette = {
 
     darkCyan: oklch(0.643, 0.085, 170.79),
     cyan: oklch(0.702, 0.077, 172.56),
+});
 
-    lightGray: primaries.m40,
-    white: primaries.l10,
-};
+const ui = createUi(primaries, palette);
+
+const syntax = createSyntax(primaries, palette);
 
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_light(primaries, palette),
-    syntax: syntax_light(primaries, palette),
+    ui,
+    syntax,
 };
 
 export default theme;
