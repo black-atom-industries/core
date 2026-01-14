@@ -1,8 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import syntax_dark from "./syntax_dark.ts";
-import ui_dark from "./ui_dark.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-dark.ts";
+import createUi from "./create-ui-dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-terra-summer-night",
@@ -35,10 +36,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.95, 0.02, 75),
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d30,
-    gray: primaries.m20,
-
+const palette = createPalette(primaries, {
     // Terracotta - warm accent
     darkRed: oklch(0.62, 0.12, 45),
     red: oklch(0.70, 0.13, 40),
@@ -62,17 +60,17 @@ const palette: Theme.Palette = {
     // Teal/seafoam
     darkCyan: oklch(0.62, 0.10, 175),
     cyan: oklch(0.72, 0.11, 170),
+});
 
-    lightGray: primaries.l10,
-    white: primaries.l30,
-};
+const ui = createUi(primaries, palette);
+const syntax = createSyntax(primaries, palette);
 
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_dark(primaries, palette),
-    syntax: syntax_dark(primaries, palette),
+    ui,
+    syntax,
 };
 
 export default theme;

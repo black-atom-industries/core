@@ -1,8 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import syntax_light from "./syntax_light.ts";
-import ui_light from "./ui_light.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-light.ts";
+import createUi from "./create-ui-light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-terra-fall-day",
@@ -32,10 +33,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.94, 0.038, 61),
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d30,
-    gray: primaries.m20,
-
+const palette = createPalette(primaries, {
     darkRed: oklch(0.482, 0.151, 29.67),
     red: oklch(0.568, 0.15, 29.52),
 
@@ -53,17 +51,17 @@ const palette: Theme.Palette = {
 
     darkCyan: oklch(0.481, 0.06, 175.39),
     cyan: oklch(0.569, 0.06, 175),
+});
 
-    lightGray: primaries.l10,
-    white: primaries.l30,
-};
+const ui = createUi(primaries, palette);
+const syntax = createSyntax(primaries, palette);
 
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_light(primaries, palette),
-    syntax: syntax_light(primaries, palette),
+    ui,
+    syntax,
 };
 
 export default theme;

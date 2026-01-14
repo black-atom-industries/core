@@ -1,8 +1,9 @@
 import * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import syntax_dark from "./syntax_dark.ts";
-import ui_dark from "./ui_dark.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-dark.ts";
+import createUi from "./create-ui-dark.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-terra-winter-night",
@@ -35,10 +36,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.96, 0.01, 260),
 };
 
-const palette: Theme.Palette = {
-    black: primaries.d30,
-    gray: primaries.m20,
-
+const palette = createPalette(primaries, {
     // Cold violet/mauve - red shifted toward blue
     darkRed: oklch(0.68, 0.08, 290),
     red: oklch(0.75, 0.09, 285),
@@ -47,7 +45,6 @@ const palette: Theme.Palette = {
     darkGreen: oklch(0.70, 0.06, 220),
     green: oklch(0.78, 0.07, 215),
 
-    // Pale icy lavender - yellow becomes cold
     // Warm amber - lamplight in the cold
     darkYellow: oklch(0.72, 0.14, 45),
     yellow: oklch(0.80, 0.14, 65),
@@ -63,17 +60,17 @@ const palette: Theme.Palette = {
     // Ice cyan - frost accent
     darkCyan: oklch(0.72, 0.08, 210),
     cyan: oklch(0.80, 0.09, 205),
+});
 
-    lightGray: primaries.l10,
-    white: primaries.l30,
-};
+const ui = createUi(primaries, palette);
+const syntax = createSyntax(primaries, palette);
 
 const theme: Theme.Definition = {
     meta,
     primaries,
     palette,
-    ui: ui_dark(primaries, palette),
-    syntax: syntax_dark(primaries, palette),
+    ui,
+    syntax,
 };
 
 export default theme;
