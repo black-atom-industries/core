@@ -3,7 +3,7 @@ import * as Theme from "../../types/theme.ts";
 export default function (
     primaries: Theme.Primaries,
     opts: {
-        debug: boolean;
+        debug?: boolean;
         override?: (palette: Theme.Palette) => Theme.Palette;
     } = {
         debug: false,
@@ -38,7 +38,7 @@ export default function (
     }
 
     const palette: Theme.Palette = {
-        black: primaries.m10,
+        black: primaries.d40,
         gray: primaries.m10,
 
         darkRed: primaries.m40,
@@ -59,8 +59,8 @@ export default function (
         darkMagenta: primaries.m30,
         magenta: primaries.m30,
 
-        lightGray: primaries.l10,
-        white: primaries.l10,
+        lightGray: primaries.l20,
+        white: primaries.l30,
     };
 
     if (opts.override) {

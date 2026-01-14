@@ -1,10 +1,10 @@
 import type * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import basePalette from "./base_palette.ts";
-import feedback from "./feedback_light.ts";
-import syntax from "./syntax_light.ts";
-import ui from "./ui_light.ts";
+import createPalette from "./create-palette.ts";
+import createSyntax from "./create-syntax-light.ts";
+import createUi from "./create-ui-light.ts";
+import feedback from "./feedback-light.ts";
 
 const meta: Theme.Meta = {
     key: "black-atom-default-light",
@@ -41,23 +41,20 @@ const accents: Theme.Accents = {
     a40: oklch(0.48, 0.20, 275),
 };
 
-const palette = basePalette(primaries, {
-    debug: false,
-    override: (palette) => ({
-        ...palette,
-        cyan: accents.a10,
-        darkCyan: accents.a10,
-        magenta: accents.a20,
-        darkMagenta: accents.a20,
-    }),
-});
-
 const theme: Theme.Definition = {
     meta,
     primaries,
-    palette,
-    ui: ui(primaries, feedback, accents),
-    syntax: syntax(primaries, feedback, accents),
+    palette: createPalette(primaries, {
+        override: (palette) => ({
+            ...palette,
+            cyan: accents.a10,
+            darkCyan: accents.a10,
+            magenta: accents.a20,
+            darkMagenta: accents.a20,
+        }),
+    }),
+    ui: createUi(primaries, feedback, accents),
+    syntax: createSyntax(primaries, feedback, accents),
 };
 
 export default theme;
