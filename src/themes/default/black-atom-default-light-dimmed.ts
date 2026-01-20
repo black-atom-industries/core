@@ -28,8 +28,6 @@ const primaries: Theme.Primaries = {
     m30: oklch(0.66, 0.025, 240),
     m40: oklch(0.74, 0.025, 240),
 
-    // oklch(60.4% 0.027 238.7)
-
     l10: oklch(0.78, 0.003, 195),
     l20: oklch(0.82, 0.003, 195),
     l30: oklch(0.86, 0.003, 195),
