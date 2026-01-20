@@ -33,6 +33,7 @@ if (import.meta.main) {
             // Parse optional -m "message" argument
             const messageIndex = Deno.args.indexOf("-m");
             const customMessage = messageIndex !== -1 ? Deno.args[messageIndex + 1] : undefined;
+            const skipConfirmation = Deno.args.includes("-y");
 
             if (customMessage) {
                 log.info(`Generating and committing with message: "${customMessage}"`);
@@ -40,7 +41,7 @@ if (import.meta.main) {
                 log.info("Generating themes for all repositories with commit...");
             }
 
-            const confirmCommit = await getUserConfirmation(
+            const confirmCommit = skipConfirmation || await getUserConfirmation(
                 "This will commit changes to all adapter repositories. Continue? (y/n): ",
             );
 
