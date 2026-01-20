@@ -30,14 +30,22 @@ if (import.meta.main) {
         }
 
         case "adapters:commit": {
-            log.info("Generating themes for all repositories with commit...");
+            // Parse optional -m "message" argument
+            const messageIndex = Deno.args.indexOf("-m");
+            const customMessage = messageIndex !== -1 ? Deno.args[messageIndex + 1] : undefined;
+
+            if (customMessage) {
+                log.info(`Generating and committing with message: "${customMessage}"`);
+            } else {
+                log.info("Generating themes for all repositories with commit...");
+            }
 
             const confirmCommit = await getUserConfirmation(
                 "This will commit changes to all adapter repositories. Continue? (y/n): ",
             );
 
             if (confirmCommit) {
-                await generateAllRepositories({ commit: true });
+                await generateAllRepositories({ commit: true, message: customMessage });
             } else {
                 log.info("Operation cancelled");
             }

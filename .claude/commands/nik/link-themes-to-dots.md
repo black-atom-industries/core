@@ -11,11 +11,13 @@ After generating themes with Black Atom adapters, link them to your dotfiles for
 ## Important: Relative Symlinks
 
 The script creates **relative symlinks**, not absolute ones. This is critical because:
+
 - Dotfiles are portable across machines
 - Paths work regardless of home directory location
 - Symlinks remain valid when dots repo is cloned elsewhere
 
 Example symlink structure:
+
 ```
 dots/arch/.config/waybar/themes/black-atom-terra-winter-night.css
   -> ../../../../../black-atom-industries/waybar/themes/black-atom-terra-winter-night.css
@@ -23,22 +25,24 @@ dots/arch/.config/waybar/themes/black-atom-terra-winter-night.css
 
 ## Current Adapter Mappings
 
-| Adapter  | Extension | Dots Target                          |
-|----------|-----------|--------------------------------------|
-| ghostty  | conf      | common/.config/ghostty/themes        |
-| wezterm  | toml      | common/.config/wezterm/colors        |
-| zed      | json      | common/.config/zed/themes            |
-| niri     | kdl       | arch/.config/niri/themes             |
-| waybar   | css       | arch/.config/waybar/themes           |
+| Adapter | Extension | Dots Target                   |
+| ------- | --------- | ----------------------------- |
+| ghostty | conf      | common/.config/ghostty/themes |
+| wezterm | toml      | common/.config/wezterm/colors |
+| zed     | json      | common/.config/zed/themes     |
+| niri    | kdl       | arch/.config/niri/themes      |
+| waybar  | css       | arch/.config/waybar/themes    |
 
 ## Usage
 
 **Dry run (preview changes):**
+
 ```bash
 ~/repos/nikbrunner/dots/scripts/theme-link.sh --dry-run
 ```
 
 **Apply symlinks:**
+
 ```bash
 ~/repos/nikbrunner/dots/scripts/theme-link.sh
 ```

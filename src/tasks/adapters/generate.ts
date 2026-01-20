@@ -15,15 +15,18 @@ export interface AdaptRepositoriesOptions {
     amend?: boolean;
     /** Whether to log errors immediately (useful for initial generation) */
     logErrors?: boolean;
+    /** Custom commit message (default: generic chore message) */
+    message?: string;
 }
 
 /**
  * Generate themes for all repositories and optionally commit changes
  */
-export async function generateAllRepositories({ //
+export async function generateAllRepositories({
     commit = true,
     amend = false,
     logErrors = false,
+    message,
 }: AdaptRepositoriesOptions = {}) {
     const results: { adapter: string; hasChanges: boolean; error?: string }[] = [];
     const adapters = await getAdapters();
@@ -64,7 +67,7 @@ export async function generateAllRepositories({ //
                         log.info(`Changes summary: \n${diffSummary.trim()}`);
 
                         // Commit changes with a descriptive message
-                        const commitMessage =
+                        const commitMessage = message ??
                             `chore: generate ${adapter} themes with latest core definitions`;
 
                         if (amend) {
