@@ -11,7 +11,6 @@ export type Config = {
     };
     adapterFileName: string;
     themeKeys: readonly Theme.Key[];
-    themePathMap: Theme.ThemeKeyPathMap;
     orgName: string; // Organization directory name
 };
 
@@ -26,46 +25,4 @@ export const config: Config = {
     },
     adapterFileName: "black-atom-adapter.json",
     themeKeys,
-    themePathMap: {
-        // Default
-        "black-atom-default-dark": "./themes/default/black-atom-default-dark",
-        "black-atom-default-dark-dimmed": "./themes/default/black-atom-default-dark-dimmed",
-        "black-atom-default-light": "./themes/default/black-atom-default-light",
-        "black-atom-default-light-dimmed": "./themes/default/black-atom-default-light-dimmed",
-
-        // Stations
-        "black-atom-stations-engineering": "./themes/stations/black-atom-stations-engineering",
-        "black-atom-stations-operations": "./themes/stations/black-atom-stations-operations",
-        "black-atom-stations-medical": "./themes/stations/black-atom-stations-medical",
-        "black-atom-stations-research": "./themes/stations/black-atom-stations-research",
-
-        // JPNs
-        "black-atom-jpn-koyo-yoru": "./themes/jpn/black-atom-jpn-koyo-yoru",
-        "black-atom-jpn-koyo-hiru": "./themes/jpn/black-atom-jpn-koyo-hiru",
-        "black-atom-jpn-tsuki-yoru": "./themes/jpn/black-atom-jpn-tsuki-yoru",
-        "black-atom-jpn-murasaki-yoru": "./themes/jpn/black-atom-jpn-murasaki-yoru",
-
-        // Terra
-        "black-atom-terra-spring-day": "./themes/terra/black-atom-terra-spring-day",
-        "black-atom-terra-spring-night": "./themes/terra/black-atom-terra-spring-night",
-        "black-atom-terra-fall-day": "./themes/terra/black-atom-terra-fall-day",
-        "black-atom-terra-fall-night": "./themes/terra/black-atom-terra-fall-night",
-        "black-atom-terra-summer-day": "./themes/terra/black-atom-terra-summer-day",
-        "black-atom-terra-summer-night": "./themes/terra/black-atom-terra-summer-night",
-        "black-atom-terra-winter-day": "./themes/terra/black-atom-terra-winter-day",
-        "black-atom-terra-winter-night": "./themes/terra/black-atom-terra-winter-night",
-
-        // MNML
-        "black-atom-mnml-clay-dark": "./themes/mnml/black-atom-mnml-clay-dark",
-        "black-atom-mnml-clay-light": "./themes/mnml/black-atom-mnml-clay-light",
-        "black-atom-mnml-orange-dark": "./themes/mnml/black-atom-mnml-orange-dark",
-        "black-atom-mnml-orange-light": "./themes/mnml/black-atom-mnml-orange-light",
-        "black-atom-mnml-osman-light": "./themes/mnml/black-atom-mnml-osman-light",
-        "black-atom-mnml-mikado-dark": "./themes/mnml/black-atom-mnml-mikado-dark",
-        "black-atom-mnml-mikado-light": "./themes/mnml/black-atom-mnml-mikado-light",
-        "black-atom-mnml-47-light": "./themes/mnml/black-atom-mnml-47-light",
-        "black-atom-mnml-47-dark": "./themes/mnml/black-atom-mnml-47-dark",
-        "black-atom-mnml-eink-dark": "./themes/mnml/black-atom-mnml-eink-dark",
-        "black-atom-mnml-eink-light": "./themes/mnml/black-atom-mnml-eink-light",
-    },
 };

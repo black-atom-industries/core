@@ -21,9 +21,9 @@ You are renaming a theme across the Black Atom theme project. This requires coor
    - Update `src/types/theme.ts`:
      - Update theme key in `themeKeys` array
      - Update label in `Meta.label` union type
-   - Update `src/config.ts`:
-     - Update key in `themePathMap`
-     - Update import statement
+   - Update `src/themes/bundle.ts`:
+     - Update import statement for renamed theme
+     - Update key in `themeBundle` object
    - Run `deno task check` to verify TypeScript is valid
 
 3. **Update adapter configurations**:

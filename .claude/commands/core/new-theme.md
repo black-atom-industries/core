@@ -67,9 +67,9 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 4. **Update core configuration**:
    - Add new theme keys to `src/types/theme.ts` in `themeKeys` array
    - Add theme labels to `Meta.label` union type
-   - Update `src/config.ts`:
-     - Add to `themePathMap` with new theme paths
-     - Add proper import statements
+   - Update `src/themes/bundle.ts`:
+     - Add import statement for the new theme
+     - Add entry to `themeBundle` object with the theme key
 
 5. **Verify TypeScript**:
    - Run `deno task check` to verify types are valid

@@ -43,9 +43,13 @@ git clone https://github.com/black-atom-industries/core.git
 cd core
 ```
 
-2. Install the CLI globally:
+2. Compile and install the CLI:
 
 ```bash
+# Compile the standalone binary
+deno task cli:compile
+
+# Install to /usr/local/bin (makes it available system-wide)
 deno task cli:install
 ```
 
@@ -135,13 +139,19 @@ deno task schema
 
 # Update dependency lock file
 deno task lock
-
-# Install CLI globally
-deno task cli:install
-
-# Compile binary
-deno task cli:compile
 ```
+
+### CLI Build & Install
+
+```bash
+# Compile standalone binary (includes all themes)
+deno task cli:compile
+
+# Install to /usr/local/bin (run after compile)
+deno task cli:install
+```
+
+The compiled binary is fully standalone - it doesn't require Deno to be installed on the target system. All themes are bundled into the binary at compile time.
 
 ### Multi-Adapter Management
 
@@ -202,14 +212,19 @@ To create a new theme:
 3. Update the theme keys in `src/types/theme.ts`:
    - Add to `themeKeys` array
    - Add to `Meta.label` union type
-4. Update the theme path map in `src/config.ts`
+4. Update the theme bundle in `src/themes/bundle.ts`:
+   - Add import statement for the new theme
+   - Add entry to `themeBundle` object
 5. If creating a new collection:
    - Add the collection key to `CollectionKey` type in `src/types/theme.ts`
    - Add the collection to `collectionsSchema` in `src/lib/validate-adapter.ts`
    - Create shared UI and syntax files for the collection
-6. Run typechecking and linting: `deno task check`
+6. Run typechecking: `deno task check`
 7. Generate schema: `deno task schema`
-8. **Important**: Reinstall the global CLI to pick up changes: `deno task cli:install`
+8. **Important**: Recompile and reinstall the CLI to pick up changes:
+   ```bash
+   deno task cli:compile && deno task cli:install
+   ```
 
 ## Contributing
 

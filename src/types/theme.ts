@@ -36,8 +36,6 @@ export const themeKeys = [
 
 type Key = (typeof themeKeys)[number];
 
-type ThemeKeyPathMap = Record<Key, string>;
-
 type CollectionKey = "default" | "terra" | "jpn" | "stations" | "mnml";
 
 type CollectionLabel = string;
@@ -302,7 +300,6 @@ export type {
     Palette,
     Primaries,
     Syntax,
-    ThemeKeyPathMap,
     ThemeMap,
     UI,
 };
