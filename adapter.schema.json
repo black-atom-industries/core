@@ -16,6 +16,9 @@
         "collections": {
             "type": "object",
             "properties": {
+                "default": {
+                    "$ref": "#/$defs/collectionConfig"
+                },
                 "stations": {
                     "$ref": "#/$defs/collectionConfig"
                 },
