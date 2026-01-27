@@ -17,10 +17,10 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.26, 0, 0),
-    d20: oklch(0.30, 0, 0),
-    d30: oklch(0.34, 0, 0),
-    d40: oklch(0.38, 0, 0),
+    d10: oklch(0.14, 0, 0),
+    d20: oklch(0.20, 0, 0),
+    d30: oklch(0.26, 0, 0),
+    d40: oklch(0.30, 0, 0),
 
     m10: oklch(0.48, 0, 0),
     m20: oklch(0.58, 0, 0),
@@ -34,8 +34,8 @@ const primaries: Theme.Primaries = {
 };
 
 const accents: Theme.Accents = {
-    a10: oklch(0.76, 0.02, 0),
-    a20: oklch(0.65, 0.02, 0),
+    a10: oklch(0.80, 0.035, 0),
+    a20: oklch(0.75, 0.025, 0),
 };
 
 const palette = createPalette(primaries);
