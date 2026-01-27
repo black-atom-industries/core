@@ -1,9 +1,5 @@
 # Black Atom Core
 
-<div align="center">
-  <img src="https://github.com/black-atom-industries/.github/blob/main/profile/assets/black-atom-banner.jpg" alt="Black Atom Banner" style="width:100%"/>
-</div>
-
 > The core theme definitions and generation engine for Black Atom Industries theme ecosystem
 
 ## What is Black Atom Core?
