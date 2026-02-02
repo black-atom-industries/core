@@ -124,13 +124,12 @@ export async function watch() {
             return true;
         }
 
-        // Check if this path matches any of the adapter template paths
+        // Check if this is a template file within a known adapter directory
         for (const watchDir of watchDirs) {
-            if (watchDir.type === "adapter" && watchDir.templatePaths) {
-                for (const templatePath of watchDir.templatePaths) {
-                    if (path === templatePath || path.includes(".template.")) {
-                        return true;
-                    }
+            if (watchDir.type === "adapter") {
+                // Path must be within this adapter's directory and be a template file
+                if (path.startsWith(watchDir.path + "/") && path.includes(".template.")) {
+                    return true;
                 }
             }
         }
@@ -182,11 +181,10 @@ export async function watch() {
             }
         } else {
             // Find which adapter this template belongs to
+            // Check that the changed path is within the adapter's directory
             const adapterInfo = watchDirs.find((dir) =>
                 dir.type === "adapter" &&
-                dir.templatePaths?.some((templatePath) =>
-                    changedPath === templatePath || changedPath.includes(".template.")
-                )
+                changedPath.startsWith(dir.path + "/")
             );
 
             if (adapterInfo && adapterInfo.adapterName) {
