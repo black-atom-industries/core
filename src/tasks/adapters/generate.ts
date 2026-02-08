@@ -11,12 +11,10 @@ import { config } from "../../config.ts";
 export interface AdaptRepositoriesOptions {
     /** Whether to commit changes (default: true) */
     commit?: boolean;
-    /** Wether to to ammend the changes to the last commit (default: false) */
-    amend?: boolean;
+    /** Git commit args to pass through (e.g. ["-m", "message", "--amend"]) */
+    gitCommitArgs?: string[];
     /** Whether to log errors immediately (useful for initial generation) */
     logErrors?: boolean;
-    /** Custom commit message (default: generic chore message) */
-    message?: string;
 }
 
 /**
@@ -24,9 +22,8 @@ export interface AdaptRepositoriesOptions {
  */
 export async function generateAllRepositories({
     commit = true,
-    amend = false,
+    gitCommitArgs = [],
     logErrors = false,
-    message,
 }: AdaptRepositoriesOptions = {}) {
     const results: { adapter: string; hasChanges: boolean; error?: string }[] = [];
     const adapters = await getAdapters();
@@ -66,20 +63,25 @@ export async function generateAllRepositories({
                         log.info(`Changes detected in ${adapter}, committing...`);
                         log.info(`Changes summary: \n${diffSummary.trim()}`);
 
-                        // Commit changes with a descriptive message
-                        const commitMessage = message ??
-                            `chore: generate ${adapter} themes with latest core definitions`;
+                        // Build git commit args with sensible defaults
+                        const args = [...gitCommitArgs];
+                        const hasMessage = args.includes("-m");
+                        const hasAmend = args.includes("--amend");
 
-                        if (amend) {
-                            await runCommand(["git", "commit", "--amend", "--no-edit"], {
-                                cwd: adapterDir,
-                            });
-                        } else {
-                            await runCommand(["git", "commit", "-m", commitMessage], {
-                                cwd: adapterDir,
-                            });
+                        if (!hasMessage) {
+                            if (hasAmend) {
+                                if (!args.includes("--no-edit")) {
+                                    args.push("--no-edit");
+                                }
+                            } else {
+                                args.push(
+                                    "-m",
+                                    `chore: generate ${adapter} themes with latest core definitions`,
+                                );
+                            }
                         }
 
+                        await runCommand(["git", "commit", ...args], { cwd: adapterDir });
                         log.success(`Successfully committed changes to ${adapter}`);
                     } else {
                         // Reset staging since we're not committing

@@ -31,23 +31,16 @@ if (import.meta.main) {
         }
 
         case "adapters:commit": {
-            // Parse optional -m "message" argument
-            const messageIndex = Deno.args.indexOf("-m");
-            const customMessage = messageIndex !== -1 ? Deno.args[messageIndex + 1] : undefined;
-            const skipConfirmation = Deno.args.includes("-y");
+            const adapterGitArgs = Deno.args.slice(1);
 
-            if (customMessage) {
-                log.info(`Generating and committing with message: "${customMessage}"`);
-            } else {
-                log.info("Generating themes for all repositories with commit...");
-            }
+            log.info("Generating themes for all repositories with commit...");
 
-            const confirmCommit = skipConfirmation || await getUserConfirmation(
+            const confirmCommit = await getUserConfirmation(
                 "This will commit changes to all adapter repositories. Continue? (y/n): ",
             );
 
             if (confirmCommit) {
-                await generateAllRepositories({ commit: true, message: customMessage });
+                await generateAllRepositories({ commit: true, gitCommitArgs: adapterGitArgs });
             } else {
                 log.info("Operation cancelled");
             }
@@ -55,9 +48,7 @@ if (import.meta.main) {
         }
 
         case "theme:commit": {
-            // -y is our flag, everything else passes through to git commit
-            const themeSkipConfirm = Deno.args.includes("-y");
-            const gitArgs = Deno.args.slice(1).filter((arg) => arg !== "-y");
+            const gitArgs = Deno.args.slice(1);
 
             // Extract -m message and --amend for adapter commits
             const themeMsgIndex = gitArgs.indexOf("-m");
@@ -80,7 +71,7 @@ if (import.meta.main) {
                 log.info(stagedFiles.trim());
             }
 
-            const confirmThemeCommit = themeSkipConfirm || await getUserConfirmation(
+            const confirmThemeCommit = await getUserConfirmation(
                 "This will commit staged core changes and regenerate all adapters. Continue? (y/n): ",
             );
 
@@ -88,10 +79,14 @@ if (import.meta.main) {
                 await runCommand(["git", "commit", ...gitArgs], { cwd: coreDir });
                 log.success("Core committed");
 
+                // Build adapter git args from user flags
+                const adapterArgs: string[] = [];
+                if (themeAmend) adapterArgs.push("--amend");
+                if (themeMessage) adapterArgs.push("-m", themeMessage);
+
                 await generateAllRepositories({
                     commit: true,
-                    amend: themeAmend,
-                    message: themeMessage,
+                    gitCommitArgs: adapterArgs,
                 });
             } else {
                 log.info("Operation cancelled");
@@ -99,24 +94,10 @@ if (import.meta.main) {
             break;
         }
 
-        case "adapters:commit:amend": {
-            log.info("Generating themes for all repositories with commit and amending...");
-
-            const confirmCommit = await getUserConfirmation(
-                "This will commit changes to all adapter repositories and amend the last commit. Continue? (y/n): ",
-            );
-
-            if (confirmCommit) {
-                await generateAllRepositories({ commit: true, amend: true });
-            } else {
-                log.info("Operation cancelled");
-            }
-            break;
-        }
-
         case "adapters:push": {
+            const pushGitArgs = Deno.args.slice(1);
             log.info("Pushing all adapter repositories...");
-            await pushAllRepositories();
+            await pushAllRepositories(pushGitArgs);
             break;
         }
 

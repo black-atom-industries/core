@@ -6,7 +6,7 @@ import log from "../../lib/log.ts";
 /**
  * Push all adapter repositories, aborting if uncommitted changes exist
  */
-export async function pushAllRepositories() {
+export async function pushAllRepositories(gitArgs: string[] = []) {
     const adapters = await getAdapters();
 
     await forEachAdapter({
@@ -42,7 +42,7 @@ export async function pushAllRepositories() {
 
             // Push changes
             log.info(`Pushing ${adapter} to remote...`);
-            await runCommand(["git", "push"], { cwd: adapterDir });
+            await runCommand(["git", "push", ...gitArgs], { cwd: adapterDir });
             log.success(`Successfully pushed ${adapter} to remote`);
         },
     });
