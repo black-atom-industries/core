@@ -53,14 +53,14 @@ export default function (
         darkCyan: primaries.m40,
         cyan: primaries.m40,
 
-        darkBlue: primaries.m20,
-        blue: primaries.m20,
+        darkBlue: primaries.m40,
+        blue: primaries.m40,
 
         darkMagenta: primaries.m30,
         magenta: primaries.m30,
 
-        lightGray: primaries.l20,
-        white: primaries.l30,
+        lightGray: primaries.m40,
+        white: primaries.m40,
     };
 
     if (opts.override) {
