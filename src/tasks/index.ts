@@ -65,19 +65,17 @@ if (import.meta.main) {
             const themeAmend = gitArgs.includes("--amend");
 
             const coreDir = config.dir.core;
+            const stagedFiles = await runCommand(
+                ["git", "diff", "--staged", "--name-only"],
+                { cwd: coreDir },
+            );
 
-            // Skip staged check when amending (git handles that)
-            if (!themeAmend) {
-                const stagedFiles = await runCommand(
-                    ["git", "diff", "--staged", "--name-only"],
-                    { cwd: coreDir },
-                );
-
-                if (stagedFiles.trim() === "") {
+            if (stagedFiles.trim() === "") {
+                if (!themeAmend) {
                     log.warn("No staged changes in core. Stage your theme changes first.");
                     Deno.exit(1);
                 }
-
+            } else {
                 log.info("Staged core files:");
                 log.info(stagedFiles.trim());
             }
