@@ -54,9 +54,9 @@ export async function runCommand(
  * Prompt the user for confirmation
  */
 export async function getUserConfirmation(message: string): Promise<boolean> {
-    const buf = new Uint8Array(1);
+    const buf = new Uint8Array(64);
     await Deno.stdout.write(new TextEncoder().encode(message));
-    await Deno.stdin.read(buf);
-    const response = new TextDecoder().decode(buf).toLowerCase();
+    const n = await Deno.stdin.read(buf);
+    const response = n ? new TextDecoder().decode(buf.subarray(0, n)).trim().toLowerCase() : "";
     return response === "y";
 }
