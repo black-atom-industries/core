@@ -1,12 +1,13 @@
 ---
 description: "Create a new theme in an existing collection with all required files and configurations"
-allowed-tools: ["Write", "Edit", "Read", "Bash", "Glob", "Grep"]
+allowed-tools: ["Write", "Edit", "Read", "Bash", "Glob", "Grep", "AskUserQuestion"]
+allow-paths: ["~/repos/black-atom-industries/**", "~/repos/nikbrunner/dots/**"]
 ---
 
 You are creating a new theme for the Black Atom theme project. This is a **collaborative, conversational process** where you work with the user to develop the theme concept and details.
 
-**Theme adapter repositories:** nvim, ghostty, zed, wezterm, tmux, waybar
-**Non-theme repositories to exclude:** radar.nvim, adapter-template, claude, obsidian, website
+**Theme adapter repositories:** nvim, ghostty, zed, wezterm, tmux, waybar, lazygit, niri
+**Non-theme repositories to exclude:** radar.nvim, adapter-template, claude, obsidian, website, helm
 
 **Your task:**
 
@@ -76,10 +77,15 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
    - Fix any TypeScript errors before proceeding
 
 6. **Update adapter configurations**:
-   - For each adapter repository (nvim, ghostty, zed, wezterm, tmux, waybar):
+   - For each adapter repository (nvim, ghostty, zed, wezterm, tmux, waybar, lazygit, niri):
      - Read `black-atom-adapter.json`
      - Add new theme keys to the appropriate collection's themes array
      - Maintain alphabetical order within collections
+
+6a. **Update dotfiles theme registry**:
+   - Edit `~/repos/nikbrunner/dots/common/themes.json`
+   - Add new theme entries with `display_name`, `appearance`, and `collection` fields
+   - The `display_name` should match the `Meta.label` from the theme definition
 
 7. **Handle adapter-specific requirements**:
    - **nvim**: Create colorscheme loader files in `colors/` directory:
@@ -150,4 +156,6 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 
 ---
 
-**Next step:** Ask the user if they want to run `/nik:link-themes-to-dots` to symlink generated themes into their dotfiles.
+**Next steps:**
+- Remind the user to run `dots theme-link` to symlink generated themes into their dotfiles
+- Or ask if they want to run `/nik:link-themes-to-dots` to do it automatically

@@ -50,6 +50,8 @@ import blackAtomMnml47Light from "./mnml/black-atom-mnml-47-light.ts";
 import blackAtomMnml47Dark from "./mnml/black-atom-mnml-47-dark.ts";
 import blackAtomMnmlEinkDark from "./mnml/black-atom-mnml-eink-dark.ts";
 import blackAtomMnmlEinkLight from "./mnml/black-atom-mnml-eink-light.ts";
+import blackAtomMnmlMonoDark from "./mnml/black-atom-mnml-mono-dark.ts";
+import blackAtomMnmlMonoLight from "./mnml/black-atom-mnml-mono-light.ts";
 
 export const themeBundle: Theme.ThemeMap = {
     // Default collection
@@ -92,4 +94,6 @@ export const themeBundle: Theme.ThemeMap = {
     "black-atom-mnml-47-dark": blackAtomMnml47Dark,
     "black-atom-mnml-eink-dark": blackAtomMnmlEinkDark,
     "black-atom-mnml-eink-light": blackAtomMnmlEinkLight,
+    "black-atom-mnml-mono-dark": blackAtomMnmlMonoDark,
+    "black-atom-mnml-mono-light": blackAtomMnmlMonoLight,
 };
