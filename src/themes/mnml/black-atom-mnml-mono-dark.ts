@@ -17,20 +17,20 @@ const meta: Theme.Meta = {
 };
 
 const primaries: Theme.Primaries = {
-    d10: oklch(0.10, 0, 0),
-    d20: oklch(0.14, 0, 0),
-    d30: oklch(0.20, 0, 0),
-    d40: oklch(0.26, 0, 0),
+    d10: oklch(0.12, 0.005, 67.50),
+    d20: oklch(0.16, 0.005, 67.50),
+    d30: oklch(0.22, 0.005, 67.50),
+    d40: oklch(0.28, 0.005, 67.50),
 
-    m10: oklch(0.40, 0, 0),
-    m20: oklch(0.50, 0, 0),
-    m30: oklch(0.60, 0, 0),
-    m40: oklch(0.70, 0, 0),
+    m10: oklch(0.40, 0.005, 67.50),
+    m20: oklch(0.50, 0.005, 67.50),
+    m30: oklch(0.60, 0.005, 67.50),
+    m40: oklch(0.70, 0.005, 67.50),
 
-    l10: oklch(0.82, 0, 0),
-    l20: oklch(0.88, 0, 0),
-    l30: oklch(0.94, 0, 0),
-    l40: oklch(0.98, 0, 0),
+    l10: oklch(0.82, 0.005, 67.50),
+    l20: oklch(0.88, 0.005, 67.50),
+    l30: oklch(0.94, 0.005, 67.50),
+    l40: oklch(0.98, 0.005, 67.50),
 };
 
 const accents: Theme.Accents = {
