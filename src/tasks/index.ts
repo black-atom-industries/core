@@ -3,7 +3,8 @@ import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
 import { watch } from "./adapters/watch.ts";
-import { getUserConfirmation } from "./adapters/utils.ts";
+import { getUserConfirmation, runCommand } from "./adapters/utils.ts";
+import { config } from "../config.ts";
 import log from "../lib/log.ts";
 
 /**
@@ -47,6 +48,53 @@ if (import.meta.main) {
 
             if (confirmCommit) {
                 await generateAllRepositories({ commit: true, message: customMessage });
+            } else {
+                log.info("Operation cancelled");
+            }
+            break;
+        }
+
+        case "theme:commit": {
+            // -y is our flag, everything else passes through to git commit
+            const themeSkipConfirm = Deno.args.includes("-y");
+            const gitArgs = Deno.args.slice(1).filter((arg) => arg !== "-y");
+
+            // Extract -m message and --amend for adapter commits
+            const themeMsgIndex = gitArgs.indexOf("-m");
+            const themeMessage = themeMsgIndex !== -1 ? gitArgs[themeMsgIndex + 1] : undefined;
+            const themeAmend = gitArgs.includes("--amend");
+
+            const coreDir = config.dir.core;
+
+            // Skip staged check when amending (git handles that)
+            if (!themeAmend) {
+                const stagedFiles = await runCommand(
+                    ["git", "diff", "--staged", "--name-only"],
+                    { cwd: coreDir },
+                );
+
+                if (stagedFiles.trim() === "") {
+                    log.warn("No staged changes in core. Stage your theme changes first.");
+                    Deno.exit(1);
+                }
+
+                log.info("Staged core files:");
+                log.info(stagedFiles.trim());
+            }
+
+            const confirmThemeCommit = themeSkipConfirm || await getUserConfirmation(
+                "This will commit staged core changes and regenerate all adapters. Continue? (y/n): ",
+            );
+
+            if (confirmThemeCommit) {
+                await runCommand(["git", "commit", ...gitArgs], { cwd: coreDir });
+                log.success("Core committed");
+
+                await generateAllRepositories({
+                    commit: true,
+                    amend: themeAmend,
+                    message: themeMessage,
+                });
             } else {
                 log.info("Operation cancelled");
             }

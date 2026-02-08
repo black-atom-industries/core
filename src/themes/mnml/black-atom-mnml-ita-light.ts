@@ -34,17 +34,17 @@ const primaries: Theme.Primaries = {
 };
 
 const accents: Theme.Accents = {
-    a10: oklch(0.50, 0.22, 25),
-    a20: oklch(0.48, 0.18, 150),
+    a10: oklch(0.6049, 0.175, 146.26),
+    a20: oklch(0.6216, 0.2211, 25.0),
 };
 
 const palette = createPalette(primaries);
 
 const feedback: Theme.Feedback = {
-    negative: oklch(0.65, 0.20, 25),
-    success: oklch(0.65, 0.20, 120),
-    info: oklch(0.65, 0.20, 225),
-    warning: oklch(0.65, 0.20, 80),
+    negative: accents.a20,
+    success: accents.a10,
+    info: oklch(0.55, 0.126, 241.57),
+    warning: oklch(0.55, 0.1481, 59.7),
 };
 
 const ui = createUi(primaries, feedback, accents);

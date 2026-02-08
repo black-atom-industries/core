@@ -8,6 +8,7 @@
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",
         "cli:compile": "deno compile --allow-read --allow-write --allow-env -o black-atom-core src/cli/index.ts",
         "cli:install": "cp black-atom-core /usr/local/bin/",
+        "theme:commit": "deno run -A src/tasks/index.ts theme:commit",
         "adapters:gen": "deno run -A src/tasks/index.ts adapters:gen",
         "adapters:watch": "deno run -A src/tasks/index.ts adapters:watch",
         "adapters:status": "deno run -A src/tasks/index.ts adapters:status",
