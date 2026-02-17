@@ -49,8 +49,8 @@ cd core
 # Compile the standalone binary
 deno task cli:compile
 
-# Install to /usr/local/bin (makes it available system-wide)
-deno task cli:install
+# Install to /usr/local/bin (may require sudo)
+sudo deno task cli:install
 ```
 
 3. Verify the installation:
@@ -147,8 +147,8 @@ deno task lock
 # Compile standalone binary (includes all themes)
 deno task cli:compile
 
-# Install to /usr/local/bin (run after compile)
-deno task cli:install
+# Install to /usr/local/bin (may require sudo)
+sudo deno task cli:install
 ```
 
 The compiled binary is fully standalone - it doesn't require Deno to be installed on the target system. All themes are bundled into the binary at compile time.
