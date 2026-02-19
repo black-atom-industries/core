@@ -83,9 +83,10 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
      - Maintain alphabetical order within collections
 
 6a. **Update dotfiles theme registry**:
-   - Edit `~/repos/nikbrunner/dots/common/themes.json`
-   - Add new theme entries with `display_name`, `appearance`, and `collection` fields
-   - The `display_name` should match the `Meta.label` from the theme definition
+
+- Edit `~/repos/nikbrunner/dots/common/themes.json`
+- Add new theme entries with `display_name`, `appearance`, and `collection` fields
+- The `display_name` should match the `Meta.label` from the theme definition
 
 7. **Handle adapter-specific requirements**:
    - **nvim**: Create colorscheme loader files in `colors/` directory:
@@ -157,5 +158,6 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 ---
 
 **Next steps:**
+
 - Remind the user to run `dots theme-link` to symlink generated themes into their dotfiles
 - Or ask if they want to run `/nik:link-themes-to-dots` to do it automatically
