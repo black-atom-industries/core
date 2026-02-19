@@ -35,10 +35,10 @@ const primaries: Theme.Primaries = {
 };
 
 const accents: Theme.Accents = {
-    a10: oklch(0.75, 0.10, 170),
-    a20: oklch(0.65, 0.10, 155),
-    a30: oklch(0.75, 0.10, 290),
-    a40: oklch(0.65, 0.10, 275),
+    a10: oklch(0.85, 0.085, 142),
+    a20: oklch(0.75, 0.085, 142),
+    a30: oklch(0.85, 0.085, 290),
+    a40: oklch(0.75, 0.085, 290),
 };
 
 const theme: Theme.Definition = {

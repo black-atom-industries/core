@@ -16,7 +16,7 @@ export default function (
             default: primaries.d40,
             builtin: primaries.d40,
             member: primaries.m20,
-            parameter: primaries.m10,
+            parameter: accents.a40 ?? accents.a20,
         },
         property: {
             default: primaries.m20,
@@ -49,9 +49,9 @@ export default function (
             builtin: accents.a20,
         },
         func: {
-            default: primaries.d20,
-            builtin: primaries.d30,
-            method: primaries.d30,
+            default: accents.a10,
+            builtin: accents.a20,
+            method: accents.a20,
         },
         constructor: {
             default: accents.a10,

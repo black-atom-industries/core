@@ -28,17 +28,17 @@ const primaries: Theme.Primaries = {
     m30: oklch(0.64, 0.025, 240),
     m40: oklch(0.72, 0.025, 240),
 
-    l10: oklch(0.88, 0.003, 195),
-    l20: oklch(0.92, 0.003, 195),
-    l30: oklch(0.95, 0.003, 195),
-    l40: oklch(0.98, 0.003, 195),
+    l10: oklch(0.900, 0.003, 240),
+    l20: oklch(0.935, 0.003, 240),
+    l30: oklch(0.975, 0.003, 240),
+    l40: oklch(0.995, 0.003, 240),
 };
 
 const accents: Theme.Accents = {
-    a10: oklch(0.58, 0.20, 170),
-    a20: oklch(0.48, 0.20, 155),
-    a30: oklch(0.58, 0.20, 290),
-    a40: oklch(0.48, 0.20, 275),
+    a10: oklch(0.65, 0.125, 142),
+    a20: oklch(0.55, 0.155, 142),
+    a30: oklch(0.65, 0.125, 290),
+    a40: oklch(0.55, 0.155, 290),
 };
 
 const theme: Theme.Definition = {
