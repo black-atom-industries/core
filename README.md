@@ -1,5 +1,7 @@
 # Black Atom Core
 
+[![JSR](https://jsr.io/badges/@black-atom/core)](https://jsr.io/@black-atom/core)
+
 > The core theme definitions and generation engine for Black Atom Industries theme ecosystem
 
 ## What is Black Atom Core?
@@ -28,58 +30,26 @@ Black Atom includes multiple theme collections, each with its own distinct style
 
 All themes are available in both dark and light variants.
 
-## Installation
-
-### Prerequisites
-
-- [Deno](https://deno.land/) runtime (version 1.37.0 or higher)
-
-### Setup
-
-1. Clone this repository:
-
-```bash
-git clone https://github.com/black-atom-industries/core.git
-cd core
-```
-
-2. Compile and install the CLI:
-
-```bash
-# Compile the standalone binary
-deno task cli:compile
-
-# Install to /usr/local/bin (may require sudo)
-sudo deno task cli:install
-```
-
-3. Verify the installation:
-
-```bash
-black-atom-core --help
-```
-
 ## Usage
 
-### CLI Commands
+### For Adapter Contributors
 
-The `black-atom-core` CLI provides the following commands:
+Black Atom Core is published on [JSR](https://jsr.io/@black-atom/core). Adapter repositories use it directly — no need to clone core or install a binary.
+
+From any adapter repository with a `deno.json`:
 
 ```bash
-# Display help information
-black-atom-core --help
+# Generate theme files
+deno task generate
 
-# Generate theme files for the current adapter
-black-atom-core generate
+# Watch for template changes and auto-regenerate
+deno task dev
+```
 
-# Generate theme files with file watching
-black-atom-core generate --watch
+These tasks run the core CLI via JSR:
 
-# List all available themes (Not available yet)
-# black-atom-core list
-
-# Show detailed information about a specific theme (Not available yet)
-# black-atom-core info jpn/koyo-yoru
+```bash
+deno run -A jsr:@black-atom/core/cli generate
 ```
 
 ### Theme Adaptation
@@ -90,14 +60,6 @@ The core CLI adapts theme files by:
 2. Processing template files with the Eta template engine
 3. Replacing template variables with values from core theme definitions
 4. Writing adapted files to the appropriate locations
-
-```bash
-# Navigate to an adapter repository
-cd ../nvim
-
-# Generate theme files for this adapter
-black-atom-core generate
-```
 
 ## Adapter Pattern
 
