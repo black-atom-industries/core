@@ -58,11 +58,11 @@ Each adapter repository has a `deno.json` with these tasks:
 }
 ```
 
-| Task | Purpose |
-|---|---|
-| `generate` | One-shot theme generation from templates |
-| `dev` | Watch mode — regenerates on template changes |
-| `update` | Force-refresh the cached core package from JSR |
+| Task       | Purpose                                        |
+| ---------- | ---------------------------------------------- |
+| `generate` | One-shot theme generation from templates       |
+| `dev`      | Watch mode — regenerates on template changes   |
+| `update`   | Force-refresh the cached core package from JSR |
 
 ### Template Processing
 
@@ -109,14 +109,14 @@ flowchart TD
 
 ### Available Tasks
 
-| Task | Purpose |
-|---|---|
-| `adapters:gen` | Generate all adapters once |
-| `adapters:watch` | Watch for theme/template changes, auto-regenerate |
-| `adapters:status` | Show git status of all adapter repos |
-| `adapters:commit` | Generate + commit all adapters |
-| `adapters:push` | Push all adapter repos to remote |
-| `adapters:reset` | Reset all adapter repos to remote state |
+| Task              | Purpose                                           |
+| ----------------- | ------------------------------------------------- |
+| `adapters:gen`    | Generate all adapters once                        |
+| `adapters:watch`  | Watch for theme/template changes, auto-regenerate |
+| `adapters:status` | Show git status of all adapter repos              |
+| `adapters:commit` | Generate + commit all adapters                    |
+| `adapters:push`   | Push all adapter repos to remote                  |
+| `adapters:reset`  | Reset all adapter repos to remote state           |
 
 ### Why Live Source?
 
@@ -154,10 +154,10 @@ Core is published to JSR as [`@black-atom/core`](https://jsr.io/@black-atom/core
 
 ### Exports
 
-| Export | Entrypoint | Purpose |
-|---|---|---|
-| `@black-atom/core` | `src/mod.ts` | Theme types and `themeBundle` |
-| `@black-atom/core/cli` | `src/cli/index.ts` | CLI for `generate` command |
+| Export                 | Entrypoint         | Purpose                       |
+| ---------------------- | ------------------ | ----------------------------- |
+| `@black-atom/core`     | `src/mod.ts`       | Theme types and `themeBundle` |
+| `@black-atom/core/cli` | `src/cli/index.ts` | CLI for `generate` command    |
 
 ### What's Included
 
@@ -177,11 +177,11 @@ Core is published to JSR as [`@black-atom/core`](https://jsr.io/@black-atom/core
 
 ## Key Design Decisions
 
-| Decision | Rationale |
-|---|---|
-| Publish to JSR, not npm | Deno-native package; JSR supports Deno first-class |
-| Two exports (library + CLI) | Types/bundle for programmatic use, CLI for adapter generation |
-| No build hooks in adapter config | Keeps core simple; adapters own their orchestration |
-| Org-owner uses live source | Instant feedback during theme development |
-| Exclude `src/tasks/` from package | Org-owner tooling only, not for contributors |
-| Templates use UI/syntax/palette, never primaries | Stable adapter API even when core color internals change |
+| Decision                                         | Rationale                                                     |
+| ------------------------------------------------ | ------------------------------------------------------------- |
+| Publish to JSR, not npm                          | Deno-native package; JSR supports Deno first-class            |
+| Two exports (library + CLI)                      | Types/bundle for programmatic use, CLI for adapter generation |
+| No build hooks in adapter config                 | Keeps core simple; adapters own their orchestration           |
+| Org-owner uses live source                       | Instant feedback during theme development                     |
+| Exclude `src/tasks/` from package                | Org-owner tooling only, not for contributors                  |
+| Templates use UI/syntax/palette, never primaries | Stable adapter API even when core color internals change      |
