@@ -18,17 +18,13 @@ For details on our color token system, see [COLOR_TOKEN_SYSTEM.md](./COLOR_TOKEN
 
 ## Available Theme Collections
 
-Black Atom includes multiple theme collections, each with its own distinct style:
-
 | Collection   | Themes                                                     | Description                   |
 | ------------ | ---------------------------------------------------------- | ----------------------------- |
-| **JPN**      | koyo-hiru, koyo-yoru, murasaki-yoru, tsuki-yoru            | Japanese-inspired themes      |
+| **Default**  | dark, dark-dimmed, light, light-dimmed                     | Core default themes           |
 | **Stations** | engineering, operations, medical, research                 | Space station-inspired themes |
-| **Terra**    | seasons (spring, summer, fall, winter) × time (day, night) | Earth season-inspired themes  |
-| **MNML**     | 47, mikado, clay, orange (dark/light variants)             | Minimalist themes             |
-| **North**    | dark-night, day, night                                     | Nordic-inspired themes        |
-
-All themes are available in both dark and light variants.
+| **JPN**      | koyo-hiru, koyo-yoru, murasaki-yoru, tsuki-yoru            | Japanese-inspired themes      |
+| **Terra**    | seasons (spring, summer, fall, winter) x time (day, night) | Earth season-inspired themes  |
+| **MNML**     | 47, clay, eink, ita, mikado, mono, orange, osman           | Minimalist themes             |
 
 ## Usage
 
@@ -66,23 +62,32 @@ The core CLI adapts theme files by:
 Black Atom uses an adapter pattern to support multiple platforms:
 
 1. **Core Repository**: Defines all theme colors and properties
-2. **Adapter Repositories**: Implement themes for specific platforms (Neovim, VS Code, terminals, etc.)
+2. **Adapter Repositories**: Implement themes for specific platforms (Neovim, terminals, etc.)
 3. **Template Files**: Transform core definitions into platform-specific formats
 
 Each adapter repository contains:
 
 - Template files (e.g., `.template.lua`, `.template.json`)
-- An `adapter.json` configuration file
+- A `black-atom-adapter.json` configuration file
 - Generated theme files
 
 ### Supported Adapters
 
-- [Black Atom for Neovim](https://github.com/black-atom-industries/nvim)
-- [Black Atom for Ghostty](https://github.com/black-atom-industries/ghostty)
-- [Black Atom for Zed](https://github.com/black-atom-industries/zed)
-- [Black Atom for Obsidian](https://github.com/black-atom-industries/obsidian)
+- [Neovim](https://github.com/black-atom-industries/nvim)
+- [Ghostty](https://github.com/black-atom-industries/ghostty)
+- [WezTerm](https://github.com/black-atom-industries/wezterm)
+- [Tmux](https://github.com/black-atom-industries/tmux)
+- [Zed](https://github.com/black-atom-industries/zed)
+- [Obsidian](https://github.com/black-atom-industries/obsidian)
+- [Lazygit](https://github.com/black-atom-industries/lazygit)
+- [Niri](https://github.com/black-atom-industries/niri)
+- [Waybar](https://github.com/black-atom-industries/waybar)
 
 ## Development
+
+### Prerequisites
+
+- [Deno](https://deno.land/) runtime
 
 ### Development Commands
 
@@ -103,21 +108,9 @@ deno task schema
 deno task lock
 ```
 
-### CLI Build & Install
-
-```bash
-# Compile standalone binary (includes all themes)
-deno task cli:compile
-
-# Install to /usr/local/bin (may require sudo)
-sudo deno task cli:install
-```
-
-The compiled binary is fully standalone - it doesn't require Deno to be installed on the target system. All themes are bundled into the binary at compile time.
-
 ### Multi-Adapter Management
 
-The core repository provides advanced tasks for managing all adapter repositories:
+The core repository provides tasks for managing all adapter repositories simultaneously:
 
 ```bash
 # Generate themes for all adapters
@@ -139,54 +132,15 @@ deno task adapters:push
 deno task adapters:reset
 ```
 
-**Note**: Multi-adapter commands require all adapter repositories to be cloned as siblings under the same parent directory. Example structure: `~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian}`
-
-### Theme Structure
-
-Themes are defined in TypeScript and follow a structured format:
-
-```typescript
-export const theme: Theme = {
-    meta: {
-        name: "Theme Name",
-        description: "Theme description",
-        author: "Black Atom Industries",
-    },
-    appearance: "dark", // or "light"
-    primaries: {
-        accent: "#hexcolor",
-        // other primary colors
-    },
-    palette: {
-        // 16-color terminal palette
-    },
-    ui: uiDark, // or uiLight, imported from shared components
-    syntax: syntaxDark, // or syntaxLight, imported from shared components
-};
-```
+**Note**: Multi-adapter commands require all adapter repositories to be cloned as siblings under the same parent directory. Example structure: `~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian,...}`
 
 ### Creating New Themes
 
-To create a new theme:
+Detailed guides are available as Claude Code slash commands in `.claude/commands/core/`:
 
-1. Create a new TypeScript file in the appropriate collection directory
-2. Define the theme structure following the `Theme` interface
-3. Update the theme keys in `src/types/theme.ts`:
-   - Add to `themeKeys` array
-   - Add to `Meta.label` union type
-4. Update the theme bundle in `src/themes/bundle.ts`:
-   - Add import statement for the new theme
-   - Add entry to `themeBundle` object
-5. If creating a new collection:
-   - Add the collection key to `CollectionKey` type in `src/types/theme.ts`
-   - Add the collection to `collectionsSchema` in `src/lib/validate-adapter.ts`
-   - Create shared UI and syntax files for the collection
-6. Run typechecking: `deno task check`
-7. Generate schema: `deno task schema`
-8. **Important**: Recompile and reinstall the CLI to pick up changes:
-   ```bash
-   deno task cli:compile && deno task cli:install
-   ```
+- `/core:new-theme` — Create a new theme within an existing collection
+- `/core:new-adapter` — Create a new adapter for a platform
+- `/core:rename-theme` — Rename a theme across all repositories
 
 ## Contributing
 
@@ -201,10 +155,3 @@ Contributions are welcome! If you'd like to improve existing themes or add new f
 ## License
 
 MIT - See [LICENSE](./LICENSE) for details
-
-## Adapters
-
-- [Black Atom for Neovim](https://github.com/black-atom-industries/nvim)
-- [Black Atom for Ghostty](https://github.com/black-atom-industries/ghostty)
-- [Black Atom for Zed](https://github.com/black-atom-industries/zed)
-- [Black Atom for Obsidian](https://github.com/black-atom-industries/obsidian)
