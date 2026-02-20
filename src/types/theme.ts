@@ -1,5 +1,7 @@
+/** A hex color string in the format `#rrggbb` or `#rrggbbaa`. */
 export type HexColor = `#${string}`;
 
+/** All available theme keys as a const tuple. */
 export const themeKeys = [
     "black-atom-default-dark",
     "black-atom-default-dark-dimmed",
@@ -37,12 +39,16 @@ export const themeKeys = [
     "black-atom-mnml-ita-light",
 ] as const;
 
+/** Union type of all valid theme key strings. */
 type Key = (typeof themeKeys)[number];
 
+/** Identifier for a theme collection. */
 type CollectionKey = "default" | "terra" | "jpn" | "stations" | "mnml";
 
+/** Display label for a theme collection. */
 type CollectionLabel = string;
 
+/** Theme metadata including display name, appearance, and collection info. */
 interface Meta {
     key: Key;
     label:
@@ -89,28 +95,31 @@ interface Meta {
 }
 
 // NOTE: The `null` is only temporary until I have everything migrated
+/** Map of all theme keys to their definitions. */
 type ThemeMap = Record<Key, Definition | null>;
 
+/** Primary color scale with dark (d), medium (m), and light (l) ranges. */
 interface Primaries {
-    /* Dark range */
+    /** Darkest background */
     d10: HexColor;
     d20: HexColor;
     d30: HexColor;
     d40: HexColor;
 
-    /* Middle range */
+    /** Mid-range tones */
     m10: HexColor;
     m20: HexColor;
     m30: HexColor;
     m40: HexColor;
 
-    /* Light range */
+    /** Lightest foreground */
     l10: HexColor;
     l20: HexColor;
     l30: HexColor;
     l40: HexColor;
 }
 
+/** 16-color terminal palette. */
 interface Palette {
     black: HexColor;
     gray: HexColor;
@@ -130,7 +139,7 @@ interface Palette {
     white: HexColor;
 }
 
-/** Minimal accent interface for mnml themes */
+/** Minimal accent colors used by MNML collection themes. */
 interface Accents {
     a10: HexColor;
     a20: HexColor;
@@ -138,7 +147,7 @@ interface Accents {
     a40?: HexColor;
 }
 
-/** Feedback colors for semantic UI feedback (errors, warnings, etc.) */
+/** Semantic feedback colors for UI states. */
 export interface Feedback {
     negative: HexColor;
     success: HexColor;
@@ -146,6 +155,7 @@ export interface Feedback {
     warning: HexColor;
 }
 
+/** Background colors for UI elements. */
 interface UIBackground {
     default: HexColor;
     panel: HexColor;
@@ -166,6 +176,7 @@ interface UIBackground {
     modify: HexColor;
 }
 
+/** Foreground colors for UI elements. */
 interface UIForeground {
     default: HexColor;
     subtle: HexColor;
@@ -182,11 +193,13 @@ interface UIForeground {
     modify: HexColor;
 }
 
+/** UI color tokens split into background and foreground groups. */
 interface UI {
     bg: UIBackground;
     fg: UIForeground;
 }
 
+/** Syntax highlighting color tokens for all language constructs. */
 interface Syntax {
     variable: {
         default: HexColor;
@@ -288,6 +301,7 @@ interface Syntax {
     };
 }
 
+/** A complete theme definition with metadata, colors, UI tokens, and syntax colors. */
 interface Definition {
     meta: Meta;
     primaries: Primaries;
