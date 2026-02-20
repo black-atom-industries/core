@@ -32,7 +32,7 @@ For details on our color token system, see [COLOR_TOKEN_SYSTEM.md](./COLOR_TOKEN
 
 Black Atom Core is published on [JSR](https://jsr.io/@black-atom/core). Adapter repositories use it directly — no need to clone core or install a binary.
 
-From any adapter repository with a `deno.json`:
+From any adapter repository:
 
 ```bash
 # Generate theme files
