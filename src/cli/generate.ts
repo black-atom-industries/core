@@ -1,4 +1,4 @@
-import * as z from "@zod";
+import * as z from "zod";
 import * as colors from "@std/fmt/colors";
 
 import { config } from "../config.ts";

@@ -1,4 +1,4 @@
-import * as z from "@zod";
+import * as z from "zod";
 import type { CollectionKey } from "../types/theme.ts";
 
 /**
