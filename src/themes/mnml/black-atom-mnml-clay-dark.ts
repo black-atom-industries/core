@@ -1,4 +1,4 @@
-import * as Theme from "../../types/theme.ts";
+import type * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";

@@ -8,7 +8,7 @@
  * MAINTENANCE: When adding new themes, also add them here.
  */
 
-import * as Theme from "../types/theme.ts";
+import type * as Theme from "../types/theme.ts";
 
 // Default collection
 import blackAtomDefaultDark from "./default/black-atom-default-dark.ts";

@@ -1,7 +1,7 @@
 import { Eta } from "@eta";
 import { dirname } from "@std/path";
 import type { Definition, Key } from "../types/theme.ts";
-import { AdapterConfig } from "./validate-adapter.ts";
+import type { AdapterConfig } from "./validate-adapter.ts";
 
 // Initialize Eta with options
 const eta = new Eta({

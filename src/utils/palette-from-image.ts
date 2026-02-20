@@ -1,5 +1,5 @@
 import { formatHex, oklch as toOklch } from "culori";
-import { HexColor } from "../types/theme.ts";
+import type { HexColor } from "../types/theme.ts";
 
 /**
  * Represents a color extracted from an image
@@ -170,7 +170,7 @@ function getAnalogous(
 /**
  * Generates triadic colors (120° apart)
  */
-function getTriadic(
+function _getTriadic(
     color: { l: number; c: number; h: number },
 ): Array<{ l: number; c: number; h: number }> {
     return [

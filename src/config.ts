@@ -1,6 +1,6 @@
 import { dirname, join } from "@std/path";
 
-import * as Theme from "./types/theme.ts";
+import type * as Theme from "./types/theme.ts";
 import { themeKeys } from "./types/theme.ts";
 
 export type Config = {

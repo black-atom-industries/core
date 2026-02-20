@@ -1,4 +1,4 @@
-import { Feedback } from "../../types/theme.ts";
+import type { Feedback } from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
 const feedback: Feedback = {

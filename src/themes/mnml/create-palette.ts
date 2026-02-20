@@ -1,4 +1,4 @@
-import * as Theme from "../../types/theme.ts";
+import type * as Theme from "../../types/theme.ts";
 
 export default function (
     primaries: Theme.Primaries,

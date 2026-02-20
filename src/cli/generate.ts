@@ -3,7 +3,7 @@ import * as colors from "@std/fmt/colors";
 
 import { config } from "../config.ts";
 
-import { AdapterConfig, createAdapterConfigSchema } from "../lib/validate-adapter.ts";
+import { type AdapterConfig, createAdapterConfigSchema } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
 import { processTemplates } from "../lib/template.ts";
 import { loadThemeMap } from "../lib/theme-loader.ts";

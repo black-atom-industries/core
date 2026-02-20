@@ -1,4 +1,4 @@
-import { Palette, Primaries, UI } from "../../types/theme.ts";
+import type { Palette, Primaries, UI } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (primaries: Primaries, palette: Palette): UI {

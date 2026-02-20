@@ -1,5 +1,5 @@
-import * as Theme from "../../types/theme.ts";
-import { Feedback } from "../../types/theme.ts";
+import type * as Theme from "../../types/theme.ts";
+import type { Feedback } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (
