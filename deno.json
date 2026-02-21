@@ -13,7 +13,7 @@
         "lock": "deno cache --lock=deno.lock --reload .",
         "check": "deno check .",
         "format": "deno fmt .",
-        "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json .",
+        "lint": "deno lint --ignore=deno.lock,deno.json,import_map.json,CHANGELOG.md .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",
         "cli:compile": "deno compile --allow-read --allow-write --allow-env -o black-atom-core src/cli/index.ts",
         "cli:install": "cp black-atom-core /usr/local/bin/",
@@ -32,7 +32,8 @@
         "indentWidth": 4,
         "semiColons": true,
         "singleQuote": false,
-        "proseWrap": "preserve"
+        "proseWrap": "preserve",
+        "exclude": ["CHANGELOG.md"]
     },
     "imports": {
         "@std/assert": "jsr:@std/assert@^1.0.0",
