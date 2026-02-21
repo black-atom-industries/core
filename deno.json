@@ -7,7 +7,6 @@
         "./cli": "./src/cli/index.ts"
     },
     "publish": {
-        "include": ["src/", "adapter.schema.json", "deno.json", "LICENSE", "README.md"],
         "exclude": ["src/tasks/", "src/lib/generate-schema.ts", "src/lib/discover-adapters.ts"]
     },
     "tasks": {
