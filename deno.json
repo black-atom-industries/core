@@ -1,14 +1,24 @@
 {
     "$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
     "name": "@black-atom/core",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "exports": {
         ".": "./src/mod.ts",
         "./cli": "./src/cli/index.ts"
     },
     "publish": {
-        "include": ["src/", "adapter.schema.json", "deno.json", "LICENSE", "README.md"],
-        "exclude": ["src/tasks/", "src/lib/generate-schema.ts", "src/lib/discover-adapters.ts"]
+        "include": [
+            "src/",
+            "adapter.schema.json",
+            "deno.json",
+            "LICENSE",
+            "README.md"
+        ],
+        "exclude": [
+            "src/tasks/",
+            "src/lib/generate-schema.ts",
+            "src/lib/discover-adapters.ts"
+        ]
     },
     "tasks": {
         "lock": "deno cache --lock=deno.lock --reload .",
