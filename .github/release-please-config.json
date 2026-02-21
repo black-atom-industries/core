@@ -3,6 +3,12 @@
     "packages": {
         ".": {
             "release-type": "simple",
+            "changelog-sections": [
+                { "type": "feat", "section": "Features" },
+                { "type": "fix", "section": "Bug Fixes" },
+                { "type": "docs", "section": "Documentation" },
+                { "type": "perf", "section": "Performance" }
+            ],
             "extra-files": [
                 {
                     "type": "json",
