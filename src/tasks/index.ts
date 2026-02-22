@@ -20,7 +20,7 @@ if (import.meta.main) {
             break;
         }
 
-        case "adapters:watch": {
+        case "adapters:dev": {
             await watch();
             break;
         }

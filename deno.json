@@ -23,7 +23,7 @@
         "cli:install": "cp black-atom-core /usr/local/bin/",
         "theme:commit": "deno run -A src/tasks/index.ts theme:commit",
         "adapters:gen": "deno run -A src/tasks/index.ts adapters:gen",
-        "adapters:watch": "deno run -A src/tasks/index.ts adapters:watch",
+        "adapters:dev": "deno run -A src/tasks/index.ts adapters:watch",
         "adapters:status": "deno run -A src/tasks/index.ts adapters:status",
         "adapters:commit": "deno run -A src/tasks/index.ts adapters:commit",
         "adapters:push": "deno run -A src/tasks/index.ts adapters:push",
