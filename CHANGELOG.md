@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.1](https://github.com/black-atom-industries/core/compare/v0.2.0...v0.2.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* **ci:** include docs commits in release changelog ([e66dfd8](https://github.com/black-atom-industries/core/commit/e66dfd8050805dd253b1a15490be9eb7fa04b7ad))
+* **ci:** move JSR publish into release workflow ([45587da](https://github.com/black-atom-industries/core/commit/45587da0669ff97105179fd66d64772f67a2f45c))
+
+
+### Documentation
+
+* standardize documentation file naming conventions ([88d2104](https://github.com/black-atom-industries/core/commit/88d21048736b32bed03fced4d75d9e4a5e74c6a2))
+
 ## [0.2.0](https://github.com/black-atom-industries/core/compare/v0.1.3...v0.2.0) (2026-02-21)
 
 

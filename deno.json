@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/denoland/deno/main/cli/schemas/config-file.v1.json",
     "name": "@black-atom/core",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "exports": {
         ".": "./src/mod.ts",
         "./cli": "./src/cli/index.ts"
