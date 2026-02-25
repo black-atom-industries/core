@@ -1,7 +1,7 @@
 import type * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import createPalette from "./create-palette.ts";
+import createPalette from "./create-palette-light.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
 import feedback from "./feedback-light.ts";
@@ -23,15 +23,15 @@ const primaries: Theme.Primaries = {
     d30: oklch(0.32, 0.003, 240),
     d40: oklch(0.36, 0.003, 240),
 
-    m10: oklch(0.48, 0.025, 240),
-    m20: oklch(0.56, 0.025, 240),
-    m30: oklch(0.64, 0.025, 240),
-    m40: oklch(0.72, 0.025, 240),
+    m10: oklch(0.55, 0.025, 240),
+    m20: oklch(0.60, 0.015, 240),
+    m30: oklch(0.70, 0.010, 240),
+    m40: oklch(0.75, 0.005, 240),
 
-    l10: oklch(0.900, 0.003, 240),
-    l20: oklch(0.935, 0.003, 240),
-    l30: oklch(0.975, 0.003, 240),
-    l40: oklch(0.995, 0.003, 240),
+    l10: oklch(0.875, 0.005, 240),
+    l20: oklch(0.900, 0.005, 240),
+    l30: oklch(0.950, 0.005, 240),
+    l40: oklch(0.990, 0.005, 240),
 };
 
 const accents: Theme.Accents = {

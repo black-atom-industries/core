@@ -1,7 +1,7 @@
 import type * as Theme from "../../types/theme.ts";
 import { oklch } from "../../utils/color.ts";
 
-import createPalette from "./create-palette.ts";
+import createPalette from "./create-palette-dark.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 import feedback from "./feedback-dark.ts";

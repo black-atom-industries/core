@@ -39,7 +39,7 @@ export default function (
 
     const palette: Theme.Palette = {
         black: primaries.d40,
-        gray: primaries.m10,
+        gray: primaries.m20,
 
         darkRed: primaries.m40,
         red: primaries.m40,
@@ -47,8 +47,8 @@ export default function (
         darkYellow: primaries.m30,
         yellow: primaries.m30,
 
-        darkGreen: primaries.m30,
-        green: primaries.m30,
+        darkGreen: primaries.m40,
+        green: primaries.m40,
 
         darkCyan: primaries.m40,
         cyan: primaries.m40,
