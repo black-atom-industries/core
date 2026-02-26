@@ -26,6 +26,7 @@ export function createAdapterConfigSchema(themeKeys: readonly string[]) {
     return z.object({
         $schema: z.string(),
         enabled: z.boolean().optional().default(true),
+        postGenerate: z.string().optional(),
         collections: collectionsSchema,
     });
 }

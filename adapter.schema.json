@@ -13,6 +13,10 @@
             "description": "Whether this adapter is active and should be processed",
             "default": true
         },
+        "postGenerate": {
+            "type": "string",
+            "description": "Shell command to run in the adapter directory after generation completes (e.g. assembly step)"
+        },
         "collections": {
             "type": "object",
             "properties": {
