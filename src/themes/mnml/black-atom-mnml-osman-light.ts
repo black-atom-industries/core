@@ -1,9 +1,9 @@
 import type {
-    ThemeAccents,
+    ThemeAccentColors,
     ThemeDefinition,
-    ThemeFeedback,
-    ThemePrimaries,
-    ThemeSyntax,
+    ThemeFeedbackColors,
+    ThemePrimaryColors,
+    ThemeSyntaxColors,
 } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
@@ -14,7 +14,7 @@ import createUi from "./create-ui-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-mnml-osman-light"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.15, 0.008, 64),
     d20: oklch(0.32, 0.015, 64),
     d30: oklch(0.36, 0.015, 64),
@@ -31,7 +31,7 @@ const primaries: ThemePrimaries = {
     l40: oklch(0.99, 0.010, 64),
 };
 
-const accents: ThemeAccents = {
+const accents: ThemeAccentColors = {
     a10: oklch(0.625, 0.200, 255),
     a20: oklch(0.625, 0.225, 28),
 };
@@ -47,7 +47,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: ThemeFeedback = {
+const feedback: ThemeFeedbackColors = {
     info: accents.a10,
     warning: oklch(0.8399, 0.1588, 86.81),
     negative: accents.a20,
@@ -55,7 +55,7 @@ const feedback: ThemeFeedback = {
 };
 
 const ui = createUi(primaries, feedback, accents);
-const syntax: ThemeSyntax = {
+const syntax: ThemeSyntaxColors = {
     ...createSyntax(primaries, feedback, accents),
     keyword: {
         default: accents.a20,

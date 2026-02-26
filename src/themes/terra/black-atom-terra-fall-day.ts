@@ -1,4 +1,4 @@
-import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -8,7 +8,7 @@ import createUi from "./create-ui-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-terra-fall-day"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.202, 0.05, 47.49),
     d20: oklch(0.301, 0.049, 48.35),
     d30: oklch(0.348, 0.05, 49.42),

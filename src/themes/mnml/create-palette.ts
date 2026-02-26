@@ -1,14 +1,14 @@
-import type { ThemePalette, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemePaletteColors, ThemePrimaryColors } from "../../types/theme.ts";
 
 export default function (
-    primaries: ThemePrimaries,
+    primaries: ThemePrimaryColors,
     opts: {
         debug: boolean;
-        override?: (palette: ThemePalette) => ThemePalette;
+        override?: (palette: ThemePaletteColors) => ThemePaletteColors;
     } = {
         debug: false,
     },
-): ThemePalette {
+): ThemePaletteColors {
     if (opts.debug) {
         return {
             black: "#000000", // Pure BLACK
@@ -37,7 +37,7 @@ export default function (
         };
     }
 
-    const palette: ThemePalette = {
+    const palette: ThemePaletteColors = {
         black: primaries.d40,
         gray: primaries.m10,
 

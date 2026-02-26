@@ -1,7 +1,7 @@
 import type { HexColor } from "./colors.ts";
 
 /** Primary color scale with dark (d), medium (m), and light (l) ranges. */
-export interface ThemePrimaries {
+export interface ThemePrimaryColors {
     /** Darkest background */
     d10: HexColor;
     d20: HexColor;
@@ -22,7 +22,7 @@ export interface ThemePrimaries {
 }
 
 /** 16-color terminal palette. */
-export interface ThemePalette {
+export interface ThemePaletteColors {
     black: HexColor;
     gray: HexColor;
     darkRed: HexColor;
@@ -42,7 +42,7 @@ export interface ThemePalette {
 }
 
 /** Minimal accent colors used by MNML collection themes. */
-export interface ThemeAccents {
+export interface ThemeAccentColors {
     a10: HexColor;
     a20: HexColor;
     a30?: HexColor;
@@ -50,7 +50,7 @@ export interface ThemeAccents {
 }
 
 /** Semantic feedback colors for UI states. */
-export interface ThemeFeedback {
+export interface ThemeFeedbackColors {
     negative: HexColor;
     success: HexColor;
     info: HexColor;
@@ -58,7 +58,7 @@ export interface ThemeFeedback {
 }
 
 /** Background colors for UI elements. */
-interface ThemeUIBackground {
+interface ThemeUiBackgroundColors {
     default: HexColor;
     panel: HexColor;
     float: HexColor;
@@ -79,7 +79,7 @@ interface ThemeUIBackground {
 }
 
 /** Foreground colors for UI elements. */
-interface ThemeUIForeground {
+interface ThemeUiForegroundColors {
     default: HexColor;
     subtle: HexColor;
     accent: HexColor;
@@ -96,13 +96,13 @@ interface ThemeUIForeground {
 }
 
 /** UI color tokens split into background and foreground groups. */
-export interface ThemeUI {
-    bg: ThemeUIBackground;
-    fg: ThemeUIForeground;
+export interface ThemeUiColors {
+    bg: ThemeUiBackgroundColors;
+    fg: ThemeUiForegroundColors;
 }
 
 /** Syntax highlighting color tokens for all language constructs. */
-export interface ThemeSyntax {
+export interface ThemeSyntaxColors {
     variable: {
         default: HexColor;
         builtin: HexColor;
@@ -277,13 +277,13 @@ export interface ThemeDefinition {
     /** Metadata for the theme. */
     meta: ThemeMeta;
     /** Primary color scale. */
-    primaries: ThemePrimaries;
+    primaries: ThemePrimaryColors;
     /** 16-color terminal palette. */
-    palette: ThemePalette;
+    palette: ThemePaletteColors;
     /** UI color tokens split into background and foreground groups. */
-    ui: ThemeUI;
+    ui: ThemeUiColors;
     /** Syntax highlighting color tokens for all language constructs. */
-    syntax: ThemeSyntax;
+    syntax: ThemeSyntaxColors;
 }
 
 /** Map of all theme keys to their full definitions. */

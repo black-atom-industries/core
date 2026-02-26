@@ -1,4 +1,4 @@
-import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -8,7 +8,7 @@ import createUi from "./create-ui-dark.ts";
 
 const meta = themeKeyMetaMap["black-atom-stations-operations"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.247, 0.014, 196.27),
     d20: oklch(0.295, 0.021, 181.1),
     d30: oklch(0.338, 0.027, 173.11),

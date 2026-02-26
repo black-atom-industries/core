@@ -1,7 +1,10 @@
-import type { ThemePalette, ThemePrimaries, ThemeUI } from "../../types/theme.ts";
+import type { ThemePaletteColors, ThemePrimaryColors, ThemeUiColors } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
-export default function (primaries: ThemePrimaries, palette: ThemePalette): ThemeUI {
+export default function (
+    primaries: ThemePrimaryColors,
+    palette: ThemePaletteColors,
+): ThemeUiColors {
     function t(color: string) {
         return tint({ color, with: primaries.l30 });
     }

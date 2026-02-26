@@ -1,15 +1,15 @@
 import type {
-    ThemeAccents,
-    ThemeFeedback,
-    ThemePrimaries,
-    ThemeSyntax,
+    ThemeAccentColors,
+    ThemeFeedbackColors,
+    ThemePrimaryColors,
+    ThemeSyntaxColors,
 } from "../../types/theme.ts";
 
 export default function (
-    primaries: ThemePrimaries,
-    feedback: ThemeFeedback,
-    accents: ThemeAccents,
-): ThemeSyntax {
+    primaries: ThemePrimaryColors,
+    feedback: ThemeFeedbackColors,
+    accents: ThemeAccentColors,
+): ThemeSyntaxColors {
     return {
         variable: {
             default: primaries.l20,

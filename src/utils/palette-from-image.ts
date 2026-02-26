@@ -344,7 +344,7 @@ export function generatePrimariesFromSuggestion(
     };
 
     const lines: string[] = [];
-    lines.push("const primaries: ThemePrimaries = {");
+    lines.push("const primaries: ThemePrimaryColors = {");
 
     lines.push("    d10: " + formatOklch(lightnessRanges.d[0], minChroma, hue) + ",");
     lines.push("    d20: " + formatOklch(lightnessRanges.d[1], minChroma, hue) + ",");

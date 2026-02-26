@@ -1,4 +1,4 @@
-import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -8,7 +8,7 @@ import createUi from "./create-ui-dark.ts";
 
 const meta = themeKeyMetaMap["black-atom-terra-winter-night"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     // Dark range - icy deep blues
     d10: oklch(0.16, 0.010, 260),
     d20: oklch(0.20, 0.015, 258),

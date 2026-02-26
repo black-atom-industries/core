@@ -1,4 +1,4 @@
-import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -8,7 +8,7 @@ import createUi from "./create-ui-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-jpn-koyo-hiru"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.258, 0.021, 326.17),
     d20: oklch(0.319, 0.027, 326.18),
     d30: oklch(0.367, 0.043, 326.41),

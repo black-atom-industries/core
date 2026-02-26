@@ -1,8 +1,8 @@
 import type {
-    ThemeAccents,
-    ThemeFeedback,
-    ThemePrimaries,
-    ThemeSyntax,
+    ThemeAccentColors,
+    ThemeFeedbackColors,
+    ThemePrimaryColors,
+    ThemeSyntaxColors,
 } from "../../types/theme.ts";
 
 /**
@@ -11,10 +11,10 @@ import type {
  * a30/a40 = purple variants (keywords)
  */
 export default function (
-    primaries: ThemePrimaries,
-    feedback: ThemeFeedback,
-    accents: ThemeAccents,
-): ThemeSyntax {
+    primaries: ThemePrimaryColors,
+    feedback: ThemeFeedbackColors,
+    accents: ThemeAccentColors,
+): ThemeSyntaxColors {
     return {
         variable: {
             default: primaries.d40,

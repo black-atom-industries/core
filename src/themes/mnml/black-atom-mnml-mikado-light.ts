@@ -1,8 +1,8 @@
 import type {
-    ThemeAccents,
+    ThemeAccentColors,
     ThemeDefinition,
-    ThemeFeedback,
-    ThemePrimaries,
+    ThemeFeedbackColors,
+    ThemePrimaryColors,
 } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
@@ -13,7 +13,7 @@ import createUi from "./create-ui-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-mnml-mikado-light"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.216, 0.018, 237.84),
     d20: oklch(0.238, 0.033, 239.41),
     d30: oklch(0.28, 0.026, 235.29),
@@ -30,7 +30,7 @@ const primaries: ThemePrimaries = {
     l40: oklch(0.886, 0.011, 226),
 };
 
-const accents: ThemeAccents = {
+const accents: ThemeAccentColors = {
     a10: "#cc8f00",
     a20: "#457ea1",
 };
@@ -44,7 +44,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: ThemeFeedback = {
+const feedback: ThemeFeedbackColors = {
     info: accents.a20,
     warning: "#f7bd08",
     negative: "#e64433",

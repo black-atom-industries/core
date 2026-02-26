@@ -1,9 +1,9 @@
-import type { ThemePalette, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemePaletteColors, ThemePrimaryColors } from "../../types/theme.ts";
 
 export default function (
-    primaries: ThemePrimaries,
-    palette: Omit<ThemePalette, "black" | "gray" | "lightGray" | "white">,
-): ThemePalette {
+    primaries: ThemePrimaryColors,
+    palette: Omit<ThemePaletteColors, "black" | "gray" | "lightGray" | "white">,
+): ThemePaletteColors {
     return {
         ...palette,
         black: primaries.d40,

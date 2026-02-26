@@ -1,4 +1,4 @@
-import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -8,7 +8,7 @@ import createUi from "./create-ui-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-terra-summer-day"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     // Dark range - deep teal/olive for text
     d10: oklch(0.22, 0.04, 175),
     d20: oklch(0.28, 0.045, 170),

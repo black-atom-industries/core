@@ -1,4 +1,4 @@
-import type { ThemeAccents, ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import type { ThemeAccentColors, ThemeDefinition, ThemePrimaryColors } from "../../types/theme.ts";
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
@@ -9,7 +9,7 @@ import feedback from "./feedback-dark.ts";
 
 const meta = themeKeyMetaMap["black-atom-default-dark"];
 
-const primaries: ThemePrimaries = {
+const primaries: ThemePrimaryColors = {
     d10: oklch(0.22, 0.010, 195),
     d20: oklch(0.26, 0.010, 195),
     d30: oklch(0.30, 0.010, 195),
@@ -26,7 +26,7 @@ const primaries: ThemePrimaries = {
     l40: oklch(0.92, 0.025, 240),
 };
 
-const accents: ThemeAccents = {
+const accents: ThemeAccentColors = {
     a10: oklch(0.85, 0.085, 142),
     a20: oklch(0.75, 0.085, 142),
     a30: oklch(0.85, 0.085, 290),

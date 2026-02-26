@@ -1,6 +1,13 @@
-import type { ThemePalette, ThemePrimaries, ThemeSyntax } from "../../types/theme.ts";
+import type {
+    ThemePaletteColors,
+    ThemePrimaryColors,
+    ThemeSyntaxColors,
+} from "../../types/theme.ts";
 
-export default function (primaries: ThemePrimaries, palette: ThemePalette): ThemeSyntax {
+export default function (
+    primaries: ThemePrimaryColors,
+    palette: ThemePaletteColors,
+): ThemeSyntaxColors {
     return {
         variable: {
             default: primaries.m10,
