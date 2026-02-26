@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.2](https://github.com/black-atom-industries/core/compare/v0.3.1...v0.3.2) (2026-02-26)
+
+
+### Refactors
+
+* remove unnecessary theme-loader indirection ([dbfb7bd](https://github.com/black-atom-industries/core/commit/dbfb7bd7bfed1ccb37bf3422615d6efb7ad809fc))
+* **themes:** adjust black-atom-default-light palette ([00f972e](https://github.com/black-atom-industries/core/commit/00f972e8fb11b06b4feab66287178ffd705cafd7))
+* **themes:** adjust black-atom-jpn-koyo-hiru palette ([1f7789b](https://github.com/black-atom-industries/core/commit/1f7789bc9efdb7f4f902a8a683d68a241abc3367))
+* **themes:** adjust koyo-hiru palette color values ([4907001](https://github.com/black-atom-industries/core/commit/490700128a32c578cf5912d30e25b94474a528aa))
+* **themes:** align structure across all collections (DEV-293) ([d969be0](https://github.com/black-atom-industries/core/commit/d969be02132424afdcaa8f71943643d22b053a63))
+
+
+### Bug Fixes
+
+* correct meta key reference in default-dark-dimmed theme ([4b4fa70](https://github.com/black-atom-industries/core/commit/4b4fa704211204ef5ec3d3ae7f5cb6635913ea78))
+
 ## [0.3.1](https://github.com/black-atom-industries/core/compare/v0.3.0...v0.3.1) (2026-02-26)
 
 
