@@ -10,10 +10,10 @@ import createUi from "./create-ui-dark.ts";
 const meta = themeKeyMetaMap["black-atom-jpn-koyo-yoru"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.253, 0.036, 315.74),
-    d20: oklch(0.302, 0.034, 315.84),
-    d30: oklch(0.346, 0.035, 316.52),
-    d40: oklch(0.392, 0.036, 315.08),
+    d10: oklch(0.20, 0.036, 315.74),
+    d20: oklch(0.24, 0.034, 315.84),
+    d30: oklch(0.32, 0.035, 316.52),
+    d40: oklch(0.38, 0.036, 315.08),
 
     m10: oklch(0.478, 0.042, 298.88),
     m20: oklch(0.564, 0.046, 292.5),
