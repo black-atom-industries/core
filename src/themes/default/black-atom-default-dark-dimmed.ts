@@ -7,7 +7,7 @@ import createPalette from "./create-palette-dark.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
-const meta = themeKeyMetaMap["black-atom-default-dark"];
+const meta = themeKeyMetaMap["black-atom-default-dark-dimmed"];
 
 const primaries: ThemePrimaryColors = {
     d10: oklch(0.22, 0.010, 195),
