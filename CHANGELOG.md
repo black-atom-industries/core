@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.3.0](https://github.com/black-atom-industries/core/compare/v0.2.0...v0.3.0) (2026-02-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* All type exports prefixed with Theme (Key→ThemeKey, Meta→ThemeMeta, Definition→ThemeDefinition, etc). ThemeMeta.label removed — use ThemeMeta.name + formatThemeLabel(). themeBundle renamed to themeMap. New exports: collectionOrder, collectionLabels, formatThemeLabel. release-please configured with bump-minor-pre-major to prevent premature 1.0.0.
+
+### Features
+
+* add terminal color test watch mode ([47af464](https://github.com/black-atom-industries/core/commit/47af4645c3a7e342b729cd27c599c904f187a380))
+* rename type exports, replace meta.label with meta.name [DEV-279] [DEV-283] ([225519b](https://github.com/black-atom-industries/core/commit/225519bfe3b38bfdc605cd2d64d53b28a611ce23))
+* **themes/default:** separate palette creation for light and dark ([ec1503a](https://github.com/black-atom-industries/core/commit/ec1503a645a03419cddbf0604e33fe21d345c3c4))
+
+
+### Refactors
+
+* **claude:** migrate commands and agents to skills, slim CLAUDE.md ([6baa3ef](https://github.com/black-atom-industries/core/commit/6baa3ef9d4fc7e5373888648c649b408f136f4af))
+* **deno:** publish task and JSR type checking requirements ([28faabc](https://github.com/black-atom-industries/core/commit/28faabce5b5632d25eb971ec360da59709fb7418))
+
+
+### Bug Fixes
+
+* align border and always clear screen in terminal color test ([714b378](https://github.com/black-atom-industries/core/commit/714b3785032c45e055f8b5a3e951eb23819ac014))
+* **ci:** include docs commits in release changelog ([e66dfd8](https://github.com/black-atom-industries/core/commit/e66dfd8050805dd253b1a15490be9eb7fa04b7ad))
+* **ci:** move JSR publish into release workflow ([45587da](https://github.com/black-atom-industries/core/commit/45587da0669ff97105179fd66d64772f67a2f45c))
+
+
+### Documentation
+
+* standardize documentation file naming conventions ([88d2104](https://github.com/black-atom-industries/core/commit/88d21048736b32bed03fced4d75d9e4a5e74c6a2))
+
 ## [0.2.0](https://github.com/black-atom-industries/core/compare/v0.1.3...v0.2.0) (2026-02-21)
 
 
