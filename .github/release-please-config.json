@@ -7,6 +7,7 @@
             "bump-patch-for-minor-pre-major": false,
             "changelog-sections": [
                 { "type": "feat", "section": "Features" },
+                { "type": "refactor", "section": "Refactors" },
                 { "type": "fix", "section": "Bug Fixes" },
                 { "type": "docs", "section": "Documentation" },
                 { "type": "perf", "section": "Performance" }
