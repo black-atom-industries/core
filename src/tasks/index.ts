@@ -3,7 +3,7 @@ import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
 import { watch } from "./adapters/watch.ts";
-import { getUserConfirmation, runCommand } from "./adapters/utils.ts";
+import { getUserConfirmation, parseTaskArgs, runCommand } from "./adapters/utils.ts";
 import { config } from "../config.ts";
 import log from "../lib/log.ts";
 
@@ -31,13 +31,14 @@ if (import.meta.main) {
         }
 
         case "adapters:commit": {
-            const adapterGitArgs = Deno.args.slice(1);
+            const { taskFlags, gitArgs: adapterGitArgs } = parseTaskArgs(Deno.args.slice(1));
 
             log.info("Generating themes for all repositories with commit...");
 
-            const confirmCommit = await getUserConfirmation(
-                "This will commit changes to all adapter repositories. Continue? (y/n): ",
-            );
+            const confirmCommit = taskFlags.has("-y") || taskFlags.has("--yes") ||
+                await getUserConfirmation(
+                    "This will commit changes to all adapter repositories. Continue? (y/n): ",
+                );
 
             if (confirmCommit) {
                 await generateAllRepositories({ commit: true, gitCommitArgs: adapterGitArgs });
@@ -48,7 +49,7 @@ if (import.meta.main) {
         }
 
         case "theme:commit": {
-            const gitArgs = Deno.args.slice(1);
+            const { taskFlags: themeTaskFlags, gitArgs } = parseTaskArgs(Deno.args.slice(1));
 
             // Extract -m message and --amend for adapter commits
             const themeMsgIndex = gitArgs.indexOf("-m");
@@ -71,9 +72,10 @@ if (import.meta.main) {
                 log.info(stagedFiles.trim());
             }
 
-            const confirmThemeCommit = await getUserConfirmation(
-                "This will commit staged core changes and regenerate all adapters. Continue? (y/n): ",
-            );
+            const confirmThemeCommit = themeTaskFlags.has("-y") || themeTaskFlags.has("--yes") ||
+                await getUserConfirmation(
+                    "This will commit staged core changes and regenerate all adapters. Continue? (y/n): ",
+                );
 
             if (confirmThemeCommit) {
                 await runCommand(["git", "commit", ...gitArgs], { cwd: coreDir });
@@ -104,10 +106,12 @@ if (import.meta.main) {
         case "adapters:reset": {
             log.info("Checking adapters for reset...");
 
-            // Parse args to see if auto-stash is requested
-            const autoStash = Deno.args.includes("--auto-stash");
+            const { taskFlags: resetTaskFlags } = parseTaskArgs(Deno.args.slice(1));
+            const autoStash = resetTaskFlags.has("--auto-stash");
+            const skipResetConfirm = resetTaskFlags.has("-y") || resetTaskFlags.has("--yes") ||
+                autoStash;
 
-            if (!autoStash) {
+            if (!skipResetConfirm) {
                 const confirm = await getUserConfirmation(
                     "This will reset all adapter repositories to their remote state. " +
                         "Local changes will be lost. Continue? (y/n): ",
