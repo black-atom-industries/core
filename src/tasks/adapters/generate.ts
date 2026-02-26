@@ -1,9 +1,28 @@
-import { forEachAdapter } from "./forEachAdapter.ts";
-import { runCommand } from "./utils.ts";
-import { getAdapters } from "../../lib/discover-adapters.ts";
-import log from "../../lib/log.ts";
+import { existsSync } from "@std/fs";
 import { join } from "@std/path";
 import { config } from "../../config.ts";
+import { getAdapters } from "../../lib/discover-adapters.ts";
+import log from "../../lib/log.ts";
+import { createAdapterConfigSchema } from "../../lib/validate-adapter.ts";
+import { themeKeys } from "../../types/theme.ts";
+import { forEachAdapter } from "./forEachAdapter.ts";
+import { runCommand } from "./utils.ts";
+
+async function runPostGenerate(adapterDir: string, adapter: string): Promise<void> {
+    const configPath = join(adapterDir, config.adapterFileName);
+    if (!existsSync(configPath)) return;
+
+    const adapterConfigSchema = createAdapterConfigSchema(themeKeys);
+    const adapterConfig = adapterConfigSchema.parse(
+        JSON.parse(await Deno.readTextFile(configPath)),
+    );
+
+    if (adapterConfig.postGenerate) {
+        log.info(`Running postGenerate for ${adapter}...`);
+        const parts = adapterConfig.postGenerate.split(" ");
+        await runCommand(parts, { cwd: adapterDir });
+    }
+}
 
 /**
  * Options for generating themes in repositories
@@ -43,6 +62,8 @@ export async function generateAllRepositories({
                     `${coreDir}/src/cli/index.ts`,
                     "generate",
                 ], { cwd: adapterDir });
+
+                await runPostGenerate(adapterDir, adapter);
 
                 // Check for changes
                 const gitStatus = await runCommand(["git", "status", "--porcelain"], {
@@ -125,6 +146,8 @@ export async function generateSingleAdapter(
             `${coreDir}/src/cli/index.ts`,
             "generate",
         ], { cwd: adapterDir });
+
+        await runPostGenerate(adapterDir, adapterName);
 
         // Check for changes
         const gitStatus = await runCommand(["git", "status", "--porcelain"], { cwd: adapterDir });
