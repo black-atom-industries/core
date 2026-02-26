@@ -1,9 +1,8 @@
-import type { ThemePaletteColors, ThemePrimaryColors, ThemeUiColors } from "../../types/theme.ts";
+import type { ThemeCreatorOptions, ThemeUiColors } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (
-    primaries: ThemePrimaryColors,
-    palette: ThemePaletteColors,
+    { primaries, palette, feedback, accents }: ThemeCreatorOptions,
 ): ThemeUiColors {
     function t(color: string) {
         return tint({ color, with: primaries.d10 });
@@ -20,29 +19,29 @@ export default function (
             selection: primaries.d40,
             search: primaries.d40,
             contrast: primaries.l30,
-            negative: t(palette.red),
-            warn: t(palette.yellow),
-            info: t(palette.blue),
+            negative: t(feedback.negative),
+            warn: t(feedback.warning),
+            info: t(feedback.info),
             hint: t(palette.darkYellow),
-            positive: t(palette.green),
-            add: t(palette.green),
-            delete: t(palette.red),
-            modify: t(palette.blue),
+            positive: t(feedback.success),
+            add: t(feedback.success),
+            delete: t(feedback.negative),
+            modify: t(feedback.info),
         },
         fg: {
             default: primaries.l30,
             subtle: primaries.m40,
             disabled: primaries.m30,
-            accent: palette.yellow,
+            accent: accents.a10,
             contrast: primaries.d20,
-            negative: palette.red,
-            warn: palette.yellow,
-            info: palette.blue,
+            negative: feedback.negative,
+            warn: feedback.warning,
+            info: feedback.info,
             hint: palette.darkYellow,
-            positive: palette.green,
-            add: palette.green,
-            delete: palette.red,
-            modify: palette.blue,
+            positive: feedback.success,
+            add: feedback.success,
+            delete: feedback.negative,
+            modify: feedback.info,
         },
     };
 }

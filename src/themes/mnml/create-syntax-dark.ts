@@ -1,14 +1,7 @@
-import type {
-    ThemeAccentColors,
-    ThemeFeedbackColors,
-    ThemePrimaryColors,
-    ThemeSyntaxColors,
-} from "../../types/theme.ts";
+import type { ThemeCreatorOptions, ThemeSyntaxColors } from "../../types/theme.ts";
 
 export default function (
-    primaries: ThemePrimaryColors,
-    feedback: ThemeFeedbackColors,
-    accents: ThemeAccentColors,
+    { primaries, feedback, accents }: ThemeCreatorOptions,
 ): ThemeSyntaxColors {
     return {
         variable: {

@@ -8,7 +8,7 @@ import type {
 import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
-import createPalette from "./create-palette.ts";
+import createPalette from "./create-palette-dark.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
@@ -53,9 +53,10 @@ const feedback: ThemeFeedbackColors = {
     success: oklch(0.65, 0.15, 150),
 };
 
-const ui = createUi(primaries, feedback, accents);
+const options = { primaries, palette, feedback, accents };
+const ui = createUi(options);
 const syntax: ThemeSyntaxColors = {
-    ...createSyntax(primaries, feedback, accents),
+    ...createSyntax(options),
     keyword: {
         default: accents.a20,
         import: accents.a30 ?? accents.a20,

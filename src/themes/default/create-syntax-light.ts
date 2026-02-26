@@ -1,9 +1,4 @@
-import type {
-    ThemeAccentColors,
-    ThemeFeedbackColors,
-    ThemePrimaryColors,
-    ThemeSyntaxColors,
-} from "../../types/theme.ts";
+import type { ThemeCreatorOptions, ThemeSyntaxColors } from "../../types/theme.ts";
 
 /**
  * Default collection light syntax - minimal grayscale with 4 accents
@@ -11,9 +6,7 @@ import type {
  * a30/a40 = purple variants (keywords)
  */
 export default function (
-    primaries: ThemePrimaryColors,
-    feedback: ThemeFeedbackColors,
-    accents: ThemeAccentColors,
+    { primaries, feedback, accents }: ThemeCreatorOptions,
 ): ThemeSyntaxColors {
     return {
         variable: {

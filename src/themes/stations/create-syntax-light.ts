@@ -1,12 +1,7 @@
-import type {
-    ThemePaletteColors,
-    ThemePrimaryColors,
-    ThemeSyntaxColors,
-} from "../../types/theme.ts";
+import type { ThemeCreatorOptions, ThemeSyntaxColors } from "../../types/theme.ts";
 
 export default function (
-    primaries: ThemePrimaryColors,
-    palette: ThemePaletteColors,
+    { primaries, palette, feedback }: ThemeCreatorOptions,
 ): ThemeSyntaxColors {
     return {
         variable: {
@@ -70,10 +65,10 @@ export default function (
         comment: {
             default: primaries.m30,
             doc: palette.darkGreen,
-            todo: palette.green,
-            error: palette.red,
-            warn: palette.yellow,
-            info: palette.blue,
+            todo: feedback.success,
+            error: feedback.negative,
+            warn: feedback.warning,
+            info: feedback.info,
             hint: palette.darkYellow,
         },
         markup: {

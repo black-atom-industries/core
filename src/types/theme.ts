@@ -57,6 +57,14 @@ export interface ThemeFeedbackColors {
     warning: HexColor;
 }
 
+/** Options object passed to all create-ui and create-syntax functions. */
+export interface ThemeCreatorOptions {
+    primaries: ThemePrimaryColors;
+    palette: ThemePaletteColors;
+    feedback: ThemeFeedbackColors;
+    accents: ThemeAccentColors;
+}
+
 /** Background colors for UI elements. */
 interface ThemeUiBackgroundColors {
     default: HexColor;

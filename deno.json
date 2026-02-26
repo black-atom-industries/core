@@ -16,6 +16,7 @@
     "tasks": {
         "lock": "deno cache --lock=deno.lock --reload .",
         "check": "deno check .",
+        "checks": "deno task check . && deno task format && deno task lint",
         "format": "deno fmt .",
         "lint": "deno lint .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",

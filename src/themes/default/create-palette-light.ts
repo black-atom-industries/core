@@ -1,43 +1,11 @@
 import type { ThemePaletteColors, ThemePrimaryColors } from "../../types/theme.ts";
+import { createPalette } from "../create-palette.ts";
 
 export default function (
     primaries: ThemePrimaryColors,
-    opts: {
-        debug?: boolean;
-        override?: (palette: ThemePaletteColors) => ThemePaletteColors;
-    } = {
-        debug: false,
-    },
+    opts?: Parameters<typeof createPalette>[1],
 ): ThemePaletteColors {
-    if (opts.debug) {
-        return {
-            black: "#000000",
-            gray: "#808080",
-
-            darkRed: "#8B0000",
-            red: "#FF0000",
-
-            darkYellow: "#B8860B",
-            yellow: "#FFFF00",
-
-            darkGreen: "#006400",
-            green: "#00FF00",
-
-            darkCyan: "#008B8B",
-            cyan: "#00FFFF",
-
-            darkBlue: "#00008B",
-            blue: "#0080FF",
-
-            darkMagenta: "#8B008B",
-            magenta: "#FF00FF",
-
-            lightGray: "#D3D3D3",
-            white: "#FFFFFF",
-        };
-    }
-
-    const palette: ThemePaletteColors = {
+    return createPalette({
         black: primaries.d20,
         gray: primaries.m10,
 
@@ -61,11 +29,5 @@ export default function (
 
         lightGray: primaries.m40,
         white: primaries.l10,
-    };
-
-    if (opts.override) {
-        return opts.override(palette);
-    }
-
-    return palette;
+    }, opts);
 }

@@ -7,7 +7,7 @@ export default function (
 ): ThemePaletteColors {
     return createPalette({
         black: primaries.d40,
-        gray: primaries.m20,
+        gray: primaries.m10,
 
         darkRed: primaries.m40,
         red: primaries.m40,
@@ -15,19 +15,19 @@ export default function (
         darkYellow: primaries.m30,
         yellow: primaries.m30,
 
-        darkGreen: primaries.m40,
-        green: primaries.m40,
+        darkGreen: primaries.m30,
+        green: primaries.m30,
 
         darkCyan: primaries.m40,
         cyan: primaries.m40,
 
-        darkBlue: primaries.m20,
-        blue: primaries.m20,
+        darkBlue: primaries.m40,
+        blue: primaries.m40,
 
         darkMagenta: primaries.m30,
         magenta: primaries.m30,
 
-        lightGray: primaries.l20,
-        white: primaries.l30,
+        lightGray: primaries.m40,
+        white: primaries.m40,
     }, opts);
 }
