@@ -1,105 +1,7 @@
-/** A hex color string in the format `#rrggbb` or `#rrggbbaa`. */
-export type HexColor = `#${string}`;
-
-/** All available theme keys as a const tuple. */
-export const themeKeys = [
-    "black-atom-default-dark",
-    "black-atom-default-dark-dimmed",
-    "black-atom-default-light",
-    "black-atom-default-light-dimmed",
-    "black-atom-stations-engineering",
-    "black-atom-stations-operations",
-    "black-atom-stations-medical",
-    "black-atom-stations-research",
-    "black-atom-jpn-koyo-yoru",
-    "black-atom-jpn-koyo-hiru",
-    "black-atom-jpn-tsuki-yoru",
-    "black-atom-jpn-murasaki-yoru",
-    "black-atom-terra-spring-day",
-    "black-atom-terra-spring-night",
-    "black-atom-terra-fall-day",
-    "black-atom-terra-fall-night",
-    "black-atom-terra-summer-day",
-    "black-atom-terra-summer-night",
-    "black-atom-terra-winter-day",
-    "black-atom-terra-winter-night",
-    "black-atom-mnml-clay-dark",
-    "black-atom-mnml-clay-light",
-    "black-atom-mnml-orange-dark",
-    "black-atom-mnml-orange-light",
-    "black-atom-mnml-osman-light",
-    "black-atom-mnml-mikado-dark",
-    "black-atom-mnml-mikado-light",
-    "black-atom-mnml-47-light",
-    "black-atom-mnml-47-dark",
-    "black-atom-mnml-eink-dark",
-    "black-atom-mnml-eink-light",
-    "black-atom-mnml-mono-dark",
-    "black-atom-mnml-mono-light",
-    "black-atom-mnml-ita-light",
-] as const;
-
-/** Union type of all valid theme key strings. */
-type Key = (typeof themeKeys)[number];
-
-/** Identifier for a theme collection. */
-type CollectionKey = "default" | "terra" | "jpn" | "stations" | "mnml";
-
-/** Display label for a theme collection. */
-type CollectionLabel = string;
-
-/** Theme metadata including display name, appearance, and collection info. */
-interface Meta {
-    key: Key;
-    label:
-        | "Black Atom — Dark"
-        | "Black Atom — Dark Dimmed"
-        | "Black Atom — Light"
-        | "Black Atom — Light Dimmed"
-        | "Black Atom — STA ∷ Engineering"
-        | "Black Atom — STA ∷ Operations"
-        | "Black Atom — STA ∷ Medical"
-        | "Black Atom — STA ∷ Research"
-        | "Black Atom — JPN ∷ Koyo Yoru"
-        | "Black Atom — JPN ∷ Koyo Hiru"
-        | "Black Atom — JPN ∷ Tsuki Yoru"
-        | "Black Atom — JPN ∷ Murasaki Yoru"
-        | "Black Atom — TER ∷ Spring Day"
-        | "Black Atom — TER ∷ Spring Night"
-        | "Black Atom — TER ∷ Fall Day"
-        | "Black Atom — TER ∷ Fall Night"
-        | "Black Atom — TER ∷ Summer Day"
-        | "Black Atom — TER ∷ Summer Night"
-        | "Black Atom — TER ∷ Winter Day"
-        | "Black Atom — TER ∷ Winter Night"
-        | "Black Atom — MNM ∷ Clay Dark"
-        | "Black Atom — MNM ∷ Clay Light"
-        | "Black Atom — MNM ∷ Orange Dark"
-        | "Black Atom — MNM ∷ Orange Light"
-        | "Black Atom — MNM ∷ Osman Light"
-        | "Black Atom — MNM ∷ 47 Light"
-        | "Black Atom — MNM ∷ 47 Dark"
-        | "Black Atom — MNM ∷ Mikado Dark"
-        | "Black Atom — MNM ∷ Mikado Light"
-        | "Black Atom — MNM ∷ E-Ink Dark"
-        | "Black Atom — MNM ∷ E-Ink Light"
-        | "Black Atom — MNM ∷ Mono Dark"
-        | "Black Atom — MNM ∷ Mono Light"
-        | "Black Atom — MNM ∷ ITA Light";
-    appearance: "light" | "dark";
-    status: "development" | "beta" | "release";
-    collection: {
-        key: CollectionKey;
-        label: CollectionLabel;
-    };
-}
-
-// NOTE: The `null` is only temporary until I have everything migrated
-/** Map of all theme keys to their definitions. */
-type ThemeMap = Record<Key, Definition | null>;
+import type { HexColor } from "./colors.ts";
 
 /** Primary color scale with dark (d), medium (m), and light (l) ranges. */
-interface Primaries {
+export interface ThemePrimaries {
     /** Darkest background */
     d10: HexColor;
     d20: HexColor;
@@ -120,7 +22,7 @@ interface Primaries {
 }
 
 /** 16-color terminal palette. */
-interface Palette {
+export interface ThemePalette {
     black: HexColor;
     gray: HexColor;
     darkRed: HexColor;
@@ -140,7 +42,7 @@ interface Palette {
 }
 
 /** Minimal accent colors used by MNML collection themes. */
-interface Accents {
+export interface ThemeAccents {
     a10: HexColor;
     a20: HexColor;
     a30?: HexColor;
@@ -148,7 +50,7 @@ interface Accents {
 }
 
 /** Semantic feedback colors for UI states. */
-export interface Feedback {
+export interface ThemeFeedback {
     negative: HexColor;
     success: HexColor;
     info: HexColor;
@@ -156,7 +58,7 @@ export interface Feedback {
 }
 
 /** Background colors for UI elements. */
-interface UIBackground {
+interface ThemeUIBackground {
     default: HexColor;
     panel: HexColor;
     float: HexColor;
@@ -177,7 +79,7 @@ interface UIBackground {
 }
 
 /** Foreground colors for UI elements. */
-interface UIForeground {
+interface ThemeUIForeground {
     default: HexColor;
     subtle: HexColor;
     accent: HexColor;
@@ -194,13 +96,13 @@ interface UIForeground {
 }
 
 /** UI color tokens split into background and foreground groups. */
-interface UI {
-    bg: UIBackground;
-    fg: UIForeground;
+export interface ThemeUI {
+    bg: ThemeUIBackground;
+    fg: ThemeUIForeground;
 }
 
 /** Syntax highlighting color tokens for all language constructs. */
-interface Syntax {
+export interface ThemeSyntax {
     variable: {
         default: HexColor;
         builtin: HexColor;
@@ -301,25 +203,88 @@ interface Syntax {
     };
 }
 
-/** A complete theme definition with metadata, colors, UI tokens, and syntax colors. */
-interface Definition {
-    meta: Meta;
-    primaries: Primaries;
-    palette: Palette;
-    ui: UI;
-    syntax: Syntax;
+export const themeKeys = [
+    "black-atom-default-dark",
+    "black-atom-default-dark-dimmed",
+    "black-atom-default-light",
+    "black-atom-default-light-dimmed",
+    "black-atom-stations-engineering",
+    "black-atom-stations-operations",
+    "black-atom-stations-medical",
+    "black-atom-stations-research",
+    "black-atom-jpn-koyo-yoru",
+    "black-atom-jpn-koyo-hiru",
+    "black-atom-jpn-tsuki-yoru",
+    "black-atom-jpn-murasaki-yoru",
+    "black-atom-terra-spring-day",
+    "black-atom-terra-spring-night",
+    "black-atom-terra-fall-day",
+    "black-atom-terra-fall-night",
+    "black-atom-terra-summer-day",
+    "black-atom-terra-summer-night",
+    "black-atom-terra-winter-day",
+    "black-atom-terra-winter-night",
+    "black-atom-mnml-clay-dark",
+    "black-atom-mnml-clay-light",
+    "black-atom-mnml-orange-dark",
+    "black-atom-mnml-orange-light",
+    "black-atom-mnml-osman-light",
+    "black-atom-mnml-mikado-dark",
+    "black-atom-mnml-mikado-light",
+    "black-atom-mnml-47-light",
+    "black-atom-mnml-47-dark",
+    "black-atom-mnml-eink-dark",
+    "black-atom-mnml-eink-light",
+    "black-atom-mnml-mono-dark",
+    "black-atom-mnml-mono-light",
+    "black-atom-mnml-ita-light",
+] as const;
+
+export type ThemeKey = typeof themeKeys[number];
+
+const collectionKeys = [
+    "default",
+    "stations",
+    "jpn",
+    "terra",
+    "mnml",
+] as const;
+
+export type ThemeCollectionKey = typeof collectionKeys[number];
+
+/** Display metadata for a theme collection. */
+interface ThemeCollectionMeta {
+    key: string;
+    label: string;
 }
 
-export type {
-    Accents,
-    CollectionKey,
-    CollectionLabel,
-    Definition,
-    Key,
-    Meta,
-    Palette,
-    Primaries,
-    Syntax,
-    ThemeMap,
-    UI,
-};
+/** Theme metadata including display name, appearance, and collection info. */
+export interface ThemeMeta {
+    /** Unique identifier for the theme. */
+    key: ThemeKey;
+    /** Short display name for the theme (e.g. "Dark", "Engineering", "Koyo Yoru"). */
+    name: string;
+    /** Appearance of the theme (light or dark). */
+    appearance: "light" | "dark";
+    /** Status of the theme (development, beta, or release). */
+    status: "development" | "beta" | "release";
+    /** Collection that the theme belongs to. */
+    collection: ThemeCollectionMeta;
+}
+
+/** A complete theme definition with metadata, colors, UI tokens, and syntax colors. */
+export interface ThemeDefinition {
+    /** Metadata for the theme. */
+    meta: ThemeMeta;
+    /** Primary color scale. */
+    primaries: ThemePrimaries;
+    /** 16-color terminal palette. */
+    palette: ThemePalette;
+    /** UI color tokens split into background and foreground groups. */
+    ui: ThemeUI;
+    /** Syntax highlighting color tokens for all language constructs. */
+    syntax: ThemeSyntax;
+}
+
+/** Map of all theme keys to their full definitions. */
+export type ThemeKeyDefinitionMap = Record<ThemeKey, ThemeDefinition>;

@@ -1,22 +1,19 @@
-import type * as Theme from "../../types/theme.ts";
+import type {
+    ThemeAccents,
+    ThemeDefinition,
+    ThemeFeedback,
+    ThemePrimaries,
+} from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-mnml-mikado-light",
-    label: "Black Atom — MNM ∷ Mikado Light",
-    appearance: "light",
-    status: "development",
-    collection: {
-        key: "mnml",
-        label: "MNM",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-mnml-mikado-light"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.216, 0.018, 237.84),
     d20: oklch(0.238, 0.033, 239.41),
     d30: oklch(0.28, 0.026, 235.29),
@@ -33,7 +30,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.886, 0.011, 226),
 };
 
-const accents: Theme.Accents = {
+const accents: ThemeAccents = {
     a10: "#cc8f00",
     a20: "#457ea1",
 };
@@ -47,7 +44,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: Theme.Feedback = {
+const feedback: ThemeFeedback = {
     info: accents.a20,
     warning: "#f7bd08",
     negative: "#e64433",
@@ -57,7 +54,7 @@ const feedback: Theme.Feedback = {
 const ui = createUi(primaries, feedback, accents);
 const syntax = createSyntax(primaries, feedback, accents);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

@@ -33,6 +33,9 @@
         "test:terminal-colors:dev": "deno run -A scripts/test-terminal-colors-dev.ts"
     },
     "lint": {
+        "rules": {
+            "exclude": ["no-slow-types"]
+        },
         "exclude": [
             "deno.lock",
             "deno.json",

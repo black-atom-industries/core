@@ -1,5 +1,9 @@
-import type * as Theme from "../../types/theme.ts";
-import type { Feedback } from "../../types/theme.ts";
+import type {
+    ThemeAccents,
+    ThemeFeedback,
+    ThemePrimaries,
+    ThemeSyntax,
+} from "../../types/theme.ts";
 
 /**
  * Default collection light syntax - minimal grayscale with 4 accents
@@ -7,10 +11,10 @@ import type { Feedback } from "../../types/theme.ts";
  * a30/a40 = purple variants (keywords)
  */
 export default function (
-    primaries: Theme.Primaries,
-    feedback: Feedback,
-    accents: Theme.Accents,
-): Theme.Syntax {
+    primaries: ThemePrimaries,
+    feedback: ThemeFeedback,
+    accents: ThemeAccents,
+): ThemeSyntax {
     return {
         variable: {
             default: primaries.d40,

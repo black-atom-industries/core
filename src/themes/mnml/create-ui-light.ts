@@ -1,11 +1,11 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeAccents, ThemeFeedback, ThemePrimaries, ThemeUI } from "../../types/theme.ts";
 import { tint } from "../../utils/color.ts";
 
 export default function (
-    primaries: Theme.Primaries,
-    feedback: Theme.Feedback,
-    accents: Theme.Accents,
-): Theme.UI {
+    primaries: ThemePrimaries,
+    feedback: ThemeFeedback,
+    accents: ThemeAccents,
+): ThemeUI {
     function t(color: string) {
         return tint({ color, with: primaries.l40 });
     }

@@ -1,4 +1,5 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeAccents, ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette-dark.ts";
@@ -6,18 +7,9 @@ import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 import feedback from "./feedback-dark.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-default-dark-dimmed",
-    label: "Black Atom — Dark Dimmed",
-    appearance: "dark",
-    status: "release",
-    collection: {
-        key: "default",
-        label: "Default",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-default-dark"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.22, 0.010, 195),
     d20: oklch(0.26, 0.010, 195),
     d30: oklch(0.30, 0.010, 195),
@@ -34,14 +26,14 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.92, 0.025, 240),
 };
 
-const accents: Theme.Accents = {
+const accents: ThemeAccents = {
     a10: oklch(0.85, 0.085, 142),
     a20: oklch(0.75, 0.085, 142),
     a30: oklch(0.85, 0.085, 290),
     a40: oklch(0.75, 0.085, 290),
 };
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette: createPalette(primaries, {

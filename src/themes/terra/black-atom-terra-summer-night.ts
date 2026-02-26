@@ -1,22 +1,14 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-terra-summer-night",
-    label: "Black Atom — TER ∷ Summer Night",
-    appearance: "dark",
-    status: "release",
-    collection: {
-        key: "terra",
-        label: "TERRA",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-terra-summer-night"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     // Dark range - deep teal/navy like White Lotus frame
     d10: oklch(0.16, 0.03, 195),
     d20: oklch(0.20, 0.035, 190),
@@ -65,7 +57,7 @@ const palette = createPalette(primaries, {
 const ui = createUi(primaries, palette);
 const syntax = createSyntax(primaries, palette);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

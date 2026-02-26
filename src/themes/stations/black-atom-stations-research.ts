@@ -1,22 +1,14 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-stations-research",
-    label: "Black Atom — STA ∷ Research",
-    appearance: "light",
-    status: "release",
-    collection: {
-        key: "stations",
-        label: "Stations",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-stations-research"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.251, 0.015, 261.66),
     d20: oklch(0.335, 0.025, 162.99),
     d30: oklch(0.394, 0.028, 164.41),
@@ -56,7 +48,7 @@ const palette = createPalette(primaries, {
 const ui = createUi(primaries, palette);
 const syntax = createSyntax(primaries, palette);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

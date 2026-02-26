@@ -2,6 +2,7 @@ import * as z from "zod";
 import * as colors from "@std/fmt/colors";
 
 import { config } from "../config.ts";
+import { themeKeys } from "../types/theme.ts";
 
 import { type AdapterConfig, createAdapterConfigSchema } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
@@ -10,7 +11,7 @@ import { loadThemeMap } from "../lib/theme-loader.ts";
 
 async function getAdapterConfig(): Promise<AdapterConfig> {
     try {
-        const adapterConfigSchema = createAdapterConfigSchema(config.themeKeys);
+        const adapterConfigSchema = createAdapterConfigSchema(themeKeys);
         const adapterConfig = await Deno.readTextFile(config.adapterFileName);
         return adapterConfigSchema.parse(JSON.parse(adapterConfig));
     } catch (error) {

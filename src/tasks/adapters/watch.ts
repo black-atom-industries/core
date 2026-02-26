@@ -2,6 +2,7 @@ import { dirname, join, relative } from "@std/path";
 import { existsSync } from "@std/fs";
 import * as colors from "@std/fmt/colors";
 import { config } from "../../config.ts";
+import { themeKeys } from "../../types/theme.ts";
 import { createAdapterConfigSchema } from "../../lib/validate-adapter.ts";
 import { getAdapters } from "../../lib/discover-adapters.ts";
 import log from "../../lib/log.ts";
@@ -30,7 +31,7 @@ export async function watch() {
     const adapters = await getAdapters();
 
     // Create schema instance for validation
-    const adapterConfigSchema = createAdapterConfigSchema(config.themeKeys);
+    const adapterConfigSchema = createAdapterConfigSchema(themeKeys);
 
     // Add adapter template directories by reading their configurations
     for (const adapter of adapters) {

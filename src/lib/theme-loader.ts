@@ -1,5 +1,5 @@
-import type * as Theme from "../types/theme.ts";
-import { themeBundle } from "../themes/bundle.ts";
+import type { ThemeKeyDefinitionMap } from "../types/theme.ts";
+import { themeMap } from "../themes/map.ts";
 
 /**
  * Returns the statically bundled theme map.
@@ -7,6 +7,6 @@ import { themeBundle } from "../themes/bundle.ts";
  * All themes are imported at compile time via src/themes/bundle.ts.
  * When adding new themes, update the bundle file.
  */
-export function loadThemeMap(): Theme.ThemeMap {
-    return themeBundle;
+export function loadThemeMap(): ThemeKeyDefinitionMap {
+    return themeMap;
 }

@@ -1,21 +1,9 @@
 import { dirname, join } from "@std/path";
+import type { ThemeCollectionKey } from "./types/theme.ts";
 
-import type * as Theme from "./types/theme.ts";
-import { themeKeys } from "./types/theme.ts";
-
-export type Config = {
-    dir: {
-        core: string;
-        themes: string;
-        org: string; // Organization directory (parent of core)
-    };
-    adapterFileName: string;
-    themeKeys: readonly Theme.Key[];
-    orgName: string; // Organization directory name
-};
-
-export const config: Config = {
+export const config = {
     orgName: "black-atom-industries",
+    adapterFileName: "black-atom-adapter.json",
     get dir() {
         return {
             core: Deno.cwd(),
@@ -23,6 +11,13 @@ export const config: Config = {
             org: join(dirname(dirname(Deno.cwd())), this.orgName),
         };
     },
-    adapterFileName: "black-atom-adapter.json",
-    themeKeys,
-};
+} as const;
+
+/** Display order of collections in UIs and generated output. */
+export const collectionOrder: ThemeCollectionKey[] = [
+    "default",
+    "jpn",
+    "terra",
+    "stations",
+    "mnml",
+];

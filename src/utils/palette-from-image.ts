@@ -1,5 +1,5 @@
 import { formatHex, oklch as toOklch } from "culori";
-import type { HexColor } from "../types/theme.ts";
+import type { HexColor } from "../types/colors.ts";
 
 /**
  * Represents a color extracted from an image
@@ -164,19 +164,6 @@ function getAnalogous(
         { l: color.l, c: color.c, h: normalizeHue(color.h - 30) },
         color,
         { l: color.l, c: color.c, h: normalizeHue(color.h + 30) },
-    ];
-}
-
-/**
- * Generates triadic colors (120° apart)
- */
-function _getTriadic(
-    color: { l: number; c: number; h: number },
-): Array<{ l: number; c: number; h: number }> {
-    return [
-        color,
-        { l: color.l, c: color.c, h: normalizeHue(color.h + 120) },
-        { l: color.l, c: color.c, h: normalizeHue(color.h + 240) },
     ];
 }
 
@@ -357,7 +344,7 @@ export function generatePrimariesFromSuggestion(
     };
 
     const lines: string[] = [];
-    lines.push("const primaries: Theme.Primaries = {");
+    lines.push("const primaries: ThemePrimaries = {");
 
     lines.push("    d10: " + formatOklch(lightnessRanges.d[0], minChroma, hue) + ",");
     lines.push("    d20: " + formatOklch(lightnessRanges.d[1], minChroma, hue) + ",");

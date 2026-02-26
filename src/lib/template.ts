@@ -1,6 +1,7 @@
 import { Eta } from "@eta";
 import { dirname } from "@std/path";
-import type { Definition, Key } from "../types/theme.ts";
+import type { ThemeDefinition, ThemeKey, ThemeMeta } from "../types/theme.ts";
+import { formatThemeLabel } from "../lib/formatters.ts";
 import type { AdapterConfig } from "./validate-adapter.ts";
 
 // Initialize Eta with options
@@ -19,7 +20,7 @@ const eta = new Eta({
  */
 export async function processTemplates(
     adapterConfig: AdapterConfig,
-    themeMap: Record<Key, Definition | null>,
+    themeMap: Record<ThemeMeta["key"], ThemeDefinition | null>,
 ): Promise<string[]> {
     // Process collection templates
     if (adapterConfig.collections) {
@@ -36,7 +37,7 @@ export async function processTemplates(
  */
 async function processCollectionTemplates(
     collections: NonNullable<AdapterConfig["collections"]>,
-    themeMap: Record<Key, Definition | null>,
+    themeMap: Record<ThemeKey, ThemeDefinition | null>,
 ): Promise<string[]> {
     const allErrors: string[] = [];
 
@@ -55,7 +56,7 @@ async function processCollectionTemplates(
 
             // Process each theme in the collection
             for (const themeKey of themes) {
-                const theme = themeMap[themeKey as Key];
+                const theme = themeMap[themeKey as ThemeKey];
 
                 if (!theme) {
                     errors.push(`Theme "${themeKey}" not found`);
@@ -68,8 +69,17 @@ async function processCollectionTemplates(
                     .replace(/collection/, themeKey);
 
                 try {
-                    // Render the template with the theme data
-                    const content = eta.renderString(template, theme);
+                    // Enrich theme data with computed label for template backward compat
+                    const enrichedTheme = {
+                        ...theme,
+                        meta: {
+                            ...theme.meta,
+                            label: formatThemeLabel(theme.meta),
+                        },
+                    };
+
+                    // Render the template with the enriched theme data
+                    const content = eta.renderString(template, enrichedTheme);
 
                     // Check for undefined values in the rendered content and extract variable names
                     const undefinedMatches = content.match(/\bundefined\b/g);

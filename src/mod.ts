@@ -8,17 +8,24 @@
  *
  * @example
  * ```ts
- * import { themeBundle } from "@black-atom/core";
- * import type { Definition, Key } from "@black-atom/core";
+ * import { themeMap, themeKeyMetaMap } from "@black-atom/core";
+ * import type { ThemeDefinition, ThemeKey } from "@black-atom/core";
  *
- * // Access a specific theme
- * const theme: Definition = themeBundle["black-atom-jpn-koyo-yoru"]!;
+ * // Access theme meta (narrowed to exact literal types)
+ * const meta = themeKeyMetaMap["black-atom-jpn-koyo-yoru"];
  *
- * console.log(theme.meta.label); // "Black Atom — JPN ∷ Koyo Yoru"
+ * // Access a specific theme definition
+ * const theme: ThemeDefinition = themeMap["black-atom-jpn-koyo-yoru"]!;
+ *
  * console.log(theme.ui.bg.default); // hex color for the background
  * console.log(theme.syntax.keyword.default); // hex color for keywords
  * ```
  */
 
-export type * from "./types/theme.ts";
-export { themeBundle } from "./themes/bundle.ts";
+export * from "./types/theme.ts";
+export * from "./types/themes.ts";
+export { themeMap } from "./themes/map.ts";
+
+export { collectionOrder } from "./config.ts";
+
+export { formatThemeLabel } from "./lib/formatters.ts";

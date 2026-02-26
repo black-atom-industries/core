@@ -8,7 +8,7 @@
  * MAINTENANCE: When adding new themes, also add them here.
  */
 
-import type * as Theme from "../types/theme.ts";
+import type { ThemeKeyDefinitionMap } from "../types/theme.ts";
 
 // Default collection
 import blackAtomDefaultDark from "./default/black-atom-default-dark.ts";
@@ -54,7 +54,7 @@ import blackAtomMnmlMonoDark from "./mnml/black-atom-mnml-mono-dark.ts";
 import blackAtomMnmlMonoLight from "./mnml/black-atom-mnml-mono-light.ts";
 import blackAtomMnmlItaLight from "./mnml/black-atom-mnml-ita-light.ts";
 
-export const themeBundle: Theme.ThemeMap = {
+export const themeMap: ThemeKeyDefinitionMap = {
     // Default collection
     "black-atom-default-dark": blackAtomDefaultDark,
     "black-atom-default-dark-dimmed": blackAtomDefaultDarkDimmed,

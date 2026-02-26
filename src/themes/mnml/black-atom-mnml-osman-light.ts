@@ -1,22 +1,20 @@
-import type * as Theme from "../../types/theme.ts";
+import type {
+    ThemeAccents,
+    ThemeDefinition,
+    ThemeFeedback,
+    ThemePrimaries,
+    ThemeSyntax,
+} from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-mnml-osman-light",
-    label: "Black Atom — MNM ∷ Osman Light",
-    appearance: "light",
-    status: "development",
-    collection: {
-        key: "mnml",
-        label: "MNM",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-mnml-osman-light"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.15, 0.008, 64),
     d20: oklch(0.32, 0.015, 64),
     d30: oklch(0.36, 0.015, 64),
@@ -33,7 +31,7 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.99, 0.010, 64),
 };
 
-const accents: Theme.Accents = {
+const accents: ThemeAccents = {
     a10: oklch(0.625, 0.200, 255),
     a20: oklch(0.625, 0.225, 28),
 };
@@ -49,7 +47,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: Theme.Feedback = {
+const feedback: ThemeFeedback = {
     info: accents.a10,
     warning: oklch(0.8399, 0.1588, 86.81),
     negative: accents.a20,
@@ -57,7 +55,7 @@ const feedback: Theme.Feedback = {
 };
 
 const ui = createUi(primaries, feedback, accents);
-const syntax: Theme.Syntax = {
+const syntax: ThemeSyntax = {
     ...createSyntax(primaries, feedback, accents),
     keyword: {
         default: accents.a20,
@@ -66,7 +64,7 @@ const syntax: Theme.Syntax = {
     },
 };
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

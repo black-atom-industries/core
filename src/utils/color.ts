@@ -1,5 +1,5 @@
 import { formatHex, interpolate, oklch as libOklch } from "culori";
-import type { HexColor } from "../types/theme.ts";
+import type { HexColor } from "../types/colors.ts";
 
 /**
  * Converts OKLCH color values to hex

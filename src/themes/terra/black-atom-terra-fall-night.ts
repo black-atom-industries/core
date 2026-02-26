@@ -1,22 +1,14 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-terra-fall-night",
-    label: "Black Atom — TER ∷ Fall Night",
-    appearance: "dark",
-    status: "release",
-    collection: {
-        key: "terra",
-        label: "TERRA",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-terra-fall-night"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.18, 0.025, 50.0),
     d20: oklch(0.22, 0.025, 50.0),
     d30: oklch(0.26, 0.025, 50.0),
@@ -56,7 +48,7 @@ const palette = createPalette(primaries, {
 const ui = createUi(primaries, palette);
 const syntax = createSyntax(primaries, palette);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

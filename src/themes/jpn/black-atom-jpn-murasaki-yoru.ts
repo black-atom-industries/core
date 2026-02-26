@@ -1,22 +1,14 @@
-import type * as Theme from "../../types/theme.ts";
+import type { ThemeDefinition, ThemePrimaries } from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-jpn-murasaki-yoru",
-    label: "Black Atom — JPN ∷ Murasaki Yoru",
-    appearance: "dark",
-    status: "release",
-    collection: {
-        key: "jpn",
-        label: "Japan",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-jpn-murasaki-yoru"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.212, 0.028, 329.36),
     d20: oklch(0.275, 0.041, 330.32),
     d30: oklch(0.334, 0.053, 330.8),
@@ -57,7 +49,7 @@ const ui = createUi(primaries, palette);
 
 const syntax = createSyntax(primaries, palette);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

@@ -1,10 +1,15 @@
-import type * as Theme from "../../types/theme.ts";
+import type {
+    ThemeAccents,
+    ThemeFeedback,
+    ThemePrimaries,
+    ThemeSyntax,
+} from "../../types/theme.ts";
 
 export default function (
-    primaries: Theme.Primaries,
-    feedback: Theme.Feedback,
-    accents: Theme.Accents,
-): Theme.Syntax {
+    primaries: ThemePrimaries,
+    feedback: ThemeFeedback,
+    accents: ThemeAccents,
+): ThemeSyntax {
     return {
         variable: {
             default: primaries.d40,

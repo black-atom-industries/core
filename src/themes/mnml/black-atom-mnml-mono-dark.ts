@@ -1,22 +1,19 @@
-import type * as Theme from "../../types/theme.ts";
+import type {
+    ThemeAccents,
+    ThemeDefinition,
+    ThemeFeedback,
+    ThemePrimaries,
+} from "../../types/theme.ts";
+import { themeKeyMetaMap } from "../../types/themes.ts";
 import { oklch } from "../../utils/color.ts";
 
 import createPalette from "./create-palette.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
 
-const meta: Theme.Meta = {
-    key: "black-atom-mnml-mono-dark",
-    label: "Black Atom — MNM ∷ Mono Dark",
-    appearance: "dark",
-    status: "development",
-    collection: {
-        key: "mnml",
-        label: "MNM",
-    },
-};
+const meta = themeKeyMetaMap["black-atom-mnml-mono-dark"];
 
-const primaries: Theme.Primaries = {
+const primaries: ThemePrimaries = {
     d10: oklch(0.12, 0.005, 67.50),
     d20: oklch(0.16, 0.005, 67.50),
     d30: oklch(0.22, 0.005, 67.50),
@@ -33,14 +30,14 @@ const primaries: Theme.Primaries = {
     l40: oklch(0.98, 0.005, 67.50),
 };
 
-const accents: Theme.Accents = {
+const accents: ThemeAccents = {
     a10: oklch(0.92, 0, 0),
     a20: oklch(0.78, 0, 0),
 };
 
 const palette = createPalette(primaries);
 
-const feedback: Theme.Feedback = {
+const feedback: ThemeFeedback = {
     negative: oklch(0.65, 0.18, 20),
     success: oklch(0.72, 0.14, 142),
     info: oklch(0.70, 0.12, 225),
@@ -50,7 +47,7 @@ const feedback: Theme.Feedback = {
 const ui = createUi(primaries, feedback, accents);
 const syntax = createSyntax(primaries, feedback, accents);
 
-const theme: Theme.Definition = {
+const theme: ThemeDefinition = {
     meta,
     primaries,
     palette,

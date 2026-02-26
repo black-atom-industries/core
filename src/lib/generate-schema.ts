@@ -1,11 +1,11 @@
-import { config } from "../config.ts";
+import { themeKeys } from "../types/theme.ts";
 import log from "./log.ts";
 
 function generateSchema() {
     // Extract collection keys from theme keys
     const collections = new Set<string>();
 
-    for (const themeKey of config.themeKeys) {
+    for (const themeKey of themeKeys) {
         // Extract collection from theme key pattern: black-atom-{collection}-...
         const parts = themeKey.split("-");
         if (parts.length >= 3) {
