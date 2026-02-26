@@ -15,35 +15,35 @@ const primaries: ThemePrimaryColors = {
     d30: oklch(0.32, 0.035, 316.52),
     d40: oklch(0.38, 0.036, 315.08),
 
-    m10: oklch(0.478, 0.042, 298.88),
-    m20: oklch(0.564, 0.046, 292.5),
-    m30: oklch(0.644, 0.046, 290.96),
-    m40: oklch(0.692, 0.039, 292.13),
+    m10: oklch(0.45, 0.042, 300),
+    m20: oklch(0.55, 0.046, 300),
+    m30: oklch(0.60, 0.050, 75),
+    m40: oklch(0.70, 0.050, 75),
 
-    l10: oklch(0.785, 0.075, 63.03),
-    l20: oklch(0.831, 0.075, 61.19),
-    l30: oklch(0.873, 0.075, 59.37),
-    l40: oklch(0.914, 0.055, 59.91),
+    l10: oklch(0.800, 0.050, 75),
+    l20: oklch(0.850, 0.050, 75),
+    l30: oklch(0.875, 0.050, 75),
+    l40: oklch(0.925, 0.050, 75),
 };
 
 const palette = createPalette(primaries, {
-    darkRed: oklch(0.656, 0.134, 11.39),
-    red: oklch(0.699, 0.134, 11.2),
+    darkRed: oklch(0.65, 0.15, 11.39),
+    red: oklch(0.75, 0.15, 11.2),
 
-    darkGreen: oklch(0.655, 0.1, 163.69),
-    green: oklch(0.7, 0.1, 163.55),
+    darkGreen: oklch(0.65, 0.1, 150),
+    green: oklch(0.75, 0.1, 150),
 
-    darkYellow: oklch(0.785, 0.134, 50.33),
-    yellow: oklch(0.785, 0.135, 72.83),
+    darkYellow: oklch(0.75, 0.15, 50),
+    yellow: oklch(0.75, 0.15, 75),
 
-    darkBlue: oklch(0.654, 0.05, 300.26),
-    blue: oklch(0.699, 0.049, 298.99),
+    darkBlue: oklch(0.65, 0.075, 300),
+    blue: oklch(0.75, 0.075, 300),
 
-    darkMagenta: oklch(0.7, 0.1, 51.54),
-    magenta: oklch(0.786, 0.1, 51.73),
+    darkMagenta: oklch(0.65, 0.1, 51),
+    magenta: oklch(0.75, 0.1, 51),
 
-    darkCyan: oklch(0.655, 0.049, 175.15),
-    cyan: oklch(0.7, 0.05, 174.22),
+    darkCyan: oklch(0.65, 0.1, 180),
+    cyan: oklch(0.75, 0.1, 180),
 });
 
 const accents: ThemeAccentColors = {
