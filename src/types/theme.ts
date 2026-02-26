@@ -254,7 +254,7 @@ export type ThemeCollectionKey = typeof collectionKeys[number];
 
 /** Display metadata for a theme collection. */
 interface ThemeCollectionMeta {
-    key: string;
+    key: ThemeCollectionKey;
     label: string;
 }
 
