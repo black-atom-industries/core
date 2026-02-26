@@ -10,20 +10,20 @@ import createUi from "./create-ui-light.ts";
 const meta = themeKeyMetaMap["black-atom-jpn-koyo-hiru"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.258, 0.021, 326.17),
-    d20: oklch(0.319, 0.027, 326.18),
-    d30: oklch(0.367, 0.043, 326.41),
-    d40: oklch(0.432, 0.049, 326.39),
+    d10: oklch(0.26, 0.021, 325),
+    d20: oklch(0.32, 0.027, 325),
+    d30: oklch(0.38, 0.043, 325),
+    d40: oklch(0.45, 0.049, 325),
 
-    m10: oklch(0.50, 0.052, 326.32),
-    m20: oklch(0.60, 0.057, 326.28),
-    m30: oklch(0.70, 0.056, 326.17),
-    m40: oklch(0.80, 0.041, 325.98),
+    m10: oklch(0.50, 0.050, 325),
+    m20: oklch(0.60, 0.050, 325),
+    m30: oklch(0.70, 0.050, 75),
+    m40: oklch(0.80, 0.050, 75),
 
-    l10: oklch(0.875, 0.050, 75),
-    l20: oklch(0.925, 0.035, 75),
-    l30: oklch(0.955, 0.025, 75),
-    l40: oklch(0.965, 0.025, 75),
+    l10: oklch(0.900, 0.050, 75),
+    l20: oklch(0.935, 0.035, 75),
+    l30: oklch(0.965, 0.025, 75),
+    l40: oklch(0.975, 0.025, 75),
 };
 
 const palette = createPalette(primaries, {
