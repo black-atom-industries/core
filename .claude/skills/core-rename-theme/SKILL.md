@@ -1,6 +1,6 @@
 ---
-description: "Rename a theme across all repositories with systematic file updates and commits"
-allowed-tools: ["Read", "Edit", "Write", "MultiEdit", "Bash", "Glob", "Grep"]
+name: core-rename-theme
+description: Use when renaming a theme across all repositories. Handles core type updates, adapter configs, file renames, generation, and coordinated commits.
 ---
 
 You are renaming a theme across the Black Atom theme project. This requires coordinated changes across the core repository and all adapter repositories.
@@ -51,18 +51,8 @@ You are renaming a theme across the Black Atom theme project. This requires coor
    - List all files updated
    - Confirm successful commit and push
 
-**Usage examples:**
-
-- `/core:rename-theme black-atom-mnml-eink black-atom-mnml-mono`
-- `/core:rename-theme black-atom-jpn-sakura black-atom-jpn-cherry`
-
 **Expected $ARGUMENTS format:**
 `{old-theme-key} {new-theme-key}`
-
-Where:
-
-- `old-theme-key`: Current full theme key (e.g., black-atom-mnml-eink)
-- `new-theme-key`: New full theme key (e.g., black-atom-mnml-mono)
 
 **Key considerations:**
 

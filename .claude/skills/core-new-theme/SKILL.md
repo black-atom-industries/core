@@ -1,7 +1,6 @@
 ---
-description: "Create a new theme in an existing collection with all required files and configurations"
-allowed-tools: ["Write", "Edit", "Read", "Bash", "Glob", "Grep", "AskUserQuestion"]
-allow-paths: ["~/repos/black-atom-industries/**", "~/repos/nikbrunner/dots/**"]
+name: core-new-theme
+description: Use when creating a new theme in an existing collection. Covers collaborative design, palette extraction, core definition, adapter configs, and generation.
 ---
 
 You are creating a new theme for the Black Atom theme project. This is a **collaborative, conversational process** where you work with the user to develop the theme concept and details.
@@ -123,22 +122,7 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 
 10. **Present summary** of all created files and changes for user review
 
-**Usage examples:**
-
-**Freetext/conversational approach (preferred):**
-
-- `/core:new-theme` [drag book cover image] "I want a theme based on this"
-- `/core:new-theme inspired by that murder mystery book cover`
-- `/core:new-theme something dark with vibrant red accents`
-- `/core:new-theme` (start completely blank, figure it out together)
-
-**Structured approach (also fine):**
-
-- `/core:new-theme mnml green dark #22C55E`
-- `/core:new-theme jpn sakura light #FF69B4`
-- `/core:new-theme mnml sunset dark @~/sunset.jpg`
-
-**Key point:** $ARGUMENTS is freetext - work conversationally to understand what the user wants rather than expecting rigid structure.
+---
 
 **Key considerations:**
 
@@ -155,9 +139,7 @@ You are creating a new theme for the Black Atom theme project. This is a **colla
 - **Commit messages**: Use semantic format with collection scope (e.g., `feat(mnml): add sunset theme`)
 - **Testing**: Verify generated themes have no undefined values before committing
 
----
-
 **Next steps:**
 
 - Remind the user to run `dots theme-link` to symlink generated themes into their dotfiles
-- Or ask if they want to run `/nik:link-themes-to-dots` to do it automatically
+- Or ask if they want to run `nik-link-themes-to-dots` to do it automatically

@@ -1,6 +1,6 @@
 ---
-description: "Intelligently commit theme changes across all Black Atom repositories with semantic messages"
-allowed-tools: ["Bash", "Read", "Glob", "LS"]
+name: org-commit
+description: Use when committing theme changes across all Black Atom repositories with intelligent semantic messages. Handles core commit, adapter generation, and coordinated push.
 ---
 
 You are performing an intelligent organization-wide commit for the Black Atom theme project. This project has multiple repositories that need to be kept in sync when theme changes are made.
@@ -60,8 +60,6 @@ You are performing an intelligent organization-wide commit for the Black Atom th
 - `style:` - Formatting, cleanup, minor styling changes
 - `docs:` - Documentation updates
 - `chore:` - Only use for true maintenance tasks
-
-**Arguments:** $ARGUMENTS (optional context or specific instructions)
 
 **Expected behavior:**
 

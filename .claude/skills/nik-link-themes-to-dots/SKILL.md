@@ -1,6 +1,6 @@
 ---
-description: "Link Black Atom themes to Nik's dotfiles via theme-link.sh"
-allowed-tools: ["Bash", "Read", "Edit"]
+name: nik-link-themes-to-dots
+description: Use when linking generated Black Atom themes to Nik's dotfiles via theme-link.sh, or after adding a new adapter that needs dotfile integration.
 ---
 
 After generating themes with Black Atom adapters, link them to your dotfiles for use.

@@ -1,16 +1,6 @@
 ---
-description: "Create a new adapter for a platform to support Black Atom themes"
-allowed-tools: [
-    "Write",
-    "Edit",
-    "Read",
-    "Bash",
-    "Glob",
-    "Grep",
-    "WebFetch",
-    "WebSearch",
-    "AskUserQuestion",
-]
+name: core-new-adapter
+description: Use when creating a new adapter for a platform to support Black Atom themes. Covers research, token mapping, template creation, and verification.
 ---
 
 You are creating a new adapter for the Black Atom theme ecosystem. This is a **collaborative process** that involves researching the target platform's theme format, mapping tokens, and creating the adapter structure.
@@ -104,7 +94,7 @@ theme.syntax.punctuation.default
 - **ANSI terminal colors**: Use `theme.palette.*` tokens directly
 - **NEVER use primaries directly** (`theme.primaries.d10` etc.) - always use semantic tokens
 
-4. **Create mapping table** showing platform property → Black Atom token
+4. **Create mapping table** showing platform property -> Black Atom token
 
 ## Phase 3: Implementation
 
@@ -263,19 +253,11 @@ cd ~/repos/black-atom-industries/core && deno task adapters:status
 
 ---
 
-**Usage examples:**
-
-- `/core:new-adapter lazygit`
-- `/core:new-adapter alacritty`
-- `/core:new-adapter kitty`
-- `/core:new-adapter foot`
-- `/core:new-adapter starship`
-
 **Key considerations:**
 
 - **Semantic tokens**: Always use UI/syntax/palette tokens, never primaries
 - **File format**: Match the platform's expected format exactly
-- **Template naming**: `collection.template.{ext}` → generates `{theme-key}.{ext}`
+- **Template naming**: `collection.template.{ext}` -> generates `{theme-key}.{ext}`
 - **Collections share templates**: If token mappings are identical across collections, use the same template content
 - **Test generation**: Always run `black-atom-core generate` and check for undefined values before committing
 - **Reference existing adapters**: Look at ghostty, lazygit, or other adapters for patterns
