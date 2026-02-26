@@ -34,4 +34,4 @@ jobs:
               with:
                   deno-version: v2.x
             - run: deno task check
-            - run: deno publish
+            - run: deno task publish
