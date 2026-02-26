@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/black-atom-industries/core/compare/v0.3.0...v0.3.1) (2026-02-26)
+
+
+### Bug Fixes
+
+* type ThemeCollectionMeta.key as ThemeCollectionKey instead of string ([8e450f7](https://github.com/black-atom-industries/core/commit/8e450f7908e57b21d44a2789fc91dcc954e160e8))
+
 ## [0.3.0](https://github.com/black-atom-industries/core/compare/v0.2.0...v0.3.0) (2026-02-26)
 
 
