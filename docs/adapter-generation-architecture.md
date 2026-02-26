@@ -21,7 +21,7 @@ flowchart TD
     B --> C["deno task generate"]
     C --> D["Deno fetches @black-atom/core<br/>from JSR (cached after first run)"]
     D --> E["Reads black-atom-adapter.json<br/>from cwd"]
-    E --> F["loadThemeMap()<br/>(bundled theme definitions)"]
+    E --> F["themeMap<br/>(bundled theme definitions)"]
     F --> G["processTemplates()"]
     G --> H["For each collection in config:"]
     H --> I["Read .template. file"]

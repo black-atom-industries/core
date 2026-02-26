@@ -7,7 +7,7 @@ import { themeKeys } from "../types/theme.ts";
 import { type AdapterConfig, createAdapterConfigSchema } from "../lib/validate-adapter.ts";
 import log from "../lib/log.ts";
 import { processTemplates } from "../lib/template.ts";
-import { loadThemeMap } from "../lib/theme-loader.ts";
+import { themeMap } from "../themes/map.ts";
 
 async function getAdapterConfig(): Promise<AdapterConfig> {
     try {
@@ -84,8 +84,6 @@ async function watchAdapter(adapterConfig: AdapterConfig) {
             try {
                 // Reload adapter config if it changed
                 const updatedAdapterConfig = await getAdapterConfig();
-                // Reload theme map
-                const themeMap = loadThemeMap();
                 // Process templates
                 await processTemplates(updatedAdapterConfig, themeMap);
             } catch (error) {
@@ -129,7 +127,6 @@ export default async function (options: string[] = []) {
     const watchMode = options.includes("--watch") || options.includes("-w");
 
     const adapterConfig = await getAdapterConfig();
-    const themeMap = loadThemeMap();
 
     // Process templates
     const templateErrors = await processTemplates(adapterConfig, themeMap);
