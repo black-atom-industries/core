@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.4.0](https://github.com/black-atom-industries/core/compare/v0.3.2...v0.4.0) (2026-02-27)
+
+
+### Features
+
+* add optional postGenerate hook to adapter config schema ([2fda6d9](https://github.com/black-atom-industries/core/commit/2fda6d937b62c9235f752cee169ebb39de668d69))
+* run postGenerate hook after adapter generation ([60dfc94](https://github.com/black-atom-industries/core/commit/60dfc9424111e92dd5fea134c860e72ca5820c80))
+* **tasks:** add parseTaskArgs utility for flag separation ([75b2c26](https://github.com/black-atom-industries/core/commit/75b2c2696f94eb95066422a8aacba8d2f5da3308))
+
+
+### Refactors
+
+* **themes/jpn:** refine koyo-hiru palette and align koyo-yoru values ([29ebfe9](https://github.com/black-atom-industries/core/commit/29ebfe9c9c0a7cd9882f0a7c7a24fe1790a1af9e))
+* **themes/jpn:** refine koyo-yoru palette and primary values ([0cc12a3](https://github.com/black-atom-industries/core/commit/0cc12a30b2aada6570336399a7c8b2b7080682ec))
+* **themes:** adjust black-atom-jpn-koyo-yoru palette ([199b69d](https://github.com/black-atom-industries/core/commit/199b69d85ddfe50279a793225c56fb055994589d))
+
+
+### Bug Fixes
+
+* **scripts:** watch generated Ghostty configs instead of theme sources ([24b41c3](https://github.com/black-atom-industries/core/commit/24b41c31e90517c1d4d8298d117b75856ea22898))
+
 ## [0.3.2](https://github.com/black-atom-industries/core/compare/v0.3.1...v0.3.2) (2026-02-26)
 
 
