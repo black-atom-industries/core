@@ -27,23 +27,23 @@ const primaries: ThemePrimaryColors = {
 };
 
 const palette = createPalette(primaries, {
-    darkRed: oklch(0.606, 0.135, 27.88),
-    red: oklch(0.669, 0.134, 21.3),
+    darkRed: oklch(0.55, 0.15, 10),
+    red: oklch(0.65, 0.15, 15),
 
-    darkGreen: oklch(0.577, 0.09, 161.13),
-    green: oklch(0.68, 0.109, 160.92),
+    darkGreen: oklch(0.55, 0.15, 150),
+    green: oklch(0.65, 0.15, 150),
 
-    darkYellow: oklch(0.701, 0.136, 56.01),
-    yellow: oklch(0.755, 0.146, 69.74),
+    darkYellow: oklch(0.70, 0.175, 50),
+    yellow: oklch(0.75, 0.175, 75),
 
-    darkBlue: oklch(0.61, 0.079, 357.78),
-    blue: oklch(0.606, 0.075, 311.8),
+    darkBlue: oklch(0.65, 0.15, 350),
+    blue: oklch(0.65, 0.15, 300),
 
-    darkMagenta: oklch(0.745, 0.127, 50.13),
-    magenta: oklch(0.779, 0.111, 51.01),
+    darkMagenta: oklch(0.75, 0.15, 60),
+    magenta: oklch(0.75, 0.15, 50),
 
-    darkCyan: oklch(0.643, 0.085, 170.79),
-    cyan: oklch(0.702, 0.077, 172.56),
+    darkCyan: oklch(0.55, 0.15, 180),
+    cyan: oklch(0.65, 0.15, 180),
 });
 
 const accents: ThemeAccentColors = {

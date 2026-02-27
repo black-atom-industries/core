@@ -27,8 +27,8 @@ const primaries: ThemePrimaryColors = {
 };
 
 const palette = createPalette(primaries, {
-    darkRed: oklch(0.65, 0.15, 11.39),
-    red: oklch(0.75, 0.15, 11.2),
+    darkRed: oklch(0.65, 0.15, 10),
+    red: oklch(0.75, 0.15, 15),
 
     darkGreen: oklch(0.65, 0.1, 150),
     green: oklch(0.75, 0.1, 150),
@@ -36,7 +36,7 @@ const palette = createPalette(primaries, {
     darkYellow: oklch(0.75, 0.15, 50),
     yellow: oklch(0.75, 0.15, 75),
 
-    darkBlue: oklch(0.65, 0.075, 300),
+    darkBlue: oklch(0.75, 0.075, 350),
     blue: oklch(0.75, 0.075, 300),
 
     darkMagenta: oklch(0.65, 0.1, 51),
