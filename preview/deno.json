@@ -1,0 +1,40 @@
+{
+    "nodeModulesDir": "auto",
+    "unstable": ["sloppy-imports"],
+    "tasks": {
+        "dev": "deno run -A npm:vite",
+        "build": "deno run -A npm:vite build"
+    },
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "lib": ["ES2023", "DOM", "DOM.Iterable"]
+    },
+    "imports": {
+        "react": "npm:react@^19.0.0",
+        "react-dom": "npm:react-dom@^19.0.0",
+        "react/jsx-runtime": "npm:react@^19.0.0/jsx-runtime",
+        "@types/react": "npm:@types/react@^19.0.0",
+        "@tanstack/react-query": "npm:@tanstack/react-query@^5.64.0",
+        "@tanstack/react-router": "npm:@tanstack/react-router@^1.114.0",
+        "@tanstack/zod-adapter": "npm:@tanstack/zod-adapter@^1.114.0",
+        "zod": "npm:zod@^3.24.0",
+        "vite": "npm:vite@^6.1.0",
+        "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.3.0",
+        "@core/": "../src/"
+    },
+    "lint": {
+        "rules": {
+            "exclude": ["no-slow-types", "no-sloppy-imports"]
+        },
+        "exclude": [".vite/"]
+    },
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 100,
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": false,
+        "proseWrap": "preserve"
+    }
+}
