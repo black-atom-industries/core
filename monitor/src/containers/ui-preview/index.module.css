@@ -27,6 +27,20 @@
     gap: 16px;
 }
 
+.tokenColumns {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.tokenCol {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 /* Stats + examples: side-by-side on desktop */
 .statsAndExamples {
     display: flex;
