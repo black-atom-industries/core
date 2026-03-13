@@ -12,7 +12,7 @@ import styles from "./index.module.css";
 
 export function AppContainer() {
     const { view, theme: themeKey } = rootRoute.useSearch();
-    const navigate = useNavigate();
+    const navigate = useNavigate({ from: "/" });
 
     useServerReloadListener();
 
