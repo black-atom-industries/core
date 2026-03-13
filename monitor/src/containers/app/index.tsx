@@ -4,11 +4,12 @@ import { rootRoute } from "../../router";
 import { useThemeList } from "../../hooks/use-theme-list";
 import { useTheme } from "../../hooks/use-theme";
 import { useServerReloadListener } from "../../hooks/use-server-reload-listener";
+import { AppLayout } from "../../components/app-layout";
 import { NavItem } from "../../components/nav-item";
+import styles from "./index.module.css";
 import { ThemeListItem } from "../../components/theme-list-item";
 import { UiPreviewContainer } from "../ui-preview";
 import { CodePreviewContainer } from "../code-preview";
-import styles from "./index.module.css";
 
 export function AppContainer() {
     const { view, theme: themeKey } = rootRoute.useSearch();
@@ -66,53 +67,55 @@ export function AppContainer() {
         : {};
 
     return (
-        <div className={styles.shell} style={cssVars}>
-            {/* Left navigation */}
-            <nav className={styles.leftNav}>
-                <div className={styles.logo}>Black Atom</div>
-                <div className={styles.navSection}>
-                    <div className={styles.navSectionLabel}>Previews</div>
-                    <NavItem
-                        label="UI"
-                        icon="◈"
-                        active={view === "ui"}
-                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
-                    />
-                    <NavItem
-                        label="Code"
-                        icon="◇"
-                        active={view === "code"}
-                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
-                    />
-                </div>
-            </nav>
-
-            {/* Main content */}
-            <main className={styles.main}>
-                {view === "ui" && <UiPreviewContainer themeKey={themeKey} />}
-                {view === "code" && <CodePreviewContainer />}
-            </main>
-
-            {/* Right theme selector */}
-            <aside className={styles.rightSidebar}>
-                {themeList?.collections.map((group) => (
-                    <div key={group.collection}>
-                        <div className={styles.collectionLabel}>{group.collection}</div>
-                        {group.themes.map((t) => (
-                            <ThemeListItem
-                                key={t.key}
-                                name={t.name}
-                                appearance={t.appearance}
-                                active={t.key === themeKey}
-                                onClick={() =>
-                                    navigate({
-                                        search: (prev) => ({ ...prev, theme: t.key }),
-                                    })}
-                            />
-                        ))}
+        <AppLayout
+            style={cssVars}
+            leftNav={
+                <>
+                    <div className={styles.logo}>Black Atom</div>
+                    <div className={styles.navSection}>
+                        <div className={styles.navSectionLabel}>Previews</div>
+                        <NavItem
+                            label="UI"
+                            icon="◈"
+                            active={view === "ui"}
+                            onClick={() => navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
+                        />
+                        <NavItem
+                            label="Code"
+                            icon="◇"
+                            active={view === "code"}
+                            onClick={() => navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
+                        />
                     </div>
-                ))}
-            </aside>
-        </div>
+                </>
+            }
+            main={
+                <>
+                    {view === "ui" && <UiPreviewContainer themeKey={themeKey} />}
+                    {view === "code" && <CodePreviewContainer />}
+                </>
+            }
+            rightSidebar={
+                <>
+                    {themeList?.collections.map((group) => (
+                        <div key={group.collection}>
+                            <div className={styles.collectionLabel}>{group.collection}</div>
+                            {group.themes.map((t) => (
+                                <ThemeListItem
+                                    key={t.key}
+                                    name={t.name}
+                                    appearance={t.appearance}
+                                    active={t.key === themeKey}
+                                    onClick={() =>
+                                        navigate({
+                                            search: (prev) => ({ ...prev, theme: t.key }),
+                                        })}
+                                />
+                            ))}
+                        </div>
+                    ))}
+                </>
+            }
+        />
     );
 }

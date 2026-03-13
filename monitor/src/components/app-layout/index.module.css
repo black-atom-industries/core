@@ -1,0 +1,88 @@
+.shell {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--ba-bg);
+    color: var(--ba-fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 13px;
+}
+
+/* Left sidebar */
+.leftNav {
+    width: 180px;
+    flex-shrink: 0;
+    background: var(--ba-bg-panel);
+    border-right: 1px solid var(--ba-bg-float);
+    display: flex;
+    flex-direction: column;
+    padding: 16px 8px;
+    gap: 4px;
+    overflow-y: auto;
+}
+
+/* Main content */
+.main {
+    flex: 1;
+    overflow-y: auto;
+    min-width: 0;
+}
+
+/* Right sidebar */
+.rightSidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background: var(--ba-bg-panel);
+    border-left: 1px solid var(--ba-bg-float);
+    overflow-y: auto;
+    padding: 12px 0;
+}
+
+/* Hide scrollbars in all layout slots */
+.leftNav,
+.main,
+.rightSidebar {
+    scrollbar-width: none;
+}
+
+.leftNav::-webkit-scrollbar,
+.main::-webkit-scrollbar,
+.rightSidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .shell {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .leftNav {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 12px;
+        border-right: none;
+        border-bottom: 1px solid var(--ba-bg-float);
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .main {
+        overflow-y: visible;
+    }
+
+    .rightSidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--ba-bg-float);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 8px 0;
+        overflow-x: auto;
+    }
+}
