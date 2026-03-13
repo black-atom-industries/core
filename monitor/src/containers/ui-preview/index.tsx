@@ -61,14 +61,17 @@ export function UiPreviewContainer({ themeKey }: Props) {
                     </div>
                     <div className={styles.tokenCol}>
                         <ColorTokenGroup label="Palette" tokens={Object.entries(theme.palette)} />
-                        <ColorTokenGroup
-                            label="UI Backgrounds"
-                            tokens={Object.entries(theme.ui.bg)}
-                        />
-                        <ColorTokenGroup
-                            label="UI Foregrounds"
-                            tokens={Object.entries(theme.ui.fg)}
-                        />
+                        <div className={styles.uiSection}>
+                            <ColorTokenGroup
+                                label="UI Backgrounds"
+                                tokens={Object.entries(theme.ui.bg)}
+                            />
+                            <ColorTokenGroup
+                                label="UI Foregrounds"
+                                tokens={Object.entries(theme.ui.fg)}
+                                swatchType="foreground"
+                            />
+                        </div>
                     </div>
                 </div>
             </section>

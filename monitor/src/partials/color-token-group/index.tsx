@@ -4,9 +4,10 @@ import styles from "./index.module.css";
 interface Props {
     label: string;
     tokens: [string, string][];
+    swatchType?: "background" | "foreground";
 }
 
-export function ColorTokenGroup({ label, tokens }: Props) {
+export function ColorTokenGroup({ label, tokens, swatchType = "background" }: Props) {
     return (
         <div className={styles.group}>
             <div className={styles.label}>{label}</div>
@@ -16,6 +17,7 @@ export function ColorTokenGroup({ label, tokens }: Props) {
                         key={name}
                         color={color}
                         label={name}
+                        type={swatchType}
                     />
                 ))}
             </div>

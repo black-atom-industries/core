@@ -4,9 +4,10 @@ import styles from "./index.module.css";
 interface Props {
     color: string;
     label: string;
+    type?: "background" | "foreground";
 }
 
-export function ColorSwatch({ color, label }: Props) {
+export function ColorSwatch({ color, label, type = "background" }: Props) {
     const [copied, setCopied] = useState(false);
 
     function handleClick() {
@@ -18,10 +19,18 @@ export function ColorSwatch({ color, label }: Props) {
 
     return (
         <div className={styles.swatch} onClick={handleClick} title="Click to copy">
-            <div
-                className={styles.color}
-                style={{ background: color }}
-            />
+            {type === "background"
+                ? (
+                    <div
+                        className={styles.colorBg}
+                        style={{ background: color }}
+                    />
+                )
+                : (
+                    <div className={styles.colorFg} style={{ color }}>
+                        Aa
+                    </div>
+                )}
             <span className={styles.label}>{copied ? "copied!" : label}</span>
             <span className={styles.colorText} style={{ color }}>{color}</span>
             <span className={styles.hex}>{color}</span>

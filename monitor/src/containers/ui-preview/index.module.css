@@ -41,6 +41,13 @@
     gap: 16px;
 }
 
+/* UI Backgrounds / UI Foregrounds: side-by-side */
+.uiSection {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
 /* Stats + examples: side-by-side on desktop */
 .statsAndExamples {
     display: flex;
