@@ -24,4 +24,5 @@ black-atom-core
 .DS_Store
 /preview/.vite/deps
 .superpowers/
+.claude/tasks/
 tmp/
