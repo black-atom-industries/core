@@ -48,7 +48,8 @@ export function StatsRow({
                 <div
                     className={styles.lightnessBar}
                     style={{
-                        background: `linear-gradient(to right, ${darkestPrimary}, ${lightestPrimary})`,
+                        background:
+                            `linear-gradient(to right, ${darkestPrimary}, ${lightestPrimary})`,
                     }}
                 />
             </StatCard>

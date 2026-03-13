@@ -32,37 +32,37 @@ export function AppContainer() {
     // Inject all ui tokens as CSS variables
     const cssVars = theme
         ? ({
-              "--ba-bg": theme.ui.bg.default,
-              "--ba-bg-panel": theme.ui.bg.panel,
-              "--ba-bg-float": theme.ui.bg.float,
-              "--ba-bg-active": theme.ui.bg.active,
-              "--ba-bg-disabled": theme.ui.bg.disabled,
-              "--ba-bg-hover": theme.ui.bg.hover,
-              "--ba-bg-selection": theme.ui.bg.selection,
-              "--ba-bg-search": theme.ui.bg.search,
-              "--ba-bg-contrast": theme.ui.bg.contrast,
-              "--ba-bg-negative": theme.ui.bg.negative,
-              "--ba-bg-warn": theme.ui.bg.warn,
-              "--ba-bg-info": theme.ui.bg.info,
-              "--ba-bg-hint": theme.ui.bg.hint,
-              "--ba-bg-positive": theme.ui.bg.positive,
-              "--ba-bg-add": theme.ui.bg.add,
-              "--ba-bg-delete": theme.ui.bg.delete,
-              "--ba-bg-modify": theme.ui.bg.modify,
-              "--ba-fg": theme.ui.fg.default,
-              "--ba-fg-subtle": theme.ui.fg.subtle,
-              "--ba-fg-accent": theme.ui.fg.accent,
-              "--ba-fg-disabled": theme.ui.fg.disabled,
-              "--ba-fg-contrast": theme.ui.fg.contrast,
-              "--ba-fg-negative": theme.ui.fg.negative,
-              "--ba-fg-warn": theme.ui.fg.warn,
-              "--ba-fg-info": theme.ui.fg.info,
-              "--ba-fg-hint": theme.ui.fg.hint,
-              "--ba-fg-positive": theme.ui.fg.positive,
-              "--ba-fg-add": theme.ui.fg.add,
-              "--ba-fg-delete": theme.ui.fg.delete,
-              "--ba-fg-modify": theme.ui.fg.modify,
-          } as React.CSSProperties)
+            "--ba-bg": theme.ui.bg.default,
+            "--ba-bg-panel": theme.ui.bg.panel,
+            "--ba-bg-float": theme.ui.bg.float,
+            "--ba-bg-active": theme.ui.bg.active,
+            "--ba-bg-disabled": theme.ui.bg.disabled,
+            "--ba-bg-hover": theme.ui.bg.hover,
+            "--ba-bg-selection": theme.ui.bg.selection,
+            "--ba-bg-search": theme.ui.bg.search,
+            "--ba-bg-contrast": theme.ui.bg.contrast,
+            "--ba-bg-negative": theme.ui.bg.negative,
+            "--ba-bg-warn": theme.ui.bg.warn,
+            "--ba-bg-info": theme.ui.bg.info,
+            "--ba-bg-hint": theme.ui.bg.hint,
+            "--ba-bg-positive": theme.ui.bg.positive,
+            "--ba-bg-add": theme.ui.bg.add,
+            "--ba-bg-delete": theme.ui.bg.delete,
+            "--ba-bg-modify": theme.ui.bg.modify,
+            "--ba-fg": theme.ui.fg.default,
+            "--ba-fg-subtle": theme.ui.fg.subtle,
+            "--ba-fg-accent": theme.ui.fg.accent,
+            "--ba-fg-disabled": theme.ui.fg.disabled,
+            "--ba-fg-contrast": theme.ui.fg.contrast,
+            "--ba-fg-negative": theme.ui.fg.negative,
+            "--ba-fg-warn": theme.ui.fg.warn,
+            "--ba-fg-info": theme.ui.fg.info,
+            "--ba-fg-hint": theme.ui.fg.hint,
+            "--ba-fg-positive": theme.ui.fg.positive,
+            "--ba-fg-add": theme.ui.fg.add,
+            "--ba-fg-delete": theme.ui.fg.delete,
+            "--ba-fg-modify": theme.ui.fg.modify,
+        } as React.CSSProperties)
         : {};
 
     return (
@@ -76,17 +76,13 @@ export function AppContainer() {
                         label="UI"
                         icon="◈"
                         active={view === "ui"}
-                        onClick={() =>
-                            navigate({ search: (prev) => ({ ...prev, view: "ui" }) })
-                        }
+                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
                     />
                     <NavItem
                         label="Code"
                         icon="◇"
                         active={view === "code"}
-                        onClick={() =>
-                            navigate({ search: (prev) => ({ ...prev, view: "code" }) })
-                        }
+                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
                     />
                 </div>
             </nav>
@@ -111,8 +107,7 @@ export function AppContainer() {
                                 onClick={() =>
                                     navigate({
                                         search: (prev) => ({ ...prev, theme: t.key }),
-                                    })
-                                }
+                                    })}
                             />
                         ))}
                     </div>

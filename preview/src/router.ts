@@ -1,4 +1,4 @@
-import { createRouter, createRootRoute } from "@tanstack/react-router";
+import { createRootRoute, createRouter } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";

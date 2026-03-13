@@ -21,9 +21,21 @@
     gap: 10px;
 }
 
-.h1 { font-size: 22px; font-weight: 700; color: var(--ba-fg); }
-.h2 { font-size: 17px; font-weight: 600; color: var(--ba-fg); }
-.h3 { font-size: 14px; font-weight: 600; color: var(--ba-fg-subtle); }
+.h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ba-fg);
+}
+.h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ba-fg);
+}
+.h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ba-fg-subtle);
+}
 
 .body {
     font-size: 13px;

@@ -18,7 +18,8 @@ export function UiPreviewContainer({ themeKey }: Props) {
         return <div className={styles.loading}>Loading…</div>;
     }
 
-    const { theme, contrast, paletteColors, darkestPrimary, lightestPrimary, notificationColors } = data;
+    const { theme, contrast, paletteColors, darkestPrimary, lightestPrimary, notificationColors } =
+        data;
 
     return (
         <div className={styles.page}>
@@ -30,34 +31,34 @@ export function UiPreviewContainer({ themeKey }: Props) {
 
                 <ColorTokenGroup
                     label="Primaries — Dark"
-                    tokens={{
-                        d10: theme.primaries.d10,
-                        d20: theme.primaries.d20,
-                        d30: theme.primaries.d30,
-                        d40: theme.primaries.d40,
-                    }}
+                    tokens={[
+                        ["d10", theme.primaries.d10],
+                        ["d20", theme.primaries.d20],
+                        ["d30", theme.primaries.d30],
+                        ["d40", theme.primaries.d40],
+                    ]}
                 />
                 <ColorTokenGroup
                     label="Primaries — Mid"
-                    tokens={{
-                        m10: theme.primaries.m10,
-                        m20: theme.primaries.m20,
-                        m30: theme.primaries.m30,
-                        m40: theme.primaries.m40,
-                    }}
+                    tokens={[
+                        ["m10", theme.primaries.m10],
+                        ["m20", theme.primaries.m20],
+                        ["m30", theme.primaries.m30],
+                        ["m40", theme.primaries.m40],
+                    ]}
                 />
                 <ColorTokenGroup
                     label="Primaries — Light"
-                    tokens={{
-                        l10: theme.primaries.l10,
-                        l20: theme.primaries.l20,
-                        l30: theme.primaries.l30,
-                        l40: theme.primaries.l40,
-                    }}
+                    tokens={[
+                        ["l10", theme.primaries.l10],
+                        ["l20", theme.primaries.l20],
+                        ["l30", theme.primaries.l30],
+                        ["l40", theme.primaries.l40],
+                    ]}
                 />
-                <ColorTokenGroup label="Palette" tokens={theme.palette} />
-                <ColorTokenGroup label="UI Backgrounds" tokens={theme.ui.bg} />
-                <ColorTokenGroup label="UI Foregrounds" tokens={theme.ui.fg} />
+                <ColorTokenGroup label="Palette" tokens={Object.entries(theme.palette)} />
+                <ColorTokenGroup label="UI Backgrounds" tokens={Object.entries(theme.ui.bg)} />
+                <ColorTokenGroup label="UI Foregrounds" tokens={Object.entries(theme.ui.fg)} />
             </section>
 
             {/* Sections 2+3: Stats + UI Examples (side-by-side on desktop) */}
