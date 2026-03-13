@@ -4,6 +4,7 @@
     align-items: center;
     gap: 3px;
     min-width: 0;
+    cursor: pointer;
 }
 
 .color {
