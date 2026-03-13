@@ -2,7 +2,6 @@ import { generateAllRepositories } from "./adapters/generate.ts";
 import { pushAllRepositories } from "./adapters/push-all.ts";
 import { resetAllRepositories } from "./adapters/reset.ts";
 import { showAdapterStatuses } from "./adapters/status.ts";
-import { watch } from "./adapters/watch.ts";
 import { getUserConfirmation, parseTaskArgs, runCommand } from "./adapters/utils.ts";
 import { config } from "../config.ts";
 import log from "../lib/log.ts";
@@ -17,11 +16,6 @@ if (import.meta.main) {
         case "adapters:gen": {
             log.info("Generating themes for adapters...");
             await generateAllRepositories({ commit: false });
-            break;
-        }
-
-        case "adapters:dev": {
-            await watch();
             break;
         }
 

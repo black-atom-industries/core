@@ -258,7 +258,7 @@ export async function watch() {
     const abortController = new AbortController();
 
     Deno.addSignalListener("SIGINT", () => {
-        log.info("\n🛑 Shutting down multi-watch process...");
+        log.info("\n🛑 Shutting down...");
 
         // Clear all pending timers
         for (const timer of pendingChanges.values()) {
@@ -267,7 +267,6 @@ export async function watch() {
         pendingChanges.clear();
 
         abortController.abort();
-        log.info("Multi-watch process terminated.");
         Deno.exit(0);
     });
 
