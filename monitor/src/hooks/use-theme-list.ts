@@ -14,6 +14,6 @@ export interface ThemesResponse {
 export function useThemeList() {
     return useQuery<ThemesResponse>({
         queryKey: ["themes"],
-        queryFn: () => fetch("/api/themes").then((r) => r.json()),
+        queryFn: ({ signal }) => fetch("/api/themes", { signal }).then((r) => r.json()),
     });
 }
