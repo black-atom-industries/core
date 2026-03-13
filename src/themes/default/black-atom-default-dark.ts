@@ -29,7 +29,7 @@ const primaries: ThemePrimaryColors = {
 const accents: ThemeAccentColors = {
     a10: oklch(0.85, 0.085, 142),
     a20: oklch(0.75, 0.085, 142),
-    a30: oklch(0.85, 0.085, 290),
+    a30: oklch(0.6036, 0.16, 290.0),
     a40: oklch(0.75, 0.085, 290),
 };
 
