@@ -34,9 +34,9 @@ export function StatsRow({
 
             <StatCard label="Hue spread">
                 <div className={styles.hueStrip}>
-                    {paletteColors.map((color, i) => (
+                    {paletteColors.map((color) => (
                         <div
-                            key={i}
+                            key={color}
                             className={styles.hueChunk}
                             style={{ background: color }}
                         />

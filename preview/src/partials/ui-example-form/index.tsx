@@ -17,7 +17,7 @@ export function UiExampleForm() {
                     <button type="button" className={styles.btnSecondary}>
                         Secondary
                     </button>
-                    <button type="button" className={styles.btnDisabled} disabled>
+                    <button type="button" className={styles.btnSecondary} disabled>
                         Disabled
                     </button>
                 </div>

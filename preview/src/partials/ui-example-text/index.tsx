@@ -10,7 +10,7 @@ export function UiExampleText() {
                 <h3 className={styles.h3}>Heading Three</h3>
                 <p className={styles.body}>
                     Body text with{" "}
-                    <a className={styles.link} href="#">
+                    <a className={styles.link} href="#" onClick={(e) => e.preventDefault()}>
                         an accent link
                     </a>{" "}
                     and <code className={styles.code}>inline code</code> for emphasis.
