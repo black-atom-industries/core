@@ -34,7 +34,8 @@
         "test:terminal-colors": "bash scripts/test-terminal-colors.sh",
         "test:terminal-colors:dev": "deno run -A scripts/test-terminal-colors-dev.ts",
         "monitor:api": "deno run -A src/monitor-server.ts",
-        "monitor:app": "cd monitor && deno task dev"
+        "monitor:app": "cd monitor && deno task dev",
+        "install-hooks": "cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Hooks installed.'"
     },
     "exclude": [
         "monitor/"

@@ -57,7 +57,7 @@ const sseClients = new Set<ReadableStreamDefaultController>();
  * Starts the preview API server and file watcher.
  * Can be called standalone or imported by dev.ts.
  */
-export async function startPreviewServer() {
+export function startPreviewServer() {
     // Start loading themes immediately but don't block server startup
     let themeMap: ThemeKeyDefinitionMap | null = null;
     let groupedMetas: ReturnType<typeof buildCollections> | null = null;
