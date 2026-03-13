@@ -108,23 +108,31 @@ export async function startPreviewServer() {
 
         // SSE endpoint — pushes "reload" events when theme files change
         if (path === "/api/events") {
+            let intervalId: number | undefined;
+            let ctl: ReadableStreamDefaultController | undefined;
+
             const body = new ReadableStream({
                 start(controller) {
+                    ctl = controller;
                     sseClients.add(controller);
 
-                    const interval = setInterval(() => {
+                    intervalId = setInterval(() => {
                         try {
                             controller.enqueue(new TextEncoder().encode(": heartbeat\n\n"));
                         } catch {
-                            clearInterval(interval);
+                            clearInterval(intervalId);
                             sseClients.delete(controller);
                         }
                     }, 15_000);
 
                     req.signal.addEventListener("abort", () => {
-                        clearInterval(interval);
+                        clearInterval(intervalId);
                         sseClients.delete(controller);
                     });
+                },
+                cancel() {
+                    clearInterval(intervalId);
+                    if (ctl) sseClients.delete(ctl);
                 },
             });
 
