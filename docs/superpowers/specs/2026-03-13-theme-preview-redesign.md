@@ -129,9 +129,9 @@ Scrollable set of realistic UI mockups rendered with the selected theme's CSS va
 
 Mockups to implement:
 
-1. **Text content** — heading hierarchy (h1–h3), body text, inline code, blockquote. Uses `--ba-fg`, `--ba-bg`, accent for links.
-2. **App chrome** — mock sidebar + main panel layout. Uses `--ba-panel` (sidebar bg), `--ba-bg` (main area bg), `--ba-border` (divider).
-3. **Form elements** — input, button (primary + secondary), disabled state. Uses accent, disabled, border tokens.
+1. **Text content** — heading hierarchy (h1–h3), body text, inline code, blockquote. Uses `--ba-fg`, `--ba-fg-subtle`, `--ba-fg-accent` for links, `--ba-bg`.
+2. **App chrome** — mock sidebar + main panel layout. Uses `--ba-bg-panel` (sidebar), `--ba-bg` (main area), `--ba-bg-float` (elevated elements).
+3. **Form elements** — input, button (primary + secondary), disabled state. Uses `--ba-fg-accent`, `--ba-bg-disabled`, `--ba-fg-disabled`, `--ba-bg-hover`.
 4. **Notification / badge row** — success, warning, error, info states. Receives `{ success, warning, error, info }` color strings as props (sourced from `theme.palette.green`, `.yellow`, `.red`, `.blue` by `UiPreviewContainer`).
 
 Mockups 1–3 read CSS variables directly. Mockup 4 receives palette colors as props since they are not exposed as CSS vars.
@@ -202,17 +202,49 @@ CSS Modules throughout (existing convention, keep). Layout via flexbox. Theme co
 
 ### CSS Variable Reference
 
-These vars are injected at the app root from the selected theme (existing behavior):
+All `ui` tokens are injected at the app root by `AppContainer`, replacing the old partial set. Naming follows `--ba-bg-{token}` / `--ba-fg-{token}`. The `default` token uses the short form (`--ba-bg`, `--ba-fg`).
 
-| Variable | Usage |
+**Background (ui.bg)**
+
+| Variable | Token |
 |----------|-------|
-| `--ba-bg` | Main background |
-| `--ba-fg` | Default foreground / text |
-| `--ba-panel` | Sidebar / panel background |
-| `--ba-subtle` | Subtle / muted text |
-| `--ba-accent` | Accent color |
-| `--ba-disabled` | Disabled state color |
-| `--ba-border` | Border / divider color |
+| `--ba-bg` | bg.default |
+| `--ba-bg-panel` | bg.panel |
+| `--ba-bg-float` | bg.float |
+| `--ba-bg-active` | bg.active |
+| `--ba-bg-disabled` | bg.disabled |
+| `--ba-bg-hover` | bg.hover |
+| `--ba-bg-selection` | bg.selection |
+| `--ba-bg-search` | bg.search |
+| `--ba-bg-contrast` | bg.contrast |
+| `--ba-bg-negative` | bg.negative |
+| `--ba-bg-warn` | bg.warn |
+| `--ba-bg-info` | bg.info |
+| `--ba-bg-hint` | bg.hint |
+| `--ba-bg-positive` | bg.positive |
+| `--ba-bg-add` | bg.add |
+| `--ba-bg-delete` | bg.delete |
+| `--ba-bg-modify` | bg.modify |
+
+**Foreground (ui.fg)**
+
+| Variable | Token |
+|----------|-------|
+| `--ba-fg` | fg.default |
+| `--ba-fg-subtle` | fg.subtle |
+| `--ba-fg-accent` | fg.accent |
+| `--ba-fg-disabled` | fg.disabled |
+| `--ba-fg-contrast` | fg.contrast |
+| `--ba-fg-negative` | fg.negative |
+| `--ba-fg-warn` | fg.warn |
+| `--ba-fg-info` | fg.info |
+| `--ba-fg-hint` | fg.hint |
+| `--ba-fg-positive` | fg.positive |
+| `--ba-fg-add` | fg.add |
+| `--ba-fg-delete` | fg.delete |
+| `--ba-fg-modify` | fg.modify |
+
+Old vars (`--ba-panel`, `--ba-subtle`, `--ba-accent`, `--ba-disabled`, `--ba-border`) are removed — preview app is self-contained.
 
 Responsive breakpoint: `768px`.
 
