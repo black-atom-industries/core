@@ -14,6 +14,7 @@ export function ColorSwatch({ color, label }: Props) {
                 title={color}
             />
             <span className={styles.label}>{label}</span>
+            <span className={styles.colorText} style={{ color }}>{color}</span>
             <span className={styles.hex}>{color}</span>
         </div>
     );

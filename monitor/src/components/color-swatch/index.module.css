@@ -25,6 +25,16 @@
     max-width: 52px;
 }
 
+.colorText {
+    font-size: 8px;
+    text-align: center;
+    font-family: monospace;
+    max-width: 52px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .hex {
     font-size: 8px;
     color: var(--ba-fg-disabled);
