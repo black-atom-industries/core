@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { createLogger, defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 
 const logger = createLogger();
 const originalError = logger.error.bind(logger);
