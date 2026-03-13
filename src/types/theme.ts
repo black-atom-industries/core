@@ -23,6 +23,7 @@ export interface ThemePrimaryColors {
 
 /** 16-color terminal palette. */
 export interface ThemePaletteColors {
+    [key: string]: HexColor;
     black: HexColor;
     gray: HexColor;
     darkRed: HexColor;
@@ -67,6 +68,7 @@ export interface ThemeCreatorOptions {
 
 /** Background colors for UI elements. */
 interface ThemeUiBackgroundColors {
+    [key: string]: HexColor;
     default: HexColor;
     panel: HexColor;
     float: HexColor;
@@ -88,6 +90,7 @@ interface ThemeUiBackgroundColors {
 
 /** Foreground colors for UI elements. */
 interface ThemeUiForegroundColors {
+    [key: string]: HexColor;
     default: HexColor;
     subtle: HexColor;
     accent: HexColor;

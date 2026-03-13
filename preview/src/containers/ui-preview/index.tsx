@@ -55,9 +55,9 @@ export function UiPreviewContainer({ themeKey }: Props) {
                         l40: theme.primaries.l40,
                     }}
                 />
-                <ColorTokenGroup label="Palette" tokens={theme.palette as unknown as Record<string, string>} />
-                <ColorTokenGroup label="UI Backgrounds" tokens={theme.ui.bg as unknown as Record<string, string>} />
-                <ColorTokenGroup label="UI Foregrounds" tokens={theme.ui.fg as unknown as Record<string, string>} />
+                <ColorTokenGroup label="Palette" tokens={theme.palette} />
+                <ColorTokenGroup label="UI Backgrounds" tokens={theme.ui.bg} />
+                <ColorTokenGroup label="UI Foregrounds" tokens={theme.ui.fg} />
             </section>
 
             {/* Sections 2+3: Stats + UI Examples (side-by-side on desktop) */}
