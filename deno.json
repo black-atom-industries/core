@@ -16,7 +16,7 @@
     "tasks": {
         "lock": "deno cache --lock=deno.lock --reload .",
         "check": "deno check .",
-        "checks": "deno task check && deno task format && deno task lint && cd preview && deno task checks",
+        "checks": "deno task check && deno task format && deno task lint && cd monitor && deno task checks",
         "format": "deno fmt .",
         "lint": "deno lint .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",
@@ -33,11 +33,11 @@
         "publish": "deno publish --allow-slow-types",
         "test:terminal-colors": "bash scripts/test-terminal-colors.sh",
         "test:terminal-colors:dev": "deno run -A scripts/test-terminal-colors-dev.ts",
-        "preview:api": "deno run -A src/preview-server.ts",
-        "preview:app": "cd preview && deno task dev"
+        "monitor:api": "deno run -A src/monitor-server.ts",
+        "monitor:app": "cd monitor && deno task dev"
     },
     "exclude": [
-        "preview/"
+        "monitor/"
     ],
     "lint": {
         "rules": {
@@ -50,7 +50,7 @@
             "deno.json",
             "import_map.json",
             "CHANGELOG.md",
-            "preview/"
+            "monitor/"
         ]
     },
     "fmt": {

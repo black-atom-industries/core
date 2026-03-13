@@ -1,5 +1,5 @@
 /**
- * Unified dev mode: runs the adapter watcher, preview API server,
+ * Unified dev mode: runs the adapter watcher, monitor API server,
  * and Vite dev server concurrently.
  *
  * Usage:
@@ -9,16 +9,16 @@
 import { join } from "@std/path";
 import { config } from "../config.ts";
 import { watch } from "./adapters/watch.ts";
-import { startPreviewServer } from "../preview-server.ts";
+import { startPreviewServer } from "../monitor-server.ts";
 
-const previewDir = join(config.dir.core, "preview");
+const monitorDir = join(config.dir.core, "monitor");
 
 let viteProcess: Deno.ChildProcess | null = null;
 
 async function startVite() {
     const vite = new Deno.Command("deno", {
         args: ["task", "dev"],
-        cwd: previewDir,
+        cwd: monitorDir,
         stdout: "inherit",
         stderr: "inherit",
     });

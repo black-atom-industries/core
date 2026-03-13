@@ -9,7 +9,7 @@ const PORT = 4171;
  * This bypasses the module cache so edited theme files are picked up.
  */
 async function loadThemeMap(): Promise<ThemeKeyDefinitionMap> {
-    const script = join(config.dir.core, "src", "preview-dump-themes.ts");
+    const script = join(config.dir.core, "src", "monitor-dump-themes.ts");
     const command = new Deno.Command(Deno.execPath(), {
         args: ["run", "--allow-read", script],
         stdout: "piped",
