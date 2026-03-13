@@ -1,0 +1,52 @@
+.sidebar {
+    width: 220px;
+    min-width: 220px;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--ba-panel);
+    border-left: 1px solid var(--ba-border);
+    padding: 16px 0;
+    font-size: 12px;
+}
+
+.group {
+    margin-bottom: 16px;
+}
+
+.groupLabel {
+    padding: 4px 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ba-subtle);
+}
+
+.themeButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 16px;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 400;
+    background: transparent;
+    color: inherit;
+}
+
+.themeButton[data-active="true"] {
+    background: var(--ba-accent-bg);
+    color: var(--ba-accent);
+    font-weight: 500;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--ba-border);
+    flex-shrink: 0;
+}

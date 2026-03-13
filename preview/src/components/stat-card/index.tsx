@@ -1,0 +1,15 @@
+import styles from "./index.module.css";
+
+interface Props {
+    label: string;
+    children: React.ReactNode;
+}
+
+export function StatCard({ label, children }: Props) {
+    return (
+        <div className={styles.card}>
+            <span className={styles.label}>{label}</span>
+            <div className={styles.content}>{children}</div>
+        </div>
+    );
+}

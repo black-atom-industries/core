@@ -1,0 +1,22 @@
+.card {
+    background: var(--ba-bg-panel);
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ba-fg-disabled);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
