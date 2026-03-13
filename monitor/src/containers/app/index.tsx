@@ -71,20 +71,24 @@ export function AppContainer() {
             style={cssVars}
             leftNav={
                 <>
-                    <div className={styles.logo}>Black Atom</div>
+                    <div className={styles.logo}>
+                        <strong>Black Atom</strong> Monitor
+                    </div>
                     <div className={styles.navSection}>
                         <div className={styles.navSectionLabel}>Previews</div>
                         <NavItem
                             label="UI"
                             icon="◈"
                             active={view === "ui"}
-                            onClick={() => navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
+                            onClick={() =>
+                                navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
                         />
                         <NavItem
                             label="Code"
                             icon="◇"
                             active={view === "code"}
-                            onClick={() => navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
+                            onClick={() =>
+                                navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
                         />
                     </div>
                 </>
