@@ -37,14 +37,38 @@ Three-column shell:
 
 ## Routes / Navigation
 
-State-based routing (no router library — the app is a dev tool, bookmarking not required).
+**TanStack Router** with code-based routing. Single root route — no child routes needed. Active view and selected theme live as validated URL search params.
 
-| Route key | Component | Status |
-|-----------|-----------|--------|
+```
+/?view=ui&theme=default-dark
+/?view=code&theme=jpn-koyo-yoru
+```
+
+### Search params (on root route)
+
+Validated with Zod + `zodValidator` adapter:
+
+```ts
+z.object({
+  view: fallback(z.enum(['ui', 'code']), 'ui').default('ui'),
+  theme: fallback(z.string(), '').default(''),
+})
+```
+
+`theme` defaults to `''` on load; `AppContainer` resolves this to the first theme from `useThemeList` and immediately replaces the URL param. This avoids hardcoding a theme key in the schema.
+
+### Views
+
+| `view` param | Component | Status |
+|---|---|---|
 | `ui` | `UiPreviewContainer` | Implemented |
 | `code` | `CodePreviewContainer` | Placeholder — renders "Coming soon" |
 
-Active route stored in top-level app state, defaults to `ui`. Selected theme key stored alongside it, defaults to the first theme returned by `useThemeList`.
+### Reading / writing params
+
+- Read via `Route.useSearch()` in `AppContainer`
+- Navigate via `useNavigate()` — theme selector and nav items call `navigate({ search: (prev) => ({ ...prev, theme: key }) })` etc.
+- No `useState` for route or theme in `AppContainer` — URL is the source of truth.
 
 ---
 
@@ -194,6 +218,16 @@ Responsive breakpoint: `768px`.
 
 ---
 
+## New Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `@tanstack/react-router` | URL state via search params |
+| `@tanstack/zod-adapter` | Type-safe search param validation |
+| `zod` | Schema validation for search params |
+
+---
+
 ## What to Keep from Current Code
 
 - `api.ts` hooks: `useThemeList`, `useTheme`, `useServerReloadListener` — extract each to its own file in `hooks/`, logic unchanged.
@@ -214,6 +248,5 @@ Responsive breakpoint: `768px`.
 ## Out of Scope
 
 - Code Preview implementation (DEV-302 follow-up)
-- Routing library / URL state
 - Storybook / tests
 - Server-side changes
