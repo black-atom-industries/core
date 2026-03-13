@@ -4,7 +4,7 @@ import { existsSync } from "@std/fs";
 /**
  * Watches generated Ghostty config files for changes and re-runs the terminal color test.
  *
- * Requires `deno task adapters:dev` (or manual generation) to be running separately.
+ * Requires `deno task dev` (or manual generation) to be running separately.
  * When generation writes new .conf files, this watcher picks up the change,
  * reloads Ghostty, and re-displays the color test.
  *
@@ -87,7 +87,7 @@ console.log(`Watching ${ghosttyThemesDir} for generated config changes...\n`);
 console.log(`┌──────────────────────────────────────────────────────────────────┐`);
 console.log(`│                                                                  │`);
 console.log(`│  Watches generated Ghostty .conf files (not theme sources).      │`);
-console.log(`│  Run adapters:dev separately to trigger generation.              │`);
+console.log(`│  Run dev separately to trigger generation.              │`);
 console.log(`│                                                                  │`);
 console.log(`└──────────────────────────────────────────────────────────────────┘`);
 console.log(`\nPress Ctrl+C to stop.\n`);
