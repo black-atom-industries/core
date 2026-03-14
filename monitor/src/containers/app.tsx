@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { Outlet, useMatchRoute, useNavigate } from "@tanstack/react-router";
 import { rootRoute } from "../router";
 import { useThemeList } from "../hooks/use-theme-list";
 import { useTheme } from "../hooks/use-theme";
@@ -11,12 +11,11 @@ import { NavItem } from "../components/nav-item";
 import { NavSection } from "../components/nav-section";
 import { NavSectionLabel } from "../components/nav-section-label";
 import { ThemeListItem } from "../components/theme-list-item";
-import { UiPreviewContainer } from "./ui-preview";
-import { CodePreviewContainer } from "./code-preview";
 
 export function AppContainer() {
-    const { view, theme: themeKey } = rootRoute.useSearch();
+    const { theme: themeKey } = rootRoute.useSearch();
     const navigate = useNavigate({ from: "/" });
+    const matchRoute = useMatchRoute();
 
     useServerReloadListener();
 
@@ -28,10 +27,10 @@ export function AppContainer() {
         if (!themeKey && themeList?.collections.length) {
             const first = themeList.collections[0]?.themes[0];
             if (first) {
-                navigate({ search: (prev) => ({ ...prev, theme: first.key }) });
+                navigate({ search: { theme: first.key } });
             }
         }
-    }, [themeKey, themeList, navigate]);
+    }, [themeKey, themeList]);
 
     // Inject all ui tokens as CSS variables
     const cssVars = theme
@@ -81,26 +80,20 @@ export function AppContainer() {
                         <NavItem
                             label="UI"
                             icon="◈"
-                            active={view === "ui"}
-                            onClick={() =>
-                                navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
+                            active={!!matchRoute({ to: "/preview/ui" })}
+                            onClick={() => navigate({ to: "/preview/ui", search: (prev) => prev })}
                         />
                         <NavItem
                             label="Code"
                             icon="◇"
-                            active={view === "code"}
+                            active={!!matchRoute({ to: "/preview/code" })}
                             onClick={() =>
-                                navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
+                                navigate({ to: "/preview/code", search: (prev) => prev })}
                         />
                     </NavSection>
                 </>
             }
-            main={
-                <>
-                    {view === "ui" && <UiPreviewContainer themeKey={themeKey} />}
-                    {view === "code" && <CodePreviewContainer />}
-                </>
-            }
+            main={<Outlet />}
             rightSidebar={
                 <>
                     {themeList?.collections.map((group) => (
@@ -114,7 +107,7 @@ export function AppContainer() {
                                     active={t.key === themeKey}
                                     onClick={() =>
                                         navigate({
-                                            search: (prev) => ({ ...prev, theme: t.key }),
+                                            search: { theme: t.key },
                                         })}
                                 />
                             ))}

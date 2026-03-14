@@ -1,3 +1,4 @@
+import { rootRoute } from "../router";
 import { useUiPreview } from "../hooks/use-ui-preview";
 import { Placeholder } from "../components/placeholder";
 import { Examples } from "../components/ui-preview/examples";
@@ -14,11 +15,8 @@ import { UiExampleChrome } from "../partials/ui-preview/ui-example-chrome";
 import { UiExampleForm } from "../partials/ui-preview/ui-example-form";
 import { UiExampleText } from "../partials/ui-preview/ui-example-text";
 
-interface Props {
-    themeKey: string;
-}
-
-export function UiPreviewContainer({ themeKey }: Props) {
+export function UiPreviewContainer() {
+    const { theme: themeKey } = rootRoute.useSearch();
     const { data, isLoading } = useUiPreview(themeKey);
 
     if (isLoading || !data) {
