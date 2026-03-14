@@ -1,3 +1,4 @@
+/// <reference path="../vite-env.d.ts" />
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 

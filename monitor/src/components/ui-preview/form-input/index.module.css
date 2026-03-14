@@ -1,0 +1,14 @@
+.input {
+    background: var(--ba-bg-panel);
+    border: 1px solid var(--ba-bg-float);
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: var(--ba-fg);
+    outline: none;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: var(--ba-fg-accent);
+}

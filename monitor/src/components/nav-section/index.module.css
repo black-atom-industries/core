@@ -1,0 +1,12 @@
+.navSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+@media (max-width: 768px) {
+    .navSection {
+        flex-direction: row;
+        gap: 4px;
+    }
+}

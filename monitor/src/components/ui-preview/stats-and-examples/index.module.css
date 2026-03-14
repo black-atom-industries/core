@@ -1,0 +1,11 @@
+.statsAndExamples {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    .statsAndExamples {
+        flex-direction: column;
+    }
+}

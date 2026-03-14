@@ -1,0 +1,14 @@
+.label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ba-fg-disabled);
+    padding: 4px 12px 2px;
+    margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+    .label {
+        display: none;
+    }
+}

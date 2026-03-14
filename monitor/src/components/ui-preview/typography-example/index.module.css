@@ -1,0 +1,60 @@
+.content {
+    background: var(--ba-bg);
+    border: 1px solid var(--ba-bg-float);
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ba-fg);
+}
+
+.h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ba-fg);
+}
+
+.h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ba-fg-subtle);
+}
+
+.body {
+    font-size: 13px;
+    color: var(--ba-fg);
+    line-height: 1.6;
+}
+
+.link {
+    color: var(--ba-fg-accent);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.code {
+    background: var(--ba-bg-selection);
+    color: var(--ba-fg-accent);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.blockquote {
+    border-left: 3px solid var(--ba-fg-accent);
+    padding-left: 12px;
+    color: var(--ba-fg-subtle);
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+}

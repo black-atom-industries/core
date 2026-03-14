@@ -1,0 +1,6 @@
+.statusList {
+    background: var(--ba-bg);
+    border: 1px solid var(--ba-bg-float);
+    border-radius: 6px;
+    overflow: hidden;
+}

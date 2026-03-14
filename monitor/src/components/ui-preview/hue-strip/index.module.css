@@ -1,0 +1,11 @@
+.hueStrip {
+    display: flex;
+    height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    gap: 1px;
+}
+
+.chunk {
+    flex: 1;
+}
