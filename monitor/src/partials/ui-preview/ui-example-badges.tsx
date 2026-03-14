@@ -18,7 +18,7 @@ export function UiExampleBadges({ success, warning, error, info }: Props) {
     ];
 
     return (
-        <ExampleSection label="Notifications">
+        <ExampleSection label="Notifications" data-partial="UiExampleBadges">
             <StatusList>
                 {states.map(({ label, color, message }) => (
                     <StatusItem key={label} color={color} label={label} message={message} />

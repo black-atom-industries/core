@@ -6,7 +6,11 @@ interface Props {
 
 export function AppearanceBadge({ appearance }: Props) {
     return (
-        <span className={styles.badge} data-appearance={appearance}>
+        <span
+            className={styles.badge}
+            data-component="AppearanceBadge"
+            data-appearance={appearance}
+        >
             {appearance}
         </span>
     );

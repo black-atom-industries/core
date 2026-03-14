@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function NavSection({ children }: Props) {
-    return <div className={styles.navSection}>{children}</div>;
+    return <div className={styles.navSection} data-layout="NavSection">{children}</div>;
 }

@@ -7,7 +7,7 @@ import { ExampleSection } from "../../components/ui-preview/example-section";
 
 export function UiExampleChrome() {
     return (
-        <ExampleSection label="App Chrome">
+        <ExampleSection label="App Chrome" data-partial="UiExampleChrome">
             <ChromeLayout>
                 <ChromeSidebar>
                     <ChromeSidebarItem active>Dashboard</ChromeSidebarItem>

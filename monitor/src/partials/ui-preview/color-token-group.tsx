@@ -10,7 +10,7 @@ interface Props {
 
 export function ColorTokenGroup({ label, tokens, swatchType = "background" }: Props) {
     return (
-        <ExampleSection label={label}>
+        <ExampleSection label={label} data-partial="ColorTokenGroup">
             <SwatchGrid>
                 {tokens.map(([name, color]) => (
                     <ColorSwatch

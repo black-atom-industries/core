@@ -12,6 +12,7 @@ export function NavItem({ label, icon, active = false, onClick }: Props) {
         <button
             type="button"
             className={styles.item}
+            data-component="NavItem"
             data-active={active}
             onClick={onClick}
         >

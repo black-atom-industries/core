@@ -13,6 +13,7 @@ export function ThemeListItem({ name, appearance, active = false, onClick }: Pro
         <button
             type="button"
             className={styles.item}
+            data-component="ThemeListItem"
             data-active={active}
             onClick={onClick}
         >

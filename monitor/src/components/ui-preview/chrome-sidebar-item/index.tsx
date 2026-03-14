@@ -8,7 +8,11 @@ interface Props {
 
 export function ChromeSidebarItem({ active = false, children }: Props) {
     return (
-        <div className={styles.item} data-active={active ? "true" : undefined}>
+        <div
+            className={styles.item}
+            data-component="ChromeSidebarItem"
+            data-active={active ? "true" : undefined}
+        >
             {children}
         </div>
     );

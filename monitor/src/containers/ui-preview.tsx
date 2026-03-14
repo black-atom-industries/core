@@ -23,7 +23,7 @@ export function UiPreviewContainer({ themeKey }: Props) {
 
     if (isLoading || !data) {
         return (
-            <Placeholder minHeight={200}>
+            <Placeholder minHeight={200} data-container="UiPreviewContainer">
                 <p>Loading…</p>
             </Placeholder>
         );
@@ -33,7 +33,7 @@ export function UiPreviewContainer({ themeKey }: Props) {
         data;
 
     return (
-        <Page>
+        <Page data-container="UiPreviewContainer">
             {/* Section 1: Color tokens */}
             <Section>
                 <SectionTitle>

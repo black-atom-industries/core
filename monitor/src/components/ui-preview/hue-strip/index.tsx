@@ -6,7 +6,7 @@ interface Props {
 
 export function HueStrip({ colors }: Props) {
     return (
-        <div className={styles.hueStrip}>
+        <div className={styles.hueStrip} data-component="HueStrip">
             {colors.map((color, i) => (
                 <div
                     key={`${i}-${color}`}

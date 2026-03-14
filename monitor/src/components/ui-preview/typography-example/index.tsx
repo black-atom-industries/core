@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 
 export function TypographyExample() {
     return (
-        <div className={styles.content}>
+        <div className={styles.content} data-component="TypographyExample">
             <h1 className={styles.h1}>Heading One</h1>
             <h2 className={styles.h2}>Heading Two</h2>
             <h3 className={styles.h3}>Heading Three</h3>

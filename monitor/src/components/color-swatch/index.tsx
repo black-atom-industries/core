@@ -18,7 +18,12 @@ export function ColorSwatch({ color, label, type = "background" }: Props) {
     }
 
     return (
-        <div className={styles.swatch} onClick={handleClick} title="Click to copy">
+        <div
+            className={styles.swatch}
+            data-component="ColorSwatch"
+            onClick={handleClick}
+            title="Click to copy"
+        >
             {type === "background"
                 ? (
                     <div

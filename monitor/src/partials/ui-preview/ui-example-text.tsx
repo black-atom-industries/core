@@ -3,7 +3,7 @@ import { TypographyExample } from "../../components/ui-preview/typography-exampl
 
 export function UiExampleText() {
     return (
-        <ExampleSection label="Text Content">
+        <ExampleSection label="Text Content" data-partial="UiExampleText">
             <TypographyExample />
         </ExampleSection>
     );

@@ -23,7 +23,7 @@ export function StatsRow({
     lightestPrimary,
 }: Props) {
     return (
-        <StatsRowLayout>
+        <StatsRowLayout data-partial="StatsRow">
             <StatCard label="Contrast (fg/bg)">
                 <ContrastDisplay ratio={contrast.ratio} grade={contrast.grade} />
             </StatCard>

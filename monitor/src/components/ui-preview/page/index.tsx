@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import styles from "./index.module.css";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
 }
 
-export function Page({ children }: Props) {
-    return <div className={styles.page}>{children}</div>;
+export function Page({ children, ...rest }: Props) {
+    return <div className={styles.page} data-layout="Page" {...rest}>{children}</div>;
 }

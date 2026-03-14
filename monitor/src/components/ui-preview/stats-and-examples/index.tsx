@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function StatsAndExamples({ children }: Props) {
-    return <div className={styles.statsAndExamples}>{children}</div>;
+    return <div className={styles.statsAndExamples} data-layout="StatsAndExamples">{children}</div>;
 }

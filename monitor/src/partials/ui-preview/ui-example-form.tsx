@@ -6,7 +6,7 @@ import { FormPanel } from "../../components/ui-preview/form-panel";
 
 export function UiExampleForm() {
     return (
-        <ExampleSection label="Form Elements">
+        <ExampleSection label="Form Elements" data-partial="UiExampleForm">
             <FormPanel>
                 <FormInput placeholder="Input field" readOnly />
                 <ButtonGroup>

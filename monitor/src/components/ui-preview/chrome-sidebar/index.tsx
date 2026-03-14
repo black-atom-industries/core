@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function ChromeSidebar({ children }: Props) {
-    return <aside className={styles.sidebar}>{children}</aside>;
+    return <aside className={styles.sidebar} data-component="ChromeSidebar">{children}</aside>;
 }

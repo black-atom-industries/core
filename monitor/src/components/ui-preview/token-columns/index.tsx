@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function TokenColumns({ children }: Props) {
-    return <div className={styles.tokenColumns}>{children}</div>;
+    return <div className={styles.tokenColumns} data-layout="TokenColumns">{children}</div>;
 }

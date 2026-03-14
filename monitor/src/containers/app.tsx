@@ -71,6 +71,7 @@ export function AppContainer() {
 
     return (
         <AppLayout
+            data-container="AppContainer"
             style={cssVars}
             leftNav={
                 <>

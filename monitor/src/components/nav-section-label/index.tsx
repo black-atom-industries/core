@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function NavSectionLabel({ children }: Props) {
-    return <div className={styles.label}>{children}</div>;
+    return <div className={styles.label} data-component="NavSectionLabel">{children}</div>;
 }

@@ -4,5 +4,5 @@ import styles from "./index.module.css";
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
 export function FormInput(props: Props) {
-    return <input {...props} className={styles.input} />;
+    return <input {...props} className={styles.input} data-component="FormInput" />;
 }

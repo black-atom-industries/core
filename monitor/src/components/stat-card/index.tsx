@@ -7,7 +7,7 @@ interface Props {
 
 export function StatCard({ label, children }: Props) {
     return (
-        <div className={styles.card}>
+        <div className={styles.card} data-component="StatCard">
             <span className={styles.label}>{label}</span>
             <div className={styles.content}>{children}</div>
         </div>

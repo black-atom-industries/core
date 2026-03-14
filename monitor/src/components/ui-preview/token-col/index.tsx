@@ -6,5 +6,5 @@ interface Props {
 }
 
 export function TokenCol({ children }: Props) {
-    return <div className={styles.tokenCol}>{children}</div>;
+    return <div className={styles.tokenCol} data-layout="TokenCol">{children}</div>;
 }

@@ -11,6 +11,7 @@ export function Button({ variant, children, ...rest }: Props) {
         <button
             {...rest}
             className={variant === "primary" ? styles.btnPrimary : styles.btnSecondary}
+            data-component="Button"
         >
             {children}
         </button>
