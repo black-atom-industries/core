@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useThemes } from "../queries/themes";
 import { Placeholder } from "../components/placeholder";
 import { CollectionLabel } from "../components/collection-label";
@@ -15,7 +15,6 @@ export const Route = createFileRoute("/")({
 
 function Component() {
     const { data, isLoading } = useThemes();
-    const navigate = useNavigate();
 
     if (isLoading || !data) {
         return (
@@ -48,11 +47,7 @@ function Component() {
                                     primaries={t.primaries}
                                     palette={t.palette}
                                     contrastRatio={t.contrast.ratio}
-                                    onClick={() =>
-                                        navigate({
-                                            to: "/preview/ui",
-                                            search: { theme: t.meta.key },
-                                        })}
+                                    themeKey={t.meta.key}
                                 />
                             ))}
                         </DashboardCardGrid>

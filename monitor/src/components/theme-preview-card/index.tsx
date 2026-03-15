@@ -1,4 +1,5 @@
 import type { ThemePaletteColors, ThemePrimaryColors } from "@core/types/theme.ts";
+import { Link } from "@tanstack/react-router";
 import { AppearanceBadge } from "../appearance-badge";
 import styles from "./index.module.css";
 
@@ -8,7 +9,7 @@ interface Props {
     primaries: ThemePrimaryColors;
     palette: ThemePaletteColors;
     contrastRatio: number;
-    onClick: () => void;
+    themeKey: string;
 }
 
 const PRIMARY_ORDER = [
@@ -46,18 +47,31 @@ const PALETTE_ORDER = [
 ] as const;
 
 export function ThemePreviewCard(
-    { name, appearance, primaries, palette, contrastRatio, onClick }: Props,
+    { name, appearance, primaries, palette, contrastRatio, themeKey }: Props,
 ) {
     return (
-        <div className={styles.card} onClick={onClick} data-component="ThemePreviewCard">
+        <Link
+            to="/preview/ui"
+            search={{ theme: themeKey }}
+            className={styles.card}
+            data-component="ThemePreviewCard"
+        >
             <div className={styles.primaries}>
                 {PRIMARY_ORDER.map((key) => (
-                    <div key={key} className={styles.primaryStrip} style={{ background: primaries[key] }} />
+                    <div
+                        key={key}
+                        className={styles.primaryStrip}
+                        style={{ background: primaries[key] }}
+                    />
                 ))}
             </div>
             <div className={styles.palette}>
                 {PALETTE_ORDER.map((key) => (
-                    <div key={key} className={styles.paletteSwatch} style={{ background: palette[key] }} />
+                    <div
+                        key={key}
+                        className={styles.paletteSwatch}
+                        style={{ background: palette[key] }}
+                    />
                 ))}
             </div>
             <div className={styles.meta}>
@@ -67,6 +81,6 @@ export function ThemePreviewCard(
                     <AppearanceBadge appearance={appearance} />
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

@@ -1,10 +1,13 @@
 .card {
+    display: block;
     width: 220px;
     background: var(--ba-bg-float);
     border: 1px solid var(--ba-bg-active);
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .card:hover {
