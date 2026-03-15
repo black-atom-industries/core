@@ -11,13 +11,13 @@ The monitor app currently redirects `/` to `/preview/ui`. There's no landing pag
 
 ### App Layout Changes
 
-**StatsBar** — a new persistent bar in the app shell, positioned between the header/nav area and the main content. Renders on every page but scopes its content to the current route context:
+**StatsBar** — a new persistent container at the bottom of the app shell, like an IDE status bar. Renders on every page but scopes its content to the current route context. Uses a container/partial pattern: the container determines what to show based on location, partials render the actual stat groups.
 
 - **Dashboard (`/`)** — org-wide: theme count, collection count, dark/light split, avg contrast
 - **Preview pages (`/preview/*`)** — theme-scoped: contrast ratio, WCAG level, hue spread visualization, lightness range, collection name
 - **Future: collection view** — collection-scoped stats
 
-The StatsBar receives its data from the current route context. It's a single component with a polymorphic data interface, not separate components per page.
+The StatsBar container reads the current route to decide which partials to render. Each partial is a focused stat group (e.g., `OrgStatsPartial`, `ThemeContrastPartial`). The container orchestrates, the partials display.
 
 **Navigation hierarchy change:**
 
@@ -100,13 +100,19 @@ interface OverviewResponse {
 ```
 monitor/src/
 ├── components/
-│   ├── stats-bar/              ← new: persistent stats bar
-│   ├── theme-preview-card/     ← new: color grid + meta card
-│   └── app-layout/             ← modified: add StatsBar slot
+│   ├── stats-bar-layout/       ← new: bottom bar layout component (dumb)
+│   ├── theme-preview-card/     ← new: color grid + meta card (dumb)
+│   └── app-layout/             ← modified: add bottom stats bar slot
 ├── containers/
-│   └── dashboard.tsx           ← new: dashboard page container
+│   ├── dashboard.tsx           ← new: dashboard page container
+│   └── stats-bar.tsx           ← new: route-aware stats container
+├── partials/
+│   └── stats-bar/
+│       ├── org-stats.tsx       ← new: org-wide stats (dashboard)
+│       └── theme-stats.tsx     ← new: theme-scoped stats (preview)
 ├── lib/
-│   └── stats.ts                ← new: stats computation library
+│   ├── stats.ts                ← new: stats computation library
+│   └── stats.test.ts           ← new: unit tests for stats functions
 └── router.ts                   ← modified: add dashboard route, update nav
 ```
 
