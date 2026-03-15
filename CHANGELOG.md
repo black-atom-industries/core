@@ -1,5 +1,71 @@
 # Changelog
 
+## [0.4.0](https://github.com/black-atom-industries/core/compare/v0.3.2...v0.4.0) (2026-03-15)
+
+
+### Features
+
+* add optional postGenerate hook to adapter config schema ([2fda6d9](https://github.com/black-atom-industries/core/commit/2fda6d937b62c9235f752cee169ebb39de668d69))
+* **monitor:** add data-* role attributes to all React components ([f9df3f1](https://github.com/black-atom-industries/core/commit/f9df3f1de047a0cdf2234d627fc31fbd6845b205))
+* **monitor:** add TanStack Router plugin for file-based routing ([95ff64f](https://github.com/black-atom-industries/core/commit/95ff64fcf6d8dff6dbb558e428009f5ca24ec538))
+* **monitor:** bg/fg swatch variants; side-by-side UI token layout [DEV-302] ([01a9351](https://github.com/black-atom-industries/core/commit/01a9351e9d0d7616719c6e85b75e4c053cb33737))
+* **monitor:** click color swatch to copy hex value [DEV-302] ([42e067f](https://github.com/black-atom-industries/core/commit/42e067f5402d0f430a749283a0b0e9b9769c3414))
+* **monitor:** two-column layout for color token section [DEV-302] ([452cf87](https://github.com/black-atom-industries/core/commit/452cf8776a72099bdc71b4f1c8ccf29bb92640aa))
+* **monitor:** update app title to "Black Atom Monitor ([23ee8e1](https://github.com/black-atom-industries/core/commit/23ee8e177f68a2e9ee3aea959c168f29c1bdad6e))
+* **preview:** add AppContainer with three-column layout and CSS var injection ([2d131ee](https://github.com/black-atom-industries/core/commit/2d131ee43fc5b6eb5ec869157d52ddb0448fbb26))
+* **preview:** add CodePreviewContainer placeholder ([995e60d](https://github.com/black-atom-industries/core/commit/995e60d3bf5f89fc90dd452a9cb7960af0b5b5b3))
+* **preview:** add ColorTokenGroup partial ([6705bca](https://github.com/black-atom-industries/core/commit/6705bcac12afe29b02936a6c242e425c21085c52))
+* **preview:** add dumb components (badge, nav-item, theme-list-item, color-swatch, stat-card) ([54e0b86](https://github.com/black-atom-industries/core/commit/54e0b86d5726bfe18564361fc283b62137f90877))
+* **preview:** add preview API server and theme dump helper ([98a6a77](https://github.com/black-atom-industries/core/commit/98a6a774c5e993ada6fad7c48ab7a26f1e598661))
+* **preview:** add StatsRow partial ([1ec8e00](https://github.com/black-atom-industries/core/commit/1ec8e00c692152de442ef75cf5bcca70e6891ee7))
+* **preview:** add UI tab partials (token-group, stats-row, ui-examples) ([1c1710d](https://github.com/black-atom-industries/core/commit/1c1710d6d99adb0d80b569e1710b3bcbaef69c81))
+* **preview:** add UiPreviewContainer with color tokens, stats, and UI examples ([b2d18fc](https://github.com/black-atom-industries/core/commit/b2d18fc1ecea706d3bbef798ee7827a956b11404))
+* **preview:** add WCAG contrast ratio utility ([b1d54d9](https://github.com/black-atom-industries/core/commit/b1d54d958dcf04ee94f422f2aa29e701702b0b3a))
+* **preview:** set up TanStack Router with search param state ([9a949d4](https://github.com/black-atom-industries/core/commit/9a949d48527ab538907495951eca9e852a229933))
+* run postGenerate hook after adapter generation ([60dfc94](https://github.com/black-atom-industries/core/commit/60dfc9424111e92dd5fea134c860e72ca5820c80))
+* **tasks:** add parseTaskArgs utility for flag separation ([75b2c26](https://github.com/black-atom-industries/core/commit/75b2c2696f94eb95066422a8aacba8d2f5da3308))
+* **tasks:** add unified dev task; remove adapters:dev; clean up watch shutdown ([117d84c](https://github.com/black-atom-industries/core/commit/117d84cd8087a2b9b1bd9623ce0c861e1182176b))
+
+
+### Refactors
+
+* **monitor:** extract AppLayout dumb component; unify scrollbar suppression ([81aee4d](https://github.com/black-atom-industries/core/commit/81aee4d46ae89d1aad1874a147e4dd3a5d05eae0))
+* **monitor:** extract dumb/layout components from partials and containers ([3da8686](https://github.com/black-atom-industries/core/commit/3da8686a037f948504a09a66b403dfc30f1bb157))
+* **monitor:** migrate from query-param to route-based navigation [DEV-305] ([af20397](https://github.com/black-atom-industries/core/commit/af20397b498e8755a408d51e10fe9da98bb0d9d0))
+* **preview:** extract hooks into dedicated files ([1f2cd83](https://github.com/black-atom-industries/core/commit/1f2cd83a2add10b8a7927d2a544a50de30c507e9))
+* rename preview to monitor ([2e4a835](https://github.com/black-atom-industries/core/commit/2e4a83587c2b629ef09e1b922fd44f6c562070de))
+* **themes/jpn:** refine koyo-hiru palette and align koyo-yoru values ([29ebfe9](https://github.com/black-atom-industries/core/commit/29ebfe9c9c0a7cd9882f0a7c7a24fe1790a1af9e))
+* **themes/jpn:** refine koyo-yoru palette and primary values ([0cc12a3](https://github.com/black-atom-industries/core/commit/0cc12a30b2aada6570336399a7c8b2b7080682ec))
+* **themes:** adjust black-atom-jpn-koyo-yoru palette ([199b69d](https://github.com/black-atom-industries/core/commit/199b69d85ddfe50279a793225c56fb055994589d))
+
+
+### Bug Fixes
+
+* **monitor:** bypass Vite proxy for SSE to prevent Deno crash on reload ([346e7a8](https://github.com/black-atom-industries/core/commit/346e7a8c4bc59f9d50cce0a28bdd6bf193165dcf))
+* **monitor:** deduplicate hue strip keys; add color-as-text to swatch [DEV-302] ([e371192](https://github.com/black-atom-industries/core/commit/e37119267142d45cc119d4da36ffca6380b99349))
+* **monitor:** handle SSE stream cancellation to prevent server crash [DEV-302] ([f3afd82](https://github.com/black-atom-industries/core/commit/f3afd82bbb8e8b6813abf4652f3f2aeaf41594f2))
+* **monitor:** indent theme list items under collection labels ([7db500e](https://github.com/black-atom-industries/core/commit/7db500eab50854dcff7cd20ccddd2a117aa18bec))
+* **monitor:** pass AbortSignal to fetch for proper query cancellation [DEV-302] ([d819577](https://github.com/black-atom-industries/core/commit/d819577e946f607e8822a4cfdd95a9f7d88fee70))
+* **monitor:** restore missing styles import in AppContainer ([81aee4d](https://github.com/black-atom-industries/core/commit/81aee4d46ae89d1aad1874a147e4dd3a5d05eae0))
+* **preview:** fix key prop, link behavior, and disabled button styling ([6344f24](https://github.com/black-atom-industries/core/commit/6344f245a2d664786242d237db30c9a65e4797f7))
+* **preview:** use CSS var for color swatch border instead of hardcoded rgba ([e87aaf8](https://github.com/black-atom-industries/core/commit/e87aaf8f0382f3c3581d748960aefe93c7861521))
+* **preview:** use entries tuple API for ColorTokenGroup; revert index signatures from core types ([7d3ff90](https://github.com/black-atom-industries/core/commit/7d3ff90a564e78f55f7f69f7ac9f832a1d7d79a0))
+* **scripts:** watch generated Ghostty configs instead of theme sources ([24b41c3](https://github.com/black-atom-industries/core/commit/24b41c31e90517c1d4d8298d117b75856ea22898))
+* **types:** add index signatures to palette and ui color interfaces ([ea00084](https://github.com/black-atom-industries/core/commit/ea000840bdd7aa4db96149e6f60303a94d5a8bf5))
+
+
+### Documentation
+
+* add theme preview redesign implementation plan (DEV-302) ([c60cbb5](https://github.com/black-atom-industries/core/commit/c60cbb543f94ac4c9622f12ab715285cb939d808))
+* add theme preview redesign spec (DEV-302) ([f49644e](https://github.com/black-atom-industries/core/commit/f49644ecbdc28c8bcf3b54c39ae900811a05913f))
+* **monitor:** add dashboard design spec [DEV-311] ([652d6a2](https://github.com/black-atom-industries/core/commit/652d6a27a7a35af41427210f073d0c5eaf06ec3a))
+* **monitor:** add dashboard implementation plan [DEV-311] ([e9c1766](https://github.com/black-atom-industries/core/commit/e9c1766fe84762ce444a6fc5dceb5dbca1422376))
+* **monitor:** normalize formatting and whitespace in plan/spec ([dcdeff9](https://github.com/black-atom-industries/core/commit/dcdeff91e7c051cd572b8f6017cf8021ddafba0d))
+* **monitor:** update dashboard spec — bottom stats bar, container/partial pattern [DEV-311] ([9b5b736](https://github.com/black-atom-industries/core/commit/9b5b7360210bcacd382cd460852f353d74c74c06))
+* **scripts:** update comment to reference deno task dev ([5d42120](https://github.com/black-atom-industries/core/commit/5d42120d5d8b9bf9767a6737a6a46a89916f3e3a))
+* **spec:** add TanStack Router for URL-based view/theme state ([dfd5b2c](https://github.com/black-atom-industries/core/commit/dfd5b2c61dbe0f7438c3eee975baddd286fe3ddb))
+* **spec:** expand CSS vars to full ui token set with consistent naming ([cbfd6c0](https://github.com/black-atom-industries/core/commit/cbfd6c089b23952a76cfbb9cf88fbc07e5e150f2))
+
 ## [0.3.2](https://github.com/black-atom-industries/core/compare/v0.3.1...v0.3.2) (2026-02-26)
 
 
