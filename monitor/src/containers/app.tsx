@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { Outlet, useLocation, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import { useTheme, useThemeList } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
@@ -15,6 +15,7 @@ export function AppContainer() {
     const { theme: themeKey } = useSearch({ from: "__root__" });
     const navigate = useNavigate({ from: "/" });
     const matchRoute = useMatchRoute();
+    const location = useLocation();
 
     useServerReloadListener();
 
@@ -117,6 +118,7 @@ export function AppContainer() {
                                         active={t.key === themeKey}
                                         onClick={() =>
                                             navigate({
+                                                to: location.pathname,
                                                 search: { theme: t.key },
                                             })}
                                     />
