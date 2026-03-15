@@ -1,15 +1,10 @@
-import type { ThemePaletteColors, ThemePrimaryColors } from "@core/types/theme.ts";
 import { Link } from "@tanstack/react-router";
+import type { ThemeSummary } from "../../queries/themes";
 import { AppearanceBadge } from "../appearance-badge";
 import styles from "./index.module.css";
 
 interface Props {
-    name: string;
-    appearance: "dark" | "light";
-    primaries: ThemePrimaryColors;
-    palette: ThemePaletteColors;
-    contrastRatio: number;
-    themeKey: string;
+    theme: ThemeSummary;
 }
 
 const PRIMARY_ORDER = [
@@ -46,14 +41,13 @@ const PALETTE_ORDER = [
     "white",
 ] as const;
 
-export function ThemePreviewCard(
-    { name, appearance, primaries, palette, contrastRatio, themeKey }: Props,
-) {
+export function ThemePreviewCard({ theme: t }: Props) {
     return (
         <Link
             to="/preview/ui"
-            search={{ theme: themeKey }}
+            search={{ theme: t.meta.key }}
             className={styles.card}
+            style={{ backgroundColor: t.bgDefault, color: t.fgDefault }}
             data-component="ThemePreviewCard"
         >
             <div className={styles.primaries}>
@@ -61,7 +55,7 @@ export function ThemePreviewCard(
                     <div
                         key={key}
                         className={styles.primaryStrip}
-                        style={{ background: primaries[key] }}
+                        style={{ background: t.primaries[key] }}
                     />
                 ))}
             </div>
@@ -70,15 +64,15 @@ export function ThemePreviewCard(
                     <div
                         key={key}
                         className={styles.paletteSwatch}
-                        style={{ background: palette[key] }}
+                        style={{ background: t.palette[key] }}
                     />
                 ))}
             </div>
             <div className={styles.meta}>
-                <div className={styles.name}>{name}</div>
+                <div className={styles.name}>{t.meta.name}</div>
                 <div className={styles.footer}>
-                    <span className={styles.contrast}>{contrastRatio.toFixed(1)}:1</span>
-                    <AppearanceBadge appearance={appearance} />
+                    <span className={styles.contrast}>{t.contrast.ratio.toFixed(1)}:1</span>
+                    <AppearanceBadge appearance={t.meta.appearance} />
                 </div>
             </div>
         </Link>

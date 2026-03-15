@@ -42,12 +42,7 @@ function Component() {
                             {group.themes.map((t) => (
                                 <ThemePreviewCard
                                     key={t.meta.key}
-                                    name={t.meta.name}
-                                    appearance={t.meta.appearance}
-                                    primaries={t.primaries}
-                                    palette={t.palette}
-                                    contrastRatio={t.contrast.ratio}
-                                    themeKey={t.meta.key}
+                                    theme={t}
                                 />
                             ))}
                         </DashboardCardGrid>

@@ -166,6 +166,8 @@ export function startPreviewServer() {
                         meta,
                         primaries: theme.primaries,
                         palette: theme.palette,
+                        bgDefault: theme.ui.bg.default,
+                        fgDefault: theme.ui.fg.default,
                         contrast: {
                             ratio,
                             level: wcagGrade(ratio),

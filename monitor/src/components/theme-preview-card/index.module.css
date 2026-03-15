@@ -1,7 +1,6 @@
 .card {
     display: block;
     width: 220px;
-    background: var(--ba-bg-float);
     border: 1px solid var(--ba-bg-active);
     border-radius: 8px;
     overflow: hidden;
@@ -38,7 +37,7 @@
 
 .name {
     font-size: 14px;
-    color: var(--ba-fg);
+    color: inherit;
     margin-bottom: 4px;
 }
 
@@ -50,5 +49,5 @@
 
 .contrast {
     font-size: 11px;
-    color: var(--ba-fg-subtle);
+    opacity: 0.6;
 }

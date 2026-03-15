@@ -29,6 +29,8 @@ export interface ThemeSummary {
     meta: ThemeMeta;
     primaries: ThemePrimaryColors;
     palette: ThemePaletteColors;
+    bgDefault: string;
+    fgDefault: string;
     contrast: { ratio: number; level: "AAA" | "AA" | "fail" };
 }
 
