@@ -1,11 +1,18 @@
 .shell {
     display: flex;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
     background: var(--ba-bg);
     color: var(--ba-fg);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     font-size: 13px;
+}
+
+.body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
 }
 
 /* Left sidebar */
@@ -51,9 +58,13 @@
     display: none;
 }
 
+.bottomBar {
+    flex-shrink: 0;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
-    .shell {
+    .body {
         flex-direction: column;
         height: auto;
         min-height: 100vh;
