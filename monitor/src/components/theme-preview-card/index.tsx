@@ -48,16 +48,16 @@ const PALETTE_ORDER = [
 export function ThemePreviewCard(
     { name, appearance, primaries, palette, contrastRatio, onClick }: Props,
 ) {
-    const colors = [
-        ...PRIMARY_ORDER.map((key) => primaries[key]),
-        ...PALETTE_ORDER.map((key) => palette[key]),
-    ];
-
     return (
         <div className={styles.card} onClick={onClick} data-component="ThemePreviewCard">
-            <div className={styles.grid}>
-                {colors.map((color, i) => (
-                    <div key={i} className={styles.swatch} style={{ background: color }} />
+            <div className={styles.primaries}>
+                {PRIMARY_ORDER.map((key) => (
+                    <div key={key} className={styles.primaryStrip} style={{ background: primaries[key] }} />
+                ))}
+            </div>
+            <div className={styles.palette}>
+                {PALETTE_ORDER.map((key) => (
+                    <div key={key} className={styles.paletteSwatch} style={{ background: palette[key] }} />
                 ))}
             </div>
             <div className={styles.meta}>

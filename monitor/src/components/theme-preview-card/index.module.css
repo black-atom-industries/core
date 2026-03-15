@@ -1,33 +1,42 @@
 .card {
-    width: 164px;
-    background: var(--ba-bg-panel);
-    border-radius: 6px;
+    width: 220px;
+    background: var(--ba-bg-float);
+    border: 1px solid var(--ba-bg-active);
+    border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
 }
 
 .card:hover {
-    outline: 1px solid var(--ba-bg-float);
+    border-color: var(--ba-fg-subtle);
 }
 
-.grid {
+.primaries {
+    display: flex;
+    height: 80px;
+}
+
+.primaryStrip {
+    flex: 1;
+}
+
+.palette {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    margin: 0;
+    grid-template-columns: repeat(8, 1fr);
 }
 
-.swatch {
+.paletteSwatch {
     aspect-ratio: 1;
 }
 
 .meta {
-    padding: 6px 8px 8px;
+    padding: 10px 12px 12px;
 }
 
 .name {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--ba-fg);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .footer {
@@ -37,6 +46,6 @@
 }
 
 .contrast {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--ba-fg-subtle);
 }
