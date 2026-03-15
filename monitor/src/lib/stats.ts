@@ -1,4 +1,4 @@
-import { contrastRatio, wcagGrade } from "./contrast.ts";
+import { contrastRatio, wcagGrade } from "@core/lib/contrast.ts";
 
 type ThemeForStats = {
     meta: { appearance: "dark" | "light" };
