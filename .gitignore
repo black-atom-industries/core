@@ -23,6 +23,7 @@ black-atom-core
 **/CLAUDE.local.md
 .DS_Store
 /monitor/.vite/deps
+/monitor/dist/
 .superpowers/
 .claude/tasks/
 tmp/

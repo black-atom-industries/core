@@ -1,5 +1,6 @@
 import { resolve } from "node:path";
 import { createLogger, defineConfig } from "vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react-swc";
 
 const logger = createLogger();
@@ -13,7 +14,13 @@ const API_PORT = 4171;
 
 export default defineConfig({
     customLogger: logger,
-    plugins: [react()],
+    plugins: [
+        tanstackRouter({
+            target: "react",
+            autoCodeSplitting: true,
+        }),
+        react(),
+    ],
     define: {
         __API_BASE__: JSON.stringify(`http://localhost:${API_PORT}`),
     },

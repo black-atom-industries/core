@@ -21,6 +21,7 @@
         "@types/react": "npm:@types/react@^19.0.0",
         "@tanstack/react-query": "npm:@tanstack/react-query@^5.64.0",
         "@tanstack/react-router": "npm:@tanstack/react-router@^1.114.0",
+        "@tanstack/router-plugin": "npm:@tanstack/router-plugin@^1.114.0",
         "@tanstack/zod-adapter": "npm:@tanstack/zod-adapter@^1.114.0",
         "zod": "npm:zod@^3.24.0",
         "vite": "npm:vite@^6.1.0",
@@ -31,9 +32,10 @@
         "rules": {
             "exclude": ["no-slow-types", "no-sloppy-imports"]
         },
-        "exclude": [".vite/"]
+        "exclude": [".vite/", "dist/", "src/routeTree.gen.ts"]
     },
     "fmt": {
+        "exclude": ["src/routeTree.gen.ts"],
         "useTabs": false,
         "lineWidth": 100,
         "indentWidth": 4,

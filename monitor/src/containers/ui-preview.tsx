@@ -1,4 +1,4 @@
-import { rootRoute } from "../router";
+import { useSearch } from "@tanstack/react-router";
 import { useUiPreview } from "../hooks/use-ui-preview";
 import { Placeholder } from "../components/placeholder";
 import { Examples } from "../components/ui-preview/examples";
@@ -16,7 +16,7 @@ import { UiExampleForm } from "../partials/ui-preview/ui-example-form";
 import { UiExampleText } from "../partials/ui-preview/ui-example-text";
 
 export function UiPreviewContainer() {
-    const { theme: themeKey } = rootRoute.useSearch();
+    const { theme: themeKey } = useSearch({ from: "__root__" });
     const { data, isLoading } = useUiPreview(themeKey);
 
     if (isLoading || !data) {
