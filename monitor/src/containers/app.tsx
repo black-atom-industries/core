@@ -22,7 +22,8 @@ export function AppContainer() {
         !!matchRoute({ to: "/preview/code" });
 
     const { data: themeList } = useThemeList();
-    const { data: theme } = useTheme(themeKey || null);
+    const DEFAULT_THEME = "black-atom-default-dark";
+    const { data: theme } = useTheme(themeKey || DEFAULT_THEME);
 
     // Auto-select first theme when none is set
     useEffect(() => {

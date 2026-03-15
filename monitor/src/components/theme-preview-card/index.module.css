@@ -13,7 +13,7 @@
 .grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    margin: 6px 6px 0;
+    margin: 0;
 }
 
 .swatch {
