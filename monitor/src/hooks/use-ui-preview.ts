@@ -1,4 +1,4 @@
-import { useTheme } from "./use-theme";
+import { useTheme } from "../queries/themes";
 import { contrastRatio, wcagGrade } from "@core/lib/contrast.ts";
 import type { ThemeDefinition } from "@core/types/theme.ts";
 

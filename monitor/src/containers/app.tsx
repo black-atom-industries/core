@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
-import { useThemeList } from "../hooks/use-theme-list";
-import { useTheme } from "../hooks/use-theme";
+import { useTheme, useThemeList } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
 import { CollectionLabel } from "../components/collection-label";
