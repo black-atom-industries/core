@@ -1,0 +1,53 @@
+.card {
+    display: block;
+    width: 220px;
+    border: 1px solid var(--ba-bg-active);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    border-color: var(--ba-fg-subtle);
+}
+
+.primaries {
+    display: flex;
+    height: 80px;
+}
+
+.primaryStrip {
+    flex: 1;
+}
+
+.palette {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.paletteSwatch {
+    aspect-ratio: 1;
+}
+
+.meta {
+    padding: 10px 12px 12px;
+}
+
+.name {
+    font-size: 14px;
+    color: inherit;
+    margin-bottom: 4px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contrast {
+    font-size: 11px;
+    opacity: 0.6;
+}

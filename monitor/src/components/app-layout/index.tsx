@@ -4,15 +4,19 @@ import styles from "./index.module.css";
 type Props = React.HTMLAttributes<HTMLDivElement> & {
     leftNav: ReactNode;
     main: ReactNode;
-    rightSidebar: ReactNode;
+    rightSidebar?: ReactNode;
+    bottomBar?: ReactNode;
 };
 
-export function AppLayout({ leftNav, main, rightSidebar, ...rest }: Props) {
+export function AppLayout({ leftNav, main, rightSidebar, bottomBar, ...rest }: Props) {
     return (
         <div className={styles.shell} data-layout="AppLayout" {...rest}>
-            <nav className={styles.leftNav}>{leftNav}</nav>
-            <main className={styles.main}>{main}</main>
-            <aside className={styles.rightSidebar}>{rightSidebar}</aside>
+            <div className={styles.body}>
+                <nav className={styles.leftNav}>{leftNav}</nav>
+                <main className={styles.main}>{main}</main>
+                {rightSidebar && <aside className={styles.rightSidebar}>{rightSidebar}</aside>}
+            </div>
+            {bottomBar && <div className={styles.bottomBar}>{bottomBar}</div>}
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import { join } from "@std/path";
 import { collectionOrder, config } from "./config.ts";
 import type { ThemeKey, ThemeKeyDefinitionMap } from "./types/theme.ts";
+import { contrastRatio, wcagGrade } from "./lib/contrast.ts";
 
 const PORT = 4171;
 
@@ -152,6 +153,29 @@ export function startPreviewServer() {
         // GET /api/themes — list all themes grouped by collection
         if (path === "/api/themes") {
             return json({ collections: groupedMetas });
+        }
+
+        // GET /api/themes/overview — primaries + palette + contrast per theme
+        if (path === "/api/themes/overview") {
+            const overview = groupedMetas!.map((group) => ({
+                collection: group.collection,
+                themes: group.themes.map((meta) => {
+                    const theme = themeMap![meta.key as ThemeKey];
+                    const ratio = contrastRatio(theme.ui.fg.default, theme.ui.bg.default);
+                    return {
+                        meta,
+                        primaries: theme.primaries,
+                        palette: theme.palette,
+                        bgDefault: theme.ui.bg.default,
+                        fgDefault: theme.ui.fg.default,
+                        contrast: {
+                            ratio,
+                            level: wcagGrade(ratio),
+                        },
+                    };
+                }),
+            }));
+            return json({ collections: overview });
         }
 
         // GET /api/themes/:key — full theme definition

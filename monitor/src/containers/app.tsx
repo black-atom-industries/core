@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Outlet, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
-import { useThemeList } from "../hooks/use-theme-list";
-import { useTheme } from "../hooks/use-theme";
+import { Outlet, useLocation, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { useTheme, useThemeList } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
+import { StatsBarContainer } from "./stats-bar";
 import { CollectionLabel } from "../components/collection-label";
 import { Logo } from "../components/logo";
 import { NavItem } from "../components/nav-item";
@@ -15,21 +15,26 @@ export function AppContainer() {
     const { theme: themeKey } = useSearch({ from: "__root__" });
     const navigate = useNavigate({ from: "/" });
     const matchRoute = useMatchRoute();
+    const location = useLocation();
 
     useServerReloadListener();
 
+    const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
+        !!matchRoute({ to: "/preview/code" });
+
     const { data: themeList } = useThemeList();
-    const { data: theme } = useTheme(themeKey || null);
+    const DEFAULT_THEME = "black-atom-default-dark";
+    const { data: theme } = useTheme(themeKey || DEFAULT_THEME);
 
     // Auto-select first theme when none is set
     useEffect(() => {
-        if (!themeKey && themeList?.collections.length) {
+        if (isPreviewPage && !themeKey && themeList?.collections.length) {
             const first = themeList.collections[0]?.themes[0];
             if (first) {
                 navigate({ search: { theme: first.key } });
             }
         }
-    }, [themeKey, themeList]);
+    }, [themeKey, themeList, isPreviewPage]);
 
     // Inject all ui tokens as CSS variables
     const cssVars = theme
@@ -74,8 +79,14 @@ export function AppContainer() {
             leftNav={
                 <>
                     <Logo />
+                    <NavItem
+                        label="Dashboard"
+                        icon="◉"
+                        active={!!matchRoute({ to: "/" })}
+                        onClick={() => navigate({ to: "/" })}
+                    />
                     <NavSection>
-                        <NavSectionLabel>Previews</NavSectionLabel>
+                        <NavSectionLabel>Preview</NavSectionLabel>
                         <NavItem
                             label="UI"
                             icon="◈"
@@ -83,7 +94,7 @@ export function AppContainer() {
                             onClick={() => navigate({ to: "/preview/ui", search: (prev) => prev })}
                         />
                         <NavItem
-                            label="Code"
+                            label="Syntax"
                             icon="◇"
                             active={!!matchRoute({ to: "/preview/code" })}
                             onClick={() =>
@@ -93,27 +104,31 @@ export function AppContainer() {
                 </>
             }
             main={<Outlet />}
-            rightSidebar={
-                <>
-                    {themeList?.collections.map((group) => (
-                        <div key={group.collection}>
-                            <CollectionLabel>{group.collection}</CollectionLabel>
-                            {group.themes.map((t) => (
-                                <ThemeListItem
-                                    key={t.key}
-                                    name={t.name}
-                                    appearance={t.appearance}
-                                    active={t.key === themeKey}
-                                    onClick={() =>
-                                        navigate({
-                                            search: { theme: t.key },
-                                        })}
-                                />
-                            ))}
-                        </div>
-                    ))}
-                </>
-            }
+            rightSidebar={isPreviewPage
+                ? (
+                    <>
+                        {themeList?.collections.map((group) => (
+                            <div key={group.collection}>
+                                <CollectionLabel>{group.collection}</CollectionLabel>
+                                {group.themes.map((t) => (
+                                    <ThemeListItem
+                                        key={t.key}
+                                        name={t.name}
+                                        appearance={t.appearance}
+                                        active={t.key === themeKey}
+                                        onClick={() =>
+                                            navigate({
+                                                to: location.pathname,
+                                                search: { theme: t.key },
+                                            })}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </>
+                )
+                : undefined}
+            bottomBar={<StatsBarContainer />}
         />
     );
 }
