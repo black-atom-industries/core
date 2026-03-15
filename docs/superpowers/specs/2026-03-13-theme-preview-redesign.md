@@ -50,19 +50,19 @@ Validated with Zod + `zodValidator` adapter:
 
 ```ts
 z.object({
-  view: fallback(z.enum(['ui', 'code']), 'ui').default('ui'),
-  theme: fallback(z.string(), '').default(''),
-})
+    view: fallback(z.enum(["ui", "code"]), "ui").default("ui"),
+    theme: fallback(z.string(), "").default(""),
+});
 ```
 
 `theme` defaults to `''` on load; `AppContainer` resolves this to the first theme from `useThemeList` and immediately replaces the URL param. This avoids hardcoding a theme key in the schema.
 
 ### Views
 
-| `view` param | Component | Status |
-|---|---|---|
-| `ui` | `UiPreviewContainer` | Implemented |
-| `code` | `CodePreviewContainer` | Placeholder — renders "Coming soon" |
+| `view` param | Component              | Status                              |
+| ------------ | ---------------------- | ----------------------------------- |
+| `ui`         | `UiPreviewContainer`   | Implemented                         |
+| `code`       | `CodePreviewContainer` | Placeholder — renders "Coming soon" |
 
 ### Reading / writing params
 
@@ -112,11 +112,11 @@ Each swatch: color square + token name label + hex value on hover (tooltip or re
 
 Three stat cards. On desktop they form a vertical column (left of UI examples). On mobile they render as a horizontal row above the examples.
 
-| Card | Content |
-|------|---------|
-| Contrast (fg/bg) | Ratio + WCAG grade (AA / AAA / fail) |
-| Hue spread | Mini color strip of palette hues |
-| Lightness range | Gradient bar from darkest to lightest primary |
+| Card             | Content                                       |
+| ---------------- | --------------------------------------------- |
+| Contrast (fg/bg) | Ratio + WCAG grade (AA / AAA / fail)          |
+| Hue spread       | Mini color strip of palette hues              |
+| Lightness range  | Gradient bar from darkest to lightest primary |
 
 WCAG contrast calculated from `ui.fg.default` over `ui.bg.default`.
 
@@ -147,6 +147,7 @@ Placeholder route. Renders a centered "Coming soon" message. No logic.
 ## Component Architecture
 
 Following the dumb/smart/partial pattern:
+
 - **Dumb component**: pure presentational, styled, no data fetching, no side effects.
 - **Smart container**: fetches data via hooks, owns state, passes data down — no styling beyond layout utils.
 - **Partial**: a reusable composition of dumb components with light display logic (e.g. deriving a WCAG label from a ratio). May contain derived state but does not fetch.
@@ -206,43 +207,43 @@ All `ui` tokens are injected at the app root by `AppContainer`, replacing the ol
 
 **Background (ui.bg)**
 
-| Variable | Token |
-|----------|-------|
-| `--ba-bg` | bg.default |
-| `--ba-bg-panel` | bg.panel |
-| `--ba-bg-float` | bg.float |
-| `--ba-bg-active` | bg.active |
-| `--ba-bg-disabled` | bg.disabled |
-| `--ba-bg-hover` | bg.hover |
+| Variable            | Token        |
+| ------------------- | ------------ |
+| `--ba-bg`           | bg.default   |
+| `--ba-bg-panel`     | bg.panel     |
+| `--ba-bg-float`     | bg.float     |
+| `--ba-bg-active`    | bg.active    |
+| `--ba-bg-disabled`  | bg.disabled  |
+| `--ba-bg-hover`     | bg.hover     |
 | `--ba-bg-selection` | bg.selection |
-| `--ba-bg-search` | bg.search |
-| `--ba-bg-contrast` | bg.contrast |
-| `--ba-bg-negative` | bg.negative |
-| `--ba-bg-warn` | bg.warn |
-| `--ba-bg-info` | bg.info |
-| `--ba-bg-hint` | bg.hint |
-| `--ba-bg-positive` | bg.positive |
-| `--ba-bg-add` | bg.add |
-| `--ba-bg-delete` | bg.delete |
-| `--ba-bg-modify` | bg.modify |
+| `--ba-bg-search`    | bg.search    |
+| `--ba-bg-contrast`  | bg.contrast  |
+| `--ba-bg-negative`  | bg.negative  |
+| `--ba-bg-warn`      | bg.warn      |
+| `--ba-bg-info`      | bg.info      |
+| `--ba-bg-hint`      | bg.hint      |
+| `--ba-bg-positive`  | bg.positive  |
+| `--ba-bg-add`       | bg.add       |
+| `--ba-bg-delete`    | bg.delete    |
+| `--ba-bg-modify`    | bg.modify    |
 
 **Foreground (ui.fg)**
 
-| Variable | Token |
-|----------|-------|
-| `--ba-fg` | fg.default |
-| `--ba-fg-subtle` | fg.subtle |
-| `--ba-fg-accent` | fg.accent |
+| Variable           | Token       |
+| ------------------ | ----------- |
+| `--ba-fg`          | fg.default  |
+| `--ba-fg-subtle`   | fg.subtle   |
+| `--ba-fg-accent`   | fg.accent   |
 | `--ba-fg-disabled` | fg.disabled |
 | `--ba-fg-contrast` | fg.contrast |
 | `--ba-fg-negative` | fg.negative |
-| `--ba-fg-warn` | fg.warn |
-| `--ba-fg-info` | fg.info |
-| `--ba-fg-hint` | fg.hint |
+| `--ba-fg-warn`     | fg.warn     |
+| `--ba-fg-info`     | fg.info     |
+| `--ba-fg-hint`     | fg.hint     |
 | `--ba-fg-positive` | fg.positive |
-| `--ba-fg-add` | fg.add |
-| `--ba-fg-delete` | fg.delete |
-| `--ba-fg-modify` | fg.modify |
+| `--ba-fg-add`      | fg.add      |
+| `--ba-fg-delete`   | fg.delete   |
+| `--ba-fg-modify`   | fg.modify   |
 
 Old vars (`--ba-panel`, `--ba-subtle`, `--ba-accent`, `--ba-disabled`, `--ba-border`) are removed — preview app is self-contained.
 
@@ -252,11 +253,11 @@ Responsive breakpoint: `768px`.
 
 ## New Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| `@tanstack/react-router` | URL state via search params |
-| `@tanstack/zod-adapter` | Type-safe search param validation |
-| `zod` | Schema validation for search params |
+| Package                  | Purpose                             |
+| ------------------------ | ----------------------------------- |
+| `@tanstack/react-router` | URL state via search params         |
+| `@tanstack/zod-adapter`  | Type-safe search param validation   |
+| `zod`                    | Schema validation for search params |
 
 ---
 

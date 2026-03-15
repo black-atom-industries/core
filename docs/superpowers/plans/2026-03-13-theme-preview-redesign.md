@@ -13,6 +13,7 @@
 ## Chunk 1: Foundation
 
 **Files:**
+
 - Modify: `preview/deno.json` — add new npm deps
 - Create: `preview/src/hooks/use-theme-list.ts`
 - Create: `preview/src/hooks/use-theme.ts`
@@ -26,6 +27,7 @@
 ### Task 1: Add dependencies
 
 **Files:**
+
 - Modify: `preview/deno.json`
 
 - [ ] **Step 1: Add three new npm imports to deno.json**
@@ -58,6 +60,7 @@ git commit -m "chore(preview): add tanstack-router, zod-adapter, zod deps"
 ### Task 2: Extract hooks from api.ts
 
 **Files:**
+
 - Create: `preview/src/hooks/use-theme-list.ts`
 - Create: `preview/src/hooks/use-theme.ts`
 - Create: `preview/src/hooks/use-server-reload-listener.ts`
@@ -146,6 +149,7 @@ git commit -m "refactor(preview): extract hooks into dedicated files"
 ### Task 3: Add WCAG contrast utility
 
 **Files:**
+
 - Create: `preview/src/lib/contrast.ts`
 
 - [ ] **Step 1: Create `preview/src/lib/contrast.ts`**
@@ -156,8 +160,7 @@ function relativeLuminance(hex: string): number {
     const g = parseInt(hex.slice(3, 5), 16) / 255;
     const b = parseInt(hex.slice(5, 7), 16) / 255;
 
-    const toLinear = (c: number) =>
-        c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    const toLinear = (c: number) => c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 
     return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
 }
@@ -197,13 +200,14 @@ git commit -m "feat(preview): add WCAG contrast ratio utility"
 ### Task 4: Set up TanStack Router
 
 **Files:**
+
 - Create: `preview/src/router.ts`
 - Modify: `preview/src/main.tsx`
 
 - [ ] **Step 1: Create `preview/src/router.ts`**
 
 ```ts
-import { createRouter, createRootRoute } from "@tanstack/react-router";
+import { createRootRoute, createRouter } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
@@ -273,6 +277,7 @@ git commit -m "feat(preview): set up TanStack Router with search param state"
 ## Chunk 2: Dumb Components + App Container
 
 **Files:**
+
 - Create: `preview/src/components/appearance-badge/index.tsx`
 - Create: `preview/src/components/appearance-badge/index.module.css`
 - Create: `preview/src/components/nav-item/index.tsx`
@@ -778,37 +783,37 @@ export function AppContainer() {
     // Inject all ui tokens as CSS variables
     const cssVars = theme
         ? ({
-              "--ba-bg": theme.ui.bg.default,
-              "--ba-bg-panel": theme.ui.bg.panel,
-              "--ba-bg-float": theme.ui.bg.float,
-              "--ba-bg-active": theme.ui.bg.active,
-              "--ba-bg-disabled": theme.ui.bg.disabled,
-              "--ba-bg-hover": theme.ui.bg.hover,
-              "--ba-bg-selection": theme.ui.bg.selection,
-              "--ba-bg-search": theme.ui.bg.search,
-              "--ba-bg-contrast": theme.ui.bg.contrast,
-              "--ba-bg-negative": theme.ui.bg.negative,
-              "--ba-bg-warn": theme.ui.bg.warn,
-              "--ba-bg-info": theme.ui.bg.info,
-              "--ba-bg-hint": theme.ui.bg.hint,
-              "--ba-bg-positive": theme.ui.bg.positive,
-              "--ba-bg-add": theme.ui.bg.add,
-              "--ba-bg-delete": theme.ui.bg.delete,
-              "--ba-bg-modify": theme.ui.bg.modify,
-              "--ba-fg": theme.ui.fg.default,
-              "--ba-fg-subtle": theme.ui.fg.subtle,
-              "--ba-fg-accent": theme.ui.fg.accent,
-              "--ba-fg-disabled": theme.ui.fg.disabled,
-              "--ba-fg-contrast": theme.ui.fg.contrast,
-              "--ba-fg-negative": theme.ui.fg.negative,
-              "--ba-fg-warn": theme.ui.fg.warn,
-              "--ba-fg-info": theme.ui.fg.info,
-              "--ba-fg-hint": theme.ui.fg.hint,
-              "--ba-fg-positive": theme.ui.fg.positive,
-              "--ba-fg-add": theme.ui.fg.add,
-              "--ba-fg-delete": theme.ui.fg.delete,
-              "--ba-fg-modify": theme.ui.fg.modify,
-          } as React.CSSProperties)
+            "--ba-bg": theme.ui.bg.default,
+            "--ba-bg-panel": theme.ui.bg.panel,
+            "--ba-bg-float": theme.ui.bg.float,
+            "--ba-bg-active": theme.ui.bg.active,
+            "--ba-bg-disabled": theme.ui.bg.disabled,
+            "--ba-bg-hover": theme.ui.bg.hover,
+            "--ba-bg-selection": theme.ui.bg.selection,
+            "--ba-bg-search": theme.ui.bg.search,
+            "--ba-bg-contrast": theme.ui.bg.contrast,
+            "--ba-bg-negative": theme.ui.bg.negative,
+            "--ba-bg-warn": theme.ui.bg.warn,
+            "--ba-bg-info": theme.ui.bg.info,
+            "--ba-bg-hint": theme.ui.bg.hint,
+            "--ba-bg-positive": theme.ui.bg.positive,
+            "--ba-bg-add": theme.ui.bg.add,
+            "--ba-bg-delete": theme.ui.bg.delete,
+            "--ba-bg-modify": theme.ui.bg.modify,
+            "--ba-fg": theme.ui.fg.default,
+            "--ba-fg-subtle": theme.ui.fg.subtle,
+            "--ba-fg-accent": theme.ui.fg.accent,
+            "--ba-fg-disabled": theme.ui.fg.disabled,
+            "--ba-fg-contrast": theme.ui.fg.contrast,
+            "--ba-fg-negative": theme.ui.fg.negative,
+            "--ba-fg-warn": theme.ui.fg.warn,
+            "--ba-fg-info": theme.ui.fg.info,
+            "--ba-fg-hint": theme.ui.fg.hint,
+            "--ba-fg-positive": theme.ui.fg.positive,
+            "--ba-fg-add": theme.ui.fg.add,
+            "--ba-fg-delete": theme.ui.fg.delete,
+            "--ba-fg-modify": theme.ui.fg.modify,
+        } as React.CSSProperties)
         : {};
 
     return (
@@ -822,17 +827,13 @@ export function AppContainer() {
                         label="UI"
                         icon="◈"
                         active={view === "ui"}
-                        onClick={() =>
-                            navigate({ search: (prev) => ({ ...prev, view: "ui" }) })
-                        }
+                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "ui" }) })}
                     />
                     <NavItem
                         label="Code"
                         icon="◇"
                         active={view === "code"}
-                        onClick={() =>
-                            navigate({ search: (prev) => ({ ...prev, view: "code" }) })
-                        }
+                        onClick={() => navigate({ search: (prev) => ({ ...prev, view: "code" }) })}
                     />
                 </div>
             </nav>
@@ -857,8 +858,7 @@ export function AppContainer() {
                                 onClick={() =>
                                     navigate({
                                         search: (prev) => ({ ...prev, theme: t.key }),
-                                    })
-                                }
+                                    })}
                             />
                         ))}
                     </div>
@@ -889,6 +889,7 @@ git commit -m "feat(preview): add AppContainer with three-column layout and CSS 
 ## Chunk 3: Preview Containers + Partials + Cleanup
 
 **Files:**
+
 - Create: `preview/src/containers/code-preview/index.tsx`
 - Create: `preview/src/containers/code-preview/index.module.css`
 - Create: `preview/src/containers/ui-preview/index.tsx`
@@ -1064,7 +1065,8 @@ export function StatsRow({
                 <div
                     className={styles.lightnessBar}
                     style={{
-                        background: `linear-gradient(to right, ${darkestPrimary}, ${lightestPrimary})`,
+                        background:
+                            `linear-gradient(to right, ${darkestPrimary}, ${lightestPrimary})`,
                     }}
                 />
             </StatCard>
@@ -1199,9 +1201,21 @@ export function UiExampleText() {
     gap: 10px;
 }
 
-.h1 { font-size: 22px; font-weight: 700; color: var(--ba-fg); }
-.h2 { font-size: 17px; font-weight: 600; color: var(--ba-fg); }
-.h3 { font-size: 14px; font-weight: 600; color: var(--ba-fg-subtle); }
+.h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ba-fg);
+}
+.h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ba-fg);
+}
+.h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ba-fg-subtle);
+}
 
 .body {
     font-size: 13px;
@@ -1644,7 +1658,8 @@ export function UiPreviewContainer({ themeKey }: Props) {
         return <div className={styles.loading}>Loading…</div>;
     }
 
-    const { theme, contrast, paletteColors, darkestPrimary, lightestPrimary, notificationColors } = data;
+    const { theme, contrast, paletteColors, darkestPrimary, lightestPrimary, notificationColors } =
+        data;
 
     return (
         <div className={styles.page}>
@@ -1682,8 +1697,14 @@ export function UiPreviewContainer({ themeKey }: Props) {
                     }}
                 />
                 <ColorTokenGroup label="Palette" tokens={theme.palette as Record<string, string>} />
-                <ColorTokenGroup label="UI Backgrounds" tokens={theme.ui.bg as Record<string, string>} />
-                <ColorTokenGroup label="UI Foregrounds" tokens={theme.ui.fg as Record<string, string>} />
+                <ColorTokenGroup
+                    label="UI Backgrounds"
+                    tokens={theme.ui.bg as Record<string, string>}
+                />
+                <ColorTokenGroup
+                    label="UI Foregrounds"
+                    tokens={theme.ui.fg as Record<string, string>}
+                />
             </section>
 
             {/* Sections 2+3: Stats + UI Examples (side-by-side on desktop) */}
@@ -1817,6 +1838,7 @@ deno task dev
 ```
 
 Open `http://localhost:4170` in browser. Expected:
+
 - Three-column layout visible
 - Theme list populated in right sidebar
 - Clicking a theme updates the URL (`?theme=...`) and applies colors
