@@ -5,9 +5,19 @@ type ThemeForStats = {
     ui: { fg: { default: string }; bg: { default: string } };
 };
 
+type ThemeForOrgStats = {
+    meta: { appearance: "dark" | "light" };
+    contrast: { ratio: number };
+};
+
 type CollectionForStats = {
     collection: string;
     themes: ThemeForStats[];
+};
+
+type CollectionForOrgStats = {
+    collection: string;
+    themes: ThemeForOrgStats[];
 };
 
 export interface ThemeContrastResult {
@@ -45,9 +55,9 @@ export function collectionStats(themes: ThemeForStats[]): CollectionStatsResult 
     };
 }
 
-export function orgStats(collections: CollectionForStats[]): OrgStatsResult {
+export function orgStats(collections: CollectionForOrgStats[]): OrgStatsResult {
     const allThemes = collections.flatMap((c) => c.themes);
-    const contrasts = allThemes.map((t) => themeContrast(t).ratio);
+    const contrasts = allThemes.map((t) => t.contrast.ratio);
     return {
         themeCount: allThemes.length,
         collectionCount: collections.length,

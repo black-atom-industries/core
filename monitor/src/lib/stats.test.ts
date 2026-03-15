@@ -54,9 +54,11 @@ Deno.test("collectionStats with single theme", () => {
 });
 
 Deno.test("orgStats aggregates across collections", () => {
+    const darkSummary = { meta: darkTheme.meta, contrast: themeContrast(darkTheme) };
+    const lightSummary = { meta: lightTheme.meta, contrast: themeContrast(lightTheme) };
     const collections = [
-        { collection: "default", themes: [darkTheme, lightTheme] },
-        { collection: "jpn", themes: [darkTheme] },
+        { collection: "default", themes: [darkSummary, lightSummary] },
+        { collection: "jpn", themes: [darkSummary] },
     ];
     const result = orgStats(collections);
     assertEquals(result.themeCount, 3);
