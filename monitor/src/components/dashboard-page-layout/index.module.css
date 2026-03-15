@@ -1,0 +1,14 @@
+.page {
+    padding: 16px 20px;
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.cardGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
