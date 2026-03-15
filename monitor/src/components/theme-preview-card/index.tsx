@@ -1,0 +1,72 @@
+import type { ThemePaletteColors, ThemePrimaryColors } from "@core/types/theme.ts";
+import { AppearanceBadge } from "../appearance-badge";
+import styles from "./index.module.css";
+
+interface Props {
+    name: string;
+    appearance: "dark" | "light";
+    primaries: ThemePrimaryColors;
+    palette: ThemePaletteColors;
+    contrastRatio: number;
+    onClick: () => void;
+}
+
+const PRIMARY_ORDER = [
+    "d10",
+    "d20",
+    "d30",
+    "d40",
+    "m10",
+    "m20",
+    "m30",
+    "m40",
+    "l10",
+    "l20",
+    "l30",
+    "l40",
+] as const;
+
+const PALETTE_ORDER = [
+    "black",
+    "gray",
+    "red",
+    "darkRed",
+    "yellow",
+    "darkYellow",
+    "green",
+    "darkGreen",
+    "cyan",
+    "darkCyan",
+    "blue",
+    "darkBlue",
+    "magenta",
+    "darkMagenta",
+    "lightGray",
+    "white",
+] as const;
+
+export function ThemePreviewCard(
+    { name, appearance, primaries, palette, contrastRatio, onClick }: Props,
+) {
+    const colors = [
+        ...PRIMARY_ORDER.map((key) => primaries[key]),
+        ...PALETTE_ORDER.map((key) => palette[key]),
+    ];
+
+    return (
+        <div className={styles.card} onClick={onClick} data-component="ThemePreviewCard">
+            <div className={styles.grid}>
+                {colors.map((color, i) => (
+                    <div key={i} className={styles.swatch} style={{ background: color }} />
+                ))}
+            </div>
+            <div className={styles.meta}>
+                <div className={styles.name}>{name}</div>
+                <div className={styles.footer}>
+                    <span className={styles.contrast}>{contrastRatio.toFixed(1)}:1</span>
+                    <AppearanceBadge appearance={appearance} />
+                </div>
+            </div>
+        </div>
+    );
+}

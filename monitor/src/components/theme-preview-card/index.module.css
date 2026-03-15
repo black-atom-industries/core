@@ -1,0 +1,42 @@
+.card {
+    width: 164px;
+    background: var(--ba-bg-panel);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card:hover {
+    outline: 1px solid var(--ba-bg-float);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin: 6px 6px 0;
+}
+
+.swatch {
+    aspect-ratio: 1;
+}
+
+.meta {
+    padding: 6px 8px 8px;
+}
+
+.name {
+    font-size: 12px;
+    color: var(--ba-fg);
+    margin-bottom: 2px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contrast {
+    font-size: 10px;
+    color: var(--ba-fg-subtle);
+}
