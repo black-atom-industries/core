@@ -26,7 +26,8 @@
         "zod": "npm:zod@^3.24.0",
         "vite": "npm:vite@^6.1.0",
         "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.8.0",
-        "@core/": "../src/"
+        "@core/": "../src/",
+        "@std/assert": "jsr:@std/assert@^1.0.0"
     },
     "lint": {
         "rules": {
