@@ -42,21 +42,21 @@ const PALETTE_ORDER = [
     "white",
 ] as const;
 
-export function ThemePreviewCard({ theme: t }: Props) {
+export function ThemePreviewCard({ theme }: Props) {
     return (
         <Link
             to="/preview/ui"
-            search={{ themeKey: t.meta.key }}
+            search={{ themeKey: theme.meta.key }}
             data-component="ThemePreviewCard"
             className={styles.root}
-            style={themeToCssVars(t)}
+            style={themeToCssVars(theme)}
         >
             <div className={styles.primaries}>
                 {PRIMARY_ORDER.map((key) => (
                     <div
                         key={key}
                         className={styles.primaryStrip}
-                        style={{ background: t.primaries[key] }}
+                        style={{ background: theme.primaries[key] }}
                     />
                 ))}
             </div>
@@ -65,13 +65,13 @@ export function ThemePreviewCard({ theme: t }: Props) {
                     <div
                         key={key}
                         className={styles.paletteSwatch}
-                        style={{ background: t.palette[key] }}
+                        style={{ background: theme.palette[key] }}
                     />
                 ))}
             </div>
             <div className={styles.meta}>
-                <div className={styles.name}>{t.meta.name}</div>
-                <AppearanceBadge appearance={t.meta.appearance} />
+                <div className={styles.name}>{theme.meta.name}</div>
+                <AppearanceBadge appearance={theme.meta.appearance} />
             </div>
         </Link>
     );
