@@ -50,7 +50,7 @@ export function AppContainer() {
                         label="Dashboard"
                         icon="◉"
                         active={!!matchRoute({ to: "/" })}
-                        onClick={() => navigate({ to: "/" })}
+                        onClick={() => navigate({ to: "/", search: (prev) => prev })}
                     />
                     <NavSection>
                         <NavSectionLabel>Preview</NavSectionLabel>
