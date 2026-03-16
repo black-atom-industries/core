@@ -1,4 +1,7 @@
+import { wcagContrast } from "culori";
+import { wcagGrade } from "./wcag.ts";
 import type { WcagGrade } from "./wcag.ts";
+import type { ThemeDefinition } from "../types/theme.ts";
 
 /** A defined fg/bg key pairing that occurs in real UI. */
 export interface PairingDef {
@@ -94,3 +97,54 @@ export const INTENDED_PAIRINGS: PairingCategory[] = [
         ],
     },
 ];
+
+/** Resolves a dot-path key (e.g. "fg.default") to a hex color from a theme. */
+function resolveColor(theme: ThemeDefinition, key: string): string {
+    const [group, token] = key.split(".");
+    const colors = group === "fg" ? theme.ui.fg : theme.ui.bg;
+    return (colors as unknown as Record<string, string>)[token];
+}
+
+/** Computes a ContrastPair from a theme and a pairing definition. */
+function computePair(theme: ThemeDefinition, def: PairingDef): ContrastPair {
+    const fgColor = resolveColor(theme, def.fg);
+    const bgColor = resolveColor(theme, def.bg);
+    const ratio = wcagContrast(fgColor, bgColor);
+    return {
+        fg: { key: def.fg, color: fgColor },
+        bg: { key: def.bg, color: bgColor },
+        ratio,
+        level: wcagGrade(ratio),
+    };
+}
+
+/**
+ * Analyzes a theme against all intended fg/bg pairings.
+ * Returns pass rates, worst pair, and all pairs grouped by category.
+ */
+export function analyzeThemeContrast(theme: ThemeDefinition): ThemeContrastAnalysis {
+    const categories: ContrastCategory[] = INTENDED_PAIRINGS.map((cat) => ({
+        name: cat.name,
+        pairs: cat.pairs.map((def) => computePair(theme, def)),
+    }));
+
+    const allPairs = categories.flatMap((c) => c.pairs);
+    const total = allPairs.length;
+    const aaCount = allPairs.filter((p) => p.level === "AA" || p.level === "AAA").length;
+    const aaaCount = allPairs.filter((p) => p.level === "AAA").length;
+
+    const primary = allPairs.find(
+        (p) => p.fg.key === "fg.default" && p.bg.key === "bg.default",
+    )!;
+
+    const worstPair = allPairs.reduce((worst, p) =>
+        p.ratio < worst.ratio ? p : worst
+    );
+
+    return {
+        primary,
+        categories,
+        passRate: { aa: aaCount / total, aaa: aaaCount / total },
+        worstPair,
+    };
+}
