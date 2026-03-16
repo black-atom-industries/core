@@ -250,6 +250,8 @@ export const themeKeys = [
 
 export type ThemeKey = typeof themeKeys[number];
 
+export const DEFAULT_THEME_KEY: ThemeKey = "black-atom-default-dark";
+
 const collectionKeys = [
     "default",
     "stations",

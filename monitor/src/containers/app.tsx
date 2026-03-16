@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation, useMatchRoute, useNavigate, useSearch } from "@tanstack/react-router";
-import { useTheme, useThemeList } from "../queries/themes";
+import { useTheme, useThemes } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
 import { StatsBarContainer } from "./stats-bar";
@@ -10,9 +10,11 @@ import { NavItem } from "../components/nav-item";
 import { NavSection } from "../components/nav-section";
 import { NavSectionLabel } from "../components/nav-section-label";
 import { ThemeListItem } from "../components/theme-list-item";
+import { groupByCollection } from "../lib/theme-utils";
+import { themeToCssVars } from "../lib/theme-css-vars";
 
 export function AppContainer() {
-    const { theme: themeKey } = useSearch({ from: "__root__" });
+    const { themeKey } = useSearch({ from: "__root__" });
     const navigate = useNavigate({ from: "/" });
     const matchRoute = useMatchRoute();
     const location = useLocation();
@@ -22,55 +24,20 @@ export function AppContainer() {
     const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
         !!matchRoute({ to: "/preview/code" });
 
-    const { data: themeList } = useThemeList();
-    const DEFAULT_THEME = "black-atom-default-dark";
-    const { data: theme } = useTheme(themeKey || DEFAULT_THEME);
+    const { data: themes } = useThemes();
+    const { data: theme } = useTheme(themeKey);
 
-    // Auto-select first theme when none is set
+    // Group themes by collection for the sidebar
+    const collections = groupByCollection(themes ?? []);
+
+    // Auto-select first theme when none is set on preview pages
     useEffect(() => {
-        if (isPreviewPage && !themeKey && themeList?.collections.length) {
-            const first = themeList.collections[0]?.themes[0];
-            if (first) {
-                navigate({ search: { theme: first.key } });
-            }
+        if (isPreviewPage && !themeKey && themes?.length) {
+            navigate({ search: { themeKey: themes[0].meta.key } });
         }
-    }, [themeKey, themeList, isPreviewPage]);
+    }, [themeKey, themes, isPreviewPage]);
 
-    // Inject all ui tokens as CSS variables
-    const cssVars = theme
-        ? ({
-            "--ba-bg": theme.ui.bg.default,
-            "--ba-bg-panel": theme.ui.bg.panel,
-            "--ba-bg-float": theme.ui.bg.float,
-            "--ba-bg-active": theme.ui.bg.active,
-            "--ba-bg-disabled": theme.ui.bg.disabled,
-            "--ba-bg-hover": theme.ui.bg.hover,
-            "--ba-bg-selection": theme.ui.bg.selection,
-            "--ba-bg-search": theme.ui.bg.search,
-            "--ba-bg-contrast": theme.ui.bg.contrast,
-            "--ba-bg-negative": theme.ui.bg.negative,
-            "--ba-bg-warn": theme.ui.bg.warn,
-            "--ba-bg-info": theme.ui.bg.info,
-            "--ba-bg-hint": theme.ui.bg.hint,
-            "--ba-bg-positive": theme.ui.bg.positive,
-            "--ba-bg-add": theme.ui.bg.add,
-            "--ba-bg-delete": theme.ui.bg.delete,
-            "--ba-bg-modify": theme.ui.bg.modify,
-            "--ba-fg": theme.ui.fg.default,
-            "--ba-fg-subtle": theme.ui.fg.subtle,
-            "--ba-fg-accent": theme.ui.fg.accent,
-            "--ba-fg-disabled": theme.ui.fg.disabled,
-            "--ba-fg-contrast": theme.ui.fg.contrast,
-            "--ba-fg-negative": theme.ui.fg.negative,
-            "--ba-fg-warn": theme.ui.fg.warn,
-            "--ba-fg-info": theme.ui.fg.info,
-            "--ba-fg-hint": theme.ui.fg.hint,
-            "--ba-fg-positive": theme.ui.fg.positive,
-            "--ba-fg-add": theme.ui.fg.add,
-            "--ba-fg-delete": theme.ui.fg.delete,
-            "--ba-fg-modify": theme.ui.fg.modify,
-        } as React.CSSProperties)
-        : {};
+    const cssVars = theme ? themeToCssVars(theme) : {};
 
     return (
         <AppLayout
@@ -107,24 +74,27 @@ export function AppContainer() {
             rightSidebar={isPreviewPage
                 ? (
                     <>
-                        {themeList?.collections.map((group) => (
-                            <div key={group.collection}>
-                                <CollectionLabel>{group.collection}</CollectionLabel>
-                                {group.themes.map((t) => (
-                                    <ThemeListItem
-                                        key={t.key}
-                                        name={t.name}
-                                        appearance={t.appearance}
-                                        active={t.key === themeKey}
-                                        onClick={() =>
-                                            navigate({
-                                                to: location.pathname,
-                                                search: { theme: t.key },
-                                            })}
-                                    />
-                                ))}
-                            </div>
-                        ))}
+                        {Array.from(
+                            collections,
+                            ([collectionKey, collectionThemes]) => (
+                                <div key={collectionKey}>
+                                    <CollectionLabel>{collectionKey}</CollectionLabel>
+                                    {collectionThemes.map((theme) => (
+                                        <ThemeListItem
+                                            key={theme.meta.key}
+                                            name={theme.meta.name}
+                                            appearance={theme.meta.appearance}
+                                            active={theme.meta.key === themeKey}
+                                            onClick={() =>
+                                                navigate({
+                                                    to: location.pathname,
+                                                    search: { themeKey: theme.meta.key },
+                                                })}
+                                        />
+                                    ))}
+                                </div>
+                            ),
+                        )}
                     </>
                 )
                 : undefined}

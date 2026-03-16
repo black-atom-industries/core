@@ -16,7 +16,7 @@ import { UiExampleForm } from "../partials/ui-preview/ui-example-form";
 import { UiExampleText } from "../partials/ui-preview/ui-example-text";
 
 export function UiPreviewContainer() {
-    const { theme: themeKey } = useSearch({ from: "__root__" });
+    const { themeKey } = useSearch({ from: "__root__" });
     const { data, isLoading } = useUiPreview(themeKey);
 
     if (isLoading || !data) {

@@ -24,6 +24,7 @@
 
 export * from "./types/theme.ts";
 export * from "./types/themes.ts";
+
 export { themeMap } from "./themes/map.ts";
 
 export { collectionOrder } from "./config.ts";

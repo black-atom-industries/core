@@ -8,12 +8,12 @@ export function StatsBarContainer() {
     const matchRoute = useMatchRoute();
     const isDashboard = !!matchRoute({ to: "/" });
 
-    const { theme: themeKey } = useSearch({ from: "__root__" });
-    const { data: theme } = useTheme(isDashboard ? null : (themeKey || null));
-    const { data: overview } = useThemes({ enabled: isDashboard });
+    const { themeKey } = useSearch({ from: "__root__" });
+    const { data: theme } = useTheme(themeKey);
+    const { data: themes } = useThemes();
 
-    if (isDashboard && overview) {
-        const stats = orgStats(overview.collections);
+    if (isDashboard && themes) {
+        const stats = orgStats(themes);
         return <OrgStatsPartial stats={stats} />;
     }
 

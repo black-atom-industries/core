@@ -53,14 +53,19 @@ Deno.test("collectionStats with single theme", () => {
     assertEquals(result.lightCount, 0);
 });
 
-Deno.test("orgStats aggregates across collections", () => {
-    const darkSummary = { meta: darkTheme.meta, contrast: themeContrast(darkTheme) };
-    const lightSummary = { meta: lightTheme.meta, contrast: themeContrast(lightTheme) };
-    const collections = [
-        { collection: "default", themes: [darkSummary, lightSummary] },
-        { collection: "jpn", themes: [darkSummary] },
-    ];
-    const result = orgStats(collections);
+const jpnTheme = {
+    meta: {
+        key: "test-jpn",
+        name: "Koyo",
+        appearance: "dark" as const,
+        status: "release" as const,
+        collection: { key: "jpn", label: "JPN" },
+    },
+    ui: { fg: { default: "#c5cad0" }, bg: { default: "#1a1d23" } },
+} as Parameters<typeof themeContrast>[0];
+
+Deno.test("orgStats aggregates across all themes", () => {
+    const result = orgStats([darkTheme, lightTheme, jpnTheme]);
     assertEquals(result.themeCount, 3);
     assertEquals(result.collectionCount, 2);
     assertEquals(result.darkCount, 2);

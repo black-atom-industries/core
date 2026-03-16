@@ -1,6 +1,6 @@
 import { useTheme } from "../queries/themes";
 import { contrastRatio, wcagGrade } from "@core/lib/contrast.ts";
-import type { ThemeDefinition } from "@core/types/theme.ts";
+import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 
 export interface ContrastData {
     ratio: number;
@@ -16,16 +16,14 @@ export interface UiPreviewData {
     notificationColors: { success: string; warning: string; error: string; info: string };
 }
 
-export function useUiPreview(themeKey: string): {
+export function useUiPreview(themeKey: ThemeKey): {
     data: UiPreviewData | null;
     isLoading: boolean;
 } {
-    // themeKey may be '' on first render before auto-select fires
-    const { data: theme, isLoading } = useTheme(themeKey || null);
+    const { data: theme, isLoading } = useTheme(themeKey);
 
     if (!theme) {
-        // treat empty key as loading so the UI shows a spinner, not a permanent blank
-        return { data: null, isLoading: isLoading || !themeKey };
+        return { data: null, isLoading };
     }
 
     const ratio = contrastRatio(theme.ui.fg.default, theme.ui.bg.default);
