@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import { useHotkey, formatForDisplay } from "@tanstack/react-hotkeys";
+import { formatForDisplay, useHotkey } from "@tanstack/react-hotkeys";
 import { groupByCollection } from "../../lib/theme-utils";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 import styles from "./index.module.css";
@@ -97,7 +97,10 @@ export function ThemeSwitcher({ themes, currentThemeKey, currentThemeLabel, onSe
 
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
-            <Dialog.Trigger className={styles.trigger} title={`Switch theme (${formatForDisplay(shortcut)})`}>
+            <Dialog.Trigger
+                className={styles.trigger}
+                title={`Switch theme (${formatForDisplay(shortcut)})`}
+            >
                 <span>{currentThemeLabel}</span>
                 <kbd className={styles.kbd}>{formatForDisplay(shortcut)}</kbd>
             </Dialog.Trigger>

@@ -37,7 +37,7 @@ export default function (
             float: primaries.l20,
             active: primaries.l40,
             disabled: primaries.l10,
-            hover: primaries.l20,
+            hover: primaries.l10,
             selection: primaries.l10,
             search: primaries.l10,
             contrast: primaries.d40,
