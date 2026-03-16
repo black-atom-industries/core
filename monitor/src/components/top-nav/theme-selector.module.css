@@ -1,0 +1,122 @@
+.root {
+    position: relative;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    background: var(--ba-ui-bg-active);
+    border: 1px solid var(--ba-ui-bg-float);
+    border-radius: 4px;
+    color: var(--ba-ui-fg-accent);
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.trigger:hover {
+    background: var(--ba-ui-bg-hover);
+}
+
+.icon {
+    display: flex;
+    color: var(--ba-ui-fg-subtle);
+    transition: transform 0.15s;
+}
+
+.trigger[data-popup-open] .icon {
+    transform: rotate(180deg);
+}
+
+.positioner {
+    z-index: 100;
+}
+
+.popup {
+    background: var(--ba-ui-bg-panel);
+    border: 1px solid var(--ba-ui-bg-float);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    width: 240px;
+    max-height: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+}
+
+.filter {
+    padding: 8px 10px;
+    background: var(--ba-ui-bg-default);
+    border: none;
+    border-bottom: 1px solid var(--ba-ui-bg-float);
+    color: var(--ba-ui-fg-default);
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+}
+
+.filter::placeholder {
+    color: var(--ba-ui-fg-subtle);
+}
+
+.groups {
+    overflow-y: auto;
+    padding: 4px 0;
+    scrollbar-width: none;
+}
+
+.groups::-webkit-scrollbar {
+    display: none;
+}
+
+.group {
+    padding: 4px 0;
+}
+
+.groupLabel {
+    padding: 4px 10px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ba-ui-fg-subtle);
+    text-transform: uppercase;
+}
+
+.themeItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 10px 4px 14px;
+    font-size: 11px;
+    color: var(--ba-ui-fg-subtle);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.themeItem:hover {
+    background: var(--ba-ui-bg-hover);
+    color: var(--ba-ui-fg-default);
+}
+
+.themeItem[data-active] {
+    color: var(--ba-ui-fg-accent);
+    font-weight: 600;
+}
+
+.appearance {
+    font-size: 9px;
+    color: var(--ba-ui-fg-disabled);
+}
