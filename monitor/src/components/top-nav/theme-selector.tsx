@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { NavigationMenu } from "@base-ui/react/navigation-menu";
+import { useMemo } from "react";
+import { Combobox } from "@base-ui/react/combobox";
 import { groupByCollection } from "../../lib/theme-utils";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 import styles from "./theme-selector.module.css";
@@ -11,89 +11,65 @@ type Props = {
     onSelect: (key: ThemeKey) => void;
 };
 
+interface ThemeGroup {
+    collection: string;
+    items: ThemeDefinition[];
+}
+
 export function ThemeSelector({ themes, currentThemeKey, currentThemeLabel, onSelect }: Props) {
-    const [filter, setFilter] = useState("");
-
-    const collections = useMemo(() => groupByCollection(themes), [themes]);
-
-    const filtered = useMemo(() => {
-        if (!filter) return collections;
-        const lower = filter.toLowerCase();
-        const result = new Map<string, ThemeDefinition[]>();
-        for (const [key, items] of collections) {
-            const matches = items.filter(
-                (t) =>
-                    t.meta.name.toLowerCase().includes(lower) ||
-                    t.meta.collection.label.toLowerCase().includes(lower),
-            );
-            if (matches.length > 0) result.set(key, matches);
-        }
-        return result;
-    }, [collections, filter]);
+    const groups: ThemeGroup[] = useMemo(() => {
+        const collections = groupByCollection(themes);
+        return Array.from(collections, ([collection, items]) => ({ collection, items }));
+    }, [themes]);
 
     return (
-        <NavigationMenu.Root className={styles.root}>
-            <NavigationMenu.List className={styles.list}>
-                <NavigationMenu.Item>
-                    <NavigationMenu.Trigger className={styles.trigger}>
-                        {currentThemeLabel || "Select theme"}
-                        <NavigationMenu.Icon className={styles.icon}>
-                            <ChevronIcon />
-                        </NavigationMenu.Icon>
-                    </NavigationMenu.Trigger>
-                    <NavigationMenu.Content className={styles.content}>
-                        <input
-                            className={styles.filter}
-                            type="text"
-                            placeholder="Filter themes..."
-                            value={filter}
-                            onChange={(e) => setFilter(e.target.value)}
-                        />
-                        <div className={styles.groups}>
-                            {Array.from(
-                                filtered,
-                                ([collectionKey, items]) => (
-                                    <div key={collectionKey} className={styles.group}>
-                                        <div className={styles.groupLabel}>{collectionKey}</div>
-                                        {items.map((t) => (
-                                            <NavigationMenu.Link
-                                                key={t.meta.key}
-                                                className={styles.themeItem}
-                                                data-active={t.meta.key === currentThemeKey ||
-                                                    undefined}
-                                                closeOnClick
-                                                onClick={(e: React.MouseEvent) => {
-                                                    e.preventDefault();
-                                                    onSelect(t.meta.key as ThemeKey);
-                                                    setFilter("");
-                                                }}
-                                                href="#"
-                                            >
-                                                <span>{t.meta.name}</span>
-                                                <span className={styles.appearance}>
-                                                    {t.meta.appearance}
-                                                </span>
-                                            </NavigationMenu.Link>
-                                        ))}
-                                    </div>
-                                ),
-                            )}
-                        </div>
-                    </NavigationMenu.Content>
-                </NavigationMenu.Item>
-            </NavigationMenu.List>
-            <NavigationMenu.Portal>
-                <NavigationMenu.Positioner
-                    className={styles.positioner}
-                    sideOffset={6}
-                    align="end"
-                >
-                    <NavigationMenu.Popup className={styles.popup}>
-                        <NavigationMenu.Viewport className={styles.viewport} />
-                    </NavigationMenu.Popup>
-                </NavigationMenu.Positioner>
-            </NavigationMenu.Portal>
-        </NavigationMenu.Root>
+        <Combobox.Root
+            items={groups}
+            value={currentThemeKey}
+            onValueChange={(value) => {
+                if (value) onSelect(value as ThemeKey);
+            }}
+        >
+            <Combobox.InputGroup className={styles.inputGroup}>
+                <Combobox.Input
+                    className={styles.input}
+                    placeholder={currentThemeLabel || "Select theme..."}
+                />
+                <Combobox.Trigger className={styles.trigger}>
+                    <Combobox.Icon className={styles.icon}>
+                        <ChevronIcon />
+                    </Combobox.Icon>
+                </Combobox.Trigger>
+            </Combobox.InputGroup>
+
+            <Combobox.Portal>
+                <Combobox.Positioner className={styles.positioner} sideOffset={6} align="end">
+                    <Combobox.Popup className={styles.popup}>
+                        <Combobox.List className={styles.list}>
+                            {groups.map((group) => (
+                                <Combobox.Group key={group.collection} className={styles.group}>
+                                    <Combobox.GroupLabel className={styles.groupLabel}>
+                                        {group.collection}
+                                    </Combobox.GroupLabel>
+                                    {group.items.map((t) => (
+                                        <Combobox.Item
+                                            key={t.meta.key}
+                                            value={t.meta.key}
+                                            className={styles.item}
+                                        >
+                                            <span>{t.meta.name}</span>
+                                            <span className={styles.appearance}>
+                                                {t.meta.appearance}
+                                            </span>
+                                        </Combobox.Item>
+                                    ))}
+                                </Combobox.Group>
+                            ))}
+                        </Combobox.List>
+                    </Combobox.Popup>
+                </Combobox.Positioner>
+            </Combobox.Portal>
+        </Combobox.Root>
     );
 }
 
