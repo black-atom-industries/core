@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useThemes } from "../queries/themes";
+import { collectionStats } from "../lib/stats";
+import { groupByCollection } from "../lib/theme-utils";
 import { Placeholder } from "../components/placeholder";
 import { CollectionLabel } from "../components/collection-label";
 import { ThemePreviewCard } from "../components/theme-preview-card";
@@ -14,9 +16,9 @@ export const Route = createFileRoute("/")({
 });
 
 function Component() {
-    const { data, isLoading } = useThemes();
+    const { data: themes, isLoading } = useThemes();
 
-    if (isLoading || !data) {
+    if (isLoading || !themes) {
         return (
             <Placeholder minHeight={200}>
                 <p>Loading…</p>
@@ -24,22 +26,21 @@ function Component() {
         );
     }
 
+    const collections = groupByCollection(themes);
+
     return (
         <DashboardPageLayout>
-            {data.collections.map((group) => {
-                const darkCount = group.themes.filter((t) => t.meta.appearance === "dark").length;
-                const lightCount = group.themes.length - darkCount;
-                const avgContrast = group.themes.reduce((sum, t) => sum + t.contrast.ratio, 0) /
-                    group.themes.length;
+            {Array.from(collections, ([collectionKey, collectionThemes]) => {
+                const stats = collectionStats(collectionThemes);
                 return (
-                    <DashboardSection key={group.collection}>
+                    <DashboardSection key={collectionKey}>
                         <CollectionLabel>
-                            {group.collection} · {group.themes.length} themes · {darkCount} dark,
+                            {collectionKey} · {stats.themeCount} themes · {stats.darkCount} dark,
                             {" "}
-                            {lightCount} light · avg {avgContrast.toFixed(1)}:1
+                            {stats.lightCount} light · avg {stats.avgContrast.toFixed(1)}:1
                         </CollectionLabel>
                         <DashboardCardGrid>
-                            {group.themes.map((t) => (
+                            {collectionThemes.map((t) => (
                                 <ThemePreviewCard
                                     key={t.meta.key}
                                     theme={t}
