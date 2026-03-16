@@ -101,8 +101,17 @@ export const INTENDED_PAIRINGS: PairingCategory[] = [
 /** Resolves a dot-path key (e.g. "fg.default") to a hex color from a theme. */
 function resolveColor(theme: ThemeDefinition, key: string): string {
     const [group, token] = key.split(".");
+    if (group !== "fg" && group !== "bg") {
+        throw new Error(`resolveColor: invalid group "${group}" in key "${key}"`);
+    }
     const colors = group === "fg" ? theme.ui.fg : theme.ui.bg;
-    return (colors as unknown as Record<string, string>)[token];
+    const color = (colors as unknown as Record<string, string>)[token];
+    if (!color) {
+        throw new Error(
+            `resolveColor: unknown token "${key}" in theme "${theme.meta.key}"`,
+        );
+    }
+    return color;
 }
 
 /** Computes a ContrastPair from a theme and a pairing definition. */
@@ -135,7 +144,12 @@ export function analyzeThemeContrast(theme: ThemeDefinition): ThemeContrastAnaly
 
     const primary = allPairs.find(
         (p) => p.fg.key === "fg.default" && p.bg.key === "bg.default",
-    )!;
+    );
+    if (!primary) {
+        throw new Error(
+            "analyzeThemeContrast: fg.default/bg.default pairing not found in INTENDED_PAIRINGS",
+        );
+    }
 
     const worstPair = allPairs.reduce((worst, p) => p.ratio < worst.ratio ? p : worst);
 

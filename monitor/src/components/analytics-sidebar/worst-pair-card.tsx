@@ -5,8 +5,8 @@ type Props = { pair: ContrastPair };
 
 export function WorstPairCard({ pair }: Props) {
     return (
-        <div className={styles.worstPair}>
-            <div className={styles.worstPairLabel}>WORST PAIR</div>
+        <div className={styles.worstPair} data-grade={pair.level}>
+            <div className={styles.worstPairLabel}>LEAST CONTRAST</div>
             <div className={styles.worstPairKeys}>
                 {pair.fg.key} / {pair.bg.key}
             </div>

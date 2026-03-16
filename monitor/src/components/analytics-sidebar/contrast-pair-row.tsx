@@ -10,7 +10,7 @@ export function ContrastPairRow({ pair }: Props) {
                 {pair.fg.key} / {pair.bg.key}
             </span>
             <span className={styles.pairResult}>
-                {pair.ratio.toFixed(1)} {pair.level}
+                {pair.ratio.toFixed(2)} {pair.level}
             </span>
         </div>
     );

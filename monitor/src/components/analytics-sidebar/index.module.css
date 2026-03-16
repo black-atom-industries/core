@@ -37,12 +37,22 @@
     color: var(--ba-ui-fg-subtle);
 }
 
-/* Worst pair callout */
+/* Worst pair callout — color varies by grade */
 .worstPair {
     padding: 8px;
-    background: var(--ba-ui-bg-negative);
-    border: 1px solid color-mix(in oklch, var(--ba-ui-fg-negative) 20%, transparent);
     border-radius: 4px;
+    border: 1px solid var(--ba-ui-bg-float);
+    background: var(--ba-ui-bg-active);
+}
+
+.worstPair[data-grade="fail"] {
+    background: var(--ba-ui-bg-negative);
+    border-color: color-mix(in oklch, var(--ba-ui-fg-negative) 20%, transparent);
+}
+
+.worstPair[data-grade="AA"] {
+    background: var(--ba-ui-bg-warn);
+    border-color: color-mix(in oklch, var(--ba-ui-fg-warn) 20%, transparent);
 }
 
 .worstPairLabel {
@@ -55,7 +65,16 @@
 .worstPairKeys {
     font-size: 10px;
     font-weight: 600;
+}
+
+.worstPair[data-grade="fail"] .worstPairKeys {
     color: var(--ba-ui-fg-negative);
+}
+.worstPair[data-grade="AA"] .worstPairKeys {
+    color: var(--ba-ui-fg-warn);
+}
+.worstPair[data-grade="AAA"] .worstPairKeys {
+    color: var(--ba-ui-fg-positive);
 }
 
 .worstPairResult {
@@ -64,7 +83,16 @@
     align-items: center;
     margin-top: 4px;
     font-size: 10px;
+}
+
+.worstPair[data-grade="fail"] .worstPairResult {
     color: var(--ba-ui-fg-negative);
+}
+.worstPair[data-grade="AA"] .worstPairResult {
+    color: var(--ba-ui-fg-warn);
+}
+.worstPair[data-grade="AAA"] .worstPairResult {
+    color: var(--ba-ui-fg-positive);
 }
 
 .worstPairBadge {
