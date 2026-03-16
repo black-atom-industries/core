@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { z } from "zod";
 import {
     createRootRoute,
@@ -59,13 +58,6 @@ function Component() {
     const { data: theme } = useTheme(themeKey);
 
     const collections = groupByCollection(themes ?? []);
-
-    useEffect(() => {
-        if (isPreviewPage && !themeKey && themes?.length) {
-            navigate({ search: { themeKey: themes[0].meta.key } });
-        }
-    }, [themeKey, themes, isPreviewPage]);
-
     const cssVars = theme ? themeToCssVars(theme) : {};
 
     return (

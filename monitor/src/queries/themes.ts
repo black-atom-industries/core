@@ -9,12 +9,12 @@ function queryKey(keys: string[]) {
     return [TOPIC, ...keys];
 }
 
-type UseThemeQueryOptions<T extends ThemeDefinition> = Omit<
-    UseQueryOptions<T>,
+type UseThemeQueryOptions<TD extends ThemeDefinition | ThemeDefinition[]> = Omit<
+    UseQueryOptions<TD>,
     "queryKey" | "queryFn"
 >;
 
-export function useThemes(queryOptions?: UseQueryOptions<ThemeDefinition[]>) {
+export function useThemes(queryOptions?: UseThemeQueryOptions<ThemeDefinition[]>) {
     return useQuery<ThemeDefinition[]>({
         queryKey: queryKey(["all"]),
         queryFn: ({ signal }) => apiClient<ThemeDefinition[]>("/themes", { signal }),
@@ -29,7 +29,6 @@ export function useTheme(
     return useQuery<ThemeDefinition>({
         queryKey: queryKey([key]),
         queryFn: ({ signal }) => apiClient<ThemeDefinition>(`/themes/${key}`, { signal }),
-        enabled: !!key,
         ...queryOptions,
     });
 }
