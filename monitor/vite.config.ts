@@ -29,6 +29,9 @@ export default defineConfig({
             "@core": resolve(__dirname, "../src"),
         },
     },
+    optimizeDeps: {
+        include: ["@base-ui/react/navigation-menu", "culori"],
+    },
     server: {
         port: 4170,
         strictPort: true,
