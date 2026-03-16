@@ -137,11 +137,11 @@ The exact pairings list per category will be finalized during implementation by 
 - Bottom stats bar removed
 - No other dashboard changes in this ticket
 
-## API Changes
+## API / Data Flow
 
-Extend the existing `GET /api/themes/:key` response to include a `contrast` field containing `ThemeContrastAnalysis`. This avoids a separate request and keeps theme data co-located.
+No API changes needed. The existing `GET /api/themes/:key` already returns the full `ThemeDefinition` including all UI token colors. Contrast analysis is computed client-side via `analyzeThemeContrast(theme)` — this keeps the computation in core's library code (reusable by CLI in DEV-313) without coupling it to the server response.
 
-Note: `WcagGrade` values are lowercase (`"aaa"`, `"aa"`, `"fail"`) as defined in `src/lib/wcag.ts`. Display formatting (uppercase badges, color coding) is a monitor concern.
+Note: `WcagGrade` values are uppercase `"AAA"`, `"AA"`, lowercase `"fail"` as defined in `src/lib/wcag.ts`. Display formatting (badges, color coding) is a monitor concern.
 
 ## Future Work (not in this ticket)
 
