@@ -1,0 +1,136 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}
+
+/* Summary */
+.summaryLabel {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ba-ui-fg-subtle);
+    margin-bottom: 6px;
+}
+
+.summaryRow {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.summaryValue {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ba-ui-fg-positive);
+}
+
+.summaryValueSecondary {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ba-ui-fg-positive);
+    opacity: 0.7;
+}
+
+.summaryDetail {
+    font-size: 10px;
+    color: var(--ba-ui-fg-subtle);
+}
+
+/* Worst pair callout */
+.worstPair {
+    padding: 8px;
+    background: var(--ba-ui-bg-negative);
+    border: 1px solid color-mix(in oklch, var(--ba-ui-fg-negative) 20%, transparent);
+    border-radius: 4px;
+}
+
+.worstPairLabel {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--ba-ui-fg-subtle);
+    margin-bottom: 4px;
+}
+
+.worstPairKeys {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ba-ui-fg-negative);
+}
+
+.worstPairResult {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    font-size: 10px;
+    color: var(--ba-ui-fg-negative);
+}
+
+.worstPairBadge {
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    background: var(--ba-ui-bg-default);
+}
+
+.worstPairBadge[data-grade="fail"] {
+    color: var(--ba-ui-fg-negative);
+}
+
+.worstPairBadge[data-grade="AA"] {
+    color: var(--ba-ui-fg-warn);
+}
+
+.worstPairBadge[data-grade="AAA"] {
+    color: var(--ba-ui-fg-positive);
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: var(--ba-ui-bg-float);
+}
+
+/* Category */
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.categoryLabel {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ba-ui-fg-subtle);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+/* Pair row */
+.pairRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+    font-size: 10px;
+}
+
+.pairKeys {
+    color: var(--ba-ui-fg-subtle);
+}
+
+.pairResult {
+    font-weight: 500;
+}
+
+.pairRow[data-grade="AAA"] .pairResult {
+    color: var(--ba-ui-fg-positive);
+}
+
+.pairRow[data-grade="AA"] .pairResult {
+    color: var(--ba-ui-fg-warn);
+}
+
+.pairRow[data-grade="fail"] .pairResult {
+    color: var(--ba-ui-fg-negative);
+}

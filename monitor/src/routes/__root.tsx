@@ -5,6 +5,7 @@ import {
     retainSearchParams,
     stripSearchParams,
     useLocation,
+    useMatchRoute,
     useNavigate,
     useSearch,
 } from "@tanstack/react-router";
@@ -14,6 +15,8 @@ import { useTheme, useThemes } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
 import { TopNav } from "../components/top-nav";
+import { analyzeThemeContrast } from "@core/lib/contrast-analysis.ts";
+import { AnalyticsSidebar } from "../components/analytics-sidebar";
 import { themeToCssVars } from "../lib/theme-css-vars";
 
 const rootSearchSchema = z.object({
@@ -36,6 +39,7 @@ export const Route = createRootRoute({
 function Component() {
     const { themeKey } = useSearch({ from: "__root__" });
     const navigate = useNavigate({ from: "/" });
+    const matchRoute = useMatchRoute();
     const location = useLocation();
 
     useServerReloadListener();
@@ -45,10 +49,16 @@ function Component() {
 
     const cssVars = theme ? themeToCssVars(theme) : {};
     const activeRoute = location.pathname;
+    const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
+        !!matchRoute({ to: "/preview/code" });
+    const contrastAnalysis = theme ? analyzeThemeContrast(theme) : null;
 
     return (
         <AppLayout
             style={cssVars}
+            leftSidebar={isPreviewPage && contrastAnalysis
+                ? <AnalyticsSidebar analysis={contrastAnalysis} />
+                : undefined}
             topBar={
                 <TopNav
                     activeRoute={activeRoute}
