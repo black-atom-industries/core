@@ -89,7 +89,7 @@ export function ThemeSelector({ themes, currentThemeKey, currentThemeLabel, onSe
                     align="end"
                 >
                     <NavigationMenu.Popup className={styles.popup}>
-                        <NavigationMenu.Viewport />
+                        <NavigationMenu.Viewport className={styles.viewport} />
                     </NavigationMenu.Popup>
                 </NavigationMenu.Positioner>
             </NavigationMenu.Portal>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { z } from "zod";
 import {
     createRootRoute,
@@ -48,6 +49,20 @@ function Component() {
     const { data: theme } = useTheme(themeKey);
 
     const cssVars = theme ? themeToCssVars(theme) : {};
+
+    // Sync CSS vars to :root so portals (rendered outside AppLayout) can access them
+    useEffect(() => {
+        const root = document.documentElement;
+        for (const [key, value] of Object.entries(cssVars)) {
+            root.style.setProperty(key, value);
+        }
+        return () => {
+            for (const key of Object.keys(cssVars)) {
+                root.style.removeProperty(key);
+            }
+        };
+    }, [cssVars]);
+
     const activeRoute = location.pathname;
     const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
         !!matchRoute({ to: "/preview/code" });
