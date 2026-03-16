@@ -14,9 +14,10 @@
         ]
     },
     "tasks": {
+        "test": "deno test --allow-all",
         "lock": "deno cache --lock=deno.lock --reload .",
         "check": "deno check .",
-        "checks": "deno task check && deno task format && deno task lint && cd monitor && deno task checks",
+        "checks": "deno task check && deno task format && deno task lint && deno task test && cd monitor && deno task checks",
         "format": "deno fmt .",
         "lint": "deno lint .",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",

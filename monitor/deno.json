@@ -7,12 +7,13 @@
         "check": "deno check src/main.tsx",
         "lint": "deno lint .",
         "format": "deno fmt .",
-        "checks": "deno task check && deno task lint && deno task format"
+        "test": "deno test --allow-all",
+        "checks": "deno task check && deno task lint && deno task test && deno task format"
     },
     "compilerOptions": {
         "jsx": "react-jsx",
         "jsxImportSource": "react",
-        "lib": ["ES2023", "DOM", "DOM.Iterable"]
+        "lib": ["ES2024", "DOM", "DOM.Iterable"]
     },
     "imports": {
         "react": "npm:react@^19.0.0",
@@ -23,10 +24,12 @@
         "@tanstack/react-router": "npm:@tanstack/react-router@^1.114.0",
         "@tanstack/router-plugin": "npm:@tanstack/router-plugin@^1.114.0",
         "@tanstack/zod-adapter": "npm:@tanstack/zod-adapter@^1.114.0",
+        "culori": "npm:culori@4",
         "zod": "npm:zod@^3.24.0",
         "vite": "npm:vite@^6.1.0",
         "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.8.0",
-        "@core/": "../src/"
+        "@core/": "../src/",
+        "@std/assert": "jsr:@std/assert@^1.0.0"
     },
     "lint": {
         "rules": {

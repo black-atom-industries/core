@@ -2,7 +2,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: var(--ba-fg-disabled);
+    color: var(--ba-ui-fg-disabled);
     padding: 8px 12px 4px;
 }
 

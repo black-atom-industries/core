@@ -1,0 +1,51 @@
+.root {
+    display: block;
+    width: 220px;
+    background: var(--ba-ui-bg-default);
+    color: var(--ba-ui-fg-default);
+    border: 1px solid var(--ba-ui-fg-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.root:hover {
+    border-color: var(--ba-ui-fg-subtle);
+}
+
+.primaries {
+    display: flex;
+    height: 80px;
+}
+
+.primaryStrip {
+    flex: 1;
+}
+
+.palette {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.paletteSwatch {
+    aspect-ratio: 1;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 12px 12px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.contrast {
+    font-size: 11px;
+    color: var(--ba-ui-fg-subtle);
+}

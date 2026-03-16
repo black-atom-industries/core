@@ -3,7 +3,7 @@
     align-items: center;
     gap: 8px;
     padding: 8px 14px;
-    border-bottom: 1px solid var(--ba-bg-float);
+    border-bottom: 1px solid var(--ba-ui-bg-float);
     font-size: 12px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .label {
-    color: var(--ba-fg-subtle);
+    color: var(--ba-ui-fg-subtle);
     width: 52px;
     flex-shrink: 0;
     font-size: 11px;
@@ -27,5 +27,5 @@
 }
 
 .message {
-    color: var(--ba-fg);
+    color: var(--ba-ui-fg-default);
 }

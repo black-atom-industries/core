@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CodePreviewContainer } from "../../containers/code-preview";
+import { Placeholder } from "../../components/placeholder";
 
 export const Route = createFileRoute("/preview/code")({
-    component: CodePreviewContainer,
+    component: Component,
 });
+
+function Component() {
+    return (
+        <Placeholder>
+            <p>Code Preview — coming soon</p>
+        </Placeholder>
+    );
+}

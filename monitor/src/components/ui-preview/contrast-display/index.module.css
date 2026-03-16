@@ -1,7 +1,7 @@
 .ratio {
     font-size: 18px;
     font-weight: 600;
-    color: var(--ba-fg);
+    color: var(--ba-ui-fg-default);
 }
 
 .grade {
@@ -11,15 +11,15 @@
 
 .grade[data-grade="AAA"],
 .ratio[data-grade="AAA"] {
-    color: var(--ba-fg-positive);
+    color: var(--ba-ui-fg-positive);
 }
 
 .grade[data-grade="AA"],
 .ratio[data-grade="AA"] {
-    color: var(--ba-fg-warn);
+    color: var(--ba-ui-fg-warn);
 }
 
 .grade[data-grade="fail"],
 .ratio[data-grade="fail"] {
-    color: var(--ba-fg-negative);
+    color: var(--ba-ui-fg-negative);
 }

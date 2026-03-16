@@ -2,8 +2,8 @@
     padding: 6px 14px;
     border-radius: 4px;
     border: none;
-    background: var(--ba-fg-accent);
-    color: var(--ba-bg);
+    background: var(--ba-ui-fg-accent);
+    color: var(--ba-ui-bg-default);
     font-size: 12px;
     cursor: pointer;
 }
@@ -11,16 +11,16 @@
 .btnSecondary {
     padding: 6px 14px;
     border-radius: 4px;
-    border: 1px solid var(--ba-bg-float);
-    background: var(--ba-bg-panel);
-    color: var(--ba-fg);
+    border: 1px solid var(--ba-ui-bg-float);
+    background: var(--ba-ui-bg-panel);
+    color: var(--ba-ui-fg-default);
     font-size: 12px;
     cursor: pointer;
 }
 
 .btnSecondary:disabled {
-    border-color: var(--ba-bg-disabled);
-    background: var(--ba-bg-disabled);
-    color: var(--ba-fg-disabled);
+    border-color: var(--ba-ui-bg-disabled);
+    background: var(--ba-ui-bg-disabled);
+    color: var(--ba-ui-fg-disabled);
     cursor: not-allowed;
 }

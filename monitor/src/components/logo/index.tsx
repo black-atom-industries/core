@@ -1,9 +1,15 @@
+import { Link } from "@tanstack/react-router";
 import styles from "./index.module.css";
 
 export function Logo() {
     return (
-        <div className={styles.logo} data-component="Logo">
-            <strong>Black Atom</strong> Monitor
-        </div>
+        <Link
+            to="/"
+            search={(s) => ({ ...s, themeKey: s.themeKey })}
+            className={styles.logo}
+            data-component="Logo"
+        >
+            <strong>Black&nbsp;Atom</strong> Monitor
+        </Link>
     );
 }

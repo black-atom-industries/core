@@ -1,0 +1,31 @@
+.bar {
+    background: var(--ba-ui-bg-panel);
+    border-top: 1px solid var(--ba-ui-bg-float);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.item {
+    text-align: center;
+    flex: 1;
+    padding: 2px 8px;
+}
+
+.item + .item {
+    border-left: 1px solid var(--ba-ui-bg-float);
+}
+
+.label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--ba-ui-fg-subtle);
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 16px;
+    color: var(--ba-ui-fg-default);
+    font-weight: 300;
+}

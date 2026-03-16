@@ -6,14 +6,7 @@
     font-weight: 500;
     text-transform: lowercase;
     letter-spacing: 0.3px;
-}
-
-.badge[data-appearance="dark"] {
-    background: #1a1a1a;
-    color: #888;
-}
-
-.badge[data-appearance="light"] {
-    background: #e8e8e8;
-    color: #666;
+    font-family: monospace;
+    background: var(--ba-syntax-markup-code-bg);
+    color: var(--ba-syntax-markup-code-fg);
 }

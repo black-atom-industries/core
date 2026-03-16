@@ -1,17 +1,12 @@
 .logo {
-    font-size: 11px;
+    font-size: 1.25em;
     font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--ba-fg-subtle);
+    color: var(--ba-ui-fg-accent);
     padding: 4px 12px 12px;
     text-transform: uppercase;
-}
+    text-decoration: none;
 
-@media (max-width: 768px) {
-    .logo {
-        padding: 0 12px 0 0;
-        border-right: 1px solid var(--ba-bg-float);
-        margin-right: 8px;
-        white-space: nowrap;
+    & strong {
+        letter-spacing: 0.25em;
     }
 }

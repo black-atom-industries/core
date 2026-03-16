@@ -8,21 +8,18 @@
     border: none;
     border-left: 2px solid transparent;
     cursor: pointer;
-    color: var(--ba-fg-subtle);
+    color: var(--ba-ui-fg-subtle);
     font-size: 12px;
     text-align: left;
     transition: background 0.1s, color 0.1s, border-color 0.1s;
 }
 
-.item:hover {
-    background: var(--ba-bg-hover);
-    color: var(--ba-fg);
-}
-
+.item:hover,
 .item[data-active="true"] {
-    background: var(--ba-bg-active);
-    color: var(--ba-fg);
-    border-left-color: var(--ba-fg-accent);
+    background: var(--ba-ui-bg-active);
+    color: var(--ba-ui-fg-default);
+    border-left-color: var(--ba-ui-fg-accent);
+    border-left-width: 5px;
 }
 
 .name {
