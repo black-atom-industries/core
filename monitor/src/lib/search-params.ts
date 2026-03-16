@@ -7,3 +7,5 @@ export const rootSearchSchema = z.object({
 });
 
 export type RootSearchParams = z.infer<typeof rootSearchSchema>;
+
+export const rootSearchDefaults = rootSearchSchema.parse({});
