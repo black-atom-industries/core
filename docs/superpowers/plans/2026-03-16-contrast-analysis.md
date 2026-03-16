@@ -25,46 +25,46 @@ React 19, TanStack Router, TanStack Query, CSS Modules
 
 ### Core (create)
 
-| File | Responsibility |
-|-|-|
-| `src/lib/contrast-analysis.ts` | Intended pairings config + `analyzeThemeContrast()` |
-| `src/lib/contrast-analysis.test.ts` | Tests for pairings resolution and analysis |
+| File                                | Responsibility                                      |
+| ----------------------------------- | --------------------------------------------------- |
+| `src/lib/contrast-analysis.ts`      | Intended pairings config + `analyzeThemeContrast()` |
+| `src/lib/contrast-analysis.test.ts` | Tests for pairings resolution and analysis          |
 
 ### Monitor (create)
 
-| File | Responsibility |
-|-|-|
-| `monitor/src/components/top-nav/index.tsx` | Top navigation bar (Base UI NavigationMenu) |
-| `monitor/src/components/top-nav/index.module.css` | Top nav styles |
-| `monitor/src/components/top-nav/theme-selector.tsx` | Theme dropdown with collection groups + filter |
-| `monitor/src/components/top-nav/theme-selector.module.css` | Theme selector styles |
-| `monitor/src/components/analytics-sidebar/index.tsx` | Contrast analysis sidebar panel |
-| `monitor/src/components/analytics-sidebar/index.module.css` | Analytics sidebar styles |
-| `monitor/src/components/analytics-sidebar/contrast-pair-row.tsx` | Single contrast pair display row |
-| `monitor/src/components/analytics-sidebar/contrast-category.tsx` | Category group (label + pair rows) |
-| `monitor/src/components/analytics-sidebar/pass-rate-summary.tsx` | AA/AAA pass rate display |
-| `monitor/src/components/analytics-sidebar/worst-pair-card.tsx` | Worst pair callout card |
+| File                                                             | Responsibility                                 |
+| ---------------------------------------------------------------- | ---------------------------------------------- |
+| `monitor/src/components/top-nav/index.tsx`                       | Top navigation bar (Base UI NavigationMenu)    |
+| `monitor/src/components/top-nav/index.module.css`                | Top nav styles                                 |
+| `monitor/src/components/top-nav/theme-selector.tsx`              | Theme dropdown with collection groups + filter |
+| `monitor/src/components/top-nav/theme-selector.module.css`       | Theme selector styles                          |
+| `monitor/src/components/analytics-sidebar/index.tsx`             | Contrast analysis sidebar panel                |
+| `monitor/src/components/analytics-sidebar/index.module.css`      | Analytics sidebar styles                       |
+| `monitor/src/components/analytics-sidebar/contrast-pair-row.tsx` | Single contrast pair display row               |
+| `monitor/src/components/analytics-sidebar/contrast-category.tsx` | Category group (label + pair rows)             |
+| `monitor/src/components/analytics-sidebar/pass-rate-summary.tsx` | AA/AAA pass rate display                       |
+| `monitor/src/components/analytics-sidebar/worst-pair-card.tsx`   | Worst pair callout card                        |
 
 ### Monitor (modify)
 
-| File | Change |
-|-|-|
-| `monitor/deno.json` | Add `@base-ui/react` dependency |
-| `monitor/src/components/app-layout/index.tsx` | New layout: topBar + leftSidebar + main (remove leftNav, rightSidebar, bottomBar) |
-| `monitor/src/components/app-layout/index.module.css` | New grid/flex layout styles |
-| `monitor/src/routes/__root.tsx` | Replace nav/sidebar/stats-bar with TopNav + AnalyticsSidebar |
-| `monitor/src/routes/index.tsx` | Remove OrgStatsPartial usage if present |
+| File                                                 | Change                                                                            |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `monitor/deno.json`                                  | Add `@base-ui/react` dependency                                                   |
+| `monitor/src/components/app-layout/index.tsx`        | New layout: topBar + leftSidebar + main (remove leftNav, rightSidebar, bottomBar) |
+| `monitor/src/components/app-layout/index.module.css` | New grid/flex layout styles                                                       |
+| `monitor/src/routes/__root.tsx`                      | Replace nav/sidebar/stats-bar with TopNav + AnalyticsSidebar                      |
+| `monitor/src/routes/index.tsx`                       | Remove OrgStatsPartial usage if present                                           |
 
 ### Monitor (delete after migration)
 
-| File | Reason |
-|-|-|
-| `monitor/src/partials/stats-bar/org-stats.tsx` | Bottom bar removed |
-| `monitor/src/partials/stats-bar/theme-stats.tsx` | Replaced by analytics sidebar |
-| `monitor/src/components/nav-item/` | Replaced by Base UI NavigationMenu |
-| `monitor/src/components/nav-section/` | Replaced by Base UI NavigationMenu |
-| `monitor/src/components/nav-section-label/` | Replaced by Base UI NavigationMenu |
-| `monitor/src/components/stats-bar-layout/` | Bottom bar removed |
+| File                                             | Reason                             |
+| ------------------------------------------------ | ---------------------------------- |
+| `monitor/src/partials/stats-bar/org-stats.tsx`   | Bottom bar removed                 |
+| `monitor/src/partials/stats-bar/theme-stats.tsx` | Replaced by analytics sidebar      |
+| `monitor/src/components/nav-item/`               | Replaced by Base UI NavigationMenu |
+| `monitor/src/components/nav-section/`            | Replaced by Base UI NavigationMenu |
+| `monitor/src/components/nav-section-label/`      | Replaced by Base UI NavigationMenu |
+| `monitor/src/components/stats-bar-layout/`       | Bottom bar removed                 |
 
 ---
 
@@ -73,6 +73,7 @@ React 19, TanStack Router, TanStack Query, CSS Modules
 ### Task 1.1: Define intended pairings config and types
 
 **Files:**
+
 - Create: `src/lib/contrast-analysis.ts`
 - Create: `src/lib/contrast-analysis.test.ts`
 
@@ -233,6 +234,7 @@ git commit -m "feat(core): add intended pairings config for contrast analysis [D
 ### Task 1.2: Implement analyzeThemeContrast function
 
 **Files:**
+
 - Modify: `src/lib/contrast-analysis.ts`
 - Modify: `src/lib/contrast-analysis.test.ts`
 
@@ -379,9 +381,7 @@ export function analyzeThemeContrast(theme: ThemeDefinition): ThemeContrastAnaly
         (p) => p.fg.key === "fg.default" && p.bg.key === "bg.default",
     )!;
 
-    const worstPair = allPairs.reduce((worst, p) =>
-        p.ratio < worst.ratio ? p : worst
-    );
+    const worstPair = allPairs.reduce((worst, p) => p.ratio < worst.ratio ? p : worst);
 
     return {
         primary,
@@ -416,11 +416,13 @@ git commit -m "feat(core): implement analyzeThemeContrast with all intended pair
 ### Task 2.1: Install Base UI
 
 **Files:**
+
 - Modify: `monitor/deno.json`
 
 - [ ] **Step 1: Add @base-ui/react to monitor dependencies**
 
 Add to the `"imports"` section in `monitor/deno.json`:
+
 ```json
 "@base-ui/react": "npm:@base-ui/react@^1.3.0"
 ```
@@ -445,18 +447,21 @@ git commit -m "feat(monitor): add @base-ui/react dependency [DEV-312]"
 ### Task 2.2: Redesign AppLayout component
 
 **Files:**
+
 - Modify: `monitor/src/components/app-layout/index.tsx`
 - Modify: `monitor/src/components/app-layout/index.module.css`
 
 - [ ] **Step 1: Update AppLayout props and markup**
 
 Replace the current layout with a new structure:
+
 - `topBar` slot (replaces `leftNav`)
 - `leftSidebar` slot (new — for analytics)
 - `main` slot (unchanged)
 - Remove `rightSidebar` and `bottomBar` slots
 
 New `index.tsx`:
+
 ```tsx
 import type { ReactNode } from "react";
 import styles from "./index.module.css";
@@ -483,6 +488,7 @@ export function AppLayout({ topBar, leftSidebar, main, ...rest }: Props) {
 - [ ] **Step 2: Update AppLayout CSS**
 
 New `index.module.css`:
+
 ```css
 .root {
     display: flex;
@@ -547,6 +553,7 @@ git commit -m "feat(monitor): redesign AppLayout with topBar + leftSidebar slots
 ### Task 2.3: Create TopNav component with theme selector
 
 **Files:**
+
 - Create: `monitor/src/components/top-nav/index.tsx`
 - Create: `monitor/src/components/top-nav/index.module.css`
 - Create: `monitor/src/components/top-nav/theme-selector.tsx`
@@ -555,6 +562,7 @@ git commit -m "feat(monitor): redesign AppLayout with topBar + leftSidebar slots
 - [ ] **Step 1: Create TopNav component**
 
 `monitor/src/components/top-nav/index.tsx`:
+
 ```tsx
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
 import { ThemeSelector } from "./theme-selector";
@@ -628,6 +636,7 @@ export function TopNav({
 - [ ] **Step 2: Create TopNav styles**
 
 `monitor/src/components/top-nav/index.module.css`:
+
 ```css
 .root {
     display: flex;
@@ -703,7 +712,7 @@ This component uses Base UI `NavigationMenu` with a single trigger that opens a 
 panel. The panel shows themes grouped by collection with a text filter input.
 
 ```tsx
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
 import { groupByCollection } from "../../lib/theme-utils";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
@@ -756,30 +765,34 @@ export function ThemeSelector({ themes, currentThemeKey, currentThemeLabel, onSe
                             autoFocus
                         />
                         <div className={styles.groups}>
-                            {Array.from(filtered, ([collectionKey, items]) => (
-                                <div key={collectionKey} className={styles.group}>
-                                    <div className={styles.groupLabel}>{collectionKey}</div>
-                                    {items.map((t) => (
-                                        <NavigationMenu.Link
-                                            key={t.meta.key}
-                                            className={styles.themeItem}
-                                            data-active={t.meta.key === currentThemeKey || undefined}
-                                            closeOnClick
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                onSelect(t.meta.key as ThemeKey);
-                                                setFilter("");
-                                            }}
-                                            href="#"
-                                        >
-                                            <span>{t.meta.name}</span>
-                                            <span className={styles.appearance}>
-                                                {t.meta.appearance}
-                                            </span>
-                                        </NavigationMenu.Link>
-                                    ))}
-                                </div>
-                            ))}
+                            {Array.from(
+                                filtered,
+                                ([collectionKey, items]) => (
+                                    <div key={collectionKey} className={styles.group}>
+                                        <div className={styles.groupLabel}>{collectionKey}</div>
+                                        {items.map((t) => (
+                                            <NavigationMenu.Link
+                                                key={t.meta.key}
+                                                className={styles.themeItem}
+                                                data-active={t.meta.key === currentThemeKey ||
+                                                    undefined}
+                                                closeOnClick
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    onSelect(t.meta.key as ThemeKey);
+                                                    setFilter("");
+                                                }}
+                                                href="#"
+                                            >
+                                                <span>{t.meta.name}</span>
+                                                <span className={styles.appearance}>
+                                                    {t.meta.appearance}
+                                                </span>
+                                            </NavigationMenu.Link>
+                                        ))}
+                                    </div>
+                                ),
+                            )}
                         </div>
                     </NavigationMenu.Content>
                 </NavigationMenu.Item>
@@ -811,6 +824,7 @@ function ChevronIcon() {
 - [ ] **Step 4: Create ThemeSelector styles**
 
 `monitor/src/components/top-nav/theme-selector.module.css`:
+
 ```css
 .root {
     position: relative;
@@ -944,11 +958,13 @@ git commit -m "feat(monitor): create TopNav with Base UI NavigationMenu and them
 ### Task 2.4: Wire up new layout in __root.tsx
 
 **Files:**
+
 - Modify: `monitor/src/routes/__root.tsx`
 
 - [ ] **Step 1: Update __root.tsx to use new AppLayout + TopNav**
 
 Replace the current Component function. Key changes:
+
 - Import `TopNav` instead of `NavItem`, `NavSection`, `NavSectionLabel`, `Logo`
 - Remove `OrgStatsPartial`, `ThemeStatsPartial`, `CollectionLabel`, `ThemeListItem` imports
 - Pass `topBar` and `main` to `AppLayout` (leftSidebar comes in Chunk 3)
@@ -1038,6 +1054,7 @@ Expected: No type errors
 
 Navigate to `http://127.0.0.1:4170/` and `http://127.0.0.1:4170/preview/ui`
 Verify:
+
 - Top nav bar shows with brand, route links, theme selector
 - Main content renders
 - No bottom bar, no left nav, no right sidebar
@@ -1054,6 +1071,7 @@ git commit -m "feat(monitor): wire new AppLayout with TopNav in root route [DEV-
 ### Task 2.5: Remove unused navigation components and stats bar partials
 
 **Files:**
+
 - Delete: `monitor/src/partials/stats-bar/org-stats.tsx`
 - Delete: `monitor/src/partials/stats-bar/theme-stats.tsx`
 - Delete: `monitor/src/components/nav-item/` (directory)
@@ -1102,6 +1120,7 @@ git commit -m "refactor(monitor): remove unused nav components and stats bar par
 ### Task 3.1: Create analytics sidebar components
 
 **Files:**
+
 - Create: `monitor/src/components/analytics-sidebar/contrast-pair-row.tsx`
 - Create: `monitor/src/components/analytics-sidebar/contrast-category.tsx`
 - Create: `monitor/src/components/analytics-sidebar/pass-rate-summary.tsx`
@@ -1221,9 +1240,7 @@ export function AnalyticsSidebar({ analysis }: Props) {
             <PassRateSummary aa={analysis.passRate.aa} aaa={analysis.passRate.aaa} />
             <WorstPairCard pair={analysis.worstPair} />
             <div className={styles.divider} />
-            {analysis.categories.map((cat) => (
-                <ContrastCategory key={cat.name} category={cat} />
-            ))}
+            {analysis.categories.map((cat) => <ContrastCategory key={cat.name} category={cat} />)}
         </div>
     );
 }
@@ -1232,6 +1249,7 @@ export function AnalyticsSidebar({ analysis }: Props) {
 - [ ] **Step 6: Create analytics sidebar styles**
 
 `monitor/src/components/analytics-sidebar/index.module.css`:
+
 ```css
 .root {
     display: flex;
@@ -1311,9 +1329,15 @@ export function AnalyticsSidebar({ analysis }: Props) {
     background: var(--ba-ui-bg-default);
 }
 
-.worstPairBadge[data-grade="fail"] { color: var(--ba-ui-fg-negative); }
-.worstPairBadge[data-grade="AA"] { color: var(--ba-ui-fg-warn); }
-.worstPairBadge[data-grade="AAA"] { color: var(--ba-ui-fg-positive); }
+.worstPairBadge[data-grade="fail"] {
+    color: var(--ba-ui-fg-negative);
+}
+.worstPairBadge[data-grade="AA"] {
+    color: var(--ba-ui-fg-warn);
+}
+.worstPairBadge[data-grade="AAA"] {
+    color: var(--ba-ui-fg-positive);
+}
 
 /* Divider */
 .divider {
@@ -1352,9 +1376,15 @@ export function AnalyticsSidebar({ analysis }: Props) {
     font-weight: 500;
 }
 
-.pairRow[data-grade="AAA"] .pairResult { color: var(--ba-ui-fg-positive); }
-.pairRow[data-grade="AA"] .pairResult { color: var(--ba-ui-fg-warn); }
-.pairRow[data-grade="fail"] .pairResult { color: var(--ba-ui-fg-negative); }
+.pairRow[data-grade="AAA"] .pairResult {
+    color: var(--ba-ui-fg-positive);
+}
+.pairRow[data-grade="AA"] .pairResult {
+    color: var(--ba-ui-fg-warn);
+}
+.pairRow[data-grade="fail"] .pairResult {
+    color: var(--ba-ui-fg-negative);
+}
 ```
 
 - [ ] **Step 7: Commit**
@@ -1367,6 +1397,7 @@ git commit -m "feat(monitor): create analytics sidebar components [DEV-312]"
 ### Task 3.2: Wire analytics sidebar into root route
 
 **Files:**
+
 - Modify: `monitor/src/routes/__root.tsx`
 
 - [ ] **Step 1: Add analytics sidebar to preview pages**
@@ -1375,12 +1406,14 @@ Import `AnalyticsSidebar` and `analyzeThemeContrast`. Pass `leftSidebar` to `App
 when on a preview page:
 
 Add imports:
+
 ```tsx
 import { analyzeThemeContrast } from "@core/lib/contrast-analysis.ts";
 import { AnalyticsSidebar } from "../components/analytics-sidebar";
 ```
 
 Add before the return:
+
 ```tsx
 const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
     !!matchRoute({ to: "/preview/code" });
@@ -1389,6 +1422,7 @@ const contrastAnalysis = theme ? analyzeThemeContrast(theme) : null;
 ```
 
 Update the `AppLayout` to pass `leftSidebar`:
+
 ```tsx
 <AppLayout
     style={cssVars}
@@ -1409,6 +1443,7 @@ Expected: No type errors
 
 Navigate to `http://127.0.0.1:4170/preview/ui?themeKey=black-atom-jpn-tsuki-yoru`
 Verify:
+
 - Analytics sidebar visible on left with pass rates, worst pair, all categories
 - Sidebar scrolls independently from main content
 - Dashboard page (`/`) does NOT show the sidebar
@@ -1433,6 +1468,7 @@ git commit -m "feat(monitor): wire analytics sidebar into preview pages [DEV-312
 ### Task 4.1: Update dashboard page
 
 **Files:**
+
 - Modify: `monitor/src/routes/index.tsx`
 
 - [ ] **Step 1: Check if dashboard imports any removed components**
@@ -1449,6 +1485,7 @@ Expected: All core and monitor checks pass
 - [ ] **Step 3: Visual walkthrough**
 
 Check all routes in browser:
+
 - `http://127.0.0.1:4170/` — Dashboard: theme cards, no sidebar, no bottom bar
 - `http://127.0.0.1:4170/preview/ui` — UI preview with analytics sidebar
 - `http://127.0.0.1:4170/preview/code` — Syntax preview with analytics sidebar
@@ -1457,6 +1494,7 @@ Check all routes in browser:
 - [ ] **Step 4: Take screenshots of the final state**
 
 Save to `docs/superpowers/specs/dev-312/`:
+
 - `final-dashboard.png`
 - `final-preview-ui.png`
 

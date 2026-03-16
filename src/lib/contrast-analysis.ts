@@ -137,9 +137,7 @@ export function analyzeThemeContrast(theme: ThemeDefinition): ThemeContrastAnaly
         (p) => p.fg.key === "fg.default" && p.bg.key === "bg.default",
     )!;
 
-    const worstPair = allPairs.reduce((worst, p) =>
-        p.ratio < worst.ratio ? p : worst
-    );
+    const worstPair = allPairs.reduce((worst, p) => p.ratio < worst.ratio ? p : worst);
 
     return {
         primary,
