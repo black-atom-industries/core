@@ -1,6 +1,6 @@
 import { useMatchRoute, useSearch } from "@tanstack/react-router";
 import { useTheme, useThemes } from "../queries/themes";
-import { orgStats, themeContrast } from "../lib/stats";
+import { orgStats, themeContrast } from "@core/lib/stats.ts";
 import { OrgStatsPartial } from "../partials/stats-bar/org-stats";
 import { ThemeStatsPartial } from "../partials/stats-bar/theme-stats";
 

@@ -11,7 +11,7 @@ const darkTheme = {
         collection: { key: "default", label: "Default" },
     },
     ui: { fg: { default: "#c5cad0" }, bg: { default: "#1a1d23" } },
-} as Parameters<typeof themeContrast>[0];
+} as unknown as Parameters<typeof themeContrast>[0];
 
 const lightTheme = {
     meta: {
@@ -22,7 +22,7 @@ const lightTheme = {
         collection: { key: "default", label: "Default" },
     },
     ui: { fg: { default: "#353230" }, bg: { default: "#f0ece7" } },
-} as Parameters<typeof themeContrast>[0];
+} as unknown as Parameters<typeof themeContrast>[0];
 
 Deno.test("themeContrast returns ratio and WCAG level", () => {
     const result = themeContrast(darkTheme);
@@ -62,7 +62,7 @@ const jpnTheme = {
         collection: { key: "jpn", label: "JPN" },
     },
     ui: { fg: { default: "#c5cad0" }, bg: { default: "#1a1d23" } },
-} as Parameters<typeof themeContrast>[0];
+} as unknown as Parameters<typeof themeContrast>[0];
 
 Deno.test("orgStats aggregates across all themes", () => {
     const result = orgStats([darkTheme, lightTheme, jpnTheme]);

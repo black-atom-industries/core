@@ -1,5 +1,5 @@
 import { useTheme } from "../queries/themes";
-import { contrastRatio, wcagGrade } from "@core/lib/contrast.ts";
+import { themeContrast } from "@core/lib/stats.ts";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 
 export interface ContrastData {
@@ -26,12 +26,12 @@ export function useUiPreview(themeKey: ThemeKey): {
         return { data: null, isLoading };
     }
 
-    const ratio = contrastRatio(theme.ui.fg.default, theme.ui.bg.default);
+    const contrast = themeContrast(theme);
 
     return {
         data: {
             theme,
-            contrast: { ratio, grade: wcagGrade(ratio) },
+            contrast: { ratio: contrast.ratio, grade: contrast.level },
             paletteColors: Object.values(theme.palette),
             darkestPrimary: theme.primaries.d10,
             lightestPrimary: theme.primaries.l40,

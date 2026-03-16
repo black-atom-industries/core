@@ -1,4 +1,4 @@
-import type { OrgStatsResult } from "../../lib/stats.ts";
+import type { OrgStatsResult } from "@core/lib/stats.ts";
 import { StatsBarLayout } from "../../components/stats-bar-layout";
 
 interface Props {

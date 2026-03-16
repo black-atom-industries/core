@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useThemes } from "../queries/themes";
-import { collectionStats } from "../lib/stats";
+import { collectionStats } from "@core/lib/stats.ts";
 import { groupByCollection } from "../lib/theme-utils";
 import { Placeholder } from "../components/placeholder";
 import { CollectionLabel } from "../components/collection-label";

@@ -10,6 +10,7 @@
     "npm:@tanstack/zod-adapter@^1.114.0": "1.166.7_@tanstack+react-router@1.163.2__react@19.2.4__react-dom@19.2.4___react@19.2.4_zod@3.25.76_react@19.2.4_react-dom@19.2.4__react@19.2.4",
     "npm:@types/react@19": "19.2.14",
     "npm:@vitejs/plugin-react-swc@^3.8.0": "3.11.0_vite@6.4.1__picomatch@4.0.3",
+    "npm:culori@4": "4.0.2",
     "npm:react-dom@19": "19.2.4_react@19.2.4",
     "npm:react@19": "19.2.4",
     "npm:vite@*": "6.4.1_picomatch@4.0.3",
@@ -867,6 +868,9 @@
     "csstype@3.2.3": {
       "integrity": "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="
     },
+    "culori@4.0.2": {
+      "integrity": "sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw=="
+    },
     "debug@4.4.3": {
       "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
       "dependencies": [
@@ -1242,6 +1246,7 @@
       "npm:@tanstack/zod-adapter@^1.114.0",
       "npm:@types/react@19",
       "npm:@vitejs/plugin-react-swc@^3.8.0",
+      "npm:culori@4",
       "npm:react-dom@19",
       "npm:react@19",
       "npm:vite@^6.1.0",

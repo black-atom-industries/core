@@ -1,9 +1,6 @@
-import { contrastRatio, wcagGrade } from "@core/lib/contrast.ts";
-
-type ThemeForStats = {
-    meta: { appearance: "dark" | "light"; collection: { key: string } };
-    ui: { fg: { default: string }; bg: { default: string } };
-};
+import { wcagContrast } from "culori";
+import { wcagGrade } from "./wcag.ts";
+import type { ThemeDefinition } from "../types/theme.ts";
 
 export interface ThemeContrastResult {
     ratio: number;
@@ -25,12 +22,12 @@ export interface OrgStatsResult {
     avgContrast: number;
 }
 
-export function themeContrast(theme: ThemeForStats): ThemeContrastResult {
-    const ratio = contrastRatio(theme.ui.fg.default, theme.ui.bg.default);
+export function themeContrast(theme: ThemeDefinition): ThemeContrastResult {
+    const ratio = wcagContrast(theme.ui.fg.default, theme.ui.bg.default);
     return { ratio, level: wcagGrade(ratio) };
 }
 
-export function collectionStats(themes: ThemeForStats[]): CollectionStatsResult {
+export function collectionStats(themes: ThemeDefinition[]): CollectionStatsResult {
     const contrasts = themes.map((t) => themeContrast(t).ratio);
     return {
         themeCount: themes.length,
@@ -40,7 +37,7 @@ export function collectionStats(themes: ThemeForStats[]): CollectionStatsResult 
     };
 }
 
-export function orgStats(themes: ThemeForStats[]): OrgStatsResult {
+export function orgStats(themes: ThemeDefinition[]): OrgStatsResult {
     const contrasts = themes.map((t) => themeContrast(t).ratio);
     const collectionCount = new Set(themes.map((t) => t.meta.collection.key)).size;
     return {

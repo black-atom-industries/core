@@ -1,4 +1,4 @@
-import type { ThemeContrastResult } from "../../lib/stats.ts";
+import type { ThemeContrastResult } from "@core/lib/stats.ts";
 import { StatsBarLayout } from "../../components/stats-bar-layout";
 
 interface Props {
