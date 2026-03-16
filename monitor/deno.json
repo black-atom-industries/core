@@ -7,7 +7,8 @@
         "check": "deno check src/main.tsx",
         "lint": "deno lint .",
         "format": "deno fmt .",
-        "checks": "deno task check && deno task lint && deno task format"
+        "test": "deno test --allow-all",
+        "checks": "deno task check && deno task lint && deno task test && deno task format"
     },
     "compilerOptions": {
         "jsx": "react-jsx",

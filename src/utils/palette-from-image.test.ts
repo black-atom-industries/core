@@ -53,7 +53,7 @@ Deno.test("generatePrimariesFromSuggestion - dark theme", async () => {
     const suggestion = result.suggestions[0];
     const code = generatePrimariesFromSuggestion(suggestion, "dark");
 
-    assertEquals(code.includes("const primaries: Theme.Primaries"), true);
+    assertEquals(code.includes("const primaries: ThemePrimaryColors"), true);
     assertEquals(code.includes("d10:"), true);
     assertEquals(code.includes("d20:"), true);
     assertEquals(code.includes("d30:"), true);
@@ -77,7 +77,7 @@ Deno.test("generatePrimariesFromSuggestion - light theme", async () => {
     const suggestion = result.suggestions[0];
     const code = generatePrimariesFromSuggestion(suggestion, "light");
 
-    assertEquals(code.includes("const primaries: Theme.Primaries"), true);
+    assertEquals(code.includes("const primaries: ThemePrimaryColors"), true);
 
     const lightnessValues = code.match(/oklch\(([0-9.]+),/g);
     assertExists(lightnessValues);
