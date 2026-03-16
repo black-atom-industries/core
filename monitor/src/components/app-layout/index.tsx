@@ -10,7 +10,7 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
 
 export function AppLayout({ leftNav, main, rightSidebar, bottomBar, ...rest }: Props) {
     return (
-        <div className={styles.shell} data-layout="AppLayout" {...rest}>
+        <div className={styles.root} data-layout="AppLayout" {...rest}>
             <div className={styles.body}>
                 <nav className={styles.leftNav}>{leftNav}</nav>
                 <main className={styles.main}>{main}</main>
