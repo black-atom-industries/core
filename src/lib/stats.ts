@@ -33,7 +33,7 @@ export function collectionStats(themes: ThemeDefinition[]): CollectionStatsResul
         themeCount: themes.length,
         darkCount: themes.filter((t) => t.meta.appearance === "dark").length,
         lightCount: themes.filter((t) => t.meta.appearance === "light").length,
-        avgContrast: contrasts.reduce((a, b) => a + b, 0) / contrasts.length,
+        avgContrast: contrasts.length ? contrasts.reduce((a, b) => a + b, 0) / contrasts.length : 0,
     };
 }
 
@@ -45,6 +45,6 @@ export function orgStats(themes: ThemeDefinition[]): OrgStatsResult {
         collectionCount,
         darkCount: themes.filter((t) => t.meta.appearance === "dark").length,
         lightCount: themes.filter((t) => t.meta.appearance === "light").length,
-        avgContrast: contrasts.reduce((a, b) => a + b, 0) / contrasts.length,
+        avgContrast: contrasts.length ? contrasts.reduce((a, b) => a + b, 0) / contrasts.length : 0,
     };
 }

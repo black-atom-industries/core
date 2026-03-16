@@ -72,3 +72,16 @@ Deno.test("orgStats aggregates across all themes", () => {
     assertEquals(result.lightCount, 1);
     assertEquals(typeof result.avgContrast, "number");
 });
+
+Deno.test("collectionStats handles empty array", () => {
+    const result = collectionStats([]);
+    assertEquals(result.themeCount, 0);
+    assertEquals(result.avgContrast, 0);
+});
+
+Deno.test("orgStats handles empty array", () => {
+    const result = orgStats([]);
+    assertEquals(result.themeCount, 0);
+    assertEquals(result.collectionCount, 0);
+    assertEquals(result.avgContrast, 0);
+});
