@@ -1,10 +1,11 @@
+import type { ThemeDefinition } from "@core/types/theme.ts";
 import { Link } from "@tanstack/react-router";
-import type { ThemeSummary } from "../../queries/themes";
+import { themeToCssVars } from "../../lib/theme-css-vars";
 import { AppearanceBadge } from "../appearance-badge";
 import styles from "./index.module.css";
 
 interface Props {
-    theme: ThemeSummary;
+    theme: ThemeDefinition;
 }
 
 const PRIMARY_ORDER = [
@@ -45,10 +46,10 @@ export function ThemePreviewCard({ theme: t }: Props) {
     return (
         <Link
             to="/preview/ui"
-            search={{ theme: t.meta.key }}
-            className={styles.card}
-            style={{ backgroundColor: t.bgDefault, color: t.fgDefault }}
+            search={{ themeKey: t.meta.key }}
             data-component="ThemePreviewCard"
+            className={styles.root}
+            style={themeToCssVars(t)}
         >
             <div className={styles.primaries}>
                 {PRIMARY_ORDER.map((key) => (
@@ -70,10 +71,7 @@ export function ThemePreviewCard({ theme: t }: Props) {
             </div>
             <div className={styles.meta}>
                 <div className={styles.name}>{t.meta.name}</div>
-                <div className={styles.footer}>
-                    <span className={styles.contrast}>{t.contrast.ratio.toFixed(1)}:1</span>
-                    <AppearanceBadge appearance={t.meta.appearance} />
-                </div>
+                <AppearanceBadge appearance={t.meta.appearance} />
             </div>
         </Link>
     );
