@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Combobox } from "@base-ui/react/combobox";
 import { groupByCollection } from "../../lib/theme-utils";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
@@ -17,6 +17,8 @@ interface ThemeGroup {
 }
 
 export function ThemeSelector({ themes, currentThemeKey, currentThemeLabel, onSelect }: Props) {
+    const [query, setQuery] = useState("");
+
     const groups: ThemeGroup[] = useMemo(() => {
         const collections = groupByCollection(themes);
         return Array.from(collections, ([collection, items]) => ({ collection, items }));
@@ -26,8 +28,13 @@ export function ThemeSelector({ themes, currentThemeKey, currentThemeLabel, onSe
         <Combobox.Root
             items={groups}
             value={currentThemeKey}
+            inputValue={query}
+            onInputValueChange={setQuery}
             onValueChange={(value) => {
-                if (value) onSelect(value as ThemeKey);
+                if (value) {
+                    onSelect(value as ThemeKey);
+                    setQuery("");
+                }
             }}
         >
             <Combobox.InputGroup className={styles.inputGroup}>
