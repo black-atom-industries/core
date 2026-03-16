@@ -30,7 +30,7 @@ export default defineConfig({
         },
     },
     optimizeDeps: {
-        include: ["@base-ui/react/navigation-menu", "@base-ui/react/combobox", "culori"],
+        include: ["@base-ui/react/navigation-menu", "@base-ui/react/dialog", "culori"],
     },
     server: {
         port: 4170,

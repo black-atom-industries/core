@@ -1,5 +1,5 @@
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import { ThemeSelector } from "./theme-selector";
+import { ThemeSwitcher } from "../theme-switcher";
 import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 import styles from "./index.module.css";
 
@@ -53,7 +53,7 @@ export function TopNav({
                 </NavigationMenu.Root>
             </div>
             <div className={styles.right}>
-                <ThemeSelector
+                <ThemeSwitcher
                     themes={themes}
                     currentThemeKey={currentThemeKey}
                     currentThemeLabel={currentTheme
