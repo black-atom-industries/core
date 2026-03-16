@@ -15,7 +15,7 @@ export function OrgStatsPartial({ stats }: Props) {
                 {
                     label: "Avg Contrast",
                     value: (
-                        <span style={{ color: "var(--ba-fg-positive)" }}>
+                        <span style={{ color: "var(--ba-ui-fg-positive)" }}>
                             {stats.avgContrast.toFixed(1)}:1
                         </span>
                     ),

@@ -1,6 +1,6 @@
 .formPanel {
-    background: var(--ba-bg);
-    border: 1px solid var(--ba-bg-float);
+    background: var(--ba-ui-bg-default);
+    border: 1px solid var(--ba-ui-bg-float);
     border-radius: 6px;
     padding: 14px 16px;
     display: flex;

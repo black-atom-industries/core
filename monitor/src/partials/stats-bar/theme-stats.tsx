@@ -12,8 +12,8 @@ export function ThemeStatsPartial(
     { contrast, collectionLabel, hueSpreadColors, lightnessRange }: Props,
 ) {
     const contrastColor = contrast.level === "fail"
-        ? "var(--ba-fg-negative)"
-        : "var(--ba-fg-positive)";
+        ? "var(--ba-ui-fg-negative)"
+        : "var(--ba-ui-fg-positive)";
 
     return (
         <StatsBarLayout

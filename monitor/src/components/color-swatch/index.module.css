@@ -12,7 +12,7 @@
     width: 44px;
     height: 44px;
     border-radius: 4px;
-    border: 1px solid var(--ba-bg-float);
+    border: 1px solid var(--ba-ui-bg-float);
     flex-shrink: 0;
 }
 
@@ -21,9 +21,9 @@
     width: 44px;
     height: 44px;
     border-radius: 4px;
-    border: 1px solid var(--ba-bg-float);
+    border: 1px solid var(--ba-ui-bg-float);
     flex-shrink: 0;
-    background: var(--ba-bg-default);
+    background: var(--ba-ui-bg-default);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,7 +34,7 @@
 
 .label {
     font-size: 9px;
-    color: var(--ba-fg-subtle);
+    color: var(--ba-ui-fg-subtle);
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -54,7 +54,7 @@
 
 .hex {
     font-size: 8px;
-    color: var(--ba-fg-disabled);
+    color: var(--ba-ui-fg-disabled);
     text-align: center;
     opacity: 0;
     transition: opacity 0.15s;

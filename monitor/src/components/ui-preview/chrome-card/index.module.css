@@ -1,8 +1,8 @@
 .card {
-    background: var(--ba-bg-panel);
+    background: var(--ba-ui-bg-panel);
     border-radius: 4px;
     padding: 8px 10px;
     font-size: 11px;
-    color: var(--ba-fg-subtle);
+    color: var(--ba-ui-fg-subtle);
     flex: 1;
 }
