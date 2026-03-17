@@ -83,11 +83,14 @@ export function CommandPalette({
         if (idx >= 0) setHighlightIndex(idx);
     }, [filtered, query]);
 
+    const highlightRef = useRef(highlightIndex);
+    highlightRef.current = highlightIndex;
+
     // Initial scroll when list mounts (callback ref fires when DOM is ready)
     const listCallbackRef = useCallback((node: HTMLDivElement | null) => {
         listRef.current = node;
-        if (node) scrollToIndex(node, highlightIndex);
-    }, [highlightIndex]);
+        if (node) scrollToIndex(node, highlightRef.current);
+    }, []);
 
     // Scroll on keyboard navigation
     useEffect(() => {
@@ -131,7 +134,15 @@ export function CommandPalette({
                             />
                         )}
                     />
-                    <div ref={listCallbackRef} className={styles.list} role="listbox">
+                    <div
+                        ref={listCallbackRef}
+                        className={styles.list}
+                        role="listbox"
+                        aria-label={placeholder}
+                        aria-activedescendant={filtered[highlightIndex]
+                            ? `cmd-item-${filtered[highlightIndex].id}`
+                            : undefined}
+                    >
                         {filtered.length === 0 && <div className={styles.empty}>{emptyMessage}
                         </div>}
                         {Array.from(
@@ -145,6 +156,7 @@ export function CommandPalette({
                                         return (
                                             <div
                                                 key={item.id}
+                                                id={`cmd-item-${item.id}`}
                                                 className={styles.item}
                                                 data-index={idx}
                                                 data-highlighted={idx === highlightIndex ||

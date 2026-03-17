@@ -98,20 +98,17 @@ export const INTENDED_PAIRINGS: PairingCategory[] = [
     },
 ];
 
-/** Resolves a dot-path key (e.g. "fg.default") to a hex color from a theme. */
-function resolveColor(theme: ThemeDefinition, key: string): string {
+/** Resolves a dot-path key (e.g. "fg.default") to a hex color from a theme.
+ *  Keys must be single-dot format: "fg.<token>" or "bg.<token>". */
+function resolveColor(theme: ThemeDefinition, key: string) {
+    type UiBgKey = keyof ThemeDefinition["ui"]["bg"];
+    type UiFgKey = keyof ThemeDefinition["ui"]["fg"];
+
     const [group, token] = key.split(".");
-    if (group !== "fg" && group !== "bg") {
-        throw new Error(`resolveColor: invalid group "${group}" in key "${key}"`);
-    }
-    const colors = group === "fg" ? theme.ui.fg : theme.ui.bg;
-    const color = (colors as unknown as Record<string, string>)[token];
-    if (!color) {
-        throw new Error(
-            `resolveColor: unknown token "${key}" in theme "${theme.meta.key}"`,
-        );
-    }
-    return color;
+
+    if (group === "fg") return theme.ui.fg[token as UiFgKey];
+    if (group === "bg") return theme.ui.bg[token as UiBgKey];
+    throw new Error(`resolveColor: invalid group "${group}" in key "${key}"`);
 }
 
 /** Computes a ContrastPair from a theme and a pairing definition. */
@@ -142,14 +139,7 @@ export function analyzeThemeContrast(theme: ThemeDefinition): ThemeContrastAnaly
     const aaCount = allPairs.filter((p) => p.level === "AA" || p.level === "AAA").length;
     const aaaCount = allPairs.filter((p) => p.level === "AAA").length;
 
-    const primary = allPairs.find(
-        (p) => p.fg.key === "fg.default" && p.bg.key === "bg.default",
-    );
-    if (!primary) {
-        throw new Error(
-            "analyzeThemeContrast: fg.default/bg.default pairing not found in INTENDED_PAIRINGS",
-        );
-    }
+    const primary = computePair(theme, { fg: "fg.default", bg: "bg.default" });
 
     const worstPair = allPairs.reduce((worst, p) => p.ratio < worst.ratio ? p : worst);
 

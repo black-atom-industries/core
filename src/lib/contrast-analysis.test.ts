@@ -1,5 +1,5 @@
 /// <reference lib="deno.ns" />
-import { assertEquals } from "@std/assert";
+import { assertEquals, assertGreater, assertLessOrEqual, assertThrows } from "@std/assert";
 import { analyzeThemeContrast, INTENDED_PAIRINGS } from "./contrast-analysis.ts";
 import type { ThemeDefinition } from "../types/theme.ts";
 
@@ -26,6 +26,7 @@ Deno.test("each pairing has fg and bg keys", () => {
 });
 
 const testTheme = {
+    meta: { key: "test-theme" },
     ui: {
         bg: {
             default: "#1a1d23",
@@ -70,10 +71,10 @@ Deno.test("analyzeThemeContrast returns correct structure", () => {
     assertEquals(result.primary.fg.key, "fg.default");
     assertEquals(result.primary.bg.key, "bg.default");
     assertEquals(result.categories.length, INTENDED_PAIRINGS.length);
-    assertEquals(typeof result.passRate.aa, "number");
-    assertEquals(typeof result.passRate.aaa, "number");
-    assertEquals(result.passRate.aa >= 0 && result.passRate.aa <= 1, true);
-    assertEquals(result.passRate.aaa >= 0 && result.passRate.aaa <= 1, true);
+    assertGreater(result.passRate.aa, 0);
+    assertLessOrEqual(result.passRate.aa, 1);
+    assertGreater(result.passRate.aaa, 0);
+    assertLessOrEqual(result.passRate.aaa, 1);
     assertEquals(typeof result.worstPair.ratio, "number");
 });
 
@@ -81,7 +82,7 @@ Deno.test("analyzeThemeContrast primary pair matches fg.default/bg.default", () 
     const result = analyzeThemeContrast(testTheme);
     assertEquals(result.primary.fg.color, "#c5cad0");
     assertEquals(result.primary.bg.color, "#1a1d23");
-    assertEquals(result.primary.ratio > 7, true);
+    assertGreater(result.primary.ratio, 7);
     assertEquals(result.primary.level, "AAA");
 });
 
@@ -100,4 +101,18 @@ Deno.test("analyzeThemeContrast pass rates are consistent with pairs", () => {
     const aaaCount = allPairs.filter((p) => p.level === "AAA").length;
     assertEquals(result.passRate.aa, aaCount / total);
     assertEquals(result.passRate.aaa, aaaCount / total);
+});
+
+Deno.test("analyzeThemeContrast throws on missing token", () => {
+    const incompleteTheme = {
+        meta: { key: "incomplete" },
+        ui: {
+            bg: { default: "#1a1d23" },
+            fg: { default: "#c5cad0" },
+        },
+    } as unknown as ThemeDefinition;
+
+    assertThrows(
+        () => analyzeThemeContrast(incompleteTheme),
+    );
 });
