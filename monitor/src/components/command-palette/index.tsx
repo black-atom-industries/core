@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "@tanstack/react-form";
-import { useStore } from "@tanstack/react-store";
 import { Dialog } from "@base-ui/react/dialog";
 import styles from "./index.module.css";
 
@@ -22,6 +21,26 @@ type Props = {
     emptyMessage?: string;
 };
 
+function filterItems(items: CommandItem[], query: string): CommandItem[] {
+    if (!query) return items;
+    const lower = query.toLowerCase();
+    return items.filter(
+        (item) =>
+            item.label.toLowerCase().includes(lower) ||
+            (item.group?.toLowerCase().includes(lower)),
+    );
+}
+
+function groupItems(items: CommandItem[]): Map<string, CommandItem[]> {
+    const groups = new Map<string, CommandItem[]>();
+    for (const item of items) {
+        const key = item.group ?? "";
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key)!.push(item);
+    }
+    return groups;
+}
+
 export function CommandPalette({
     items,
     open,
@@ -30,6 +49,7 @@ export function CommandPalette({
     emptyMessage = "No results found.",
 }: Props) {
     const [highlightIndex, setHighlightIndex] = useState(0);
+    const [filtered, setFiltered] = useState<CommandItem[]>(items);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
 
@@ -37,46 +57,32 @@ export function CommandPalette({
         defaultValues: { query: "" },
     });
 
-    const query = useStore(form.store, (s) => s.values.query);
-
-    const filtered = useMemo(() => {
-        if (!query) return items;
-        const lower = query.toLowerCase();
-        return items.filter(
-            (item) =>
-                item.label.toLowerCase().includes(lower) ||
-                (item.group?.toLowerCase().includes(lower)),
-        );
-    }, [items, query]);
-
-    const grouped = useMemo(() => {
-        const groups = new Map<string, CommandItem[]>();
-        for (const item of filtered) {
-            const key = item.group ?? "";
-            if (!groups.has(key)) groups.set(key, []);
-            groups.get(key)!.push(item);
-        }
-        return groups;
-    }, [filtered]);
+    const grouped = useMemo(() => groupItems(filtered), [filtered]);
 
     const handleSelect = useCallback((item: CommandItem) => {
         item.onSelect();
         onOpenChange(false);
     }, [onOpenChange]);
 
-    // Reset form and highlight when opened
+    // Reset form, filtering, and highlight when opened
     useEffect(() => {
         if (open) {
             form.reset();
+            setFiltered(items);
             setHighlightIndex(0);
             requestAnimationFrame(() => inputRef.current?.focus());
         }
-    }, [open, form]);
+    }, [open, form, items]);
 
-    // Reset highlight when query changes
+    // Scroll highlighted item into view
     useEffect(() => {
-        setHighlightIndex(0);
-    }, [query]);
+        const list = listRef.current;
+        if (!list) return;
+        const highlighted = list.querySelector(`[data-index="${highlightIndex}"]`);
+        if (highlighted) {
+            highlighted.scrollIntoView({ block: "nearest" });
+        }
+    }, [highlightIndex]);
 
     // Keyboard nav
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -93,16 +99,6 @@ export function CommandPalette({
         }
     };
 
-    // Scroll highlighted item into view
-    useEffect(() => {
-        const list = listRef.current;
-        if (!list) return;
-        const highlighted = list.querySelector(`[data-index="${highlightIndex}"]`);
-        if (highlighted) {
-            highlighted.scrollIntoView({ block: "nearest" });
-        }
-    }, [highlightIndex]);
-
     let itemIndex = 0;
 
     return (
@@ -112,6 +108,12 @@ export function CommandPalette({
                 <Dialog.Popup className={styles.palette} onKeyDown={handleKeyDown}>
                     <form.Field
                         name="query"
+                        listeners={{
+                            onChange: ({ value }) => {
+                                setFiltered(filterItems(items, value));
+                                setHighlightIndex(0);
+                            },
+                        }}
                         children={(field) => (
                             <input
                                 ref={inputRef}
@@ -125,14 +127,16 @@ export function CommandPalette({
                         )}
                     />
                     <div ref={listRef} className={styles.list} role="listbox">
-                        {filtered.length === 0 && <div className={styles.empty}>{emptyMessage}
-                        </div>}
+                        {filtered.length === 0 && (
+                            <div className={styles.empty}>{emptyMessage}</div>
+                        )}
                         {Array.from(
                             grouped,
                             ([groupKey, groupItems]) => (
                                 <div key={groupKey} className={styles.group}>
-                                    {groupKey && <div className={styles.groupLabel}>{groupKey}
-                                    </div>}
+                                    {groupKey && (
+                                        <div className={styles.groupLabel}>{groupKey}</div>
+                                    )}
                                     {groupItems.map((item) => {
                                         const idx = itemIndex++;
                                         return (
@@ -146,8 +150,7 @@ export function CommandPalette({
                                                 role="option"
                                                 aria-selected={item.selected}
                                                 onClick={() => handleSelect(item)}
-                                                onMouseEnter={() =>
-                                                    setHighlightIndex(idx)}
+                                                onMouseEnter={() => setHighlightIndex(idx)}
                                             >
                                                 <span>{item.label}</span>
                                                 {item.meta && (
