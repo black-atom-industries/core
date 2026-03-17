@@ -50,7 +50,6 @@ export function CommandPalette({
 }: Props) {
     const [highlightIndex, setHighlightIndex] = useState(0);
     const [filtered, setFiltered] = useState<CommandItem[]>(items);
-    const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
 
     const form = useForm({
@@ -63,16 +62,6 @@ export function CommandPalette({
         item.onSelect();
         onOpenChange(false);
     }, [onOpenChange]);
-
-    // Reset form, filtering, and highlight when opened
-    useEffect(() => {
-        if (open) {
-            form.reset();
-            setFiltered(items);
-            setHighlightIndex(0);
-            requestAnimationFrame(() => inputRef.current?.focus());
-        }
-    }, [open, form, items]);
 
     // Scroll highlighted item into view
     useEffect(() => {
@@ -116,9 +105,9 @@ export function CommandPalette({
                         }}
                         children={(field) => (
                             <input
-                                ref={inputRef}
                                 className={styles.input}
                                 type="text"
+                                autoFocus
                                 placeholder={placeholder}
                                 value={field.state.value}
                                 onBlur={field.handleBlur}
@@ -127,16 +116,14 @@ export function CommandPalette({
                         )}
                     />
                     <div ref={listRef} className={styles.list} role="listbox">
-                        {filtered.length === 0 && (
-                            <div className={styles.empty}>{emptyMessage}</div>
-                        )}
+                        {filtered.length === 0 && <div className={styles.empty}>{emptyMessage}
+                        </div>}
                         {Array.from(
                             grouped,
                             ([groupKey, groupItems]) => (
                                 <div key={groupKey} className={styles.group}>
-                                    {groupKey && (
-                                        <div className={styles.groupLabel}>{groupKey}</div>
-                                    )}
+                                    {groupKey && <div className={styles.groupLabel}>{groupKey}
+                                    </div>}
                                     {groupItems.map((item) => {
                                         const idx = itemIndex++;
                                         return (
@@ -150,7 +137,8 @@ export function CommandPalette({
                                                 role="option"
                                                 aria-selected={item.selected}
                                                 onClick={() => handleSelect(item)}
-                                                onMouseEnter={() => setHighlightIndex(idx)}
+                                                onMouseEnter={() =>
+                                                    setHighlightIndex(idx)}
                                             >
                                                 <span>{item.label}</span>
                                                 {item.meta && (
