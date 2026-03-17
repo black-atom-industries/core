@@ -25,5 +25,6 @@ black-atom-core
 /monitor/.vite/deps
 /monitor/dist/
 .superpowers/
+docs/superpowers/
 .claude/tasks/
 tmp/

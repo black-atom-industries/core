@@ -1,0 +1,64 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px;
+    gap: 16px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ba-ui-fg-accent);
+    white-space: nowrap;
+}
+
+.brandSub {
+    color: var(--ba-ui-fg-subtle);
+    font-weight: 400;
+}
+
+.nav {
+    display: flex;
+}
+
+.navList {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2px;
+}
+
+.navLink {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: var(--ba-ui-fg-subtle);
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.navLink:hover {
+    background: var(--ba-ui-bg-hover);
+    color: var(--ba-ui-fg-default);
+}
+
+.navLink[data-active] {
+    background: var(--ba-ui-bg-active);
+    color: var(--ba-ui-fg-accent);
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

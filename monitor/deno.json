@@ -23,7 +23,11 @@
         "@tanstack/react-query": "npm:@tanstack/react-query@^5.64.0",
         "@tanstack/react-router": "npm:@tanstack/react-router@^1.114.0",
         "@tanstack/router-plugin": "npm:@tanstack/router-plugin@^1.114.0",
+        "@tanstack/react-form": "npm:@tanstack/react-form@^1",
+        "@tanstack/react-store": "npm:@tanstack/react-store@^0",
+        "@tanstack/react-hotkeys": "npm:@tanstack/react-hotkeys@^0",
         "@tanstack/zod-adapter": "npm:@tanstack/zod-adapter@^1.114.0",
+        "@base-ui/react": "npm:@base-ui/react@^1.3.0",
         "culori": "npm:culori@4",
         "zod": "npm:zod@^3.24.0",
         "vite": "npm:vite@^6.1.0",
@@ -33,7 +37,7 @@
     },
     "lint": {
         "rules": {
-            "exclude": ["no-slow-types", "no-sloppy-imports"]
+            "exclude": ["no-slow-types", "no-sloppy-imports", "jsx-no-children-prop"]
         },
         "exclude": [".vite/", "dist/", "src/routeTree.gen.ts"]
     },

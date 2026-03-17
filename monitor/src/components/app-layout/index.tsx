@@ -2,21 +2,19 @@ import type { ReactNode } from "react";
 import styles from "./index.module.css";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
-    leftNav: ReactNode;
+    topBar: ReactNode;
+    leftSidebar?: ReactNode;
     main: ReactNode;
-    rightSidebar?: ReactNode;
-    bottomBar?: ReactNode;
 };
 
-export function AppLayout({ leftNav, main, rightSidebar, bottomBar, ...rest }: Props) {
+export function AppLayout({ topBar, leftSidebar, main, ...rest }: Props) {
     return (
         <div className={styles.root} data-layout="AppLayout" {...rest}>
+            <header className={styles.topBar}>{topBar}</header>
             <div className={styles.body}>
-                <nav className={styles.leftNav}>{leftNav}</nav>
+                {leftSidebar && <aside className={styles.leftSidebar}>{leftSidebar}</aside>}
                 <main className={styles.main}>{main}</main>
-                {rightSidebar && <aside className={styles.rightSidebar}>{rightSidebar}</aside>}
             </div>
-            {bottomBar && <div className={styles.bottomBar}>{bottomBar}</div>}
         </div>
     );
 }

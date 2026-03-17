@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { z } from "zod";
 import {
     createRootRoute,
@@ -11,19 +12,14 @@ import {
 } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { DEFAULT_THEME_KEY, themeKeys } from "@core/types/theme.ts";
-import { orgStats, themeContrast } from "@core/lib/stats.ts";
+import type { ThemeKey } from "@core/types/theme.ts";
+import { analyzeThemeContrast } from "@core/lib/contrast-analysis.ts";
 import { useTheme, useThemes } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
-import { CollectionLabel } from "../components/collection-label";
-import { OrgStatsPartial } from "../partials/stats-bar/org-stats";
-import { ThemeStatsPartial } from "../partials/stats-bar/theme-stats";
-import { Logo } from "../components/logo";
-import { NavItem } from "../components/nav-item";
-import { NavSection } from "../components/nav-section";
-import { NavSectionLabel } from "../components/nav-section-label";
-import { ThemeListItem } from "../components/theme-list-item";
-import { groupByCollection } from "../lib/theme-utils";
+import { TopNav } from "../components/top-nav";
+import { AnalyticsSidebar } from "../components/analytics-sidebar";
+import { ThemeSwitcher } from "../partials/theme-switcher";
 import { themeToCssVars } from "../lib/theme-css-vars";
 
 const rootSearchSchema = z.object({
@@ -51,92 +47,79 @@ function Component() {
 
     useServerReloadListener();
 
-    const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
-        !!matchRoute({ to: "/preview/code" });
-
     const { data: themes } = useThemes();
     const { data: theme } = useTheme(themeKey);
 
-    const collections = groupByCollection(themes ?? []);
-    const cssVars = theme ? themeToCssVars(theme) : {};
+    const cssVars = useMemo(() => theme ? themeToCssVars(theme) : {}, [theme]);
+
+    // Sync CSS vars to :root so portals (rendered outside AppLayout) can access them
+    useEffect(() => {
+        const root = document.documentElement;
+        for (const [key, value] of Object.entries(cssVars)) {
+            root.style.setProperty(key, value);
+        }
+        return () => {
+            for (const key of Object.keys(cssVars)) {
+                root.style.removeProperty(key);
+            }
+        };
+    }, [cssVars]);
+
+    const activeRoute = location.pathname;
+    const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
+        !!matchRoute({ to: "/preview/code" });
+    const contrastAnalysis = useMemo(
+        () => theme ? analyzeThemeContrast(theme) : null,
+        [theme],
+    );
+
+    const themeLabel = theme ? `${theme.meta.collection.label} · ${theme.meta.name}` : "";
 
     return (
-        <AppLayout
-            style={cssVars}
-            leftNav={
-                <>
-                    <Logo />
-                    <NavItem
-                        label="Dashboard"
-                        icon="◉"
-                        active={!!matchRoute({ to: "/" })}
-                        onClick={() => navigate({ to: "/", search: (prev) => prev })}
+        <>
+            <ThemeSwitcher
+                themes={themes ?? []}
+                currentThemeKey={themeKey}
+                onSelect={(key: ThemeKey) =>
+                    navigate({
+                        to: location.pathname,
+                        search: { themeKey: key },
+                    })}
+            />
+            <AppLayout
+                style={cssVars}
+                leftSidebar={isPreviewPage && contrastAnalysis
+                    ? <AnalyticsSidebar analysis={contrastAnalysis} />
+                    : undefined}
+                topBar={
+                    <TopNav
+                        activeRoute={activeRoute}
+                        onNavigate={(to) => navigate({ to, search: (prev) => prev })}
+                        right={<ThemeLabel label={themeLabel} />}
                     />
-                    <NavSection>
-                        <NavSectionLabel>Preview</NavSectionLabel>
-                        <NavItem
-                            label="UI"
-                            icon="◈"
-                            active={!!matchRoute({ to: "/preview/ui" })}
-                            onClick={() => navigate({ to: "/preview/ui", search: (prev) => prev })}
-                        />
-                        <NavItem
-                            label="Syntax"
-                            icon="◇"
-                            active={!!matchRoute({ to: "/preview/code" })}
-                            onClick={() =>
-                                navigate({ to: "/preview/code", search: (prev) => prev })}
-                        />
-                    </NavSection>
-                </>
-            }
-            main={<Outlet />}
-            rightSidebar={isPreviewPage
-                ? (
-                    <>
-                        {Array.from(
-                            collections,
-                            ([collectionKey, collectionThemes]) => (
-                                <div key={collectionKey}>
-                                    <CollectionLabel>{collectionKey}</CollectionLabel>
-                                    {collectionThemes.map((t) => (
-                                        <ThemeListItem
-                                            key={t.meta.key}
-                                            name={t.meta.name}
-                                            appearance={t.meta.appearance}
-                                            active={t.meta.key === themeKey}
-                                            onClick={() =>
-                                                navigate({
-                                                    to: location.pathname,
-                                                    search: { themeKey: t.meta.key },
-                                                })}
-                                        />
-                                    ))}
-                                </div>
-                            ),
-                        )}
-                    </>
-                )
-                : undefined}
-            bottomBar={isPreviewPage && theme
-                ? (
-                    <ThemeStatsPartial
-                        contrast={themeContrast(theme)}
-                        collectionLabel={theme.meta.collection.label}
-                        hueSpreadColors={[
-                            theme.palette.red,
-                            theme.palette.yellow,
-                            theme.palette.green,
-                            theme.palette.cyan,
-                            theme.palette.blue,
-                            theme.palette.magenta,
-                        ]}
-                        lightnessRange={[theme.primaries.d10, theme.primaries.l40]}
-                    />
-                )
-                : themes
-                ? <OrgStatsPartial stats={orgStats(themes)} />
-                : undefined}
-        />
+                }
+                main={<Outlet />}
+            />
+        </>
+    );
+}
+
+/** Simple display of current theme in the top nav — clicking opens the palette via ⌘K. */
+function ThemeLabel({ label }: { label: string }) {
+    return (
+        <span style={{ fontSize: 11, color: "var(--ba-ui-fg-accent)" }}>
+            {label}{" "}
+            <kbd
+                style={{
+                    fontSize: 9,
+                    color: "var(--ba-ui-fg-subtle)",
+                    padding: "1px 4px",
+                    border: "1px solid var(--ba-ui-bg-float)",
+                    borderRadius: 3,
+                }}
+            >
+                ⌘K
+            </kbd>
+        </span>
     );
 }
