@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "@tanstack/react-form";
+import { useStore } from "@tanstack/react-store";
 import { Dialog } from "@base-ui/react/dialog";
 import styles from "./index.module.css";
 
@@ -41,6 +42,16 @@ function groupItems(items: CommandItem[]): Map<string, CommandItem[]> {
     return groups;
 }
 
+function scrollToIndex(list: HTMLDivElement | null, index: number) {
+    if (!list) return;
+    const el = list.querySelector(`[data-index="${index}"]`) as HTMLElement | null;
+    if (!el) return;
+    // Center the item in the list viewport
+    const top = el.offsetTop - list.offsetTop;
+    const center = top - list.clientHeight / 2 + el.clientHeight / 2;
+    list.scrollTop = Math.max(0, center);
+}
+
 export function CommandPalette({
     items,
     open,
@@ -48,29 +59,39 @@ export function CommandPalette({
     placeholder = "Search...",
     emptyMessage = "No results found.",
 }: Props) {
-    const [highlightIndex, setHighlightIndex] = useState(0);
-    const [filtered, setFiltered] = useState<CommandItem[]>(items);
     const listRef = useRef<HTMLDivElement>(null);
 
     const form = useForm({
         defaultValues: { query: "" },
     });
 
+    const query = useStore(form.store, (s) => s.values.query);
+    const filtered = useMemo(() => filterItems(items, query), [items, query]);
     const grouped = useMemo(() => groupItems(filtered), [filtered]);
+
+    const [highlightIndex, setHighlightIndex] = useState(0);
 
     const handleSelect = useCallback((item: CommandItem) => {
         item.onSelect();
         onOpenChange(false);
     }, [onOpenChange]);
 
-    // Scroll highlighted item into view
+    // Jump to selected item when not searching
     useEffect(() => {
-        const list = listRef.current;
-        if (!list) return;
-        const highlighted = list.querySelector(`[data-index="${highlightIndex}"]`);
-        if (highlighted) {
-            highlighted.scrollIntoView({ block: "nearest" });
-        }
+        if (query) return;
+        const idx = filtered.findIndex((item) => item.selected);
+        if (idx >= 0) setHighlightIndex(idx);
+    }, [filtered, query]);
+
+    // Initial scroll when list mounts (callback ref fires when DOM is ready)
+    const listCallbackRef = useCallback((node: HTMLDivElement | null) => {
+        listRef.current = node;
+        if (node) scrollToIndex(node, highlightIndex);
+    }, [highlightIndex]);
+
+    // Scroll on keyboard navigation
+    useEffect(() => {
+        scrollToIndex(listRef.current, highlightIndex);
     }, [highlightIndex]);
 
     // Keyboard nav
@@ -88,8 +109,6 @@ export function CommandPalette({
         }
     };
 
-    let itemIndex = 0;
-
     return (
         <Dialog.Root open={open} onOpenChange={onOpenChange}>
             <Dialog.Portal>
@@ -98,10 +117,7 @@ export function CommandPalette({
                     <form.Field
                         name="query"
                         listeners={{
-                            onChange: ({ value }) => {
-                                setFiltered(filterItems(items, value));
-                                setHighlightIndex(0);
-                            },
+                            onChange: () => setHighlightIndex(0),
                         }}
                         children={(field) => (
                             <input
@@ -115,7 +131,7 @@ export function CommandPalette({
                             />
                         )}
                     />
-                    <div ref={listRef} className={styles.list} role="listbox">
+                    <div ref={listCallbackRef} className={styles.list} role="listbox">
                         {filtered.length === 0 && <div className={styles.empty}>{emptyMessage}
                         </div>}
                         {Array.from(
@@ -125,7 +141,7 @@ export function CommandPalette({
                                     {groupKey && <div className={styles.groupLabel}>{groupKey}
                                     </div>}
                                     {groupItems.map((item) => {
-                                        const idx = itemIndex++;
+                                        const idx = filtered.indexOf(item);
                                         return (
                                             <div
                                                 key={item.id}

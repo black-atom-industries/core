@@ -73,9 +73,7 @@ function Component() {
         [theme],
     );
 
-    const themeLabel = theme
-        ? `${theme.meta.collection.label} · ${theme.meta.name}`
-        : "";
+    const themeLabel = theme ? `${theme.meta.collection.label} · ${theme.meta.name}` : "";
 
     return (
         <>
@@ -110,8 +108,7 @@ function Component() {
 function ThemeLabel({ label }: { label: string }) {
     return (
         <span style={{ fontSize: 11, color: "var(--ba-ui-fg-accent)" }}>
-            {label}
-            {" "}
+            {label}{" "}
             <kbd
                 style={{
                     fontSize: 9,

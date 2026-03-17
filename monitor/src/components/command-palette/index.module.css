@@ -74,11 +74,12 @@
 }
 
 .item[data-highlighted] {
-    background: var(--ba-ui-bg-hover);
+    background: var(--ba-ui-bg-active);
     color: var(--ba-ui-fg-default);
 }
 
 .item[data-selected] {
+    background: var(--ba-ui-bg-default);
     color: var(--ba-ui-fg-accent);
     font-weight: 600;
 }
