@@ -105,10 +105,15 @@ function resolveColor(theme: ThemeDefinition, key: string) {
     type UiFgKey = keyof ThemeDefinition["ui"]["fg"];
 
     const [group, token] = key.split(".");
-
-    if (group === "fg") return theme.ui.fg[token as UiFgKey];
-    if (group === "bg") return theme.ui.bg[token as UiBgKey];
-    throw new Error(`resolveColor: invalid group "${group}" in key "${key}"`);
+    const color = group === "fg"
+        ? theme.ui.fg[token as UiFgKey]
+        : group === "bg"
+        ? theme.ui.bg[token as UiBgKey]
+        : undefined;
+    if (!color) {
+        throw new Error(`resolveColor: token "${key}" not found in theme "${theme.meta.key}"`);
+    }
+    return color;
 }
 
 /** Computes a ContrastPair from a theme and a pairing definition. */
