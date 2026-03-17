@@ -37,7 +37,7 @@
     },
     "lint": {
         "rules": {
-            "exclude": ["no-slow-types", "no-sloppy-imports"]
+            "exclude": ["no-slow-types", "no-sloppy-imports", "jsx-no-children-prop"]
         },
         "exclude": [".vite/", "dist/", "src/routeTree.gen.ts"]
     },

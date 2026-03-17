@@ -110,8 +110,9 @@ export function CommandPalette({
             <Dialog.Portal>
                 <Dialog.Backdrop className={styles.backdrop} />
                 <Dialog.Popup className={styles.palette} onKeyDown={handleKeyDown}>
-                    <form.Field name="query">
-                        {(field) => (
+                    <form.Field
+                        name="query"
+                        children={(field) => (
                             <input
                                 ref={inputRef}
                                 className={styles.input}
@@ -122,18 +123,16 @@ export function CommandPalette({
                                 onChange={(e) => field.handleChange(e.target.value)}
                             />
                         )}
-                    </form.Field>
+                    />
                     <div ref={listRef} className={styles.list} role="listbox">
-                        {filtered.length === 0 && (
-                            <div className={styles.empty}>{emptyMessage}</div>
-                        )}
+                        {filtered.length === 0 && <div className={styles.empty}>{emptyMessage}
+                        </div>}
                         {Array.from(
                             grouped,
                             ([groupKey, groupItems]) => (
                                 <div key={groupKey} className={styles.group}>
-                                    {groupKey && (
-                                        <div className={styles.groupLabel}>{groupKey}</div>
-                                    )}
+                                    {groupKey && <div className={styles.groupLabel}>{groupKey}
+                                    </div>}
                                     {groupItems.map((item) => {
                                         const idx = itemIndex++;
                                         return (
@@ -147,7 +146,8 @@ export function CommandPalette({
                                                 role="option"
                                                 aria-selected={item.selected}
                                                 onClick={() => handleSelect(item)}
-                                                onMouseEnter={() => setHighlightIndex(idx)}
+                                                onMouseEnter={() =>
+                                                    setHighlightIndex(idx)}
                                             >
                                                 <span>{item.label}</span>
                                                 {item.meta && (
