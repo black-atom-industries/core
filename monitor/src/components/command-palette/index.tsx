@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useForm } from "@tanstack/react-form";
+import { useStore } from "@tanstack/react-store";
 import { Dialog } from "@base-ui/react/dialog";
 import styles from "./index.module.css";
 
@@ -27,10 +29,15 @@ export function CommandPalette({
     placeholder = "Search...",
     emptyMessage = "No results found.",
 }: Props) {
-    const [query, setQuery] = useState("");
     const [highlightIndex, setHighlightIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
+
+    const form = useForm({
+        defaultValues: { query: "" },
+    });
+
+    const query = useStore(form.store, (s) => s.values.query);
 
     const filtered = useMemo(() => {
         if (!query) return items;
@@ -57,14 +64,14 @@ export function CommandPalette({
         onOpenChange(false);
     }, [onOpenChange]);
 
-    // Focus input and reset state when opened
+    // Reset form and highlight when opened
     useEffect(() => {
         if (open) {
-            setQuery("");
+            form.reset();
             setHighlightIndex(0);
             requestAnimationFrame(() => inputRef.current?.focus());
         }
-    }, [open]);
+    }, [open, form]);
 
     // Reset highlight when query changes
     useEffect(() => {
@@ -103,14 +110,19 @@ export function CommandPalette({
             <Dialog.Portal>
                 <Dialog.Backdrop className={styles.backdrop} />
                 <Dialog.Popup className={styles.palette} onKeyDown={handleKeyDown}>
-                    <input
-                        ref={inputRef}
-                        className={styles.input}
-                        type="text"
-                        placeholder={placeholder}
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                    />
+                    <form.Field name="query">
+                        {(field) => (
+                            <input
+                                ref={inputRef}
+                                className={styles.input}
+                                type="text"
+                                placeholder={placeholder}
+                                value={field.state.value}
+                                onBlur={field.handleBlur}
+                                onChange={(e) => field.handleChange(e.target.value)}
+                            />
+                        )}
+                    </form.Field>
                     <div ref={listRef} className={styles.list} role="listbox">
                         {filtered.length === 0 && (
                             <div className={styles.empty}>{emptyMessage}</div>
