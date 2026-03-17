@@ -1,14 +1,11 @@
+import type { ReactNode } from "react";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import { ThemeSwitcher } from "../theme-switcher";
-import type { ThemeDefinition, ThemeKey } from "@core/types/theme.ts";
 import styles from "./index.module.css";
 
 type Props = {
     activeRoute: string;
     onNavigate: (to: string) => void;
-    themes: ThemeDefinition[];
-    currentThemeKey: ThemeKey;
-    onThemeSelect: (key: ThemeKey) => void;
+    right?: ReactNode;
 };
 
 const routes = [
@@ -17,15 +14,7 @@ const routes = [
     { label: "Syntax", path: "/preview/code" },
 ] as const;
 
-export function TopNav({
-    activeRoute,
-    onNavigate,
-    themes,
-    currentThemeKey,
-    onThemeSelect,
-}: Props) {
-    const currentTheme = themes.find((t) => t.meta.key === currentThemeKey);
-
+export function TopNav({ activeRoute, onNavigate, right }: Props) {
     return (
         <div className={styles.root}>
             <div className={styles.left}>
@@ -52,16 +41,7 @@ export function TopNav({
                     </NavigationMenu.List>
                 </NavigationMenu.Root>
             </div>
-            <div className={styles.right}>
-                <ThemeSwitcher
-                    themes={themes}
-                    currentThemeKey={currentThemeKey}
-                    currentThemeLabel={currentTheme
-                        ? `${currentTheme.meta.collection.label} · ${currentTheme.meta.name}`
-                        : ""}
-                    onSelect={onThemeSelect}
-                />
-            </div>
+            {right && <div className={styles.right}>{right}</div>}
         </div>
     );
 }

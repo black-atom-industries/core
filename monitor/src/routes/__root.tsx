@@ -12,12 +12,14 @@ import {
 } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { DEFAULT_THEME_KEY, themeKeys } from "@core/types/theme.ts";
+import type { ThemeKey } from "@core/types/theme.ts";
+import { analyzeThemeContrast } from "@core/lib/contrast-analysis.ts";
 import { useTheme, useThemes } from "../queries/themes";
 import { useServerReloadListener } from "../hooks/use-server-reload-listener";
 import { AppLayout } from "../components/app-layout";
 import { TopNav } from "../components/top-nav";
-import { analyzeThemeContrast } from "@core/lib/contrast-analysis.ts";
 import { AnalyticsSidebar } from "../components/analytics-sidebar";
+import { ThemeSwitcher } from "../partials/theme-switcher";
 import { themeToCssVars } from "../lib/theme-css-vars";
 
 const rootSearchSchema = z.object({
@@ -71,26 +73,56 @@ function Component() {
         [theme],
     );
 
+    const themeLabel = theme
+        ? `${theme.meta.collection.label} · ${theme.meta.name}`
+        : "";
+
     return (
-        <AppLayout
-            style={cssVars}
-            leftSidebar={isPreviewPage && contrastAnalysis
-                ? <AnalyticsSidebar analysis={contrastAnalysis} />
-                : undefined}
-            topBar={
-                <TopNav
-                    activeRoute={activeRoute}
-                    onNavigate={(to) => navigate({ to, search: (prev) => prev })}
-                    themes={themes ?? []}
-                    currentThemeKey={themeKey}
-                    onThemeSelect={(key) =>
-                        navigate({
-                            to: location.pathname,
-                            search: { themeKey: key },
-                        })}
-                />
-            }
-            main={<Outlet />}
-        />
+        <>
+            <ThemeSwitcher
+                themes={themes ?? []}
+                currentThemeKey={themeKey}
+                onSelect={(key: ThemeKey) =>
+                    navigate({
+                        to: location.pathname,
+                        search: { themeKey: key },
+                    })}
+            />
+            <AppLayout
+                style={cssVars}
+                leftSidebar={isPreviewPage && contrastAnalysis
+                    ? <AnalyticsSidebar analysis={contrastAnalysis} />
+                    : undefined}
+                topBar={
+                    <TopNav
+                        activeRoute={activeRoute}
+                        onNavigate={(to) => navigate({ to, search: (prev) => prev })}
+                        right={<ThemeLabel label={themeLabel} />}
+                    />
+                }
+                main={<Outlet />}
+            />
+        </>
+    );
+}
+
+/** Simple display of current theme in the top nav — clicking opens the palette via ⌘K. */
+function ThemeLabel({ label }: { label: string }) {
+    return (
+        <span style={{ fontSize: 11, color: "var(--ba-ui-fg-accent)" }}>
+            {label}
+            {" "}
+            <kbd
+                style={{
+                    fontSize: 9,
+                    color: "var(--ba-ui-fg-subtle)",
+                    padding: "1px 4px",
+                    border: "1px solid var(--ba-ui-bg-float)",
+                    borderRadius: 3,
+                }}
+            >
+                ⌘K
+            </kbd>
+        </span>
     );
 }
