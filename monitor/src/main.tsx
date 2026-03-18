@@ -2,6 +2,7 @@
 import "open-props/sizes.min.css";
 import "open-props/fonts.min.css";
 import "open-props/borders.min.css";
+import "./global.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

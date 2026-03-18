@@ -45,7 +45,7 @@
 .colorText {
     font-size: var(--font-size-00);
     text-align: center;
-    font-family: monospace;
+    font-family: var(--font-mono);
     max-width: 52px;
     overflow: hidden;
     text-overflow: ellipsis;

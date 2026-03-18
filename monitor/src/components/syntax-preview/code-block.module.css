@@ -2,7 +2,7 @@
     background: var(--ba-ui-bg-panel);
     border-radius: var(--radius-2);
     padding: var(--size-4);
-    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+    font-family: var(--font-mono);
     font-size: var(--font-size-0);
     line-height: 1.7;
     overflow-x: auto;

@@ -6,7 +6,7 @@
     font-weight: var(--font-weight-5);
     text-transform: lowercase;
     letter-spacing: var(--font-letterspacing-1);
-    font-family: monospace;
+    font-family: var(--font-mono);
     background: var(--ba-syntax-markup-code-bg);
     color: var(--ba-syntax-markup-code-fg);
 }

@@ -47,7 +47,7 @@
     padding: var(--size-1) var(--size-2);
     border-radius: var(--radius-1);
     font-size: var(--font-size-0);
-    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-family: var(--font-mono);
 }
 
 .blockquote {
