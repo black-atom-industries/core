@@ -39,6 +39,5 @@
 }
 
 :root {
-    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code",
-        ui-monospace, monospace;
+    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
 }

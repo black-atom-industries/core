@@ -9,3 +9,7 @@
     white-space: pre;
     color: var(--ba-ui-fg-default);
 }
+
+.codeBlock code {
+    font-family: inherit;
+}
