@@ -2,13 +2,15 @@ import type { ReactNode } from "react";
 import styles from "./syntax-preview-layout.module.css";
 
 type Props = {
-    children: ReactNode;
+    sidebar: ReactNode;
+    main: ReactNode;
 };
 
-export function SyntaxPreviewLayout({ children }: Props) {
+export function SyntaxPreviewLayout({ sidebar, main }: Props) {
     return (
         <div className={styles.root} data-layout="SyntaxPreviewLayout">
-            {children}
+            {sidebar}
+            <div className={styles.sticky}>{main}</div>
         </div>
     );
 }

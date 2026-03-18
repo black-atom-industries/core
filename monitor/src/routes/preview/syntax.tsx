@@ -37,10 +37,10 @@ function Component() {
                 <SectionTitle>
                     {theme.meta.collection.label} :: {theme.meta.name}
                 </SectionTitle>
-                <SyntaxPreviewLayout>
-                    <SyntaxTokenTree syntax={theme.syntax} />
-                    <LanguageTabs languages={languages} />
-                </SyntaxPreviewLayout>
+                <SyntaxPreviewLayout
+                    sidebar={<SyntaxTokenTree syntax={theme.syntax} />}
+                    main={<LanguageTabs languages={languages} />}
+                />
             </Section>
         </Page>
     );

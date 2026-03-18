@@ -3,4 +3,10 @@
     grid-template-columns: 0.15fr 1fr;
     gap: 24px;
     min-height: 0;
+    align-items: start;
+}
+
+.sticky {
+    position: sticky;
+    top: 2em;
 }
