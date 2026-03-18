@@ -34,7 +34,7 @@ function renderGroup(name: string, group: SyntaxGroup[string]) {
         )[0] ?? "#888";
 
     return (
-        <div key={name}>
+        <div className={styles.leafGroup} key={name}>
             <div className={styles.groupLabel}>
                 <span className={styles.swatch} style={{ background: firstColor }} />
                 <span>{name}</span>
