@@ -31,16 +31,6 @@ function Component() {
         );
     }
 
-    const languages = [
-        { key: "typescript", label: "TypeScript", content: <TypeScriptSnippet /> },
-        { key: "rust", label: "Rust", content: <RustSnippet /> },
-        { key: "python", label: "Python", content: <PythonSnippet /> },
-        { key: "go", label: "Go", content: <GoSnippet /> },
-        { key: "react", label: "React", content: <ReactTsxSnippet /> },
-        { key: "html", label: "HTML", content: <HtmlSnippet /> },
-        { key: "css", label: "CSS", content: <CssSnippet /> },
-    ];
-
     return (
         <Page>
             <Section>
@@ -55,3 +45,13 @@ function Component() {
         </Page>
     );
 }
+
+const languages = [
+    { key: "typescript", label: "TypeScript", content: <TypeScriptSnippet /> },
+    { key: "rust", label: "Rust", content: <RustSnippet /> },
+    { key: "python", label: "Python", content: <PythonSnippet /> },
+    { key: "go", label: "Go", content: <GoSnippet /> },
+    { key: "react", label: "React", content: <ReactTsxSnippet /> },
+    { key: "html", label: "HTML", content: <HtmlSnippet /> },
+    { key: "css", label: "CSS", content: <CssSnippet /> },
+];
