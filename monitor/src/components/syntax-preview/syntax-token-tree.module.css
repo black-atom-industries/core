@@ -1,7 +1,7 @@
 .root {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     overflow-y: auto;
     padding-right: 8px;
 }
@@ -9,10 +9,10 @@
 .groupLabel {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-weight: 600;
-    font-size: 12px;
-    padding-top: 8px;
+    font-size: 14px;
+    padding-top: 12px;
     color: var(--ba-ui-fg-default);
 }
 
@@ -22,8 +22,8 @@
 
 .swatch {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 3px;
     flex-shrink: 0;
 }
@@ -31,16 +31,16 @@
 .leafRow {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding-left: 20px;
-    font-size: 11px;
+    gap: 8px;
+    padding-left: 26px;
+    font-size: 13px;
     color: var(--ba-ui-fg-subtle);
 }
 
 .leafSwatch {
     display: inline-block;
-    width: 9px;
-    height: 9px;
+    width: 12px;
+    height: 12px;
     border-radius: 2px;
     flex-shrink: 0;
 }
@@ -48,19 +48,19 @@
 .subGroupLabel {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding-left: 20px;
-    padding-top: 4px;
+    gap: 8px;
+    padding-left: 26px;
+    padding-top: 6px;
     font-weight: 500;
-    font-size: 11px;
+    font-size: 13px;
     color: var(--ba-ui-fg-default);
 }
 
 .deepLeafRow {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding-left: 40px;
-    font-size: 11px;
+    gap: 8px;
+    padding-left: 52px;
+    font-size: 13px;
     color: var(--ba-ui-fg-subtle);
 }
