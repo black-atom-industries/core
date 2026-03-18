@@ -16,6 +16,7 @@
     "npm:@types/react@19": "19.2.14",
     "npm:@vitejs/plugin-react-swc@^3.8.0": "3.11.0_vite@6.4.1__picomatch@4.0.3",
     "npm:culori@4": "4.0.2",
+    "npm:open-props@^1.7.0": "1.7.23",
     "npm:react-dom@19": "19.2.4_react@19.2.4",
     "npm:react@19": "19.2.4",
     "npm:vite@*": "6.4.1_picomatch@4.0.3",
@@ -1235,6 +1236,9 @@
     "normalize-path@3.0.0": {
       "integrity": "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="
     },
+    "open-props@1.7.23": {
+      "integrity": "sha512-+xyrJmxV9QUBFbSwPROYhOg/FLXry+uuPr4R+B5EaE4556Oc18/8ZC/fL5A+/lbRSwNvA0Alh+C0KpyFWLmLZg=="
+    },
     "pathe@2.0.3": {
       "integrity": "sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w=="
     },
@@ -1493,6 +1497,7 @@
       "npm:@types/react@19",
       "npm:@vitejs/plugin-react-swc@^3.8.0",
       "npm:culori@4",
+      "npm:open-props@^1.7.0",
       "npm:react-dom@19",
       "npm:react@19",
       "npm:vite@^6.1.0",
