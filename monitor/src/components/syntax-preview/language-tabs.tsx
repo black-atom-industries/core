@@ -28,7 +28,7 @@ export function LanguageTabs({ languages, defaultLanguage }: Props) {
                 ))}
             </Tabs.List>
             {languages.map(({ key, content }) => (
-                <Tabs.Panel key={key} value={key} className={styles.panel}>
+                <Tabs.Panel key={key} value={key}>
                     {content}
                 </Tabs.Panel>
             ))}

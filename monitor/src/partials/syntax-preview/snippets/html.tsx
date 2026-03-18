@@ -93,7 +93,7 @@ export function HtmlSnippet() {
             <span style={s("tag-builtin")}>form</span>{" "}
             <span style={s("tag-attribute")}>action</span>
             <span style={s("operator-default")}>=</span>
-            <span style={s("string-default")}>/submit</span>{" "}
+            <span style={s("string-default")}>"/submit"</span>{" "}
             <span style={s("tag-attribute")}>method</span>
             <span style={s("operator-default")}>=</span>
             <span style={s("string-default")}>"post"</span>
