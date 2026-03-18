@@ -7,6 +7,12 @@ import { SectionTitle } from "../../components/ui-preview/section-title";
 import { SyntaxTokenTree } from "../../components/syntax-preview/syntax-token-tree";
 import { LanguageTabs } from "../../components/syntax-preview/language-tabs";
 import { TypeScriptSnippet } from "../../partials/syntax-preview/snippets/typescript";
+import { RustSnippet } from "../../partials/syntax-preview/snippets/rust";
+import { PythonSnippet } from "../../partials/syntax-preview/snippets/python";
+import { GoSnippet } from "../../partials/syntax-preview/snippets/go";
+import { ReactTsxSnippet } from "../../partials/syntax-preview/snippets/react-tsx";
+import { HtmlSnippet } from "../../partials/syntax-preview/snippets/html";
+import { CssSnippet } from "../../partials/syntax-preview/snippets/css";
 import styles from "./syntax.module.css";
 
 export const Route = createFileRoute("/preview/syntax")({
@@ -27,6 +33,12 @@ function Component() {
 
     const languages = [
         { key: "typescript", label: "TypeScript", content: <TypeScriptSnippet /> },
+        { key: "rust", label: "Rust", content: <RustSnippet /> },
+        { key: "python", label: "Python", content: <PythonSnippet /> },
+        { key: "go", label: "Go", content: <GoSnippet /> },
+        { key: "react", label: "React", content: <ReactTsxSnippet /> },
+        { key: "html", label: "HTML", content: <HtmlSnippet /> },
+        { key: "css", label: "CSS", content: <CssSnippet /> },
     ];
 
     return (
