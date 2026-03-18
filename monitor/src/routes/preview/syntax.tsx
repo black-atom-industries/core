@@ -6,6 +6,7 @@ import { Section } from "../../components/ui-preview/section";
 import { SectionTitle } from "../../components/ui-preview/section-title";
 import { SyntaxTokenTree } from "../../components/syntax-preview/syntax-token-tree";
 import { LanguageTabs } from "../../components/syntax-preview/language-tabs";
+import { SyntaxPreviewLayout } from "../../components/syntax-preview/syntax-preview-layout";
 import { TypeScriptSnippet } from "../../partials/syntax-preview/snippets/typescript";
 import { RustSnippet } from "../../partials/syntax-preview/snippets/rust";
 import { PythonSnippet } from "../../partials/syntax-preview/snippets/python";
@@ -13,7 +14,6 @@ import { GoSnippet } from "../../partials/syntax-preview/snippets/go";
 import { ReactTsxSnippet } from "../../partials/syntax-preview/snippets/react-tsx";
 import { HtmlSnippet } from "../../partials/syntax-preview/snippets/html";
 import { CssSnippet } from "../../partials/syntax-preview/snippets/css";
-import styles from "./syntax.module.css";
 
 export const Route = createFileRoute("/preview/syntax")({
     component: Component,
@@ -47,10 +47,10 @@ function Component() {
                 <SectionTitle>
                     {theme.meta.collection.label} :: {theme.meta.name}
                 </SectionTitle>
-                <div className={styles.layout}>
+                <SyntaxPreviewLayout>
                     <SyntaxTokenTree syntax={theme.syntax} />
                     <LanguageTabs languages={languages} />
-                </div>
+                </SyntaxPreviewLayout>
             </Section>
         </Page>
     );

@@ -1,5 +1,4 @@
-/* monitor/src/routes/preview/syntax.module.css */
-.layout {
+.root {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 24px;
