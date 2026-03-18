@@ -1,5 +1,5 @@
 .swatchGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--size-2);
 }

@@ -1,20 +1,20 @@
 .btnPrimary {
-    padding: 6px 14px;
-    border-radius: 4px;
+    padding: var(--size-2) var(--size-2);
+    border-radius: var(--radius-1);
     border: none;
     background: var(--ba-ui-fg-accent);
     color: var(--ba-ui-bg-default);
-    font-size: 12px;
+    font-size: var(--font-size-0);
     cursor: pointer;
 }
 
 .btnSecondary {
-    padding: 6px 14px;
-    border-radius: 4px;
-    border: 1px solid var(--ba-ui-bg-float);
+    padding: var(--size-2) var(--size-2);
+    border-radius: var(--radius-1);
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
     background: var(--ba-ui-bg-panel);
     color: var(--ba-ui-fg-default);
-    font-size: 12px;
+    font-size: var(--font-size-0);
     cursor: pointer;
 }
 

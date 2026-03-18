@@ -1,7 +1,7 @@
 .root {
     display: grid;
     grid-template-columns: 0.15fr 1fr;
-    gap: 24px;
+    gap: var(--size-5);
     min-height: 0;
     align-items: start;
 }

@@ -11,8 +11,8 @@
 .colorBg {
     width: 44px;
     height: 44px;
-    border-radius: 4px;
-    border: 1px solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-2);
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
     flex-shrink: 0;
 }
 
@@ -20,20 +20,20 @@
 .colorFg {
     width: 44px;
     height: 44px;
-    border-radius: 4px;
-    border: 1px solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-2);
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
     flex-shrink: 0;
     background: var(--ba-ui-bg-default);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
     letter-spacing: -0.5px;
 }
 
 .label {
-    font-size: 9px;
+    font-size: var(--font-size-00);
     color: var(--ba-ui-fg-subtle);
     text-align: center;
     overflow: hidden;
@@ -43,7 +43,7 @@
 }
 
 .colorText {
-    font-size: 8px;
+    font-size: var(--font-size-00);
     text-align: center;
     font-family: monospace;
     max-width: 52px;
@@ -53,7 +53,7 @@
 }
 
 .hex {
-    font-size: 8px;
+    font-size: var(--font-size-00);
     color: var(--ba-ui-fg-disabled);
     text-align: center;
     opacity: 0;

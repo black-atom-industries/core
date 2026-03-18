@@ -16,8 +16,8 @@
     width: 420px;
     max-height: 460px;
     background: var(--ba-ui-bg-panel);
-    border: 1px solid var(--ba-ui-bg-float);
-    border-radius: 8px;
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-2);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -26,13 +26,13 @@
 
 /* Search input */
 .input {
-    padding: 12px 16px;
+    padding: var(--size-3) var(--size-3);
     background: none;
     border: none;
-    border-bottom: 1px solid var(--ba-ui-bg-float);
+    border-bottom: var(--border-size-1) solid var(--ba-ui-bg-float);
     color: var(--ba-ui-fg-default);
     font-family: inherit;
-    font-size: 14px;
+    font-size: var(--font-size-1);
     outline: none;
 }
 
@@ -44,7 +44,7 @@
 .list {
     overflow-y: auto;
     max-height: 400px;
-    padding: 4px 0;
+    padding: var(--size-1) 0;
     scrollbar-width: none;
 }
 
@@ -53,13 +53,13 @@
 }
 
 .group {
-    padding: 4px 0;
+    padding: var(--size-1) 0;
 }
 
 .groupLabel {
-    padding: 6px 16px 4px;
-    font-size: 10px;
-    letter-spacing: 1px;
+    padding: var(--size-2) var(--size-3) var(--size-1);
+    font-size: var(--font-size-0);
+    letter-spacing: var(--font-letterspacing-3);
     color: var(--ba-ui-fg-subtle);
     text-transform: uppercase;
 }
@@ -67,8 +67,8 @@
 .item {
     display: flex;
     justify-content: space-between;
-    padding: 6px 16px 6px 24px;
-    font-size: 13px;
+    padding: var(--size-2) var(--size-3) var(--size-2) var(--size-5);
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-subtle);
     cursor: pointer;
 }
@@ -81,17 +81,17 @@
 .item[data-selected] {
     background: var(--ba-ui-bg-default);
     color: var(--ba-ui-fg-accent);
-    font-weight: 600;
+    font-weight: var(--font-weight-6);
 }
 
 .meta {
-    font-size: 10px;
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-disabled);
 }
 
 .empty {
-    padding: 16px;
-    font-size: 13px;
+    padding: var(--size-3);
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-subtle);
     text-align: center;
 }

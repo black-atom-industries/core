@@ -1,4 +1,4 @@
 .lightnessBar {
-    height: 20px;
-    border-radius: 3px;
+    height: var(--size-4);
+    border-radius: var(--radius-1);
 }

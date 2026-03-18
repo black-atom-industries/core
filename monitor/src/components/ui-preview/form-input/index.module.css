@@ -1,9 +1,9 @@
 .input {
     background: var(--ba-ui-bg-panel);
-    border: 1px solid var(--ba-ui-bg-float);
-    border-radius: 4px;
-    padding: 7px 10px;
-    font-size: 12px;
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-1);
+    padding: var(--size-2) var(--size-2);
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-default);
     outline: none;
     width: 100%;

@@ -1,12 +1,12 @@
 .page {
-    padding: 24px;
+    padding: var(--size-5);
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: var(--size-7);
 }
 
 @media (max-width: 768px) {
     .page {
-        padding: 16px;
+        padding: var(--size-3);
     }
 }

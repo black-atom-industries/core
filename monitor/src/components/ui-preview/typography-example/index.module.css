@@ -1,33 +1,33 @@
 .content {
     background: var(--ba-ui-bg-default);
-    border: 1px solid var(--ba-ui-bg-float);
-    border-radius: 6px;
-    padding: 16px 20px;
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-2);
+    padding: var(--size-3) var(--size-4);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--size-2);
 }
 
 .h1 {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-7);
     color: var(--ba-ui-fg-default);
 }
 
 .h2 {
-    font-size: 17px;
-    font-weight: 600;
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
     color: var(--ba-ui-fg-default);
 }
 
 .h3 {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: var(--font-size-0);
+    font-weight: var(--font-weight-6);
     color: var(--ba-ui-fg-subtle);
 }
 
 .body {
-    font-size: 13px;
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-default);
     line-height: 1.6;
 }
@@ -44,17 +44,17 @@
 .code {
     background: var(--ba-ui-bg-selection);
     color: var(--ba-ui-fg-accent);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 12px;
+    padding: var(--size-1) var(--size-2);
+    border-radius: var(--radius-1);
+    font-size: var(--font-size-0);
     font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
 .blockquote {
-    border-left: 3px solid var(--ba-ui-fg-accent);
-    padding-left: 12px;
+    border-left: var(--border-size-2) solid var(--ba-ui-fg-accent);
+    padding-left: var(--size-2);
     color: var(--ba-ui-fg-subtle);
-    font-size: 12px;
+    font-size: var(--font-size-0);
     font-style: italic;
-    line-height: 1.5;
+    line-height: var(--font-lineheight-3);
 }
