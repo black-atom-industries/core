@@ -7,6 +7,6 @@
 .label {
     font-size: var(--font-size-00);
     text-transform: uppercase;
-    letter-spacing: var(--font-letterspacing-3);
+    letter-spacing: var(--font-letterspacing-2);
     color: var(--ba-ui-fg-disabled);
 }

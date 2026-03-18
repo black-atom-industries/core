@@ -1,5 +1,5 @@
 .btnPrimary {
-    padding: var(--size-2) var(--size-2);
+    padding: var(--size-2) var(--size-3);
     border-radius: var(--radius-1);
     border: none;
     background: var(--ba-ui-fg-accent);
@@ -9,7 +9,7 @@
 }
 
 .btnSecondary {
-    padding: var(--size-2) var(--size-2);
+    padding: var(--size-2) var(--size-3);
     border-radius: var(--radius-1);
     border: var(--border-size-1) solid var(--ba-ui-bg-float);
     background: var(--ba-ui-bg-panel);

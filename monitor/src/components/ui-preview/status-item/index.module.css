@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     gap: var(--size-2);
-    padding: var(--size-2) var(--size-2);
+    padding: var(--size-2) var(--size-3);
     border-bottom: var(--border-size-1) solid var(--ba-ui-bg-float);
     font-size: var(--font-size-0);
 }

@@ -1,5 +1,5 @@
 .item {
-    padding: var(--size-2) var(--size-2);
+    padding: var(--size-1) var(--size-3);
     font-size: var(--font-size-0);
     color: var(--ba-ui-fg-subtle);
     cursor: default;
