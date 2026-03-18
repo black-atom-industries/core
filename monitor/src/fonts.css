@@ -1,3 +1,9 @@
+/* ==========================================================================
+   Font Declarations & OpenProps Font Overrides
+   ========================================================================== */
+
+/* --- @font-face: TX-02 (Mono) --- */
+
 @font-face {
     font-family: "TX-02";
     src: url("/fonts/TX-02-Regular.ttf") format("truetype");
@@ -38,6 +44,24 @@
     font-display: swap;
 }
 
+/* --- OpenProps Font Overrides --- */
+
 :root {
-    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
+    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code",
+        ui-monospace, monospace;
+
+    /* TODO: Replace with a proper sans-serif font */
+    --font-sans: var(--font-mono);
+}
+
+/* --- Base font assignments --- */
+
+body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}
+
+code,
+pre {
+    font-family: var(--font-mono);
 }
