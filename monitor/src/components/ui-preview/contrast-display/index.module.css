@@ -1,12 +1,12 @@
 .ratio {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
     color: var(--ba-ui-fg-default);
 }
 
 .grade {
-    font-size: 11px;
-    font-weight: 500;
+    font-size: var(--font-size-0);
+    font-weight: var(--font-weight-5);
 }
 
 .grade[data-grade="AAA"],

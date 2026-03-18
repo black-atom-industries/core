@@ -1,6 +1,6 @@
 .statusList {
     background: var(--ba-ui-bg-default);
-    border: 1px solid var(--ba-ui-bg-float);
-    border-radius: 6px;
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
+    border-radius: var(--radius-2);
     overflow: hidden;
 }

@@ -1,27 +1,27 @@
 .root {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    gap: var(--size-3);
+    padding: var(--size-3);
 }
 
 /* Summary */
 .summaryLabel {
-    font-size: 9px;
-    letter-spacing: 1px;
+    font-size: var(--font-size-00);
+    letter-spacing: var(--font-letterspacing-3);
     color: var(--ba-ui-fg-subtle);
-    margin-bottom: 6px;
+    margin-bottom: var(--size-2);
 }
 
 .summaryRow {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: var(--size-2);
 }
 
 .summaryValue {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-7);
 }
 
 .summaryValue[data-health="good"] {
@@ -35,8 +35,8 @@
 }
 
 .summaryValueSecondary {
-    font-size: 14px;
-    font-weight: 700;
+    font-size: var(--font-size-1);
+    font-weight: var(--font-weight-7);
     opacity: 0.7;
 }
 
@@ -51,15 +51,15 @@
 }
 
 .summaryDetail {
-    font-size: 10px;
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-subtle);
 }
 
 /* Worst pair callout — color varies by grade */
 .worstPair {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--ba-ui-bg-float);
+    padding: var(--size-2);
+    border-radius: var(--radius-2);
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
     background: var(--ba-ui-bg-active);
 }
 
@@ -74,15 +74,15 @@
 }
 
 .worstPairLabel {
-    font-size: 8px;
-    letter-spacing: 1px;
+    font-size: var(--font-size-00);
+    letter-spacing: var(--font-letterspacing-3);
     color: var(--ba-ui-fg-subtle);
-    margin-bottom: 4px;
+    margin-bottom: var(--size-1);
 }
 
 .worstPairKeys {
-    font-size: 10px;
-    font-weight: 600;
+    font-size: var(--font-size-0);
+    font-weight: var(--font-weight-6);
 }
 
 .worstPair[data-grade="fail"] .worstPairKeys {
@@ -99,8 +99,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4px;
-    font-size: 10px;
+    margin-top: var(--size-1);
+    font-size: var(--font-size-0);
 }
 
 .worstPair[data-grade="fail"] .worstPairResult {
@@ -114,9 +114,9 @@
 }
 
 .worstPairBadge {
-    font-size: 8px;
-    padding: 1px 4px;
-    border-radius: 2px;
+    font-size: var(--font-size-00);
+    padding: var(--size-1) var(--size-1);
+    border-radius: var(--radius-1);
     background: var(--ba-ui-bg-default);
 }
 
@@ -134,7 +134,7 @@
 
 /* Divider */
 .divider {
-    height: 1px;
+    height: var(--border-size-1);
     background: var(--ba-ui-bg-float);
 }
 
@@ -142,14 +142,14 @@
 .category {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--size-1);
 }
 
 .categoryLabel {
-    font-size: 9px;
-    letter-spacing: 1px;
+    font-size: var(--font-size-00);
+    letter-spacing: var(--font-letterspacing-3);
     color: var(--ba-ui-fg-subtle);
-    margin-bottom: 2px;
+    margin-bottom: var(--size-1);
     text-transform: uppercase;
 }
 
@@ -157,8 +157,8 @@
 .pairRow {
     display: flex;
     justify-content: space-between;
-    padding: 2px 0;
-    font-size: 10px;
+    padding: var(--size-1) 0;
+    font-size: var(--font-size-0);
 }
 
 .pairKeys {
@@ -166,7 +166,7 @@
 }
 
 .pairResult {
-    font-weight: 500;
+    font-weight: var(--font-weight-5);
 }
 
 .pairRow[data-grade="AAA"] .pairResult {

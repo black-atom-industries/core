@@ -2,27 +2,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 16px;
-    gap: 16px;
+    padding: var(--size-2) var(--size-3);
+    gap: var(--size-3);
 }
 
 .left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--size-4);
 }
 
 .brand {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: var(--font-size-0);
+    font-weight: var(--font-weight-7);
+    letter-spacing: var(--font-letterspacing-3);
     color: var(--ba-ui-fg-accent);
     white-space: nowrap;
 }
 
 .brandSub {
     color: var(--ba-ui-fg-subtle);
-    font-weight: 400;
+    font-weight: var(--font-weight-4);
 }
 
 .nav {
@@ -34,14 +34,14 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 2px;
+    gap: var(--size-1);
 }
 
 .navLink {
-    padding: 5px 10px;
-    border-radius: 4px;
+    padding: var(--size-1) var(--size-2);
+    border-radius: var(--radius-2);
     color: var(--ba-ui-fg-subtle);
-    font-size: 12px;
+    font-size: var(--font-size-0);
     text-decoration: none;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
@@ -60,5 +60,5 @@
 .right {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--size-2);
 }

@@ -1,7 +1,7 @@
 .chromeLayout {
     display: flex;
     height: 160px;
-    border-radius: 6px;
+    border-radius: var(--radius-2);
     overflow: hidden;
-    border: 1px solid var(--ba-ui-bg-float);
+    border: var(--border-size-1) solid var(--ba-ui-bg-float);
 }

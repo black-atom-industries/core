@@ -4,6 +4,6 @@
     background: var(--ba-ui-bg-panel);
     display: flex;
     flex-direction: column;
-    padding: 8px 0;
-    gap: 2px;
+    padding: var(--size-2) 0;
+    gap: var(--size-1);
 }

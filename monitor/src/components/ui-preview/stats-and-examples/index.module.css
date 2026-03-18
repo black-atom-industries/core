@@ -1,6 +1,6 @@
 .statsAndExamples {
     display: flex;
-    gap: 24px;
+    gap: var(--size-5);
     align-items: flex-start;
 }
 

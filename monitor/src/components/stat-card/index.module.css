@@ -1,22 +1,22 @@
 .card {
     background: var(--ba-ui-bg-panel);
-    border-radius: 6px;
-    padding: 10px 12px;
+    border-radius: var(--radius-2);
+    padding: var(--size-2) var(--size-3);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--size-2);
     min-width: 0;
 }
 
 .label {
-    font-size: 10px;
+    font-size: var(--font-size-0);
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: var(--font-letterspacing-2);
     color: var(--ba-ui-fg-disabled);
 }
 
 .content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--size-1);
 }

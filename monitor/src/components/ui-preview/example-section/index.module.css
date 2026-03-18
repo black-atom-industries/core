@@ -1,12 +1,12 @@
 .section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--size-2);
 }
 
 .label {
-    font-size: 10px;
+    font-size: var(--font-size-00);
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: var(--font-letterspacing-2);
     color: var(--ba-ui-fg-disabled);
 }

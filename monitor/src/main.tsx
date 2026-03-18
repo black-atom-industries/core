@@ -1,4 +1,7 @@
 /// <reference path="./vite-env.d.ts" />
+import "open-props/sizes.min.css";
+import "open-props/fonts.min.css";
+import "open-props/borders.min.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

@@ -1,9 +1,9 @@
 .item {
-    padding: 5px 12px;
-    font-size: 11px;
+    padding: var(--size-1) var(--size-3);
+    font-size: var(--font-size-0);
     color: var(--ba-ui-fg-subtle);
     cursor: default;
-    border-left: 2px solid transparent;
+    border-left: var(--border-size-2) solid transparent;
 }
 
 .item[data-active="true"] {
