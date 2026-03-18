@@ -4,6 +4,10 @@ on:
     pull_request:
         types: [opened, synchronize, labeled, ready_for_review]
 
+concurrency:
+    group: claude-review-${{ github.event.pull_request.number }}
+    cancel-in-progress: true
+
 jobs:
     claude-review:
         if: |
@@ -12,8 +16,8 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: read
-            pull-requests: read
-            issues: read
+            pull-requests: write
+            issues: write
             id-token: write
 
         steps:
@@ -42,6 +46,13 @@ jobs:
 
                       Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
 
-                  # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
-                  # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
                   claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+
+            - name: Swap labels after review
+              if: success()
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  gh pr edit ${{ github.event.pull_request.number }} \
+                    --remove-label "needs-review" \
+                    --add-label "reviewed"
