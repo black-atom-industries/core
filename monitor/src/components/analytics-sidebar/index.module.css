@@ -22,14 +22,32 @@
 .summaryValue {
     font-size: 20px;
     font-weight: 700;
+}
+
+.summaryValue[data-health="good"] {
     color: var(--ba-ui-fg-positive);
+}
+.summaryValue[data-health="warn"] {
+    color: var(--ba-ui-fg-warn);
+}
+.summaryValue[data-health="poor"] {
+    color: var(--ba-ui-fg-negative);
 }
 
 .summaryValueSecondary {
     font-size: 14px;
     font-weight: 700;
-    color: var(--ba-ui-fg-positive);
     opacity: 0.7;
+}
+
+.summaryValueSecondary[data-health="good"] {
+    color: var(--ba-ui-fg-positive);
+}
+.summaryValueSecondary[data-health="warn"] {
+    color: var(--ba-ui-fg-warn);
+}
+.summaryValueSecondary[data-health="poor"] {
+    color: var(--ba-ui-fg-negative);
 }
 
 .summaryDetail {
