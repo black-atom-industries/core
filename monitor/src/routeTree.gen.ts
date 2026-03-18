@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PreviewUiRouteImport } from './routes/preview/ui'
 import { Route as PreviewSyntaxRouteImport } from './routes/preview/syntax'
-import { Route as PreviewCodeRouteImport } from './routes/preview/code'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,42 +28,33 @@ const PreviewSyntaxRoute = PreviewSyntaxRouteImport.update({
   path: '/preview/syntax',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PreviewCodeRoute = PreviewCodeRouteImport.update({
-  id: '/preview/code',
-  path: '/preview/code',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/preview/code': typeof PreviewCodeRoute
   '/preview/syntax': typeof PreviewSyntaxRoute
   '/preview/ui': typeof PreviewUiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/preview/code': typeof PreviewCodeRoute
   '/preview/syntax': typeof PreviewSyntaxRoute
   '/preview/ui': typeof PreviewUiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/preview/code': typeof PreviewCodeRoute
   '/preview/syntax': typeof PreviewSyntaxRoute
   '/preview/ui': typeof PreviewUiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/preview/code' | '/preview/syntax' | '/preview/ui'
+  fullPaths: '/' | '/preview/syntax' | '/preview/ui'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/preview/code' | '/preview/syntax' | '/preview/ui'
-  id: '__root__' | '/' | '/preview/code' | '/preview/syntax' | '/preview/ui'
+  to: '/' | '/preview/syntax' | '/preview/ui'
+  id: '__root__' | '/' | '/preview/syntax' | '/preview/ui'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PreviewCodeRoute: typeof PreviewCodeRoute
   PreviewSyntaxRoute: typeof PreviewSyntaxRoute
   PreviewUiRoute: typeof PreviewUiRoute
 }
@@ -92,19 +82,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreviewSyntaxRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/preview/code': {
-      id: '/preview/code'
-      path: '/preview/code'
-      fullPath: '/preview/code'
-      preLoaderRoute: typeof PreviewCodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PreviewCodeRoute: PreviewCodeRoute,
   PreviewSyntaxRoute: PreviewSyntaxRoute,
   PreviewUiRoute: PreviewUiRoute,
 }

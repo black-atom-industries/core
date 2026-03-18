@@ -19,18 +19,15 @@ export function TypeScriptSnippet() {
             <span style={s("keyword-default")}>interface</span>{" "}
             <span style={s("type-default")}>Config</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}
-            {"  "}<span style={s("property-default")}>name</span>
+            {"\n"}{"  "}<span style={s("property-default")}>name</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-builtin")}>string</span>
             <span style={s("punctuation-delimiter")}>;</span>
-            {"\n"}
-            {"  "}<span style={s("property-default")}>maxRetries</span>
+            {"\n"}{"  "}<span style={s("property-default")}>maxRetries</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-builtin")}>number</span>
             <span style={s("punctuation-delimiter")}>;</span>
-            {"\n"}
-            {"  "}<span style={s("property-default")}>enabled</span>
+            {"\n"}{"  "}<span style={s("property-default")}>enabled</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-builtin")}>boolean</span>
             <span style={s("punctuation-delimiter")}>;</span>
@@ -58,14 +55,12 @@ export function TypeScriptSnippet() {
             <span style={s("type-default")}>T</span>
             <span style={s("punctuation-bracket")}>{">"}</span>
             <span style={s("punctuation-bracket")}>(</span>
-            {"\n"}
-            {"  "}<span style={s("variable-parameter")}>items</span>
+            {"\n"}{"  "}<span style={s("variable-parameter")}>items</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-default")}>T</span>
             <span style={s("punctuation-bracket")}>[]</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}
-            {"  "}<span style={s("variable-parameter")}>config</span>
+            {"\n"}{"  "}<span style={s("variable-parameter")}>config</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-default")}>Config</span>
             <span style={s("punctuation-delimiter")}>,</span>
@@ -77,8 +72,7 @@ export function TypeScriptSnippet() {
             <span style={s("type-default")}>T</span>
             <span style={s("punctuation-bracket")}>{"[]>"}</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}
-            {"  "}<span style={s("keyword-default")}>const</span>{" "}
+            {"\n"}{"  "}<span style={s("keyword-default")}>const</span>{" "}
             <span style={s("variable-default")}>results</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("type-default")}>T</span>
@@ -86,8 +80,7 @@ export function TypeScriptSnippet() {
             <span style={s("operator-default")}>=</span>{" "}
             <span style={s("punctuation-bracket")}>[]</span>
             <span style={s("punctuation-delimiter")}>;</span>
-            {"\n\n"}
-            {"  "}<span style={s("keyword-default")}>for</span>{" "}
+            {"\n\n"}{"  "}<span style={s("keyword-default")}>for</span>{" "}
             <span style={s("punctuation-bracket")}>(</span>
             <span style={s("keyword-default")}>const</span>{" "}
             <span style={s("variable-default")}>item</span>{" "}
@@ -95,20 +88,16 @@ export function TypeScriptSnippet() {
             <span style={s("variable-default")}>items</span>
             <span style={s("punctuation-bracket")}>)</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}
-            {"    "}<span style={s("comment-todo")}>{"// TODO: add rate limiting"}</span>
-            {"\n"}
-            {"    "}<span style={s("variable-default")}>results</span>
+            {"\n"}{"    "}<span style={s("comment-todo")}>{"// TODO: add rate limiting"}</span>
+            {"\n"}{"    "}<span style={s("variable-default")}>results</span>
             <span style={s("punctuation-delimiter")}>.</span>
             <span style={s("func-method")}>push</span>
             <span style={s("punctuation-bracket")}>(</span>
             <span style={s("variable-default")}>item</span>
             <span style={s("punctuation-bracket")}>)</span>
             <span style={s("punctuation-delimiter")}>;</span>
-            {"\n"}
-            {"  "}<span style={s("punctuation-bracket")}>{"}"}</span>
-            {"\n\n"}
-            {"  "}<span style={s("keyword-default")}>return</span>{" "}
+            {"\n"}{"  "}<span style={s("punctuation-bracket")}>{"}"}</span>
+            {"\n\n"}{"  "}<span style={s("keyword-default")}>return</span>{" "}
             <span style={s("variable-default")}>results</span>
             <span style={s("punctuation-delimiter")}>;</span>
             {"\n"}

@@ -46,10 +46,8 @@ export function RustSnippet() {
             <span style={s("keyword-default")}>impl</span>{" "}
             <span style={s("type-default")}>Config</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}{"  "}
-            <span style={s("comment-doc")}>{"/// Creates a new Config instance"}</span>
-            {"\n"}{"  "}
-            <span style={s("keyword-export")}>pub</span>{" "}
+            {"\n"}{"  "}<span style={s("comment-doc")}>{"/// Creates a new Config instance"}</span>
+            {"\n"}{"  "}<span style={s("keyword-export")}>pub</span>{" "}
             <span style={s("keyword-default")}>fn</span>{" "}
             <span style={s("constructor-default")}>new</span>
             <span style={s("punctuation-bracket")}>(</span>
@@ -61,33 +59,26 @@ export function RustSnippet() {
             <span style={s("operator-default")}>{"->"}</span>{" "}
             <span style={s("type-default")}>Self</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}{"    "}
-            <span style={s("type-default")}>Config</span>
+            {"\n"}{"    "}<span style={s("type-default")}>Config</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}{"      "}
-            <span style={s("property-default")}>name</span>
+            {"\n"}{"      "}<span style={s("property-default")}>name</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("variable-parameter")}>name</span>
             <span style={s("punctuation-delimiter")}>.</span>
             <span style={s("func-method")}>to_string</span>
             <span style={s("punctuation-bracket")}>()</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}{"      "}
-            <span style={s("property-default")}>max_retries</span>
+            {"\n"}{"      "}<span style={s("property-default")}>max_retries</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("number-default")}>3</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}{"      "}
-            <span style={s("property-default")}>enabled</span>
+            {"\n"}{"      "}<span style={s("property-default")}>enabled</span>
             <span style={s("punctuation-delimiter")}>:</span>{" "}
             <span style={s("boolean-default")}>true</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}{"    "}
-            <span style={s("punctuation-bracket")}>{"}"}</span>
-            {"\n"}{"  "}
-            <span style={s("punctuation-bracket")}>{"}"}</span>
-            {"\n\n"}{"  "}
-            <span style={s("keyword-export")}>pub</span>{" "}
+            {"\n"}{"    "}<span style={s("punctuation-bracket")}>{"}"}</span>
+            {"\n"}{"  "}<span style={s("punctuation-bracket")}>{"}"}</span>
+            {"\n\n"}{"  "}<span style={s("keyword-export")}>pub</span>{" "}
             <span style={s("keyword-default")}>fn</span>{" "}
             <span style={s("func-default")}>process</span>
             <span style={s("punctuation-bracket")}>(</span>
@@ -101,40 +92,32 @@ export function RustSnippet() {
             <span style={s("operator-default")}>{"->"}</span>{" "}
             <span style={s("type-builtin")}>i32</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}{"    "}
-            <span style={s("comment-todo")}>{"// TODO: implement caching"}</span>
-            {"\n"}{"    "}
-            <span style={s("keyword-default")}>match</span>{" "}
+            {"\n"}{"    "}<span style={s("comment-todo")}>{"// TODO: implement caching"}</span>
+            {"\n"}{"    "}<span style={s("keyword-default")}>match</span>{" "}
             <span style={s("variable-parameter")}>value</span>
             <span style={s("punctuation-bracket")}>{" {"}</span>
-            {"\n"}{"      "}
-            <span style={s("number-default")}>0</span>{" "}
+            {"\n"}{"      "}<span style={s("number-default")}>0</span>{" "}
             <span style={s("operator-default")}>={">"}</span>{" "}
             <span style={s("func-builtin")}>println!</span>
             <span style={s("punctuation-bracket")}>(</span>
             <span style={s("string-default")}>"zero"</span>
             <span style={s("punctuation-bracket")}>)</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}{"      "}
-            <span style={s("variable-default")}>n</span>{" "}
+            {"\n"}{"      "}<span style={s("variable-default")}>n</span>{" "}
             <span style={s("operator-default")}>={">"}</span>{" "}
             <span style={s("func-builtin")}>println!</span>
             <span style={s("punctuation-bracket")}>(</span>
-            <span style={s("string-default")}>"value: </span>
+            <span style={s("string-default")}>"value:</span>
             <span style={s("string-escape")}>{"{}"}</span>
             <span style={s("string-default")}>"</span>
             <span style={s("punctuation-delimiter")}>,</span>{" "}
             <span style={s("variable-default")}>n</span>
             <span style={s("punctuation-bracket")}>)</span>
             <span style={s("punctuation-delimiter")}>,</span>
-            {"\n"}{"    "}
-            <span style={s("punctuation-bracket")}>{"}"}</span>
-            {"\n"}{"    "}
-            <span style={s("variable-parameter")}>value</span>{" "}
-            <span style={s("operator-default")}>+</span>{" "}
-            <span style={s("number-default")}>1</span>
-            {"\n"}{"  "}
-            <span style={s("punctuation-bracket")}>{"}"}</span>
+            {"\n"}{"    "}<span style={s("punctuation-bracket")}>{"}"}</span>
+            {"\n"}{"    "}<span style={s("variable-parameter")}>value</span>{" "}
+            <span style={s("operator-default")}>+</span> <span style={s("number-default")}>1</span>
+            {"\n"}{"  "}<span style={s("punctuation-bracket")}>{"}"}</span>
             {"\n"}
             <span style={s("punctuation-bracket")}>{"}"}</span>
         </CodeBlock>
