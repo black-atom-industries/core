@@ -22,7 +22,7 @@
 }
 
 .leftSidebar {
-    width: 240px;
+    width: 50ch;
     flex-shrink: 0;
     background: var(--ba-ui-bg-panel);
     border-right: var(--border-size-1) solid var(--ba-ui-bg-float);
