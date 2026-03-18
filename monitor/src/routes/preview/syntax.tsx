@@ -1,14 +1,15 @@
+// monitor/src/routes/preview/syntax.tsx
 import { createFileRoute } from "@tanstack/react-router";
 import { Placeholder } from "../../components/placeholder";
 
-export const Route = createFileRoute("/preview/code")({
+export const Route = createFileRoute("/preview/syntax")({
     component: Component,
 });
 
 function Component() {
     return (
         <Placeholder>
-            <p>Code Preview — coming soon</p>
+            <p>Syntax Preview — loading…</p>
         </Placeholder>
     );
 }

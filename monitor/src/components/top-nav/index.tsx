@@ -11,7 +11,7 @@ type Props = {
 const routes = [
     { label: "Dashboard", path: "/" },
     { label: "UI Preview", path: "/preview/ui" },
-    { label: "Syntax", path: "/preview/code" },
+    { label: "Syntax", path: "/preview/syntax" },
 ] as const;
 
 export function TopNav({ activeRoute, onNavigate, right }: Props) {
