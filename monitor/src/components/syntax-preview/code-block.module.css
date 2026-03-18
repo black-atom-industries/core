@@ -1,0 +1,11 @@
+.codeBlock {
+    background: var(--ba-ui-bg-panel);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--ba-ui-fg-default);
+}
