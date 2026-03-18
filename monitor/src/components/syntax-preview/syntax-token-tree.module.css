@@ -1,0 +1,74 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+    padding-right: 12px;
+}
+
+.groupLabel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    padding-top: 16px;
+    margin-bottom: 0.5em;
+    color: var(--ba-ui-fg-default);
+}
+
+.groupLabel:first-child {
+    padding-top: 0;
+}
+
+.swatch {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.leafGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.leafRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 32px;
+    font-size: 14px;
+    color: var(--ba-ui-fg-subtle);
+}
+
+.leafSwatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.subGroupLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 32px;
+    padding-top: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ba-ui-fg-default);
+}
+
+.deepLeafRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 60px;
+    font-size: 14px;
+    color: var(--ba-ui-fg-subtle);
+}

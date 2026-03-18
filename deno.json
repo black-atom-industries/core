@@ -63,7 +63,8 @@
         "singleQuote": false,
         "proseWrap": "preserve",
         "exclude": [
-            "CHANGELOG.md"
+            "CHANGELOG.md",
+            "monitor/src/routeTree.gen.ts"
         ]
     },
     "imports": {

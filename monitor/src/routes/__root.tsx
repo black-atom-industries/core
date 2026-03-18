@@ -67,7 +67,7 @@ function Component() {
 
     const activeRoute = location.pathname;
     const isPreviewPage = !!matchRoute({ to: "/preview/ui" }) ||
-        !!matchRoute({ to: "/preview/code" });
+        !!matchRoute({ to: "/preview/syntax" });
     const contrastAnalysis = useMemo(
         () => theme ? analyzeThemeContrast(theme) : null,
         [theme],
