@@ -24,6 +24,13 @@ React 19 + Vite app for previewing and analyzing Black Atom themes. Display laye
 - `themeToCssVars(theme)` creates a CSS custom property scope from any `ThemeDefinition`
 - Utilities like `groupByCollection()` live in tested lib files (`src/lib/`), not inline
 
+## Styling
+
+- **CSS Modules** for all component styling — no inline styles except in snippet partials (`var(--ba-syntax-*)`)
+- **OpenProps** for design tokens — use `var(--size-*)`, `var(--font-size-*)`, `var(--radius-*)`, `var(--border-size-*)`, `var(--font-weight-*)`, `var(--font-letterspacing-*)` instead of magic numbers
+- Theme colors via `var(--ba-ui-*)` and `var(--ba-syntax-*)` custom properties (synced by `themeToCssVars()`)
+- No new magic px values in CSS — always use the closest OpenProps token
+
 ## Conventions
 
 - Import core types via `@core/` alias — never duplicate or subset `ThemeDefinition`
