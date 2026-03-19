@@ -1,7 +1,5 @@
 /// <reference path="./vite-env.d.ts" />
-import "open-props/sizes.min.css";
-import "open-props/fonts.min.css";
-import "open-props/borders.min.css";
+import "open-props/style";
 import "./fonts.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
