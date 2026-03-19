@@ -1,0 +1,11 @@
+.swatch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--size-2);
+    border-radius: var(--radius-2);
+    border: var(--border-size-1) solid var(--ba-ui-fg-subtle);
+    font-size: var(--font-size-1);
+    font-weight: var(--font-weight-7);
+    flex-shrink: 0;
+}

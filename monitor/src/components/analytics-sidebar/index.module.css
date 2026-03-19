@@ -157,11 +157,15 @@
 .pairRow {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: var(--size-1) 0;
     font-size: var(--font-size-0);
 }
 
 .pairKeys {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2);
     color: var(--ba-ui-fg-subtle);
 }
 
