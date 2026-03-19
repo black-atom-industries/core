@@ -2,13 +2,10 @@
     "nodeModulesDir": "auto",
     "unstable": ["sloppy-imports"],
     "tasks": {
-        "dev": "deno run -A npm:vite",
-        "build": "deno run -A npm:vite build",
-        "check": "deno check src/main.tsx",
-        "lint": "deno lint .",
-        "format": "deno fmt .",
         "test": "deno test --allow-all",
-        "checks": "deno task check && deno task lint && deno task test && deno task format"
+        "checks": "deno check && deno lint && deno fmt && deno task test",
+        "dev": "deno run -A npm:vite",
+        "build": "deno run -A npm:vite build"
     },
     "compilerOptions": {
         "jsx": "react-jsx",

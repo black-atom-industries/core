@@ -14,12 +14,10 @@
         ]
     },
     "tasks": {
-        "test": "deno test --allow-all",
         "lock": "deno cache --lock=deno.lock --reload .",
-        "check": "deno check .",
-        "checks": "deno task check && deno task format && deno task lint && deno task test && cd monitor && deno task checks",
-        "format": "deno fmt .",
-        "lint": "deno lint .",
+        "test": "deno test --allow-all",
+        "checks": "deno check && deno lint && deno fmt && deno task test && cd monitor && deno task checks",
+        "checks:ci": "deno task check && deno task lint && deno test --allow-all && deno fmt --check && cd monitor && deno task checks",
         "schema": "deno run --allow-read --allow-write src/lib/generate-schema.ts && deno fmt .",
         "cli:compile": "deno compile --allow-read --allow-write --allow-env -o black-atom-core src/cli/index.ts",
         "cli:install": "cp black-atom-core /usr/local/bin/",
