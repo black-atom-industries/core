@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import styles from "./StatsAndExamples.module.css";
+
+interface Props {
+    children: ReactNode;
+}
+
+export function StatsAndExamples({ children }: Props) {
+    return <div className={styles.statsAndExamples} data-layout="StatsAndExamples">{children}</div>;
+}

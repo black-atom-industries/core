@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import styles from "./ChromeSidebar.module.css";
+
+interface Props {
+    children: ReactNode;
+}
+
+export function ChromeSidebar({ children }: Props) {
+    return <aside className={styles.sidebar} data-component="ChromeSidebar">{children}</aside>;
+}

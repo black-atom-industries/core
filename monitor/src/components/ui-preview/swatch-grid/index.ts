@@ -1,0 +1,1 @@
+export { SwatchGrid } from "./SwatchGrid";

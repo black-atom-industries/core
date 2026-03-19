@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import styles from "./SectionTitle.module.css";
+
+interface Props {
+    children: ReactNode;
+}
+
+export function SectionTitle({ children }: Props) {
+    return <h2 className={styles.sectionTitle} data-component="SectionTitle">{children}</h2>;
+}

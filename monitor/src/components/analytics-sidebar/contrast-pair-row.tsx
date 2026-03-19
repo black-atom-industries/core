@@ -1,6 +1,6 @@
 import type { ContrastPair } from "@core/lib/contrast-analysis.ts";
 import { ContrastSwatch } from "../contrast-swatch";
-import styles from "./index.module.css";
+import styles from "./AnalyticsSidebar.module.css";
 
 type Props = { pair: ContrastPair };
 

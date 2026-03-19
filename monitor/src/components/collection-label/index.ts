@@ -1,0 +1,1 @@
+export { CollectionLabel } from "./CollectionLabel";

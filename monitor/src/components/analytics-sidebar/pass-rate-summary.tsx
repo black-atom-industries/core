@@ -1,4 +1,4 @@
-import styles from "./index.module.css";
+import styles from "./AnalyticsSidebar.module.css";
 
 type Props = { aa: number; aaa: number };
 

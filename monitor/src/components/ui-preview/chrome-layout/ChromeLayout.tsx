@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import styles from "./ChromeLayout.module.css";
+
+interface Props {
+    children: ReactNode;
+}
+
+export function ChromeLayout({ children }: Props) {
+    return <div className={styles.chromeLayout} data-component="ChromeLayout">{children}</div>;
+}

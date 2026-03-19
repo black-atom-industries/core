@@ -1,6 +1,6 @@
 import type { ContrastCategory as ContrastCategoryType } from "@core/lib/contrast-analysis.ts";
 import { ContrastPairRow } from "./contrast-pair-row";
-import styles from "./index.module.css";
+import styles from "./AnalyticsSidebar.module.css";
 
 type Props = { category: ContrastCategoryType };
 

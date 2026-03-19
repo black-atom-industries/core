@@ -1,0 +1,10 @@
+import type { ReactNode } from "react";
+import styles from "./FormPanel.module.css";
+
+interface Props {
+    children: ReactNode;
+}
+
+export function FormPanel({ children }: Props) {
+    return <div className={styles.formPanel} data-component="FormPanel">{children}</div>;
+}

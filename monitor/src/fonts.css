@@ -47,8 +47,7 @@
 /* --- OpenProps Font Overrides --- */
 
 :root {
-    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code",
-        ui-monospace, monospace;
+    --font-mono: "TX-02", "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace, monospace;
 
     /* TODO: Replace with a proper sans-serif font */
     --font-sans: var(--font-mono);
