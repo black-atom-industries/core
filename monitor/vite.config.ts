@@ -29,6 +29,11 @@ export default defineConfig({
             "@core": resolve(__dirname, "../src"),
         },
     },
+    build: {
+        rollupOptions: {
+            external: ["culori"],
+        },
+    },
     optimizeDeps: {
         include: ["@base-ui/react/navigation-menu", "@base-ui/react/dialog", "culori"],
     },

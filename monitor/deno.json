@@ -3,7 +3,7 @@
     "unstable": ["sloppy-imports"],
     "tasks": {
         "test": "deno test --allow-all",
-        "checks": "deno check && deno lint && deno fmt && deno task test",
+        "checks": "deno check && deno lint && deno fmt && deno task test && deno task build",
         "dev": "deno run -A npm:vite",
         "build": "deno run -A npm:vite build"
     },
