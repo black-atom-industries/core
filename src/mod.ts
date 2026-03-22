@@ -28,5 +28,3 @@ export * from "./types/themes.ts";
 export { themeMap } from "./themes/map.ts";
 
 export { collectionOrder } from "./config.ts";
-
-export { formatThemeLabel } from "./lib/formatters.ts";

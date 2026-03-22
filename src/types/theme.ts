@@ -268,12 +268,17 @@ interface ThemeCollectionMeta {
     label: string;
 }
 
+/** Base theme metadata without computed properties — used for authoring theme entries. */
+export type ThemeMetaBase = Omit<ThemeMeta, "label">;
+
 /** Theme metadata including display name, appearance, and collection info. */
 export interface ThemeMeta {
     /** Unique identifier for the theme. */
     key: ThemeKey;
     /** Short display name for the theme (e.g. "Dark", "Engineering", "Koyo Yoru"). */
     name: string;
+    /** Full display label (e.g. "Black Atom — TERRA ∷ Fall Night"). */
+    label: string;
     /** Appearance of the theme (light or dark). */
     appearance: "light" | "dark";
     /** Status of the theme (development, beta, or release). */

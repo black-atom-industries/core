@@ -1,4 +1,4 @@
-import type { ThemeKey, ThemeMeta } from "./theme.ts";
+import type { ThemeKey, ThemeMeta, ThemeMetaBase } from "./theme.ts";
 
 // *****************************************************************************
 // Collection defaults
@@ -7,32 +7,43 @@ import type { ThemeKey, ThemeMeta } from "./theme.ts";
 const defaultCollection = {
     status: "release",
     collection: { key: "default", label: "Default" },
-} as const satisfies Partial<ThemeMeta>;
+} as const satisfies Partial<ThemeMetaBase>;
 
 const stationsCollection = {
     status: "release",
     collection: { key: "stations", label: "Stations" },
-} as const satisfies Partial<ThemeMeta>;
+} as const satisfies Partial<ThemeMetaBase>;
 
 const jpnCollection = {
     status: "release",
     collection: { key: "jpn", label: "JPN" },
-} as const satisfies Partial<ThemeMeta>;
+} as const satisfies Partial<ThemeMetaBase>;
 
 const terraCollection = {
     collection: { key: "terra", label: "TERRA" },
-} as const satisfies Partial<ThemeMeta>;
+} as const satisfies Partial<ThemeMetaBase>;
 
 const mnmlCollection = {
     status: "development",
     collection: { key: "mnml", label: "MNML" },
-} as const satisfies Partial<ThemeMeta>;
+} as const satisfies Partial<ThemeMetaBase>;
+
+// *****************************************************************************
+// Label computation
+// *****************************************************************************
+
+function computeLabel(meta: ThemeMetaBase): string {
+    if (meta.collection.key === "default") {
+        return `Black Atom — ${meta.name}`;
+    }
+    return `Black Atom — ${meta.collection.label} ∷ ${meta.name}`;
+}
 
 // *****************************************************************************
 // Theme Key Meta Map
 // *****************************************************************************
 
-type ThemeKeyMetaMap = Record<ThemeKey, ThemeMeta>;
+type ThemeKeyMetaInputMap = Record<ThemeKey, ThemeMetaBase>;
 
 /**
  * Central registry of all theme metadata.
@@ -40,7 +51,7 @@ type ThemeKeyMetaMap = Record<ThemeKey, ThemeMeta>;
  * This is the single source of truth — ThemeCollectionKey,
  * and themeKeys are all derived from this object.
  */
-export const themeKeyMetaMap = {
+const rawThemeKeyMetaMap = {
     // *************************************************************************
     // DEFAULT COLLECTION
     // *************************************************************************
@@ -272,4 +283,15 @@ export const themeKeyMetaMap = {
         name: "ITA Light",
         appearance: "light",
     },
-} as const satisfies ThemeKeyMetaMap;
+} as const satisfies ThemeKeyMetaInputMap;
+
+// *****************************************************************************
+// Exported map (enriched with computed label)
+// *****************************************************************************
+
+export const themeKeyMetaMap = Object.fromEntries(
+    Object.entries(rawThemeKeyMetaMap).map(([key, meta]) => [
+        key,
+        { ...meta, label: computeLabel(meta) },
+    ]),
+) as Record<ThemeKey, ThemeMeta>;
