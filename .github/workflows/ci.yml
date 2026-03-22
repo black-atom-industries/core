@@ -12,6 +12,6 @@ jobs:
             - uses: denoland/setup-deno@v2
               with:
                   deno-version: v2.x
-            - run: deno task check
-            - run: deno task lint
+            - run: deno check src/**/*.ts
+            - run: deno lint
             - run: deno fmt --check
