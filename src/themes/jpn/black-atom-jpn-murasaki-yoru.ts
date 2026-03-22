@@ -10,10 +10,10 @@ import createUi from "./create-ui-dark.ts";
 const meta = themeKeyMetaMap["black-atom-jpn-murasaki-yoru"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.212, 0.028, 329.36),
-    d20: oklch(0.275, 0.041, 330.32),
-    d30: oklch(0.334, 0.053, 330.8),
-    d40: oklch(0.39, 0.059, 330.16),
+    d10: oklch(0.20, 0.042, 0),
+    d20: oklch(0.26, 0.042, 0.0),
+    d30: oklch(0.32, 0.042, 0),
+    d40: oklch(0.40, 0.042, 0),
 
     m10: oklch(0.453, 0.072, 330.42),
     m20: oklch(0.498, 0.081, 330.78),
@@ -27,23 +27,23 @@ const primaries: ThemePrimaryColors = {
 };
 
 const palette = createPalette(primaries, {
-    darkRed: oklch(0.617, 0.219, 28.4),
-    red: oklch(0.677, 0.176, 25.7),
+    darkRed: oklch(0.70, 0.15, 28.4),
+    red: oklch(0.75, 0.15, 25.7),
 
-    darkGreen: oklch(0.7, 0.117, 163.39),
-    green: oklch(0.75, 0.098, 165.36),
+    darkGreen: oklch(0.7, 0.075, 163.39),
+    green: oklch(0.75, 0.075, 165.36),
 
-    darkYellow: oklch(0.775, 0.17, 64.87),
-    yellow: oklch(0.761, 0.154, 78.01),
+    darkYellow: oklch(0.75, 0.135, 64.87),
+    yellow: oklch(0.75, 0.135, 78.01),
 
-    darkBlue: oklch(0.68, 0.112, 226.16),
-    blue: oklch(0.767, 0.087, 222.11),
+    darkBlue: oklch(0.70, 0.050, 226.16),
+    blue: oklch(0.75, 0.050, 222.11),
 
-    darkMagenta: oklch(0.537, 0.114, 305.64),
-    magenta: oklch(0.705, 0.168, 352.46),
+    darkMagenta: oklch(0.75, 0.075, 305.64),
+    magenta: oklch(0.75, 0.075, 352.46),
 
-    darkCyan: oklch(0.695, 0.06, 194.47),
-    cyan: oklch(0.763, 0.048, 194.49),
+    darkCyan: oklch(0.70, 0.075, 194.47),
+    cyan: oklch(0.75, 0.075, 194.49),
 });
 
 const accents: ThemeAccentColors = {
