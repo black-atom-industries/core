@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.1](https://github.com/black-atom-industries/core/compare/v0.4.0...v0.4.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* **ci:** add workflow_dispatch trigger to release workflow ([a199594](https://github.com/black-atom-industries/core/commit/a199594318febb4c07f9ecbf8b758839fdddc33d))
+* **ci:** use deno check instead of nonexistent deno task check ([6d2397a](https://github.com/black-atom-industries/core/commit/6d2397a6abfcaccb610958ea7b49299ccd982694))
+
+
+### Documentation
+
+* add ubiquitous language glossary for domain terminology ([bcc974a](https://github.com/black-atom-industries/core/commit/bcc974a7c9f0469e2f4f520b98a3270bda4f5e90))
+
 ## [0.4.0](https://github.com/black-atom-industries/core/compare/v0.3.2...v0.4.0) (2026-03-22)
 
 
