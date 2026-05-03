@@ -88,6 +88,9 @@ Each adapter repository contains:
 ### Prerequisites
 
 - [Deno](https://deno.land/) runtime
+- [ImageMagick](https://imagemagick.org/) — required for palette extraction from images (`magick` CLI)
+
+A `.mise.toml` is included. Run `mise install` to get all project tools.
 
 ### Development Commands
 
