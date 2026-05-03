@@ -1,0 +1,24 @@
+{
+    "languages": {
+        "TypeScript": {
+            "language_servers": ["deno", "!typescript-language-server", "!vtsls"],
+            "formatter": "language_server",
+            "format_on_save": "on"
+        },
+        "JavaScript": {
+            "language_servers": ["deno", "!typescript-language-server", "!vtsls"],
+            "formatter": "language_server",
+            "format_on_save": "on"
+        }
+    },
+    "lsp": {
+        "deno": {
+            "settings": {
+                "deno": {
+                    "enable": true,
+                    "lint": true
+                }
+            }
+        }
+    }
+}
