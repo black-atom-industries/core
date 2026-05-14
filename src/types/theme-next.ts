@@ -1,193 +1,193 @@
 import type { Colordx } from "@colordx";
 
 /** Primary color scale with dark (d), medium (m), and light (l) ranges. */
-export interface ThemePrimaryColorsNext {
-    d10: Colordx;
-    d20: Colordx;
-    d30: Colordx;
-    d40: Colordx;
+export interface ThemePrimaryColorsNext<Color = Colordx> {
+    d10: Color;
+    d20: Color;
+    d30: Color;
+    d40: Color;
 
-    m10: Colordx;
-    m20: Colordx;
-    m30: Colordx;
-    m40: Colordx;
+    m10: Color;
+    m20: Color;
+    m30: Color;
+    m40: Color;
 
-    l10: Colordx;
-    l20: Colordx;
-    l30: Colordx;
-    l40: Colordx;
+    l10: Color;
+    l20: Color;
+    l30: Color;
+    l40: Color;
 }
 
 /** 16-color terminal palette. */
-export interface ThemePaletteColorsNext {
-    black: Colordx;
-    gray: Colordx;
-    darkRed: Colordx;
-    red: Colordx;
-    darkGreen: Colordx;
-    green: Colordx;
-    darkYellow: Colordx;
-    yellow: Colordx;
-    darkBlue: Colordx;
-    blue: Colordx;
-    darkMagenta: Colordx;
-    magenta: Colordx;
-    darkCyan: Colordx;
-    cyan: Colordx;
-    lightGray: Colordx;
-    white: Colordx;
+export interface ThemePaletteColorsNext<Color = Colordx> {
+    black: Color;
+    gray: Color;
+    darkRed: Color;
+    red: Color;
+    darkGreen: Color;
+    green: Color;
+    darkYellow: Color;
+    yellow: Color;
+    darkBlue: Color;
+    blue: Color;
+    darkMagenta: Color;
+    magenta: Color;
+    darkCyan: Color;
+    cyan: Color;
+    lightGray: Color;
+    white: Color;
 }
 
 /** Semantic feedback colors for UI states. */
-export interface ThemeFeedbackColorsNext {
-    negative: Colordx;
-    success: Colordx;
-    info: Colordx;
-    warning: Colordx;
+export interface ThemeFeedbackColorsNext<Color = Colordx> {
+    negative: Color;
+    success: Color;
+    info: Color;
+    warning: Color;
 }
 
 /** Colors for git-related UI elements. */
-export interface ThemeGitColorsNext {
-    add: Colordx;
-    delete: Colordx;
-    modify: Colordx;
+export interface ThemeGitColorsNext<Color = Colordx> {
+    add: Color;
+    delete: Color;
+    modify: Color;
 }
 
 /** Minimal accent colors used by MNML collection themes. */
-export interface ThemeAccentColorsNext {
-    a10: Colordx;
-    a20: Colordx;
-    a30?: Colordx;
-    a40?: Colordx;
+export interface ThemeAccentColorsNext<Color = Colordx> {
+    a10: Color;
+    a20: Color;
+    a30?: Color;
+    a40?: Color;
 }
 
 /** UI color tokens split into background and foreground groups. */
-export interface ThemeUiColorsNext {
+export interface ThemeUiColorsNext<Color = Colordx> {
     bg: {
-        default: Colordx;
-        panel: Colordx;
-        float: Colordx;
-        active: Colordx;
-        disabled: Colordx;
-        hover: Colordx;
-        selection: Colordx;
-        search: Colordx;
-        contrast: Colordx;
+        default: Color;
+        panel: Color;
+        float: Color;
+        active: Color;
+        disabled: Color;
+        hover: Color;
+        selection: Color;
+        search: Color;
+        contrast: Color;
 
-        git?: ThemeGitColorsNext;
-        feedback?: ThemeFeedbackColorsNext;
+        git?: ThemeGitColorsNext<Color>;
+        feedback?: ThemeFeedbackColorsNext<Color>;
     };
 
     fg: {
-        default: Colordx;
-        subtle: Colordx;
-        accent: Colordx;
-        disabled: Colordx;
-        contrast: Colordx;
+        default: Color;
+        subtle: Color;
+        accent: Color;
+        disabled: Color;
+        contrast: Color;
 
-        git?: ThemeGitColorsNext;
-        feedback?: ThemeFeedbackColorsNext;
+        git?: ThemeGitColorsNext<Color>;
+        feedback?: ThemeFeedbackColorsNext<Color>;
     };
 }
 
 /** Syntax highlighting color tokens for all language constructs. */
-export interface ThemeSyntaxColorsNext {
+export interface ThemeSyntaxColorsNext<Color = Colordx> {
     variable: {
-        default: Colordx;
-        builtin: Colordx;
-        parameter: Colordx;
-        member: Colordx;
+        default: Color;
+        builtin: Color;
+        parameter: Color;
+        member: Color;
     };
     string: {
-        default: Colordx;
-        doc: Colordx;
-        regexp: Colordx;
-        escape: Colordx;
+        default: Color;
+        doc: Color;
+        regexp: Color;
+        escape: Color;
     };
     boolean: {
-        default: Colordx;
+        default: Color;
     };
     number: {
-        default: Colordx;
+        default: Color;
     };
     property: {
-        default: Colordx;
+        default: Color;
     };
     constant: {
-        default: Colordx;
-        builtin: Colordx;
+        default: Color;
+        builtin: Color;
     };
     module: {
-        default: Colordx;
+        default: Color;
     };
     type: {
-        default: Colordx;
-        builtin: Colordx;
+        default: Color;
+        builtin: Color;
     };
     attribute: {
-        default: Colordx;
-        builtin: Colordx;
+        default: Color;
+        builtin: Color;
     };
     func: {
-        default: Colordx;
-        builtin: Colordx;
-        method: Colordx;
+        default: Color;
+        builtin: Color;
+        method: Color;
     };
     constructor: {
-        default: Colordx;
+        default: Color;
     };
     operator: {
-        default: Colordx;
+        default: Color;
     };
     keyword: {
-        default: Colordx;
-        import: Colordx;
-        export: Colordx;
+        default: Color;
+        import: Color;
+        export: Color;
     };
     punctuation: {
-        default: Colordx;
-        delimiter: Colordx;
-        bracket: Colordx;
-        special: Colordx;
+        default: Color;
+        delimiter: Color;
+        bracket: Color;
+        special: Color;
     };
     comment: {
-        default: Colordx;
-        doc: Colordx;
-        todo: Colordx;
-        error: Colordx;
-        warn: Colordx;
-        info: Colordx;
-        hint: Colordx;
+        default: Color;
+        doc: Color;
+        todo: Color;
+        error: Color;
+        warn: Color;
+        info: Color;
+        hint: Color;
     };
     tag: {
-        default: Colordx;
-        builtin: Colordx;
-        delimiter: Colordx;
-        attribute: Colordx;
+        default: Color;
+        builtin: Color;
+        delimiter: Color;
+        attribute: Color;
     };
     markup: {
         heading: {
-            h1: Colordx;
-            h2: Colordx;
-            h3: Colordx;
-            h4: Colordx;
-            h5: Colordx;
-            h6: Colordx;
+            h1: Color;
+            h2: Color;
+            h3: Color;
+            h4: Color;
+            h5: Color;
+            h6: Color;
         };
         list: {
-            default: Colordx;
-            checked: Colordx;
-            unchecked: Colordx;
+            default: Color;
+            checked: Color;
+            unchecked: Color;
         };
-        strong: Colordx;
-        italic: Colordx;
-        strikethrough: Colordx;
-        quote: Colordx;
-        math: Colordx;
-        link: Colordx;
+        strong: Color;
+        italic: Color;
+        strikethrough: Color;
+        quote: Color;
+        math: Color;
+        link: Color;
         code: {
-            fg: Colordx;
-            bg: Colordx;
+            fg: Color;
+            bg: Color;
         };
     };
 }
@@ -268,22 +268,23 @@ export interface ThemeMeta {
     collection: ThemeCollectionMeta;
 }
 
-/** A complete theme definition with metadata, colors, UI tokens, and syntax colors.
- * TODO: Make this and the nexted properties generic so their values can be either `Colordx` or `HexColor`.
- */
-export interface ThemeDefinitionNext {
+/** A complete theme definition with metadata, colors, UI tokens, and syntax colors. */
+export interface ThemeDefinitionNext<Color = Colordx> {
     meta: ThemeMeta;
     colors: {
         /** Primary color scale. */
-        primaries: ThemePrimaryColorsNext;
+        primaries: ThemePrimaryColorsNext<Color>;
         /** 16-color terminal palette. */
-        palette: ThemePaletteColorsNext;
+        palette: ThemePaletteColorsNext<Color>;
         /** UI color tokens split into background and foreground groups. */
-        ui: ThemeUiColorsNext;
+        ui: ThemeUiColorsNext<Color>;
         /** Syntax highlighting color tokens for all language constructs. */
-        syntax: ThemeSyntaxColorsNext;
+        syntax: ThemeSyntaxColorsNext<Color>;
     };
 }
 
 /** Map of all theme keys to their full definitions. */
-export type ThemeKeyDefinitionMapNext = Record<ThemeKey, ThemeDefinitionNext>;
+export type ThemeKeyDefinitionMapNext<Color = Colordx> = Record<
+    ThemeKey,
+    ThemeDefinitionNext<Color>
+>;
