@@ -8,6 +8,7 @@
     "jsr:@std/fs@1": "1.0.13",
     "jsr:@std/internal@^1.0.10": "1.0.10",
     "jsr:@std/path@^1.0.8": "1.0.8",
+    "npm:@colordx/core@^5.4.3": "5.4.3",
     "npm:@types/node@*": "22.13.4",
     "npm:culori@4": "4.0.2",
     "npm:zod@^3.24.2": "3.25.76"
@@ -39,6 +40,9 @@
     }
   },
   "npm": {
+    "@colordx/core@5.4.3": {
+      "integrity": "sha512-kIxYSfA5T8HXjav55UaaH/o/cKivF6jCCGIb8eqtcsfI46wsvlSiT8jMDyrl779qLec3c2c2oHBZo4oAhvbjrQ=="
+    },
     "@types/node@22.13.4": {
       "integrity": "sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==",
       "dependencies": [
@@ -78,6 +82,7 @@
       "jsr:@std/fmt@1.0.5",
       "jsr:@std/fs@1",
       "jsr:@std/path@^1.0.8",
+      "npm:@colordx/core@^5.4.3",
       "npm:culori@4",
       "npm:zod@^3.24.2"
     ]

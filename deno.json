@@ -36,14 +36,10 @@
         "monitor:app": "cd monitor && deno task dev",
         "install-hooks": "cp scripts/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Hooks installed.'"
     },
-    "exclude": [
-        "monitor/"
-    ],
+    "exclude": ["monitor/"],
     "lint": {
         "rules": {
-            "exclude": [
-                "no-slow-types"
-            ]
+            "exclude": ["no-slow-types"]
         },
         "exclude": [
             "deno.lock",
@@ -60,12 +56,10 @@
         "semiColons": true,
         "singleQuote": false,
         "proseWrap": "preserve",
-        "exclude": [
-            "CHANGELOG.md",
-            "monitor/src/routeTree.gen.ts"
-        ]
+        "exclude": ["CHANGELOG.md", "monitor/src/routeTree.gen.ts"]
     },
     "imports": {
+        "@colordx": "npm:@colordx/core@^5.4.3",
         "@std/assert": "jsr:@std/assert@^1.0.0",
         "@std/fmt/colors": "jsr:@std/fmt@1.0.5/colors",
         "@std/path": "jsr:@std/path@^1.0.8",
