@@ -5,10 +5,10 @@ export default function (
 ): ThemeSyntaxColors {
     return {
         variable: {
-            default: primaries.d40,
+            default: primaries.d30,
             builtin: primaries.d40,
-            member: primaries.m10,
-            parameter: accents.a10,
+            member: accents.a20,
+            parameter: accents.a20,
         },
         property: {
             default: primaries.m10,

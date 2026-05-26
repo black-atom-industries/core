@@ -25,16 +25,16 @@ const primaries: ThemePrimaryColors = {
     m30: oklch(0.64, 0.01, 220),
     m40: oklch(0.72, 0.01, 220),
 
-    l10: oklch(0.82, 0.01, 220),
-    l20: oklch(0.86, 0.01, 220),
-    l30: oklch(0.90, 0.01, 220),
-    l40: oklch(0.94, 0.01, 220),
+    l10: oklch(0.94, 0.01, 220),
+    l20: oklch(0.96, 0.01, 220),
+    l30: oklch(0.98, 0.01, 220),
+    l40: oklch(1.00, 0.01, 220),
 };
 
 const accents: ThemeAccentColors = {
-    a10: oklch(0.70, 0.185, 60.0),
-    a20: oklch(0.66, 0.185, 50.0),
-    a30: oklch(0.62, 0.185, 40.0),
+    a10: oklch(0.7506, 0.175, 60.0),
+    a20: oklch(0.66, 0.185, 250.0),
+    a30: oklch(0.70, 0.185, 40.0),
 };
 
 const palette = createPalette(primaries, {

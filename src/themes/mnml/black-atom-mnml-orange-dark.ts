@@ -15,25 +15,25 @@ import createUi from "./create-ui-dark.ts";
 const meta = themeKeyMetaMap["black-atom-mnml-orange-dark"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.22, 0.01, 220),
-    d20: oklch(0.28, 0.01, 220),
-    d30: oklch(0.32, 0.01, 220),
-    d40: oklch(0.36, 0.01, 220),
+    d10: oklch(0.08, 0.01, 220),
+    d20: oklch(0.12, 0.01, 220),
+    d30: oklch(0.16, 0.01, 220),
+    d40: oklch(0.20, 0.01, 220),
 
     m10: oklch(0.48, 0.01, 220),
     m20: oklch(0.58, 0.01, 220),
     m30: oklch(0.64, 0.01, 220),
     m40: oklch(0.72, 0.01, 220),
 
-    l10: oklch(0.82, 0.01, 220),
-    l20: oklch(0.86, 0.01, 220),
-    l30: oklch(0.90, 0.01, 220),
-    l40: oklch(0.94, 0.01, 220),
+    l10: oklch(0.94, 0.01, 220),
+    l20: oklch(0.96, 0.01, 220),
+    l30: oklch(0.98, 0.01, 220),
+    l40: oklch(1.00, 0.01, 220),
 };
 
 const accents: ThemeAccentColors = {
-    a10: oklch(0.78, 0.175, 60.0),
-    a20: oklch(0.76, 0.180, 50.0),
+    a10: oklch(0.7506, 0.175, 60.0),
+    a20: oklch(0.6642, 0.18, 250.0),
     a30: oklch(0.74, 0.185, 40.0),
 };
 
