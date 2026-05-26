@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(gh repo create:*)",
+      "Bash(black-atom-core generate:*)",
+      "Bash(deno run:*)",
+      "Bash(ls:*)",
+      "Bash(deno task:*)",
+      "Bash(ln:*)",
+      "Bash(readlink:*)",
+      "Bash(bash:*)",
+      "Bash(bd init:*)",
+      "Bash(bd new:*)",
+      "Bash(bd list:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(bd sync:*)",
+      "Bash(bd create --title=\"Create black-atom-industries/picker repository\" --type=epic --priority=2 --body=\"$\\(cat <<''EOF''\n## Overview\n\nExtract and enhance the theme picker from `nikbrunner/dots` into a dedicated `black-atom-industries/picker` repository. A unified, cross-platform tool for applying Black Atom themes across all supported applications.\n\n## Current State \\(in dots repo\\)\n\n### Scripts\n- **`pick-theme`** \\(~320 lines bash\\)\n  - Updates: Neovim, tmux, Ghostty, Zed, Git delta, Niri, macOS appearance\n  - Restarts Neovim instances in tmux with session restore\n  - Uses fzf for interactive selection\n- **`ghostty-reload`** \\(~40 lines bash\\) - Shared utility for reloading Ghostty\n\n### Data Files\n- **`themes.json`** - Theme registry \\(manually maintained, NOT generated from core\\)\n  - Theme key → display_name, appearance, collection\n  - Tool config paths and update methods\n\n### Dependencies\n- External: `jq`, `fzf`\n- Black Atom repos: tmux/themes/*, niri/themes/*, ghostty/themes/*\n\n## Motivation\n\n1. **Single Source of Truth**: themes.json should be generated from core\n2. **Discoverability**: Standalone repo for other Black Atom users\n3. **Cross-Platform**: Proper macOS vs Linux handling\n4. **Installation**: Currently requires manual setup\n\n## Architecture Decisions\n\n### Language\nKeep **Bash** for simplicity. Consider Go/Bubbletea later if TUI features desired.\n\n### Theme Registry\nGenerate `themes.json` from core via adapter system - single source of truth.\n\n### Structure\n```\nblack-atom-industries/picker/\n├── README.md\n├── install.sh\n├── bin/\n│   ├── pick-theme\n│   └── lib/ghostty-reload\n├── config/themes.json      # Generated from core\n├── black-atom-adapter.json\n└── templates/themes.json.template.json\n```\n\n## Implementation Phases\n\n### Phase 1: Extract & Organize\n- Create repository\n- Move pick-theme and ghostty-reload from dots\n- Basic install.sh script\n- Document dependencies\n\n### Phase 2: Core Integration\n- Add picker as core adapter\n- Generate themes.json from core\n- Remove manual maintenance\n\n### Phase 3: Configuration\n- Auto-detect tool config paths\n- Support config overrides\n- Validation and error messages\n\n### Phase 4: Polish\n- Test macOS and Linux\n- Add --help and shell completions\n- Handle missing tools gracefully\n\n## Target Applications\n\n- Neovim \\(colorscheme in config.lua\\)\n- tmux \\(source-file\\)\n- Ghostty \\(theme line\\)\n- Zed \\(theme.dark/light\\)\n- Git delta \\(dark/light mode\\)\n- Niri \\(symlink\\)\n- macOS system appearance\n\n## Success Criteria\n\n1. `git clone` + `./install.sh` = working picker\n2. themes.json auto-generated from core\n3. Works on macOS and Linux\n4. Clear errors when tools/configs missing\nEOF\n\\)\")",
+      "Bash(bd show:*)",
+      "Bash(git init:*)",
+      "Bash(/home/nbr/repos/nikbrunner/dots/scripts/theme-link.sh:*)",
+      "Bash(bd create:*)",
+      "Bash(bd close core-d8y --reason=\"Created waybar adapter with GTK @define-color variables. Includes:\n- Single template generating 31 theme files with color definitions\n- Integration with pick-theme for automatic theme switching\n- Updated dots with style.css using @ba-* variables and theme.css symlink\")",
+      "Bash(bd close:*)",
+      "Bash(bd update:*)",
+      "WebFetch(domain:linear.app)"
+    ]
+  }
+}
