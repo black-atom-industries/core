@@ -1,5 +1,5 @@
 ---
-name: core:monitor
+name: core-monitor
 description: Monitor app conventions — routing, queries, components, core/monitor boundary. Load when working in monitor/.
 user-invocable: false
 ---
