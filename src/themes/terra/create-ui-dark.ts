@@ -5,7 +5,7 @@ export default function (
     { primaries, palette, feedback, accents }: ThemeCreatorOptions,
 ): ThemeUiColors {
     function t(color: string) {
-        return tint({ color, with: primaries.d10 });
+        return tint({ color, with: primaries.d10, amount: 0.40 });
     }
 
     return {

@@ -15,17 +15,24 @@ export function oklch(l: number, c: number, h: number): HexColor {
 }
 
 /**
- * Tints a base color with another color using OKLCH interpolation
+ * Tints a base color with another color, preserving the tint color's hue.
+ *
+ * Uses hue-preserving OKLCH interpolation: the base color is neutralized (chroma
+ * zeroed, hue aligned with the tint) before interpolation. This prevents the base
+ * color's hue from bleeding through during mixing, which would otherwise cause
+ * semantically wrong results when hues are far apart (e.g., orange tint on a
+ * cool-white base producing green).
+ *
  * @param params - Tint parameters
- * @param params.color - Color to tint with (hex)
- * @param params.with - Base color to apply tint to (default: black)
- * @param params.amount - Amount of tint to apply (0-1). Lower = more base color, higher = more tint (default: 0.15)
+ * @param params.color - Tint color to apply (hex)
+ * @param params.with - Base color to tint onto (default: black)
+ * @param params.amount - Amount of tint (0-1). Lower = more base, higher = more tint (default: 0.25)
  * @returns Tinted hex color
  * @example
- * tint({ color: '#ff0000', with: '#1e1e1e' }) // Returns dark background with 15% red tint
- * tint({ color: '#ff0000', with: '#f5f5f5' }) // Returns light background with 15% red tint
- * tint({ color: '#ff0000', with: '#000000', amount: 0.1 }) // Returns 10% red on black
- * tint({ color: '#ff0000', with: '#000000', amount: 0.5 }) // Returns 50% red on black
+ * tint({ color: '#ff0000', with: '#1e1e1e' }) // Dark bg with red tint
+ * tint({ color: '#ff0000', with: '#f5f5f5' }) // Light bg with red tint
+ * tint({ color: '#ff0000', with: '#000000', amount: 0.1 }) // 10% red on black
+ * tint({ color: '#ff0000', with: '#000000', amount: 0.5 }) // 50% red on black
  */
 export function tint(
     { color, with: baseColor = "#000000", amount = 0.25 }: {
@@ -34,6 +41,17 @@ export function tint(
         amount?: number;
     },
 ): HexColor {
-    const interpolator = interpolate([baseColor, color], "oklch");
+    // Neutralize the base's chroma and lock its hue to the tint color.
+    // This prevents hue interpolation artifacts when mixing warm tints
+    // onto cool bases (or vice versa), which would otherwise pass through
+    // unrelated hues (e.g., orange-on-white -> green).
+    const base = libOklch(baseColor);
+    const tint = libOklch(color);
+
+    base.c = 0;
+    base.h = tint.h;
+
+    const baseAdj = formatHex(base);
+    const interpolator = interpolate([baseAdj, color], "oklch");
     return formatHex(interpolator(Math.abs(amount))) as HexColor;
 }

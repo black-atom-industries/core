@@ -49,7 +49,7 @@ const palette = createPalette(primaries, {
 const feedback: ThemeFeedbackColors = {
     info: oklch(0.65, 0.15, 250),
     warning: accents.a10,
-    negative: accents.a20,
+    negative: accents.a30 ?? accents.a20,
     success: oklch(0.65, 0.15, 150),
 };
 
