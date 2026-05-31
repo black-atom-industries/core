@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.4.1](https://github.com/black-atom-industries/core/compare/v0.4.0...v0.4.1) (2026-05-31)
+
+
+### Refactors
+
+* add symlink from .claude/skills to .agents/skills ([2ade558](https://github.com/black-atom-industries/core/commit/2ade558b0e1171d62d921531dd6f686cbcd85be0))
+* Move .claude to .agents ([91d8072](https://github.com/black-atom-industries/core/commit/91d80725383e11974c1a7c221ef4137eb79a3fbe))
+* **themes/default:** restructure default collection color system ([11e3880](https://github.com/black-atom-industries/core/commit/11e388011c0f8b5238f78e5db1775cd6de91685a))
+* **themes/mnml:** refine orange palette, fix syntax light member color ([28dd7e1](https://github.com/black-atom-industries/core/commit/28dd7e1c5892b5378a4cad10985ef6beda4eb4f9))
+* update default light colors ([c35a916](https://github.com/black-atom-industries/core/commit/c35a9166b1fa83c100bd0ae6435de11fb8a1debc))
+
+
+### Bug Fixes
+
+* **agents:** rename core:monitor skill — colon invalid in name ([ff29d7a](https://github.com/black-atom-industries/core/commit/ff29d7af304b418ecb4ff95244b91a66d775127d))
+* **ci:** add workflow_dispatch trigger to release workflow ([a199594](https://github.com/black-atom-industries/core/commit/a199594318febb4c07f9ecbf8b758839fdddc33d))
+* **ci:** use deno check instead of nonexistent deno task check ([6d2397a](https://github.com/black-atom-industries/core/commit/6d2397a6abfcaccb610958ea7b49299ccd982694))
+* **create-ui-dark:** increase bg tint amount to 0.40 for better visibility ([6703967](https://github.com/black-atom-industries/core/commit/670396771f9f85e54e86c3a77964ad12283824a0))
+* **themes/mnml:** use a30 (orange-red) for orange-light negative instead of blue a20 ([6703967](https://github.com/black-atom-industries/core/commit/670396771f9f85e54e86c3a77964ad12283824a0))
+* **utils/color:** preserve hue in tint() — prevent bg feedback colors from hue-shifting ([6703967](https://github.com/black-atom-industries/core/commit/670396771f9f85e54e86c3a77964ad12283824a0))
+
+
+### Documentation
+
+* add ubiquitous language glossary for domain terminology ([bcc974a](https://github.com/black-atom-industries/core/commit/bcc974a7c9f0469e2f4f520b98a3270bda4f5e90))
+
 ## [0.4.0](https://github.com/black-atom-industries/core/compare/v0.3.2...v0.4.0) (2026-03-22)
 
 
