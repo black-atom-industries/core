@@ -28,3 +28,4 @@ black-atom-core
 docs/superpowers/
 .claude/tasks/
 tmp/
+/.visual-companion
