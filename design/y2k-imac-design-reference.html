@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Y2K iMac — Design Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bondi: #008080;
+      --bondi-light: #00CED1;
+      --bondi-dim: #2C5A5A;
+      --bondi-dark: #004545;
+      --strawberry: #FF69B4;
+      --lime: #7CFC00;
+      --tangerine: #FFA500;
+      --grape: #9370DB;
+      --gold: #FFD700;
+      --crt-bg: #1A2A2A;
+      --crt-border: #0A1515;
+      --frost: #E0FFFF;
+      --platinum: #F5F5F5;
+      --steel: #A8B8B8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0A0F0F;
+      color: #D0E0E0;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,206,209,0.08) 0%, transparent 70%);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--frost), var(--bondi-light), var(--bondi));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .hero .sub {
+      font-size: 1.1rem;
+      color: var(--steel);
+      margin-top: 0.5rem;
+      position: relative;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(0,206,209,0.12);
+      border: 1px solid rgba(0,206,209,0.25);
+      border-radius: 999px;
+      padding: 0.25rem 1rem;
+      font-size: 0.8rem;
+      color: var(--bondi-light);
+      margin-top: 0.75rem;
+      position: relative;
+    }
+
+    /* Sections */
+    .section { margin: 3rem 0; }
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--frost);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(0,206,209,0.15);
+      letter-spacing: -0.02em;
+    }
+    .section h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bondi-light);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    /* Palettes */
+    .palette {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .swatch-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 0.75rem;
+      text-align: center;
+      min-width: 100px;
+    }
+    .swatch {
+      width: 100%;
+      height: 60px;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .swatch-card .name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--steel);
+    }
+    .swatch-card .hex {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: #6A8A8A;
+      margin-top: 0.15rem;
+    }
+    .swatch-card .role {
+      font-size: 0.65rem;
+      color: var(--bondi-dim);
+      margin-top: 0.15rem;
+      font-style: italic;
+    }
+
+    /* Code block */
+    .code-block {
+      background: var(--crt-border);
+      border: 1px solid var(--bondi-dark);
+      border-radius: 10px;
+      padding: 1.5rem;
+      font-family: 'DM Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      box-shadow: inset 0 0 40px rgba(0,206,209,0.04), 0 0 20px rgba(0,128,128,0.06);
+    }
+    .code-block .comment { color: var(--bondi-dim); font-style: italic; }
+    .code-block .keyword { color: var(--bondi-light); }
+    .code-block .string { color: var(--strawberry); }
+    .code-block .function { color: var(--lime); }
+    .code-block .type { color: var(--tangerine); }
+    .code-block .number { color: var(--gold); }
+    .code-block .property { color: var(--grape); }
+    .code-block .operator { color: var(--steel); }
+    .code-block .variable { color: var(--frost); }
+    .code-block .constant { color: var(--tangerine); }
+
+    /* Quote box */
+    .quote-box {
+      background: rgba(0,206,209,0.04);
+      border-left: 3px solid var(--bondi);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--steel);
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    th {
+      color: var(--bondi-light);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    td:first-child { font-family: 'DM Mono', monospace; font-size: 0.8rem; }
+    .swatch-inline {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Semantic mapping */
+    .semantic-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .semantic-row .preview {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .semantic-row .token { font-family: 'DM Mono', monospace; font-size: 0.8rem; min-width: 160px; }
+    .semantic-row .desc { font-size: 0.85rem; color: var(--steel); }
+
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 2rem 0; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .container { padding: 2rem 1rem; }
+      .swatch-card { min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Y2K iMac</h1>
+  <p class="sub">Bondi Blue · Translucent Plastics · Candy-Colored Optimism</p>
+  <span class="badge">🖥️ Collection: Retro</span>
+</div>
+
+<div class="container">
+
+<!-- CONCEPT -->
+<div class="section">
+  <h2>Concept</h2>
+  <p>Designing a theme that captures the earnest, techno-optimistic spirit of the iMac G3 era (1998–2001). Where <strong>Y2K Chrome</strong> is nightclubs and raves, <strong>Y2K iMac</strong> is the glow of a Bondi Blue CRT in a teenager's bedroom — the promise of the internet, AOL CDs, and "Think Different."</p>
+  <div class="quote-box">
+    <strong>Core feeling:</strong> Translucent, cheerful, tactile. Colors feel like candy shells and soft plastics. The UI should look like iMac branding — rounded, glossy, inviting — without being cutesy or childish.
+  </div>
+</div>
+
+<!-- COLOR PALETTE -->
+<div class="section">
+  <h2>Color Palette</h2>
+  <h3>🖌️ Primaries (12-tone scale)</h3>
+  <p style="font-size:0.85rem;color:var(--steel);margin-bottom:1rem">A dark-to-light gradient rooted in warm charcoal (CRT bezel) rising through teal tones into translucent frost.</p>
+  <div class="palette">
+    <div class="swatch-card"><div class="swatch" style="background:#0A1515"></div><div class="name">d10</div><div class="hex">#0A1515</div><div class="role">deepest bg</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#112525"></div><div class="name">d20</div><div class="hex">#112525</div><div class="role">panel bg</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#1A3A3A"></div><div class="name">d30</div><div class="hex">#1A3A3A</div><div class="role">float bg</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#245050"></div><div class="name">d40</div><div class="hex">#245050</div><div class="role">selection</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#2C6B6B"></div><div class="name">m10</div><div class="hex">#2C6B6B</div><div class="role">muted text</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#008080"></div><div class="name">m20</div><div class="hex">#008080</div><div class="role">bondi blue</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#00A5A5"></div><div class="name">m30</div><div class="hex">#00A5A5</div><div class="role">hover</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#00CED1"></div><div class="name">m40</div><div class="hex">#00CED1</div><div class="role">keyword</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#80DCDC"></div><div class="name">l10</div><div class="hex">#80DCDC</div><div class="role">light accent</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#B0E8E8"></div><div class="name">l20</div><div class="hex">#B0E8E8</div><div class="role">soft accent</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#E0FFFF"></div><div class="name">l30</div><div class="hex">#E0FFFF</div><div class="role">frost / text</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#F0FFFF"></div><div class="name">l40</div><div class="hex">#F0FFFF</div><div class="role">bright text</div></div>
+  </div>
+
+  <h3>🍬 Accent / Candy Colors</h3>
+  <div class="palette">
+    <div class="swatch-card"><div class="swatch" style="background:#FF69B4"></div><div class="name">Strawberry</div><div class="hex">#FF69B4</div><div class="role">strings</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#7CFC00"></div><div class="name">Lime</div><div class="hex">#7CFC00</div><div class="role">functions</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#FFA500"></div><div class="name">Tangerine</div><div class="hex">#FFA500</div><div class="role">types</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#9370DB"></div><div class="name">Grape</div><div class="hex">#9370DB</div><div class="role">properties</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#FFD700"></div><div class="name">Gold</div><div class="hex">#FFD700</div><div class="role">numbers</div></div>
+  </div>
+  <p style="font-size:0.85rem;color:var(--steel)">These correspond to the five original iMac G3 colors: Bondi Blue, Strawberry, Lime, Tangerine, Grape. Gold is the only addition — a nod to the later "Dalmatian" and "Flower Power" special editions, and a practical necessity for number literals.</p>
+
+  <h3>⚠️ Feedback / Status Colors</h3>
+  <div class="palette">
+    <div class="swatch-card"><div class="swatch" style="background:#E84A5F"></div><div class="name">Negative</div><div class="hex">#E84A5F</div><div class="role">error</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#7CFC00"></div><div class="name">Success</div><div class="hex">#7CFC00</div><div class="role">ok / done</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#00CED1"></div><div class="name">Info</div><div class="hex">#00CED1</div><div class="role">information</div></div>
+    <div class="swatch-card"><div class="swatch" style="background:#FFA500"></div><div class="name">Warning</div><div class="hex">#FFA500</div><div class="role">caution</div></div>
+  </div>
+  <p style="font-size:0.85rem;color:var(--steel)">Strawberry becomes negative (still lively, but reads as attention), Lime doubles as success (green = good), Tangerine for warnings, Bondi Blue for info. Shared accent colors keep the palette tight and intentional.</p>
+</div>
+
+<!-- SYNTAX HIGHLIGHTING -->
+<div class="section">
+  <h2>Syntax Highlights</h2>
+  <table>
+    <tr><th>Token</th><th>Color</th><th>Swatch</th><th>Hex</th></tr>
+    <tr><td>Keyword / Control</td><td>Bondi Light</td><td><span class="swatch-inline" style="background:#00CED1"></span></td><td>#00CED1</td></tr>
+    <tr><td>Strings</td><td>Strawberry Pink</td><td><span class="swatch-inline" style="background:#FF69B4"></span></td><td>#FF69B4</td></tr>
+    <tr><td>Functions / Methods</td><td>Lime Green</td><td><span class="swatch-inline" style="background:#7CFC00"></span></td><td>#7CFC00</td></tr>
+    <tr><td>Types / Classes</td><td>Tangerine</td><td><span class="swatch-inline" style="background:#FFA500"></span></td><td>#FFA500</td></tr>
+    <tr><td>Properties / Attributes</td><td>Grape Purple</td><td><span class="swatch-inline" style="background:#9370DB"></span></td><td>#9370DB</td></tr>
+    <tr><td>Number Literals</td><td>Gold</td><td><span class="swatch-inline" style="background:#FFD700"></span></td><td>#FFD700</td></tr>
+    <tr><td>Variables</td><td>Frost White</td><td><span class="swatch-inline" style="background:#E0FFFF"></span></td><td>#E0FFFF</td></tr>
+    <tr><td>Operators / Punctuation</td><td>Steel</td><td><span class="swatch-inline" style="background:#A8B8B8"></span></td><td>#A8B8B8</td></tr>
+    <tr><td>Comments</td><td>Dim Teal</td><td><span class="swatch-inline" style="background:#2C5A5A"></span></td><td>#2C5A5A</td></tr>
+    <tr><td>Constants</td><td>Tangerine</td><td><span class="swatch-inline" style="background:#FFA500"></span></td><td>#FFA500</td></tr>
+  </table>
+</div>
+
+<!-- UI COLORS -->
+<div class="section">
+  <h2>UI Tokens</h2>
+
+  <div class="semantic-row">
+    <div class="preview" style="background:#0A1515"></div>
+    <div class="token">Background (default)</div>
+    <div class="desc">Deep CRT charcoal — like the bezel of an old monitor</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:#112525"></div>
+    <div class="token">Panel</div>
+    <div class="desc">Slightly lighter — sidebar, file explorer, activity bar</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:#1A3A3A"></div>
+    <div class="token">Float</div>
+    <div class="desc">Popovers, modals, dropdowns — translucent plastic feel</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:#245050"></div>
+    <div class="token">Selection / Active</div>
+    <div class="desc">Selected items, active tab, focused element</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:#008080"></div>
+    <div class="token">Accent (bondi)</div>
+    <div class="desc">Buttons, links, active indicators — the Bondi Blue iMac itself</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:#0D0202"></div>
+    <div class="token">Border (default)</div>
+    <div class="desc">Subtle edge definition via Bondi Dark</div>
+  </div>
+  <div class="semantic-row">
+    <div class="preview" style="background:rgba(0,206,209,0.12)"></div>
+    <div class="token">Hover (subtle)</div>
+    <div class="desc">12% Bondi Light overlay for hover states</div>
+  </div>
+  <div style="margin-top:1.5rem">
+    <h3>Terminal ANSI (16-color palette)</h3>
+    <div class="palette">
+      <div class="swatch-card"><div class="swatch" style="background:#0A1515"></div><div class="name">black</div><div class="hex">#0A1515</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#E84A5F"></div><div class="name">red</div><div class="hex">#E84A5F</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#7CFC00"></div><div class="name">green</div><div class="hex">#7CFC00</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#FFA500"></div><div class="name">yellow</div><div class="hex">#FFA500</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#00CED1"></div><div class="name">blue</div><div class="hex">#00CED1</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#9370DB"></div><div class="name">magenta</div><div class="hex">#9370DB</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#00A5A5"></div><div class="name">cyan</div><div class="hex">#00A5A5</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#E0FFFF"></div><div class="name">white</div><div class="hex">#E0FFFF</div></div>
+    </div>
+    <div class="palette" style="margin-top:0.5rem">
+      <div class="swatch-card"><div class="swatch" style="background:#112525"></div><div class="name">br_black</div><div class="hex">#112525</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#FF69B4"></div><div class="name">br_red</div><div class="hex">#FF69B4</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#98FF40"></div><div class="name">br_green</div><div class="hex">#98FF40</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#FFC04C"></div><div class="name">br_yellow</div><div class="hex">#FFC04C</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#40E0E0"></div><div class="name">br_blue</div><div class="hex">#40E0E0</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#B088E0"></div><div class="name">br_magenta</div><div class="hex">#B088E0</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#40D0D0"></div><div class="name">br_cyan</div><div class="hex">#40D0D0</div></div>
+      <div class="swatch-card"><div class="swatch" style="background:#F0FFFF"></div><div class="name">br_white</div><div class="hex">#F0FFFF</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CODE EXAMPLE -->
+<div class="section">
+  <h2>Code Example</h2>
+  <div class="code-block">
+    <span class="comment">// Y2K iMac Theme — iMac G3 "Bondi Blue"</span><br>
+    <span class="keyword">import</span> <span class="function">{ Translucent }</span> <span class="keyword">from</span> <span class="string">"apple-industrial-design"</span><br>
+    <br>
+    <span class="keyword">interface</span> <span class="type">ThemeSpec</span> <span class="operator">{</span><br>
+    &nbsp;&nbsp;<span class="property">name</span>: <span class="type">string</span><br>
+    &nbsp;&nbsp;<span class="property">version</span>: <span class="type">number</span><br>
+    &nbsp;&nbsp;<span class="property">colors</span>: <span class="type">CandyPalette</span><br>
+    <span class="operator">}</span><br>
+    <br>
+    <span class="keyword">const</span> <span class="variable">imac</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="type">ThemeSpec</span><span class="operator">({</span><br>
+    &nbsp;&nbsp;<span class="property">name</span>: <span class="string">"iMac G3"</span>,<br>
+    &nbsp;&nbsp;<span class="property">version</span>: <span class="number">1998</span>,<br>
+    &nbsp;&nbsp;<span class="property">colors</span>: <span class="operator">[</span><span class="string">"Bondi Blue"</span>, <span class="string">"Strawberry"</span>, <span class="string">"Lime"</span>, <span class="string">"Tangerine"</span>, <span class="string">"Grape"</span><span class="operator">]</span><br>
+    <span class="operator">})</span><br>
+    <br>
+    <span class="keyword">function</span> <span class="function">renderTranslucent</span><span class="operator">(</span><span class="variable">depth</span>: <span class="type">number</span><span class="operator">)</span> <span class="operator">{</span><br>
+    &nbsp;&nbsp;<span class="keyword">return</span> <span class="constant">null</span> <span class="comment">// too ahead of its time</span><br>
+    <span class="operator">}</span>
+  </div>
+</div>
+
+<!-- AESTHETIC PRINCIPLES -->
+<div class="section">
+  <h2>Aesthetic Principles</h2>
+
+  <h3>1. Translucency Over Opacity</h3>
+  <p>Where conventional themes use solid backgrounds, Y2K iMac should feel slightly <em>see-through</em>. Think the translucent teal plastic of an original iMac — you can almost see the cathode ray tube inside. In practice: use subtle alpha overlays, glow effects on borders, and gradient backgrounds that suggest depth behind the surface.</p>
+
+  <h3>2. Warm CRT Glow</h3>
+  <p>Not cold cyberpunk blue. The background is a warm charcoal (<em>#0A1515</em> has a hint of teal warmth), not the clinical black of modern dark themes. Syntax highlighting should feel like glowing phosphor, not LED backlight.</p>
+
+  <h3>3. Candy-Colored Restraint</h3>
+  <p>The five iMac colors are the entire accent palette. No infinite color wheel — you work with what's in the candy box. This forces intentionality: every color choice is a direct reference to a physical iMac G3 color. That's the constraint that makes it cohesive.</p>
+
+  <h3>4. Plastics, not Metals</h3>
+  <p>Y2K Chrome is silver and foil. Y2K iMac is colored plastic — matte shells with glossy highlights, not metallic reflections. Avoid chrome gradients, brushed metal textures, and cold grays.</p>
+
+  <h3>5. Optimism, not Nostalgia</h3>
+  <p>The iMac wasn't nostalgic when it launched — it was forward-looking. The theme should feel <em>hopeful</em>, not sentimental. Bright accent colors on a dark but warm background: the feeling of turning on a computer in 1999 and seeing the future.</p>
+
+</div>
+
+<!-- WHAT WOULD CHANGE FOR LIGHT THEME -->
+<div class="section">
+  <h2>Light Appearance Notes</h2>
+  <p>If a light variant is desired, the principle inverts: keep the Bondi Blue and candy accents, but the background becomes a warm off-white (think iMac's platinum white bezel) with the candy colors gaining slightly more chroma to hold their presence against white.</p>
+  <div class="quote-box">
+    <strong>Rough light palette direction:</strong> BG ~#F5F0E8 (warm platinum), text ~#1A3A3A (deep teal-black), candy accents as-is but shifted 5% brighter. The feel should be "a white iMac G3 on a sunlit desk."
+  </div>
+</div>
+
+<!-- DESIGN INSPIRATIONS -->
+<div class="section">
+  <h2>Design Inspirations</h2>
+  <ul style="list-style:none;font-size:0.9rem;color:var(--steel);line-height:2">
+    <li>🍏 <strong>iMac G3</strong> (1998) — the Bondi Blue original, Jony Ive's translucent revolution</li>
+    <li>💻 <strong>Mac OS 8/9 Platinum</strong> — the chiseled, rounded interface that preceded Aqua</li>
+    <li>🫧 <strong>Original iBook "Clamshell"</strong> — Tangerine and Blueberry translucent plastics</li>
+    <li>🎬 <strong>Apple "Think Different" campaign</strong> — the optimism of late-90s industrial design</li>
+    <li>📺 <strong>Toonami / Cartoon Network</strong> — the broadcast design language of the millennium era</li>
+    <li>🎮 <strong>Nintendo 64 / PS1 UI</strong> — chunky, colorful, low-poly, earnest</li>
+  </ul>
+</div>
+
+<hr>
+
+<p style="text-align:center;color:var(--bondi-dim);font-size:0.8rem;padding-bottom:3rem">
+  Y2K iMac · Design Reference · Black Atom Industries · June 2026
+</p>
+
+</div>
+</body>
+</html>
