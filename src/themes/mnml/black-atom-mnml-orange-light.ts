@@ -25,10 +25,10 @@ const primaries: ThemePrimaryColors = {
     m30: oklch(0.64, 0.01, 220),
     m40: oklch(0.72, 0.01, 220),
 
-    l10: oklch(0.94, 0.01, 220),
-    l20: oklch(0.96, 0.01, 220),
-    l30: oklch(0.98, 0.01, 220),
-    l40: oklch(1.00, 0.01, 220),
+    l10: oklch(0.94, 0.005, 220),
+    l20: oklch(0.96, 0.005, 220),
+    l30: oklch(0.98, 0.005, 220),
+    l40: oklch(1.00, 0.005, 220),
 };
 
 const accents: ThemeAccentColors = {
