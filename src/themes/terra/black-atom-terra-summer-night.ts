@@ -33,8 +33,8 @@ const palette = createPalette(primaries, {
     darkGreen: oklch(0.60, 0.1, 130),
     green: oklch(0.70, 0.1, 120),
 
-    darkYellow: oklch(0.75, 0.085, 60),
-    yellow: oklch(0.75, 0.085, 100),
+    darkYellow: oklch(0.75, 0.095, 60),
+    yellow: oklch(0.75, 0.095, 100),
 
     darkBlue: oklch(0.60, 0.05, 150),
     blue: oklch(0.70, 0.05, 150),
