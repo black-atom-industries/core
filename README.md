@@ -142,7 +142,19 @@ deno task adapters:push
 
 # Reset all adapter repositories to remote state
 deno task adapters:reset
+
+# Run any command in every repository (core + adapters)
+deno task org "git status"
+deno task org "git commit -m 'message'"
+deno task org "git commit --amend --no-edit"
+deno task org "git push"
+deno task org "lazygit"
 ```
+
+The `org` task is a generic command runner — it runs the same command in every repository
+in the org (core + all enabled adapters) with streaming I/O so interactive commands
+like `lazygit` work. The command string is parsed with shell-like quote handling
+(both single and double quotes), so you can pass any arguments.
 
 **Note**: Multi-adapter commands require all adapter repositories to be cloned as siblings under the same parent directory. Example structure: `~/repos/black-atom-industries/{core,nvim,ghostty,zed,obsidian,...}`
 
