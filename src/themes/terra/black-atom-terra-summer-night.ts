@@ -10,15 +10,15 @@ import createUi from "./create-ui-dark.ts";
 const meta = themeKeyMetaMap["black-atom-terra-summer-night"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.16, 0.03, 160),
-    d20: oklch(0.20, 0.03, 155),
-    d30: oklch(0.24, 0.03, 150),
-    d40: oklch(0.36, 0.03, 145),
+    d10: oklch(0.16, 0.035, 200),
+    d20: oklch(0.20, 0.035, 190),
+    d30: oklch(0.24, 0.035, 180),
+    d40: oklch(0.36, 0.035, 170),
 
-    m10: oklch(0.40, 0.05, 140),
-    m20: oklch(0.50, 0.05, 130),
-    m30: oklch(0.60, 0.05, 120),
-    m40: oklch(0.70, 0.05, 110),
+    m10: oklch(0.40, 0.05, 160),
+    m20: oklch(0.50, 0.05, 150),
+    m30: oklch(0.60, 0.05, 140),
+    m40: oklch(0.70, 0.05, 130),
 
     l10: oklch(0.75, 0.05, 90),
     l20: oklch(0.80, 0.05, 85),
@@ -36,14 +36,14 @@ const palette = createPalette(primaries, {
     darkYellow: oklch(0.75, 0.085, 60),
     yellow: oklch(0.75, 0.085, 100),
 
-    darkBlue: oklch(0.60, 0.075, 150),
-    blue: oklch(0.70, 0.075, 150),
+    darkBlue: oklch(0.60, 0.05, 150),
+    blue: oklch(0.70, 0.05, 150),
 
     darkMagenta: oklch(0.6, 0.05, 330),
     magenta: oklch(0.7, 0.05, 360),
 
     darkCyan: oklch(0.60, 0.075, 175),
-    cyan: oklch(0.70, 0.075, 170),
+    cyan: oklch(0.70, 0.075, 175),
 });
 
 const accents: ThemeAccentColors = {
