@@ -283,6 +283,18 @@ const rawThemeKeyMetaMap = {
         name: "ITA Light",
         appearance: "light",
     },
+    "black-atom-mnml-plastik-light": {
+        ...mnmlCollection,
+        key: "black-atom-mnml-plastik-light",
+        name: "Plastik Light",
+        appearance: "light",
+    },
+    "black-atom-mnml-plastik-dark": {
+        ...mnmlCollection,
+        key: "black-atom-mnml-plastik-dark",
+        name: "Plastik Dark",
+        appearance: "dark",
+    },
 } as const satisfies ThemeKeyMetaInputMap;
 
 // *****************************************************************************

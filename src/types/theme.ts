@@ -246,6 +246,8 @@ export const themeKeys = [
     "black-atom-mnml-mono-dark",
     "black-atom-mnml-mono-light",
     "black-atom-mnml-ita-light",
+    "black-atom-mnml-plastik-light",
+    "black-atom-mnml-plastik-dark",
 ] as const;
 
 export type ThemeKey = typeof themeKeys[number];

@@ -3,15 +3,23 @@ import type { ThemeCreatorOptions, ThemeSyntaxColors } from "../../types/theme.t
 export default function (
     { primaries, feedback, accents }: ThemeCreatorOptions,
 ): ThemeSyntaxColors {
+    const funcColors: ThemeSyntaxColors["func"] = {
+        default: accents.a10,
+        builtin: accents.a20,
+        method: accents.a20,
+    };
+
+    const propColor = primaries.m10;
+
     return {
         variable: {
             default: primaries.d30,
             builtin: primaries.d40,
-            member: accents.a20,
+            member: propColor,
             parameter: accents.a20,
         },
         property: {
-            default: primaries.m10,
+            default: propColor,
         },
         string: {
             default: primaries.m20,
@@ -41,17 +49,20 @@ export default function (
             builtin: accents.a20,
         },
         func: {
-            default: accents.a10,
-            builtin: accents.a20,
-            method: accents.a20,
+            ...funcColors,
         },
         constructor: {
-            default: accents.a10,
+            ...funcColors,
+        },
+        tag: {
+            ...funcColors,
+            delimiter: primaries.m30,
+            attribute: primaries.m10,
         },
         keyword: {
-            default: accents.a20 ?? primaries.d20,
-            import: accents.a20 ?? primaries.d30,
-            export: accents.a20 ?? primaries.d30,
+            default: accents.a30 ?? accents.a20 ?? primaries.d20,
+            import: accents.a40 ?? accents.a20 ?? primaries.d30,
+            export: accents.a40 ?? accents.a20 ?? primaries.d30,
         },
         operator: {
             default: primaries.d20,
@@ -95,12 +106,6 @@ export default function (
                 fg: primaries.d40,
                 bg: primaries.l20,
             },
-        },
-        tag: {
-            default: accents.a20,
-            builtin: accents.a10,
-            delimiter: primaries.m30,
-            attribute: primaries.m10,
         },
     };
 }
