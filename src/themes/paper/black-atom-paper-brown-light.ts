@@ -15,20 +15,20 @@ import createUi from "./create-ui-light.ts";
 const meta = themeKeyMetaMap["black-atom-paper-brown-light"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.18, 0.004, 89),
-    d20: oklch(0.24, 0.006, 89),
-    d30: oklch(0.32, 0.012, 89),
-    d40: oklch(0.40, 0.018, 89),
+    d10: oklch(0.24, 0.004, 75),
+    d20: oklch(0.28, 0.006, 75),
+    d30: oklch(0.34, 0.012, 75),
+    d40: oklch(0.40, 0.018, 75),
 
-    m10: oklch(0.55, 0.024, 89),
-    m20: oklch(0.62, 0.028, 89),
-    m30: oklch(0.70, 0.030, 89),
-    m40: oklch(0.78, 0.032, 89),
+    m10: oklch(0.55, 0.024, 75),
+    m20: oklch(0.62, 0.028, 75),
+    m30: oklch(0.70, 0.030, 75),
+    m40: oklch(0.78, 0.032, 75),
 
-    l10: oklch(0.86, 0.032, 89),
-    l20: oklch(0.89, 0.032, 89),
-    l30: oklch(0.92, 0.032, 89),
-    l40: oklch(0.96, 0.028, 89),
+    l10: oklch(0.86, 0.032, 75),
+    l20: oklch(0.89, 0.032, 75),
+    l30: oklch(0.92, 0.032, 75),
+    l40: oklch(0.96, 0.028, 75),
 };
 
 const accents: ThemeAccentColors = {

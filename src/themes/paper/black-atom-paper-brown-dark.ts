@@ -15,20 +15,20 @@ import createUi from "./create-ui-dark.ts";
 const meta = themeKeyMetaMap["black-atom-paper-brown-dark"];
 
 const primaries: ThemePrimaryColors = {
-    d10: oklch(0.22, 0.028, 63),
-    d20: oklch(0.28, 0.030, 65),
-    d30: oklch(0.34, 0.030, 65),
-    d40: oklch(0.40, 0.030, 66),
+    d10: oklch(0.18, 0.004, 75),
+    d20: oklch(0.24, 0.006, 75),
+    d30: oklch(0.32, 0.012, 75),
+    d40: oklch(0.40, 0.018, 75),
 
-    m10: oklch(0.50, 0.028, 68),
-    m20: oklch(0.58, 0.024, 72),
-    m30: oklch(0.66, 0.020, 74),
-    m40: oklch(0.74, 0.018, 76),
+    m10: oklch(0.50, 0.025, 75),
+    m20: oklch(0.58, 0.025, 75),
+    m30: oklch(0.66, 0.025, 75),
+    m40: oklch(0.74, 0.025, 75),
 
-    l10: oklch(0.82, 0.016, 78),
-    l20: oklch(0.85, 0.018, 78),
-    l30: oklch(0.87, 0.020, 78),
-    l40: oklch(0.91, 0.022, 80),
+    l10: oklch(0.82, 0.025, 75),
+    l20: oklch(0.86, 0.025, 75),
+    l30: oklch(0.90, 0.025, 75),
+    l40: oklch(0.94, 0.025, 75),
 };
 
 const accents: ThemeAccentColors = {
