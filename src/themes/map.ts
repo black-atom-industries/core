@@ -54,6 +54,12 @@ import blackAtomMnmlMonoDark from "./mnml/black-atom-mnml-mono-dark.ts";
 import blackAtomMnmlMonoLight from "./mnml/black-atom-mnml-mono-light.ts";
 import blackAtomMnmlItaLight from "./mnml/black-atom-mnml-ita-light.ts";
 
+// Paper collection
+import blackAtomPaperBrownLight from "./paper/black-atom-paper-brown-light.ts";
+import blackAtomPaperBrownDark from "./paper/black-atom-paper-brown-dark.ts";
+import blackAtomPaperBlueLight from "./paper/black-atom-paper-blue-light.ts";
+import blackAtomPaperBlueDark from "./paper/black-atom-paper-blue-dark.ts";
+
 export const themeMap: ThemeKeyDefinitionMap = {
     // Default collection
     "black-atom-default-dark": blackAtomDefaultDark,
@@ -98,4 +104,10 @@ export const themeMap: ThemeKeyDefinitionMap = {
     "black-atom-mnml-mono-dark": blackAtomMnmlMonoDark,
     "black-atom-mnml-mono-light": blackAtomMnmlMonoLight,
     "black-atom-mnml-ita-light": blackAtomMnmlItaLight,
+
+    // Paper collection
+    "black-atom-paper-brown-light": blackAtomPaperBrownLight,
+    "black-atom-paper-brown-dark": blackAtomPaperBrownDark,
+    "black-atom-paper-blue-light": blackAtomPaperBlueLight,
+    "black-atom-paper-blue-dark": blackAtomPaperBlueDark,
 };

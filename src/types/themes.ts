@@ -28,6 +28,11 @@ const mnmlCollection = {
     collection: { key: "mnml", label: "MNML" },
 } as const satisfies Partial<ThemeMetaBase>;
 
+const paperCollection = {
+    status: "development",
+    collection: { key: "paper", label: "PAPER" },
+} as const satisfies Partial<ThemeMetaBase>;
+
 // *****************************************************************************
 // Label computation
 // *****************************************************************************
@@ -282,6 +287,34 @@ const rawThemeKeyMetaMap = {
         key: "black-atom-mnml-ita-light",
         name: "ITA Light",
         appearance: "light",
+    },
+
+    // *************************************************************************
+    // PAPER COLLECTION
+    // *************************************************************************
+    "black-atom-paper-brown-light": {
+        ...paperCollection,
+        key: "black-atom-paper-brown-light",
+        name: "Brown Light",
+        appearance: "light",
+    },
+    "black-atom-paper-brown-dark": {
+        ...paperCollection,
+        key: "black-atom-paper-brown-dark",
+        name: "Brown Dark",
+        appearance: "dark",
+    },
+    "black-atom-paper-blue-light": {
+        ...paperCollection,
+        key: "black-atom-paper-blue-light",
+        name: "Blue Light",
+        appearance: "light",
+    },
+    "black-atom-paper-blue-dark": {
+        ...paperCollection,
+        key: "black-atom-paper-blue-dark",
+        name: "Blue Dark",
+        appearance: "dark",
     },
 } as const satisfies ThemeKeyMetaInputMap;
 

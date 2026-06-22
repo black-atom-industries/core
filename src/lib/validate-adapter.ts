@@ -19,6 +19,7 @@ export function createAdapterConfigSchema(themeKeys: readonly string[]) {
         stations: collectionConfigSchema,
         terra: collectionConfigSchema,
         mnml: collectionConfigSchema,
+        paper: collectionConfigSchema,
     };
 
     const collectionsSchema = z.object(collectionEntries).partial();

@@ -20,4 +20,5 @@ export const collectionOrder: ThemeCollectionKey[] = [
     "terra",
     "stations",
     "mnml",
+    "paper",
 ];

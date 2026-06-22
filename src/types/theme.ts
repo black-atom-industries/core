@@ -246,6 +246,10 @@ export const themeKeys = [
     "black-atom-mnml-mono-dark",
     "black-atom-mnml-mono-light",
     "black-atom-mnml-ita-light",
+    "black-atom-paper-brown-light",
+    "black-atom-paper-brown-dark",
+    "black-atom-paper-blue-light",
+    "black-atom-paper-blue-dark",
 ] as const;
 
 export type ThemeKey = typeof themeKeys[number];
@@ -258,6 +262,7 @@ const collectionKeys = [
     "jpn",
     "terra",
     "mnml",
+    "paper",
 ] as const;
 
 export type ThemeCollectionKey = typeof collectionKeys[number];
