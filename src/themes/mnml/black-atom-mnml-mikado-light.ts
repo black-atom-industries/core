@@ -10,6 +10,7 @@ import { oklch } from "../../utils/color.ts";
 import createPalette from "./create-palette-light.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
+import createFeedback from "./create-feedback-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-mnml-mikado-light"];
 
@@ -44,12 +45,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: ThemeFeedbackColors = {
-    info: accents.a20,
-    warning: "#f7bd08",
-    negative: "#e64433",
-    success: "#2fd073",
-};
+const feedback: ThemeFeedbackColors = createFeedback(accents);
 
 const options = { primaries, palette, feedback, accents };
 const ui = createUi(options);

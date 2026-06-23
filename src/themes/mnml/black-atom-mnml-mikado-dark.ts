@@ -11,6 +11,7 @@ import { oklch } from "../../utils/color.ts";
 import createPalette from "./create-palette-dark.ts";
 import createSyntax from "./create-syntax-dark.ts";
 import createUi from "./create-ui-dark.ts";
+import createFeedback from "./create-feedback-dark.ts";
 
 const meta = themeKeyMetaMap["black-atom-mnml-mikado-dark"];
 
@@ -48,12 +49,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: ThemeFeedbackColors = {
-    info: accents.a20,
-    warning: accents.a10,
-    negative: accents.a30 ?? "#DB504A",
-    success: "#4EBA65",
-};
+const feedback: ThemeFeedbackColors = createFeedback(accents);
 
 const options = { primaries, palette, feedback, accents };
 const ui = createUi(options);

@@ -11,6 +11,7 @@ import { oklch } from "../../utils/color.ts";
 import createPalette from "./create-palette-light.ts";
 import createSyntax from "./create-syntax-light.ts";
 import createUi from "./create-ui-light.ts";
+import createFeedback from "./create-feedback-light.ts";
 
 const meta = themeKeyMetaMap["black-atom-mnml-orange-light"];
 
@@ -46,12 +47,7 @@ const palette = createPalette(primaries, {
     }),
 });
 
-const feedback: ThemeFeedbackColors = {
-    info: oklch(0.65, 0.15, 250),
-    warning: accents.a10,
-    negative: accents.a30 ?? accents.a20,
-    success: oklch(0.65, 0.15, 150),
-};
+const feedback: ThemeFeedbackColors = createFeedback(accents);
 
 const options = { primaries, palette, feedback, accents };
 const ui = createUi(options);
